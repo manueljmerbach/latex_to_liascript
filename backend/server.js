@@ -41,13 +41,13 @@ app.post('/convert', (req, res) => {
   });
 });
 
-// (Optional) Wenn du das React-Frontend mitbaust
-app.use(express.static(path.join(__dirname, 'frontend', 'dist')));
+// Pfad zum gebauten Vite-Output
+const buildPath = path.join(__dirname, 'frontend', 'dist');
 
+// Statische Dateien ausliefern
+app.use(express.static(buildPath));
+
+// Alle anderen Anfragen auf index.html umleiten (SPA-Fallback)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
-});
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  res.sendFile(path.join(buildPath, 'index.html'));
 });
