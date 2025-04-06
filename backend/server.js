@@ -42,10 +42,10 @@ app.post('/convert', (req, res) => {
 });
 
 // (Optional) Wenn du das React-Frontend mitbaust
-app.use(express.static(path.join(__dirname, 'client', 'dist')));
+app.use(express.static(path.join(__dirname, 'frontend', 'dist')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
 });
 
 app.listen(port, () => {
