@@ -44,13 +44,12 @@ app.post('/convert', (req, res) => {
   });
 });
 
-// Pfad zum gebauten Vite-Output
-const buildPath = path.join(__dirname, 'frontend', 'dist');
+const buildPath = path.resolve(__dirname, '../frontend/dist');
 
-// Statische Dateien ausliefern
+// statische Dateien ausliefern
 app.use(express.static(buildPath));
 
-// Alle anderen Anfragen auf index.html umleiten (SPA-Fallback)
+// alle anderen Routen auf index.html umleiten
 app.get('*', (req, res) => {
   res.sendFile(path.join(buildPath, 'index.html'));
 });
