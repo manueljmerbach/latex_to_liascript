@@ -7,8 +7,8 @@ import { dirname } from 'path';
 
 const app = express();
 const port = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Server läuft auf Port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server läuft auf Port ${port}`);
 });
 
 // __dirname-Ersatz für ES Module
