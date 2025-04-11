@@ -4,9 +4,11 @@ import axios from "axios";
 function App() {
   const [file, setFile] = useState(null);
   const [status, setStatus] = useState("");
+  const [downloadLink, setDownloadLink] = useState("");
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
+    setDownloadLink(""); // Zurücksetzen bei neuer Datei
   };
 
   const uploadAndConvert = async () => {
@@ -20,12 +22,11 @@ function App() {
 
     try {
       const response = await axios.post("/convert", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
       setStatus(`✅ Erfolg: ${response.data.message}`);
+      setDownloadLink(`/download/${response.data.outputFile}`);
     } catch (error) {
       setStatus(`❌ Fehler: ${error.response?.data?.error || error.message}`);
     }
@@ -38,6 +39,12 @@ function App() {
       <br /><br />
       <button onClick={uploadAndConvert}>Konvertieren</button>
       <p>{status}</p>
+
+      {downloadLink && (
+        <p>
+          📥 <a href={downloadLink} download>Markdown herunterladen</a>
+        </p>
+      )}
     </div>
   );
 }

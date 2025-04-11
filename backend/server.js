@@ -38,6 +38,16 @@ app.post('/convert', upload.single('projectZip'), async (req, res) => {
   const zipPath = req.file.path;
   const extractDir = path.join(uploadsDir, `${Date.now()}_extracted`);
 
+  // Download-Route für die konvertierte Markdown-Datei
+app.get('/download/:filename', (req, res) => {
+  const filePath = path.join(uploadsDir, req.params.filename);
+  if (fs.existsSync(filePath)) {
+    res.download(filePath);
+  } else {
+    res.status(404).json({ error: 'Datei nicht gefunden' });
+  }
+});
+
   try {
     // Entpacken
     await fs.createReadStream(zipPath)
