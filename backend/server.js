@@ -15,6 +15,8 @@ app.listen(port, () => {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const isWindows = process.platform === 'win32';
+
 // Middleware
 app.use(express.json());
 
@@ -33,7 +35,7 @@ app.post('/convert', (req, res) => {
   // Direktes Pandoc-Kommando für Linux/Mac (funktioniert auf Render)
   const command = `pandoc -s -f latex -t markdown -o "${outputPath}" "${inputPath}"`;
 
-  exec(command, { cwd: workingDir }, (error, stdout, stderr) => {
+  exec(command, { cwd: workingDir, shell: isWindows }, (error, stdout, stderr) => {
     if (error) {
       return res.status(500).json({ error: error.message });
     }
