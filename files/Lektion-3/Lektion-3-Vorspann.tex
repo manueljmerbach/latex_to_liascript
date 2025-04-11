@@ -1,0 +1,52 @@
+\cleardoublepage
+\chapter*{Einleitung zur Lektion}
+\addcontentsline{toc}{chapter}{Einleitung zur Lektion}
+\markboth{Einleitung zur Lektion}{Einleitung zur Lektion}
+
+In Lektion 2 haben wir die Grundprinzipien der Modellierung vorgestellt,  
+\marginline{Modell und Veränderung}
+basierend auf der Definition von Herbert Stachowiak: Modelle sind Abstraktionen natürlicher oder künstlicher Originale, deren Eigenschaften vereinfacht dargestellt oder weggelassen werden, um innerhalb eines Geltungsbereichs für eine bestimmte Zielgruppe spezifische Zwecke zu erfüllen. Auf diesem Verständnis aufbauend haben Sie die Modellierungssprache UML kennengelernt und in Objekt- und Klassendiagrammen strukturelle Aspekte der Realwelt visualisiert. Dabei haben Sie gesehen, dass sich die Objekte der Klassen ändern können: Es können Objekte erzeugt werden, es können sich Attributwerte und damit Objektzustände verändern, Verbindungen können hinzugefügt oder gelöscht werden. Dies geschieht natürlich, weil entsprechende Veränderungen der Realwelt abgebildet werden sollen. Und insbesondere auch, weil dies Auswirkungen der Abläufe sind, die unsere Software realisieren soll.
+
+Klassendiagramme formulieren Regeln, die immer gelten, 
+\marginline{Modellierung von Verhalten}
+während zugehörige Objektkonstellationen nur für einen bestimmten Zeitpunkt gelten, also Momentaufnahmen eines eventuell komplexen und verteilten Systems darstellen. Die Konstellationen von Objekten können sich auf vielfältige Weise ändern, doch sind diese Änderungen nicht beliebig und nicht unabhängig voneinander, weil ansonsten die genannten Regeln verletzt werden können. Mögliche Änderungen werden durch das Verhalten von Systemen und Prozessen (den Unterschied werden Sie später kennenlernen) beschrieben, und auch dafür braucht es Modelle. Diese Lektion behandelt die Modellierung von Verhalten. Wir werden Modelle zum Verständnis von Verhalten in der Realwelt einsetzen, aber auch zur Beschreibung des Verhaltens von Software.
+
+Prozessmodellierung, 
+\marginline{Prozess\-modellierung}
+wie sie Ihnen im professionellen Kontext und in der Literatur begegnet, findet Anwendung sowohl in der Informatik als auch in der Wirt\-schafts\-infor\-matik (sie spielt dort insbesondere bei der Optimierung von Geschäftsprozessen eine Rolle). Sie lässt sich also im interdisziplinären Kontext dieser beiden Disziplinen verorten. Seit den späten 1970er Jahren haben sich viele verschiedene Modellierungssprachen für Prozesse entwickelt. Diese Sprachen variieren in ihren spezifischen Ausdrucksformen und Schwerpunkten. In unserer Lehrveranstaltung verwenden wir Petrinetze für die Prozessmodellierung.
+
+\pagebreak %%% für Druck
+
+\sttpAutorenkasten{Carl Adam Petri}{1926}{2010}{Deutscher Mathematiker und Informatiker. Leitete ein Institut der Gesellschaft für Mathematik und Datenverarbeitung (GMD) in St. Augustin bei Bonn. Bekannt ist er vor allem für die nach ihm benannten Petrinetze zur Modellierung des Verhaltens verteilter Systeme.}{Bilder/Autoren/petri.jpg}{2009}{Michael Krapp, \href{http://creativecommons.org/licenses/by-sa/3.0}{CC BY-SA 3.0}, via \href{https://commons.wikimedia.org/wiki/File:Carl_adam_petri.jpg}{Wikimedia Commons}}
+
+\vspace{-1ex} %%% für Druck
+
+\subsection*{Warum Petrinetze?}
+
+\textbf{Petrinetze als Grundlage für andere Prozess-Modellierungssprachen}\\
+Obwohl Petrinetze in der praktischen Anwendung möglicherweise nicht (mehr) weit verbreitet sind, bilden sie die theoretische Grundlage für beinahe alle anderen Pro\-zess-Model\-lie\-rungs\-tech\-niken und -sprachen.
+
+\textbf{Einfache Visualisierung}\\
+Petrinetze verfügen über eine leicht erlernbare und verständliche grafische Darstellungsform, die nur wenige unterschiedliche Elemente beinhaltet.
+
+\textbf{Modellierung verteilter Systeme mit verteilten, lokalen Zuständen}\\
+In verteilten Systemen führen die möglichen Kombinationen der lokalen Zustände der Komponenten zu einer exponentiellen Zunahme möglicher globaler Zustände. Petrinetze bewältigen diese Komplexität, indem globale Zustände nicht explizit modelliert werden, sondern sich aus den Kombinationen der lokalen Zustände ergeben. So wächst die Größe eines Petrinetzes nur linear mit der Systemgröße, was eine effi\-zi\-ente und doch präzise Modellierung großer Systeme ermöglicht. Diese Art der Modellierung hat nicht nur den Vorteil die Komplexität des Modells überschaubar zu halten, sondern spiegelt auch die modulare Struktur des modellierten Systems wider.
+
+\textbf{Präzise Darstellung des Verhaltens von Systemkomponenten}\\
+Die Modellierung komplexer Prozesse in der Softwareentwicklung mithilfe von Petrinetzen erlaubt ein tiefes Verständnis für die Dynamik und Interaktion von Systemkomponenten, denn die Abläufe eines Prozesses und auch seiner Komponenten sowie ihre Eigenschaften und deren Beziehungen zueinander sind formal definiert und können präzise dargestellt werden.
+
+\textbf{Mathematische Basis}\\
+Die mathematische Grundlage der Petrinetze ermöglicht es Modelle systematisch und auch automatisch (mit entsprechenden Werkzeugen) auf Korrektheit und Konsistenz zu überprüfen. Auf diese Weise können Fehler in der Programmlogik eines modellierten Systems bereits frühzeitig erkannt und behoben werden, noch bevor sie beim Testen oder im laufenden Betrieb auftreten. In den vergangenen 60 Jahren wurde eine Vielzahl von Algorithmen entwickelt, und entsprechende Werkzeuge stehen zur Verfügung.
+
+\textbf{Nebenläufigkeit als Konzept}\\
+Ein weiterer wesentlicher Vorteil von Petrinetzen ist die kausale, nicht-sequentielle Interpretation von Abläufen. Wie Sie im Laufe dieses Kapitels verstehen werden, entspricht dies in den meisten Fällen der Realität, in der Aktivitäten unabhängig voneinander stattfinden. Diese Philosophie mag zunächst ungewohnt erscheinen, ist jedoch äußerst wertvoll. Sobald Sie sie verstanden haben, kann sie Ihnen in vielen anderen Bereichen nützlich sein.
+
+\sttpUniversalkasten{Lernziele zu Lektion 3}{Nach dieser Lektion
+	\begin{itemize}
+		\item können Sie die Begriffe System, Prozess, Prozessablauf im Modellierungskontext erklären und voneinander abgrenzen.
+		\item können Sie Petrinetzmodelle für einfache Systeme und Prozesse erstellen und verstehen Sie, wie derartige Modelle durch Methoden des Process Mining und der Synthese entstehen.
+		\item verstehen Sie zentrale Eigenschaften von Systemen und Prozessen und wissen, wie man diese formal definiert und für gegebene Beispiele prüft.
+		\item können Sie Theoreme und Beweise zu komplexeren mathematisch formulierten Beziehungen zwischen Modelleigenschaften nachvollziehen und für einfachere Beziehungen selbst erstellen.
+		\item kennen Sie verschiedene praxisrelevante Sprachen für die Modellierung von Prozessen und Systemverhalten, insbesondere aus der UML, und können die Bezüge zu Petrinetzen erläutern.
+	\end{itemize}
+}

@@ -1,0 +1,22 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0" version="26.0.2">
+  <diagram name="Seite-1" id="9k1WN15x0Ah3jpr1nk7P">
+    <mxGraphModel dx="785" dy="413" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="BjgfJw3hstJ-g9K763Aq-1" value="Präsentation" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#006666;strokeWidth=2;glass=0;" parent="1" vertex="1">
+          <mxGeometry x="80" y="80" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BjgfJw3hstJ-g9K763Aq-3" value="Datenbank" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#006666;strokeWidth=2;glass=0;" parent="1" vertex="1">
+          <mxGeometry x="80" y="200" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BjgfJw3hstJ-g9K763Aq-4" value="Anwendungsverarbeitung" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#006666;strokeWidth=2;glass=0;" parent="1" vertex="1">
+          <mxGeometry x="80" y="160" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BjgfJw3hstJ-g9K763Aq-5" value="Datenverwaltung" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#006666;strokeWidth=2;glass=0;" parent="1" vertex="1">
+          <mxGeometry x="80" y="120" width="280" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

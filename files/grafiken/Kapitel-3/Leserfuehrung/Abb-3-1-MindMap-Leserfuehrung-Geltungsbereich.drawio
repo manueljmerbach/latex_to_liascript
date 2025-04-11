@@ -1,0 +1,58 @@
+<mxfile host="app.diagrams.net" modified="2023-10-05T20:17:46.687Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/118.0" etag="KBH4KWXGbwv8xW20-yIq" version="22.0.3" type="device">
+  <diagram name="Seite-1" id="wHW9kBenEgrP3_7lrIwn">
+    <mxGraphModel dx="2100" dy="1132" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="5j8Ru1-8B9VefQ6FMMyY-2" value="Prozess der Implementierung" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=none;strokeWidth=3;fillColor=#1a8cff;fontFamily=Helvetica;fontSize=18;fontColor=#FFFFFF;align=center;spacing=5;fontStyle=0;arcSize=7;perimeterSpacing=2;gradientColor=none;gradientDirection=south;fillStyle=auto;" vertex="1" parent="1">
+          <mxGeometry x="330" y="250" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5j8Ru1-8B9VefQ6FMMyY-3" value="Prozess des Entwurfs" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=none;strokeWidth=3;fillColor=#1a8cff;fontFamily=Helvetica;fontSize=18;fontColor=#FFFFFF;align=center;spacing=5;fontStyle=0;arcSize=7;perimeterSpacing=2;gradientColor=none;gradientDirection=south;fillStyle=auto;" vertex="1" parent="1">
+          <mxGeometry x="360" y="180" width="260" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5j8Ru1-8B9VefQ6FMMyY-4" value="Prozess der Anforderungsermittlung" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=none;strokeWidth=3;fillColor=#1a8cff;fontFamily=Helvetica;fontSize=18;fontColor=#FFFFFF;align=center;spacing=5;fontStyle=0;arcSize=7;perimeterSpacing=2;gradientColor=none;gradientDirection=south;fillStyle=auto;" vertex="1" parent="1">
+          <mxGeometry x="300" y="110" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5j8Ru1-8B9VefQ6FMMyY-5" value="kompletter Softwareengineeringsprozess" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=none;strokeWidth=3;fillColor=#1a8cff;fontFamily=Helvetica;fontSize=18;fontColor=#FFFFFF;align=center;spacing=5;fontStyle=0;arcSize=7;perimeterSpacing=2;gradientColor=none;gradientDirection=south;fillStyle=auto;" vertex="1" parent="1">
+          <mxGeometry x="230" y="40" width="360" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5j8Ru1-8B9VefQ6FMMyY-6" value="Prozess des Testens" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=none;strokeWidth=3;fillColor=#1a8cff;fontFamily=Helvetica;fontSize=18;fontColor=#FFFFFF;align=center;spacing=5;fontStyle=0;arcSize=7;perimeterSpacing=2;gradientColor=none;gradientDirection=south;fillStyle=auto;" vertex="1" parent="1">
+          <mxGeometry x="260" y="320" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5j8Ru1-8B9VefQ6FMMyY-7" value="..." style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=none;strokeWidth=3;fillColor=#1a8cff;fontFamily=Helvetica;fontSize=18;fontColor=#FFFFFF;align=center;spacing=5;fontStyle=0;arcSize=7;perimeterSpacing=2;gradientColor=none;gradientDirection=south;fillStyle=auto;" vertex="1" parent="1">
+          <mxGeometry x="150" y="320" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5j8Ru1-8B9VefQ6FMMyY-8" value="Geltungsbereich" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=none;strokeWidth=3;fillColor=#0066CC;fontFamily=Helvetica;fontSize=26;fontColor=#FFFFFF;align=center;spacing=5;fontStyle=0;arcSize=7;perimeterSpacing=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="140" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="5j8Ru1-8B9VefQ6FMMyY-9" value="" style="edgeStyle=none;rounded=1;jumpStyle=none;html=1;shadow=0;labelBackgroundColor=none;startArrow=none;startFill=0;jettySize=auto;orthogonalLoop=1;strokeColor=#0066CC;strokeWidth=3;fontFamily=Helvetica;fontSize=14;fontColor=#FFFFFF;spacing=5;fontStyle=1;fillColor=#b0e3e6;endArrow=none;endFill=0;" edge="1" parent="1" source="5j8Ru1-8B9VefQ6FMMyY-8" target="5j8Ru1-8B9VefQ6FMMyY-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5j8Ru1-8B9VefQ6FMMyY-10" value="" style="edgeStyle=none;rounded=1;jumpStyle=none;html=1;shadow=0;labelBackgroundColor=none;startArrow=none;startFill=0;jettySize=auto;orthogonalLoop=1;strokeColor=#0066CC;strokeWidth=3;fontFamily=Helvetica;fontSize=14;fontColor=#FFFFFF;spacing=5;fontStyle=1;fillColor=#b0e3e6;endArrow=none;endFill=0;" edge="1" parent="1" source="5j8Ru1-8B9VefQ6FMMyY-8" target="5j8Ru1-8B9VefQ6FMMyY-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5j8Ru1-8B9VefQ6FMMyY-11" value="" style="edgeStyle=none;rounded=1;jumpStyle=none;html=1;shadow=0;labelBackgroundColor=none;startArrow=none;startFill=0;jettySize=auto;orthogonalLoop=1;strokeColor=#0066CC;strokeWidth=3;fontFamily=Helvetica;fontSize=14;fontColor=#FFFFFF;spacing=5;fontStyle=1;fillColor=#b0e3e6;endArrow=none;endFill=0;" edge="1" parent="1" source="5j8Ru1-8B9VefQ6FMMyY-8">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5j8Ru1-8B9VefQ6FMMyY-12" value="" style="edgeStyle=none;rounded=1;jumpStyle=none;html=1;shadow=0;labelBackgroundColor=none;startArrow=none;startFill=0;jettySize=auto;orthogonalLoop=1;strokeColor=#0066CC;strokeWidth=3;fontFamily=Helvetica;fontSize=14;fontColor=#FFFFFF;spacing=5;fontStyle=1;fillColor=#b0e3e6;endArrow=none;endFill=0;" edge="1" parent="1" source="5j8Ru1-8B9VefQ6FMMyY-8" target="5j8Ru1-8B9VefQ6FMMyY-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="292" y="253" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5j8Ru1-8B9VefQ6FMMyY-13" value="" style="edgeStyle=none;rounded=1;jumpStyle=none;html=1;shadow=0;labelBackgroundColor=none;startArrow=none;startFill=0;jettySize=auto;orthogonalLoop=1;strokeColor=#0066CC;strokeWidth=3;fontFamily=Helvetica;fontSize=14;fontColor=#FFFFFF;spacing=5;fontStyle=1;fillColor=#b0e3e6;endArrow=none;endFill=0;" edge="1" parent="1" source="5j8Ru1-8B9VefQ6FMMyY-8" target="5j8Ru1-8B9VefQ6FMMyY-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="260" y="323" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5j8Ru1-8B9VefQ6FMMyY-14" value="" style="edgeStyle=none;rounded=1;jumpStyle=none;html=1;shadow=0;labelBackgroundColor=none;startArrow=none;startFill=0;jettySize=auto;orthogonalLoop=1;strokeColor=#0066CC;strokeWidth=3;fontFamily=Helvetica;fontSize=14;fontColor=#FFFFFF;spacing=5;fontStyle=1;fillColor=#b0e3e6;endArrow=none;endFill=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="5j8Ru1-8B9VefQ6FMMyY-8" target="5j8Ru1-8B9VefQ6FMMyY-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="223" y="140" as="sourcePoint" />
+            <mxPoint x="360" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

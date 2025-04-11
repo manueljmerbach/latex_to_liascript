@@ -1,0 +1,71 @@
+\vspace{2mm} %%% für Druck
+
+\subsection{Beispiel: Fibonacci-Zahlen}
+\label{sec:Kap-11-2-3}
+
+Die Fibonacci-Zahlen $f_1, f_2, f_3, \ldots $ sind wie folgt definiert: $f_1 = 1, f_2 = 1$ und, für $i \geq 3$, $f_i = f_{i-2} + f_{i-1}$. Die ersten sieben Fibonacci-Zahlen lauten daher
+
+$$f_1=1, f_2=1, f_3=2, f_4=3, f_5=5, f_6=8, f_7=13 $$
+
+Algorithmus~\ref{algo:fibonacci} gibt einen bereits mit Zusicherungen annotierten Algorithmus zur Berechnung der $k$-ten Fibonacci-Zahl an, wobei $k \geq 2$ die Eingabe darstellt.
+
+%%% Hier kommt Algorithmus "algo:fibonacci" eigentlich hin.
+
+\vspace{2mm} %%% für Druck
+
+Die Schleifeninvariante lautet in diesem Beispiel also
+
+$$\{n=f_{i-2} \wedge m= f_{i-1} \wedge i \leq k+1\}.$$ 
+
+Der Teil $i \leq k+1$ ist etwas lästig und hätte vermieden werden können, wenn die Schleifenabbruchbedingung $i \neq k + 1 $ gelautet hätte, doch wir wollten es Ihnen nicht zu einfach machen :-). Nun funktioniert der Algorithmus auch für die Eingabe $k=1$, die Verifikation mit den angegebenen Zusicherungen allerdings nicht. Was müsste geändert werden, um die Korrektheit auch für diesen Fall zu zeigen? Tatsächlich wird diese Verallgemeinerung recht umständlich, so dass man diesen einen Fall gesondert zeigen kann: Die Schleife wird nicht betreten und der korrekte Wert $m= 1$ wird ausgegeben.
+
+\begin{algorithm}
+	\caption{Algorithmus zur Berechnung der $k$-ten Fibonacci-Zahl}
+	\label{algo:fibonacci}
+	
+	\vspace{\baselineskip}
+	
+	\KwData{Eingabe: $k, k \geq 2$}
+	\KwResult{Ausgabe: $f_k$}
+	
+	\vspace{\baselineskip}
+	
+	$n = 1; \, m = 1; \, i = 3;$ \\
+	
+	\HiLi $\{n = f_{i-2}, \, m = f_{i-1}, \, i \leq k+1\}$ \\
+	
+	\vspace{\baselineskip}
+	
+	\While{$i \leq k$}{
+		\HiLi $\{i \leq k, \, n = f_{i-2}, \, m = f_{i-1}\}$ \\
+		\HiLi $\{m + n = f_{i-2} + f_{i-1}\}$ \\
+		\vspace{\baselineskip} %%% für Druck		
+		$m = m + n$\;
+		\vspace{\baselineskip} %%% für Druck		
+		\HiLi $\{i \leq k, \, n = f_{i-2}, \, m = f_{i-2} + f_{i-1}\}$ \\
+		\HiLi $\{m - n = f_{i-1}\}$ \\
+		\vspace{\baselineskip} %%% für Druck		
+		$n = m - n$\;
+		\vspace{\baselineskip} %%% für Druck		
+		\HiLi $\{i \leq k, \, n = f_{i-1}, \, m = f_{i-2} + f_{i-1}= f_i\}$ \\
+		\HiLi $\{i+1 \leq k+1, \, n = f_{i+1 - 2}, \, m = f_{i+1 - 1}\}$ \\
+		\vspace{\baselineskip} %%% für Druck		
+		$i = i + 1$ \\
+		\vspace{\baselineskip} %%% für Druck		
+		\HiLi $\{i \leq k+1, \, n = f_{i-2}, \, m = f_{i - 1}\}$ \\
+	}
+	\;
+	
+	\vspace{\baselineskip}
+	
+	\HiLi $\{i > k, \, i \leq k+1, \, n = f_{i-2}, \, m = f_{i-1}\}$ \\
+	\HiLi $\{i = k+1\}$ \\
+	\HiLi $\{m = f_k\}$\\
+	
+	\vspace{\baselineskip}
+	
+	\Return{$m$}
+	
+	\vspace{\baselineskip}
+	
+\end{algorithm}

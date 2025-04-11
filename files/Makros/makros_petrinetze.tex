@@ -1,0 +1,45 @@
+%%-----------------------------------------------------
+%%---------- Makros für Lektion 3 (Petrinetze) --------
+%%-----------------------------------------------------
+
+% wird für die Darstellung der Petrinetze in Lektion 3 benötigt
+\usetikzlibrary{petri, positioning, angles, quotes, decorations.pathreplacing, calc, arrows.meta}
+
+% zentrales Setzen von Farben
+\colorlet{colDummyLine}{white} % Dummy-Linie über diesen Schalter sichtbar (rot) bzw. unsichtbar (weiß) machen
+
+\colorlet{COLTRANS}{black}
+\definecolor{COLPLACE}{RGB}{0,102,102} % FernUni-Grün
+\colorlet{COLRED}{red!80!black}
+
+\newlength{\PNTransWidth}
+\newlength{\PNTransHeight}
+\newlength{\PNPlaceSize}
+
+\setlength{\PNTransWidth}{2.2cm}
+\setlength{\PNTransHeight}{1.5cm}
+\setlength{\PNPlaceSize}{0.9cm}
+
+%--------------------------------------
+% Makro für Petrinetze
+%--------------------------------------
+% Das folgende Kommando verwenden wir für die Darstellung der Petrinetze in Lektion 3.
+% Voraussetzung hierfür ist die Verwendung des Package "tikz" und einiger Libraries.
+%
+% \usepackage{tikz}
+% \usetikzlibrary{petri, positioning, angles, quotes, decorations.pathreplacing, calc, arrows.meta}
+%--------------------------------------
+\newcommand{\petrinetz}[1]{
+	\begin{tikzpicture}[
+		>=Stealth, % Latex-Pfeilspitzen verwenden
+		line width=0.9pt, % Dicke der Linien
+		every place/.style={minimum size=0.75cm, inner sep=0pt}, % Größe der Stellen, ohne Polsterung
+		every transition/.style={minimum size=0.75cm, inner sep=0pt}, % Größe der Transitionen, ohne Polsterung
+		every node/.append style={font=\boldmath}, % Fett und größer für alle Labels
+		shorten >=0pt,
+		shorten <=0pt, % Pfeile verkürzen
+		post/.style={->, line width=0.9pt, arrows={-Stealth[length=8pt,width=6pt]}} % Pfeilspitzen größer
+		]
+		#1 % Zeichnung
+	\end{tikzpicture}
+}

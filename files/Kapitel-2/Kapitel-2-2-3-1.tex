@@ -1,0 +1,88 @@
+\subsubsection{Extreme Programming (XP)}
+\label{sec:Kap-2.2.3.1}
+
+\sttpLeserfuehrung{Bilder/Kapitel-2/Leserfuehrung/vorgehensmodelle_agile_illustration.pdf}{Bilder/Kapitel-2/Leserfuehrung/vorgehensmodelle_extreme_programming.pdf}
+
+Das von Kent  Beck, Ward Cunningham und Ron Jeffries entwickelte Extreme Programming (Abkürzung XP) war Ende der 1990er und Anfang der 2000er Jahre das einzige leichtgewichtige Modell mit einem größeren Bekanntheitsgrad. XP verzichtet vollständig auf langfristige Entwicklungspläne und weitgehend auf die Produktion von Artefakten, die nicht Programmcode sind. Stattdessen kombiniert es verschiedene von den Urhebern und anderen Entwicklern eingesetzte und für sinnvoll befundene (Programmier)Verfahren zu einem kleinen Satz von Techniken, die 
+\marginline{Praktiken} 
+\textit{Praktiken} genannt werden. Im Unterschied zu den Praktiken des Agilen Manifests, die teilweise etwas philosophisch gehalten sind, handelt es sich bei den XP-Praktiken um sehr konkrete Vorgaben, welche Techniken und Methoden das Entwicklungsteam einsetzen und wie es Arbeitsprozesse gestalten soll. 
+
+\minisec{Struktur des Softwareentwicklungsprozesses}
+
+Das oberste Ziel von XP ist die Produktion von lauffähigem Programmcode in kurzen Zeitintervallen. Ein Entwicklungszyklus, dessen Dauer maximal wenige Monate beträgt und an dessen Ende eine an den Kunden ausgelieferte Produktversion (in XP \textit{Release}
+\marginline{Release, Iteration, Task}
+genannt) steht, setzt sich aus mehreren \textit{Iterationen} mit einer Dauer zwischen ein und vier Wochen zusammen. Die kleinste Einheit innerhalb einer Iteration ist eine Programmieraufgabe (\textit{Task}), die in der Regel ein bis drei Tage, manchmal aber auch nur einige Stunden Arbeitszeit erfordert. Beim ersten Release eines Softwareentwicklungsprojekts nach XP-Vorgehen handelt es sich um das Kernsystem, das durch die folgenden Releases jeweils inkrementell erweitert wird.
+
+XP fordert die ständige Anwesenheit mindestens eines Kundenvertreters, um mit dem Entwicklungsteam unmittelbar kommunizieren zu können. Zu Beginn jeder Iteration werden in enger Zusammenarbeit zwischen Entwicklungsteam und Kundenvertretern im sogenannten Planungsspiel (s.u.) die Anforderungen bestimmt, die in der jeweiligen Iteration umgesetzt werden sollen sowie die Programmieraufgaben festgelegt, die sich daraus ergeben, und auf sogenannten \textit{Taskcards} \marginline{Taskcard}
+festgehalten. Eine Taskcard ist eine Art logische Karteikarte, die eine reale Karteikarte, aber zum Beispiel auch Notizen am Whiteboard, Einträge im Wiki oder Tickets in einem Ticketsystem sein kann. Im Laufe der Iteration werden die Taskcards von den Programmierern abgearbeitet. XP gibt vor, dass immer zuerst die Anforderungen umgesetzt werden müssen, die der Kunde mit höchster Priorität gewichtet hat, damit die zum geplanten Releasetermin eventuell nicht fertiggestellten Funktionalitäten von geringerer Bedeutung sind. 
+
+\sttpKasten{\textbf{Die XP-Philosophie}
+
+Kent Beck beschreibt die Idee hinter seinem Vorgehensmodell und das \mbox{„Extreme“} in Extreme Programming folgendermaßen \cite[XV]{bec03}:
+
+\textit{„Wenn Code Reviews gut sind, dann begutachten wir den Code andauernd [...]\\
+Wenn Testen gut ist, dann testet jeder andauernd [...], auch der Kunde [...]\\ 
+%~[...]\\ % Hinweis: die Tilde ~ wird gebraucht, da die eckigen Klammern am Zeilenanfang sonst nicht korrekt dargestellt werden
+Wenn kurze Iterationszeiten gut sind, dann machen wir sie wirklich kurz – Sekunden, Minuten und Stunden statt Wochen, Monate und Jahre [...]\\
+Als ich XP zum ersten Mal formulierte, hatte ich das Bild von Reglern auf einem Steuerpult im Kopf. Jeder Regler war ein Verfahren, von dem ich aus Erfahrung wusste, dass es gut funktioniert. Ich wollte alle Regler auf 10 aufdrehen und sehen, was dann passieren würde. Überraschenderweise erwies sich dieses Paket von Verfahren als stabil, vorhersehbar und flexibel.“
+}}
+
+\minisec{XP-Praktiken}
+Ein Grundkonzept von XP ist die Methode der \textit{testgetriebenen Entwicklung} 
+\marginline{Test-Driven Development}
+(Test-Driven Development), die heute auch in viele andere (und durchaus nicht nur agile) Vorgehensmodelle Einzug gehalten hat – allerdings häufiger als Test-\textbf{First} statt Test-\textbf{Driven} Entwicklung.
+%\sttpkapitelverweis{testgetriebene Entwicklung}{Kap.~\ref{sec:Kap-x.y}}
+Bei der testgetriebenen Entwicklung  werden zunächst Testfälle für den zukünftigen Programmcode erstellt, bevor mit der Implementierung des Moduls begonnen wird. Im Rahmen von XP bezieht sich die testgetriebene Entwicklung nur auf die Ebene von Komponententests (engl. unit test; in Deutsch auch Modultest). 
+%\sttpgls{Softwaretests} 
+Die Komponententests können Fehler im Programmcode des entsprechenden Moduls finden, prüfen aber nicht, ob die Software die vom Kunden gewünschte Funktionalität aufweist. Dafür sieht XP Funktionstests (auch Akzeptanztests genannt) vor, die von den Kundenvertretern mit Unterstützung des Entwicklungsteams spezifiziert werden.
+
+Die bekannteste mit XP in Verbindung gebrachte Praktik ist das Programmieren in Paaren (\textit{Pair Programming}). \marginline{Pair Programming}
+%\sttpkapitelverweis{Pair Programming}{Kap.~\ref{sec:Kap-x.y}}
+Dabei sitzen zwei Programmierer zusammen an einem Computer. Während einer programmiert, begutachtet der andere den Code und merkt direkt an, wenn ihm Probleme auffallen. Die Rollenaufteilung zwischen beiden Partnern kann flexibel wechseln. Pair  Programming umfasst nicht nur das reine Implementieren, sondern zum Beispiel auch die gemeinsame Arbeit an der Festlegung und Erstellung von Komponententests und die Diskussion über Lösungswege einer Programmieraufgabe. XP sieht vor, dass die Paarzusammensetzung häufig wechselt, durchaus auch mehrfach am Tag. 
+
+Eng mit Pair Programming verknüpft ist in XP die Vorstellung eines 
+\marginline{gemeinsames Codeeigentum}
+gemeinsamen Codeeigentums: Jeder im Projekt erstellte Code „gehört“ allen Teammitgliedern und kann deshalb auch von jedem jederzeit verändert werden, wobei diejenigen, die Code ändern, dafür verantwortlich sind, dass dieser weiterhin die Testfälle erfüllt. Erforderlich dafür ist ein hohes Maß an Kommunikation zwischen den Programmierern und vor allem auch ein sehr ausgereiftes automatisiertes Versionsmanagement.
+%\sttpkapitelverweis{Ver\-si\-ons\-ver\-wal\-tungs\-sys\-te\-me}{Kap.~\ref{sec:Kap-x.y}}
+XP fordert zudem die Konzentration auf Einfachheit in der Implementierung: Jede Funktion soll nur genau so komplex implementiert werden, wie sie aktuell benötigt wird und nicht schon im Hinblick auf mögliche Erweiterungen ausgestaltet werden.
+
+\sttpseitenrandzitat{„XP gleicht einer Wette. Man wettet darauf, dass es besser ist, heute etwas Einfaches zu tun und morgen etwas mehr zu zahlen, wenn man es ändern muss, statt heute etwas Kompliziertes zu tun, das vielleicht niemals eingesetzt wird.“ \cite[31]{bec03}}{Kent Beck}
+
+Fertiggestellter Programmcode soll möglichst schnell in das Gesamtsystem integriert werden. Mindestens einmal am Tag, im Idealfall häufiger, soll daher jedes Programmierteam Code von seinem lokalen Computer in das System übernehmen. Dabei muss sichergestellt werden, dass definierte Integrationstests auch nach der Übernahme des eigenen Codes weiter fehlerfrei durchlaufen. Diese Vorgehensweise der kontinuierlichen Code\-inte\-gra\-tion (\textit{Continuous Integration}) \marginline{Continuous Integration}
+%\sttpkapitelverweis{Continuous Integration}{Kap.~\ref{sec:Kap-x.y}}
+ist wie Test-First Devel\-op\-ment eine Methode, die heute in vielen Softwareprojekten verwendet wird, unabhängig davon, ob sie mit XP als Entwicklungsmodell arbeiten oder nicht. 
+
+Eine weitere zentrale Praktik in XP ist das sogenannte \textit{Refactoring}, \marginline{Refactoring}
+%\sttpkapitelverweis{Refactoring}{Kap.~\ref{sec:Kap-x.y}} 
+bei dem Änderungen am Programmcode vorgenommen werden, ohne dass sich das Verhalten (also die Funktionalität der Software) verändern soll. Refactoring zielt darauf ab, Aspekte wie Strukturiertheit, Verständlichkeit, aber auch Flexibilität des Programmcodes zu verbessern und damit die Qualität der Software zu erhöhen. Refactoring-Maßnahmen sind in XP explizite Arbeitsaufgaben in jeder Iteration. 
+
+\vspace{1mm} %%% für Druck
+
+\minisec{Umgang mit Anforderungen}
+
+Die  Anforderungen an das zu entwickelnde Softwareprodukt werden in XP in Form sogenannter \textit{User Stories} \marginline{User Stories} spezifiziert, die die Kundenvertreter erstellen. User \mbox{Stories} beschreiben die Anforderungen an das zu erstellende System aus Sicht einer bestimmten Nutzergruppe, zum Beispiel über die Darstellung von Arbeitsprozessen, die die Software unterstützen soll (\zb „In meiner Rolle als Sachbearbeiter in der Personalverwaltung möchte ich die Gehaltsabrechnungen der Mitarbeiter verwalten“). Die User Stories sind Ausgangspunkt für das \textit{Planungsspiel}, \marginline{Planungsspiel} das zu Beginn jeder Iteration stattfindet und in dem versucht wird, die Kundenwünsche und die vorhandenen Entwicklungsressourcen einer Iteration in Einklang zu bringen. Dafür priorisieren die Kundenvertreter die User Stories und erläutern sie, sodass das Entwicklungsteam den Implementierungsaufwand abschätzen kann. Die Prioritäten kann der Kundenvertreter zu Beginn jeder Iteration (also auch noch innerhalb desselben Release-Zyklus) anpassen und auch neue Anforderungen hinzufügen. Gemeinsam wird anschließend die Dauer und der Umfang der Iteration festgelegt. Die vorgenommenen Aufwandsabschätzungen werden am Ende der Iteration mit den real investierten Aufwänden verglichen, um die Qualität der vorgenommenen Aufwandsabschätzungen im Projektverlauf stetig zu verbessern.
+
+\vspace{1mm} %%% für Druck
+
+\minisec{Artefakte des Entwicklungsprozesses}
+XP gehört zu den agilen Modellen, in denen sehr wenig dokumentiert wird. Es setzt darauf, „dass mündliche Kommunikation, Tests und Quellcode die Struktur und den Zweck des Systems zum Ausdruck bringen.“ \cite[XVII]{bec03}. Dies betrifft auch die User Stories. Diese werden auf sogenannten Storycards nur sehr rudimentär beschrieben. XP gewichtet die direkte mündliche Kommunikation über die User Stories deutlich höher als deren schriftliche Fixierung. Durch die ständige Anwesenheit des Kundenvertreters kann das Entwicklungsteam auch jederzeit nach dem Planungsspiel Unklarheiten zur Umsetzung der User Stories mit diesem diskutieren. 
+
+\vspace{1mm} %%% für Druck
+
+\minisec{Einordnung von XP}
+Eine entscheidende Rolle spielt bei XP die direkte (informelle) Kommunikation innerhalb des Entwicklungsteams. Dementsprechend eignet sich XP vor allem für kleine bis mittelgroße Teams („zwei bis zehn Programmierer“ \cite[XVIII]{bec03}), die eng zusammensitzen – im Idealfall im selben Büro – und gleiche Arbeitszeiten haben. 
+
+Der geringe Grad an schriftlicher Dokumentation wird von XP-Kritikern als problematisch angesehen. Schwierig wird es vor allem dann, wenn mehrere Mitarbeiter das Softwareentwicklungsprojekt verlassen und damit zu viel Wissen über die Software verloren geht, das nicht dokumentiert ist. Das kann Gründe für Entwurfsentscheidungen betreffen, die neue Mitarbeiter nicht kennen, aber auch Priorisierungs\-entscheidungen zu noch umzusetzenden Anforderungen, die bei einem Wechsel des Kundenvertreters eventuell nicht mehr rekonstruierbar sind. Kompliziert kann es auch werden, wenn ein anderes Team die Wartung der Software übernehmen soll als das Team, das sie entwickelt hat. 
+
+Ein weiterer Kritikpunkt an XP ist die unklare Beschreibung, wie der Aufbau einer Systemarchitektur gelingen soll. Einen expliziten Architekturentwurf sieht XP nicht vor. Letztendlich ist in einem konkreten Softwareentwicklungsprojekt entscheidend, dass das Entwicklungsteam genug Erfahrung im Aufbau von Softwarearchitekturen hat, um anhand einer Produktvision %\sttpkapitelverweis{Produktvision}{Kap.~\ref{sec:Kap-x.y}} 
+die relevanten Leistungsmerkmale für die Erstellung der initialen Produktversion (erstes Release) bestimmen zu können.
+
+Wie bei anderen agilen Modellen auch, lässt sich bei XP für Auftragsarbeiten die klassische Festpreis-Vertragsgestaltung zwischen Auftraggeber und Auftragnehmer nicht ohne Weiteres anwenden. Beck schlägt eine Art Abonnementmodell vor – wobei er allerdings nicht ins Detail geht –, bei dem Verträge über Laufzeiten und Kosten, aber nicht über feste Funktionalitäten geschlossen werden, die für den Auftraggeber auch wieder kündbar sind \cite[160]{bec03}. 
+
+Ein Softwareentwicklungsprojekt, das nach dem XP-Entwicklungsmodell arbeiten möchte, muss nach Ansicht der XP-Urheber alle vorgesehenen XP-Praktiken anwenden, da diese sich gegenseitig stützen und in ihrem Zusammenspiel am gewinnbringendsten angewendet werden könnten. Das bedeutet aber nicht, dass man nicht einzelne Methoden auch gesondert einsetzen kann – nur entwickelt man dann halt nicht nach XP. Die Autoren von XP haben Praktiken wie Continuous Integration und Test-First Development, die man heute zu den grundlegenden Bestandteilen agiler Softwareentwicklung zählt, nicht erfunden; ihnen kommt aber sicherlich das Verdienst zu, sie weithin bekannt gemacht zu haben.
+
+XP gibt, wie vorgestellt, viele Richtlinien für die konkreten Entwicklungsarbeiten vor, die vom Entwicklungsteam diszipliniert eingehalten werden müssen. Abgesehen von der Forderung, im Entwicklungsprojekt keine Überstunden notwendig werden zu lassen, legt XP aber nur wenige organisatorische Rahmenbedingungen fest. Das ebenfalls agile Vorgehensmodell Scrum geht den umgekehrten Weg.
+
+\vspace{\baselineskip} %%% für Druck
+
+\sttpseitenrandzitat{„Where XP has been responsible for much of the success of agile approaches within the IT \textbf{development} community, Scrum may be seen as being responsible for much of the success of agile approaches within the IT \textbf{management} community.“ \cite[84-10]{fav14}}{}

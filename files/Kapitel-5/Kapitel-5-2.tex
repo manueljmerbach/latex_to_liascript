@@ -1,0 +1,512 @@
+\section{Vorlesung 2: Modellierung von Verhalten mit Halbordnungen}
+
+Das Verhalten eines Systems besteht - ganz grob ausgedrückt - aus seinen Abläufen. Und ein Ablauf beschreibt, was tatsächlich geschieht oder geschehen ist. Es geht bei der Verhaltensbeschreibung im Allgemeinen natürlich weiter; sie beschreibt auch, was wann geschehen könnte, welche Alternativen möglich sind, wovon sie abhängen usw.
+
+Als Mensch ist man versucht, einen Ablauf immer durch globale Zustände, also Momentaufnahmen, und schrittweise Zustandsänderungen zu beschreiben, also das Verhalten an einem gedachten Zeitstrahl auszurichten. Dies hängt damit zusammen, dass wir als Mensch Verhalten stets nur sequentiell beobachten können, also alles nur nacheinander sehen können, und deshalb Begriffe wie „Zustand“ und „nacheinander“ als grundlegend ansehen. Auch viele Modellierungssprachen folgen diesem Paradigma, sind aber bei großen, komplexen, oft verteilten Systemen nicht wirklich geeignet, um Verhalten tatsächlich verständlich zu machen.
+
+Eine der grundlegenden Ideen der Petrinetz-Theorie ist, 
+\marginline{Abhängigkeit zwischen Aktionen statt zeitlichem Nacheinander}
+von dieser sequentiellen Sicht abzurücken. Man könnte sagen, ein Petrinetz abstrahiert von Zeit und damit von einem „Nacheinander“ von Aktionen und beschränkt sich auf Abhängigkeiten zwischen Aktionen der Art: Eine Aktion kann nur geschehen, nachdem eine andere geschehen ist, die eine Vorbedingung erst gültig gemacht hat. Richtiger ist allerdings die Argumentation, dass man Zeit gar nicht abstrahieren muss, denn sie existiert auch im System nicht als reale, überall verfügbare Größe. Bestenfalls gibt es Uhren, und wenn man diese zur Verhaltensbeschreibung benötigt, integriert man sie im Modell.
+
+\subsection*{Modellierung eines Ablaufs}
+
+Im Zoo werden Tiere gefüttert, 
+\marginline{Beispiel Tierfütterung}
+was in der Videovorlesung durch eine Animation dargestellt wird. Diesen konkreten Ablauf können wir folgendermaßen beschreiben:
+
+\begin{addmargin}[25pt]{25pt}
+	Die Tierfütterung beginnt damit, dass sich drei Tierpfleger aufmachen die Tiere zu füttern. Sie füttern Löwen, Pinguine, Robben und Affen. Löwen fressen Fleisch. Pinguine und Robben fressen Fisch. Affen fressen Obst. Tierpfleger müssen das jeweilige Futter laden, bevor sie die Tiere füttern. Die gefräßigen Löwen fressen mehr als eine Futterladung. Für ihre Fütterung muss also nachgeladen werden. Die Fütterung endet, wenn alle Tiere versorgt sind.
+\end{addmargin}
+
+In Abbildung~\ref{fig:v3-Pinguine_und_Löwen} modellieren wir zunächst den Ablauf durch Aktionen und ihre kausalen Abhängigkeiten.
+
+\clearpage %%% für Druck - absichtlich hier, damit die Einrückung im vorherigen Absatz deutlch ist.
+
+\begin{figure}[!htbp]
+	\centering
+	\resizebox{1.0\textwidth}{!}{
+		\petrinetz{
+			
+			\sffamily % kompletter Text ohne Serifen
+			\Large % kompletter Text größer
+			
+			\draw[colDummyLine, very thick] (-1,-5) rectangle (25,5);
+			
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t1) at (2,0) {Anfang};
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t2) at (6,4) {Futter\\laden};
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t3) at (7,0) {Futter\\laden};
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t4) at (8,-4) {Futter\\laden};
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t5) at (10,4) {Löwen\\füttern};
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t6) at (12,0) {Pinguine\\füttern};
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t7) at (16,-4) {Affen\\füttern};
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t8) at (14,4) {Futter\\laden};
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t9) at (17,0) {Robben\\füttern};
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t10) at (18,4) {Löwen\\füttern};
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t11) at (22,0) {Ende};
+			
+			% Kanten (Pfeile)
+			\draw[post] (t1) -- (t2);
+			\draw[post] (t1) -- (t3);    
+			\draw[post] (t1) -- (t4);
+			\draw[post] (t2) -- (t5);
+			\draw[post] (t5) -- (t8);
+			\draw[post] (t8) -- (t10);
+			\draw[post] (t10) -- (t11);
+			\draw[post] (t3) -- (t6);
+			\draw[post] (t6) -- (t9);
+			\draw[post] (t9) -- (t11);
+			\draw[post] (t4) -- (t7);
+			\draw[post] (t7) -- (t11);
+		}
+	}
+	\caption{Erster Schritt der Modellierung des Ablaufs der Tierfütterung}
+	\label{fig:v3-Pinguine_und_Löwen}
+\end{figure}
+
+
+\minisec{Aktionen}
+Jeder Knoten im Diagramm stellt eine Aktion dar, die im Ablauf durchgeführt
+wird. Sie haben in diesem Diagramm die folgenden Namen:
+\begin{itemize}
+	\item \textbf{Anfang} (meist beginnt jeder Ablauf eines Prozesses mit einem „Anfang“)
+	
+	\item \textbf{Futter laden} (für Löwen, Pinguine, Robben und Affen)
+	
+	\item \textbf{Löwen füttern} (zweimal, da ein Nachladen erforderlich ist)
+	
+	\item \textbf{Pinguine füttern}
+	
+	\item \textbf{Robben füttern}
+	
+	\item \textbf{Affen füttern}
+	
+	\item \textbf{Ende} (alle Tiere wurden gefüttert und der Ablauf ist beendet)
+\end{itemize}
+
+Da mehrere Aktionen denselben Namen tragen, können wir sie nicht einfach mit ihren Namen identifizieren, die Aktion „Löwen füttern“ existiert z.B. nicht eindeutig.
+
+\minisec{Kausale Ordnung}
+Gerichtete Kanten 
+\marginline{Kanten und Kausalität}
+geben im Ablaufdiagramm die direkte \textbf{Kausalität}\footnote{Der Begriff „Kausalität“ ist nicht immer korrekt, denn die Tiere werden nicht gefüttert, \textbf{weil} Futter geladen wurde, eher anders herum.} zwischen den Aktionen wieder: Eine Kante von einer Aktion zu einer anderen bedeutet, dass die erste Aktion abgeschlossen sein muss, bevor die nachfolgende Aktion beginnen kann. Zum Beispiel muss die Aktion „Futter laden“ für die Affen abgeschlossen sein, bevor das „Affen füttern“ beginnen kann. Aktionen, deren kausale Ordnung nicht festgelegt ist, sind \textbf{unabhängig} voneinander. Es ist keine Reihenfolge festgelegt! 
+
+\pagebreak
+
+Im Diagramm gibt es (entsprechend der Ablaufbeschreibung) folgende kausale Zusammenhänge:
+\begin{itemize}
+	\item „Anfang“ $\rightarrow$ „Futter laden“ $\rightarrow$ „Löwen füttern“ $\rightarrow$ „Futter laden“ $\rightarrow$ „Löwen füttern“ $\rightarrow$ „Ende“
+	
+	\item „Anfang“ $\rightarrow$ „Futter laden“ $\rightarrow$ „Pinguine füttern“ $\rightarrow$ „Robben füttern“ $\rightarrow$ „Ende“
+	
+	\item „Anfang“ $\rightarrow$ „Futter laden“ $\rightarrow$ „Affen füttern“ $\rightarrow$ „Ende“
+\end{itemize}
+
+Neben den direkten kausalen Abhängigkeiten betrachten wir später eine kausale Halbordnung, die weitere Abhängigkeiten umfasst. 
+
+%\subsubsection*{Modellierung eines Ablaufs (2): Bedingungen, Marken}
+
+\minisec{Bedingungen}
+
+Im einem weiteren Schritt wird das Ablaufdiagramm aus Abbildung~\ref{fig:v3-Pinguine_und_Löwen} überführt in ein erstes Petrinetz. Das erreichen wir durch folgende Änderungen und Ergänzungen: Wenn eine Aktion erst nach einer anderen Aktion geschehen kann, sie also kausal von der anderen Aktion abhängt, dann gibt es dafür stets einen Grund: Eine Voraussetzung der zweiten Aktion wird durch die erste Aktion geschaffen. In anderen Worten: Durch die erste Aktion wird eine Bedingung erfüllt, die zugleich Bedingung für die zweite Aktion ist.
+
+Derartige Bedingungen fügen wir im Diagramm ein 
+\marginline{ein erstes Petrinetz}
+und machen so die Gründe für die kausalen Abhängigkeiten explizit (Abbildung~\ref{fig:v3-Ablaufdiagramm_1}). Graphisch werden Bedingungen durch Kreise dargestellt. Die Kanten verbinden nunmehr nicht Aktionen, sondern Aktionen und Bedingungen. Jede Bedingung entspricht
+\begin{itemize}
+	\item einer Kante im Ursprungsdiagramm (dann hat sie genau eine eingehende und genau eine ausgehende Kante) oder
+	\item der Anfangsbedingung, die beschreibt, was anfangs gilt und für die Anfangs\-aktion Voraussetzung ist (dann hat sie keine eingehende und genau eine ausgehende Kante) oder
+	\item der Endbedingung, die nach der letzten Aktion erfüllt ist (dann hat sie genau eine eingehende und keine ausgehende Kante).
+\end{itemize}
+
+Wir haben aus Platzgründen nur bei einigen Bedingungen textuell beschrieben, wofür sie, bezogen auf das modellierte System, stehen.
+
+
+\begin{figure}[!htbp]
+	\centering
+	\resizebox{1.0\textwidth}{!}{
+		\petrinetz{
+			\sffamily % kompletter Text ohne Serifen
+			\Large % kompletter Text größer
+			
+			\draw[colDummyLine, very thick] (-1,-5) rectangle (25,5);
+			
+			% Places (Stellen in Grün)
+			{
+				\color{COLPLACE}
+				
+				\node[place, tokens=1, minimum size=\PNPlaceSize, label=above:{\rotatebox{90}{Anfangsbedingung}}] (A) at (0,0) {};
+				\node[place, minimum size=\PNPlaceSize, label=above:{\rotatebox{90}{Bereit zum Futter laden}}] (B) at (4,2) {};
+				\node[place, minimum size=\PNPlaceSize] (C) at (4.5,0) {};
+				\node[place, minimum size=\PNPlaceSize] (D) at (4.5,-2) {};
+				\node[place, minimum size=\PNPlaceSize, label=above:{\rotatebox{90}{Löwenfutter geladen}}] (E) at (8,4) {}; 
+				\node[place, minimum size=\PNPlaceSize, label=above:{\rotatebox{90}{Löwenfutter geladen}}] (E2) at (16,4) {}; 
+				\node[place, minimum size=\PNPlaceSize] (F) at (9.5,0) {}; 
+				\node[place, minimum size=\PNPlaceSize] (G) at (12,-4) {}; 
+				\node[place, minimum size=\PNPlaceSize, label=above:{\rotatebox{90}{Bereit zum Futter laden}}] (H) at (12,4) {}; 
+				\node[place, minimum size=\PNPlaceSize] (I) at (14.5,0) {}; 
+				\node[place, minimum size=\PNPlaceSize] (L) at (19.5,0) {}; 
+				\node[place, minimum size=\PNPlaceSize, label=above:{\rotatebox{90}{Endbedingung}}] (Z) at (24,0) {}; 
+				\node[place, minimum size=\PNPlaceSize, label=above:{\rotatebox{90}{Bereit zum Futter laden}}] (H2) at (20,2) {}; 
+				\node[place, minimum size=\PNPlaceSize] (J2) at (19,-2) {};
+			}
+			
+			% Transitions (Transitionen in Blau)
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t1) at (2,0) {Anfang}; 
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t2) at (6,4) {\textcolor{COLRED}{\textbf{Fleisch}}\\laden}; 
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t3) at (7,0) {\textcolor{COLRED}{\textbf{Fisch}}\\laden}; 
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t4) at (8,-4) {\textcolor{COLRED}{\textbf{Obst}}\\laden}; 
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t5) at (10,4) {Löwen\\füttern}; 
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t6) at (12,0) {Pinguine\\füttern}; 
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t7) at (16,-4) {Affen\\füttern}; 
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t8) at (14,4) {\textcolor{red!80!black}{\textbf{Fleisch}}\\laden}; 
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t9) at (17,0) {Robben\\füttern}; 
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t10) at (18,4) {Löwen\\füttern}; 
+			\node[transition, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t11) at (22,0) {Ende};
+			
+			% Kanten (Pfeile)
+			\draw[post] (A) -- (t1); 
+			\draw[post] (t1) -- (B); 
+			\draw[post] (t1) -- (C); 
+			\draw[post] (t1) -- (D); 
+			\draw[post] (B) -- (t2); 
+			\draw[post] (C) -- (t3); 
+			\draw[post] (D) -- (t4); 
+			\draw[post] (t2) -- (E); 
+			\draw[post] (t3) -- (F); 
+			\draw[post] (t4) -- (G); 
+			\draw[post] (G) -- (t7); 
+			\draw[post] (E) -- (t5); 
+			\draw[post] (t5) -- (H); 
+			\draw[post] (H) -- (t8); 
+			\draw[post] (t8) -- (E2); 
+			\draw[post] (E2) -- (t10); 
+			\draw[post] (t10) -- (H2); 
+			\draw[post] (H2) -- (t11); 
+			\draw[post] (t11) -- (Z); 
+			\draw[post] (t9) -- (L); 
+			\draw[post] (t7) -- (J2); 
+			\draw[post] (J2) -- (t11); 
+			\draw[post] (L) -- (t11); 
+			\draw[post] (F) -- (t6); 
+			\draw[post] (t6) -- (I); 
+			\draw[post] (I) -- (t9); 
+		}
+	}
+	\caption{Zweiter Schritt der Modellierung des Ablaufs der Tierfütterung}
+	\label{fig:v3-Ablaufdiagramm_1}
+\end{figure}
+
+\minisec{Aktionen und Aktivitäten}
+
+Aktionen beschreiben das Stattfinden von Aktivitäten, doch letztere kennen wir an dieser Stelle noch nicht. Naheliegend wäre die Beschriftungen der Aktionen als Aktivitäten zu verwenden. Aber betreffen zwei Aktionen mit demselben Namen stets dieselbe Aktivität? Um dies zu beantworten, helfen die Bedingungen.
+
+In dem Diagramm aus Abbildung~\ref{fig:v3-Pinguine_und_Löwen} sind vier Aktionen beschriftet mit „Futter laden“. Tatsächlich unterscheiden wir aber, für welche Tiergattung das Futter geladen wurde. 
+
+\pagebreak
+
+In Abbildung~\ref{fig:v3-Ablaufdiagramm_1} gibt es zwei nachfolgende Bedingungen „Löwenfutter geladen“, 
+\marginline{Aktivitäten können mehrfach vorkommen}
+für die weiteren beiden Bedingungen wären „Affenfutter geladen“ und „Pinguinfutter geladen“ passende Namen. Die beiden Aktionen „Löwen füttern“ haben dieselben Bedingungen vor und nach der Aktion und entsprechen daher derselben Aktivität. Entsprechend wurden einige Aktionen im neuen Diagramm umbenannt; die Namen entsprechen jetzt genau den Aktivitäten.
+
+Manch einer mag versucht sein, die beiden Aktionen „Fleisch laden“ und die beiden Aktionen „Löwen füttern“ zusammenzufassen und die Kanten durch einen Zyklus zu ersetzen. Dies ist aber auf Ablaufebene unzulässig, denn jede Aktion beschreibt das \textbf{einmalige} Stattfinden einer Aktivität.
+
+
+\minisec{Marken}
+
+Wenn sich eine \textbf{Marke} (schwarzer Punkt) in einem Kreis befindet, bedeutet dies, dass diese Bedingung gerade erfüllt ist und die nächste Aktion anschließend ausgeführt wird. Durch die Aktion „Anfang“ verschwindet die Marke von der Anfangs\-bedingung und neue Marken entstehen auf den drei nachfolgenden Bedingungen; nun können die nachfolgenden Aktionen stattfinden.
+
+
+\minisec{Sequentielle Beobachtungen}
+
+Wenn wir diesen Ablauf, also einen Fütterungsvorgang, in der realen Welt beobachten und dokumentieren, welche Aktionen wir nacheinander sehen, erhalten wir eine \textbf{sequentielle Beobachtung}. Diese lässt sich als \textbf{Ereignisprotokoll} (Event-Log) darstellen, zum Beispiel wie folgt:
+
+\textbf{Anfang, Fleisch laden, Obst laden, Affen füttern, Fisch laden, Pinguine füttern, Robben füttern, Löwen füttern, Fleisch laden, Löwen füttern, Ende}
+
+Man erkennt, 
+\marginline{sequentielle Beobachtungen vs. Abläufe}
+dass Abhängigkeiten (z.B. „Affen füttern“ nach „Obst laden“) in dieser Sequenz beachtet wurden, aber die Reihenfolge in der Sequenz nicht in allen Fällen Abhängigkeit repräsentiert. Vielfach wird argumentiert, dass eine derartige Sequenz einen Ablauf besser repräsentiert, weil doch zwischen je zwei Aktionen wenigstens die zeitliche Ordnung existiert. Tatsächlich ist diese Sichtweise aber wenig zielführend, insbesondere wenn man Aspekte wie Gleichzeitigkeit einbezieht oder beobachtet, dass Aktionen selbst eine zeitliche Ausdehnung haben, also zu einem späteren Zeitpunkt enden als sie beginnen. Und sie widerspricht der Einsicht, dass quantifizierbare Zeit in der Realität nicht existiert, sondern erst durch Uhren hinzugedichtet wird.
+
+Deshalb, und das ist wichtig, gilt: Eine sogenannte sequentielle Beobachtung eines Ablaufs entspricht nicht dem Ablauf selbst. Ein Ablauf hat meist mehrere denkbare Ereignisprotokolle - und ein Ereignisprotokoll kann auch zu mehreren Abläufen gehören.
+
+
+\minisec{Petrinetze}
+
+Bisher haben wir die Realwelt beschrieben. Jetzt wollen wir auf die Modellierungssprache eingehen und verwenden deshalb neue Begriffe, die das verdeutlichen.
+
+
+\begin{figure}[!htbp]
+	\centering
+	\resizebox{1.0\textwidth}{!}{
+		\petrinetz{
+			\Large % kompletter Text größer
+			
+			\draw[colDummyLine, very thick] (-1,-5) rectangle (25,5);
+			
+			% Places (Stellen in Grün)
+			{
+				\color{COLPLACE}
+				
+				\node[place, tokens=1, minimum size=\PNPlaceSize, label=above:{$A$}] (A) at (0,0) {}; 
+				\node[place, minimum size=\PNPlaceSize, label=above:{$B$}] (B) at (4,2) {}; 
+				\node[place, minimum size=\PNPlaceSize, label=above:{$C$}] (C) at (4.5,0) {}; 
+				\node[place, minimum size=\PNPlaceSize, label=above:{$D$}] (D) at (4.5,-2) {}; 
+				\node[place, minimum size=\PNPlaceSize, label=above:{$E$}] (E) at (8,4) {}; 
+				\node[place, minimum size=\PNPlaceSize, label=above:{$E$}] (E2) at (16,4) {}; 
+				\node[place, minimum size=\PNPlaceSize, label=above:{$F$}] (F) at (9.5,0) {}; 
+				\node[place, minimum size=\PNPlaceSize, label=above:{$G$}] (G) at (12,-4) {}; 
+				\node[place, minimum size=\PNPlaceSize, label=above:{$B$}] (H) at (12,4) {}; 
+				\node[place, minimum size=\PNPlaceSize, label=above:{$I$}] (I) at (14.5,0) {}; 
+				\node[place, minimum size=\PNPlaceSize, label=above:{$C$}] (L) at (19.5,0) {}; 
+				\node[place, minimum size=\PNPlaceSize, label=above:{$Z$}] (Z) at (24,0) {}; 
+				\node[place, minimum size=\PNPlaceSize, label=above:{$B$}] (H2) at (20,2) {}; 
+				\node[place, minimum size=\PNPlaceSize, label=above:{$D$}] (J2) at (19,-2) {};
+			}
+			
+			% Transitions (Transitionen in Blau)
+			\node[transition, label=above:$a$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t1) at (2,0) {$t_{1}$}; 
+			\node[transition, label=above:$b$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t2) at (6,4) {$t_{2}$}; 
+			\node[transition, label=above:$c$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t3) at (7,0) {$t_{3}$}; 
+			\node[transition, label=above:$d$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t4) at (8,-4) {$t_{4}$}; 
+			\node[transition, label=above:$e$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t5) at (10,4) {$t_{5}$}; 
+			\node[transition, label=above:$f$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t6) at (12,0) {$t_{6}$}; 
+			\node[transition, label=above:$g$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t7) at (16,-4) {$t_{7}$}; 
+			\node[transition, label=above:$b$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t8) at (14,4) {$t_{8}$}; 
+			\node[transition, label=above:$h$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t9) at (17,0) {$t_{9}$}; 
+			\node[transition, label=above:$e$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t10) at (18,4) {$t_{10}$}; 
+			\node[transition, label=above:$z$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t11) at (22,0) {$t_{11}$};
+			
+			% Kanten (Pfeile)
+			\draw[post] (A) -- (t1); 
+			\draw[post] (t1) -- (B); 
+			\draw[post] (t1) -- (C); 
+			\draw[post] (t1) -- (D); 
+			\draw[post] (B) -- (t2); 
+			\draw[post] (C) -- (t3); 
+			\draw[post] (D) -- (t4); 
+			\draw[post] (t2) -- (E); 
+			\draw[post] (t3) -- (F); 
+			\draw[post] (t4) -- (G); 
+			\draw[post] (G) -- (t7); 
+			\draw[post] (E) -- (t5); 
+			\draw[post] (t5) -- (H); 
+			\draw[post] (H) -- (t8); 
+			\draw[post] (t8) -- (E2); 
+			\draw[post] (E2) -- (t10); 
+			\draw[post] (t10) -- (H2); 
+			\draw[post] (H2) -- (t11); 
+			\draw[post] (t11) -- (Z); 
+			\draw[post] (t9) -- (L); 
+			\draw[post] (t7) -- (J2); 
+			\draw[post] (J2) -- (t11); 
+			\draw[post] (L) -- (t11); 
+			\draw[post] (F) -- (t6); 
+			\draw[post] (t6) -- (I); 
+			\draw[post] (I) -- (t9); 
+		}
+	}
+	\caption{Formalisiertes Ablaufdiagramm}
+	\label{fig:v3-Ablaufdiagramm_formalisierung}
+\end{figure}
+
+
+Die Symbole 
+\marginline{Label}
+in den Aktionen wurden in Abbildung~\ref{fig:v3-Ablaufdiagramm_formalisierung} durch eindeutige Elemente $t_{1}$ bis $t_{11}$ ersetzt. Die Beschriftungen der Aktionen machen nach wie vor deutlich, welche Aktivität jeweils ausgeführt wird. Man nennt sie „Label“. Die entsprechenden Kästchen nennen wir fortan „Transitionen“.
+\marginline{Transitionen}
+Wir haben hier also eine Menge von Transitionen $\{t_1 \ldots t_{11}\}$.
+
+Entsprechendes kann man für die Bedingungen machen und ihnen eindeutige Namen geben. 
+\marginline{Stellen}
+Zwei Bedingungen sind mit „E“ beschriftet, drei mit „B“ usw. Dies des\-wegen, weil sie in der Realwelt jeweils denselben lokalen Zustand repräsentieren. Die eindeutigen Namen (hier nicht vergeben) werden im Modell zu „Stellen“.
+
+\subsection*{Halbordnung}
+Bevor wir uns nun genauer mit Stellen und Transitionen beschäftigen, gehen wir einen Schritt weiter und studieren die Abhängigkeitsbeziehungen zwischen Aktionen. Wenn man sich nicht auf die unmittelbare Abhängigkeit (durch Kanten dargestellt) beschränkt, sondern beliebige kausale Zusammenhänge formalisieren will, erhält man eine Halbordnung. Zudem kann man die Bedingungen in die Formalisierung mit einbeziehen.
+
+\sttpDefinitionskasten{\sttpDefinitionskastenSkalierungsfaktorKapPN}{Definition 5.5: (irreflexive) Halbordnung}{Eine (irreflexive) Halbordnung ist eine Relation auf einer Menge, die \textbf{transitiv}, \textbf{irreflexiv} und \textbf{asymmetrisch} ist.}{
+	Im Kontext der Prozessmodellierung werden durch eine Halbordnung die (kausalen) Abhängigkeiten zwischen Aktionen eines Ablaufs bzw. zwischen Aktionen und relevanten Bedingungen dargestellt. \\
+	
+	\textbf{Formal:}
+	
+	Eine Menge $M$ mit einer Relation $R \subseteq M \times M$ ist eine Halbordnung, wenn gilt:
+	
+	\begin{itemize}
+		\item \textbf{Transitivität:} Für alle $a, b, c \in M$ gilt:
+		\[
+		(a, b) \in R \ \text{und} \ (b, c) \in R \ \implies \ (a, c) \in R.
+		\]
+		\item \textbf{Irreflexivität:} Für alle $a \in M$ gilt:
+		\[
+		(a, a) \notin R.
+		\]
+		\item \textbf{Asymmetrie:} Für alle $a, b \in M$ gilt:
+		\[
+		(a, b) \in R \ \implies \ (b, a) \notin R.
+		\]
+	\end{itemize}
+	
+	Anmerkung: Asymmetrie folgt aus Transitivität und Irreflexivität, zudem folgt Irreflexivität aus Asymmetrie.
+}
+
+Im Diagramm 
+\marginline{Kausalitäts\-relation ist eine Halbordnung}
+aus Abbildung~\ref{fig:v3-geordnet-und-nicht-geordnet} repräsentiert die Menge $M$ die Transitionen, die für Aktionen stehen. Die Menge $F$ besteht aus allen Paaren $(a,b) \in M \times M$, für die eine gerichtete Kante von $a$ nach $b$ führt. Kausale Abhängigkeiten bestehen aber nicht nur zwischen zwei unmittelbar benachbarten Knoten, sondern auch dann, wenn ein gerichteter Pfad von einem Knoten zu einem anderen Knoten führt. Formal wird diese Abhängigkeit definiert durch die Halbordnung $R \subseteq M \times M$, definiert durch $R = F^{+}$, wobei $F^{+}$ die kleinste transitive Relation ist, die $F$ enthält. Statt $(a,b) \in R$ schreiben wir auch $a\prec_R b$ oder $a\prec b$, wenn der Bezug zu $R$ klar ist. 
+
+\pagebreak %%% für Druck
+
+Es gilt:
+\begin{itemize}
+	\item $t_1 \prec t_2$, denn es führt eine Kante von $t_1$ nach $t_2$. Deshalb geschieht $t_2$ nach $t_1$.
+	\item $t_1 \prec t_{10}$, denn es führt ein gerichteter Pfad von $t_1$ nach $t_{10}$. Deshalb geschieht auch $t_{10}$ nach $t_1$.
+	\item Weder $t_4 \prec t_5$ noch $t_5 \prec t_4$, denn es gibt keinen gerichteten Pfad von $t_4$ nach $t_5$ oder von $t_5$ nach $t_4$. Deshalb sind diese Aktionen unabhängig voneinander und geschehen nebenläufig.
+\end{itemize}
+
+\vspace{\baselineskip} %%% für Druck
+\vspace{1em} %%% für Druck
+
+\begin{figure}[!htbp]
+	\centering
+	\resizebox{1.0\textwidth}{!}{
+		\petrinetz{
+			\Large % kompletter Text größer
+			
+			\draw[colDummyLine, very thick] (-1,-5) rectangle (25,5);
+			
+			\definecolor{hellblau}{RGB}{204,230,230}
+			\definecolor{hellrosa}{RGB}{250,204,209}
+			
+			\draw[-, hellblau, line width=8pt] (2,0) -- (18,4);
+			\fill[hellblau] (2,0) circle (1.6);
+			\fill[hellblau] (18,4) circle (1.6);
+			
+			\draw[-, hellrosa, dashed, line width=8pt] (8,-4) -- (10,4);
+			\fill[hellrosa] (10,4) circle (1.6);
+			\fill[hellrosa] (8,-4) circle (1.6);
+			
+			% Transitionen (Transitionen in Blau)
+			\node[transition, label=above:$a$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t1) at (2,0) {$t_1$};
+			\node[transition, label=above:$b$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t2) at (6,4) {$t_2$};
+			\node[transition, label=above:$c$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t3) at (7,0) {$t_3$};
+			\node[transition, label=above:$d$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t4) at (8,-4) {$t_4$};
+			\node[transition, label=above:$e$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t5) at (10,4) {$t_5$};
+			\node[transition, label=above:$f$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t6) at (12,0) {$t_6$};
+			\node[transition, label=above:$g$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t7) at (16,-4) {$t_7$};
+			\node[transition, label=above:$b$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t8) at (14,4) {$t_8$};
+			\node[transition, label=above:$h$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t9) at (17,0) {$t_9$};
+			\node[transition, label=above:$e$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t10) at (18,4) {$t_{10}$};
+			\node[transition, label=above:$z$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t11) at (22,0) {$t_{11}$};
+			
+			% Kanten (angepasste Pfeile)
+			\draw[post] (t1) -- (t2);
+			\draw[post] (t1) -- (t3);
+			\draw[post] (t1) -- (t4);
+			\draw[post] (t2) -- (t5);
+			\draw[post] (t3) -- (t6);
+			\draw[post] (t4) -- (t7);
+			\draw[post] (t5) -- (t8);
+			\draw[post] (t8) -- (t10);
+			\draw[post] (t6) -- (t9);
+			\draw[post] (t7) -- (t11);
+			\draw[post] (t9) -- (t11);
+			\draw[post] (t10) -- (t11);
+		}
+	}
+	\caption{Geordnete und nicht geordnete (d.h. unabhängige) Elemente}
+	\label{fig:v3-geordnet-und-nicht-geordnet}
+\end{figure}
+
+\vspace{1em} %%% für Druck
+
+Nun müssen wir noch begründen, dass es sich bei der Relation $R$ tatsächlich um eine Halbordnung handelt.
+
+\begin{itemize}
+	\setlength{\itemsep}{2mm} %%% für Druck
+	
+	\item \textbf{Transitivität}\\
+	Wenn ein gerichteter Pfad von einem Knoten $a$ zu einem Knoten $b$ führt und ein weiterer gerichteter Pfad von $b$ zu einem Knoten $c$, dann ist die Kombination dieser Pfade ein gerichteter Pfad von $a$ noch $c$.
+	
+	\item \textbf{Irreflexivität}\\
+	Kein gerichteter Pfad führt von einem Knoten $a$ zum Knoten $a$ zurück, denn sonst wäre das Geschehen von $a$ Voraussetzung dafür, dass $a$ geschieht, und $a$ könnte deshalb nie geschehen. Dies erklärt auch, warum die Aktionen der Löwenfütterung zweimal vorkommen. 
+	
+	\item \textbf{Asymmetrie}\\
+	Wenn ein gerichteter Pfad von einem Knoten $a$ zu einem Knoten $b$ führt, dann kann kein gerichteter Pfad von $b$ zurück zu $a$ führen. Aktionen können also nicht gegenseitig voneinander abhängen. Insbesondere gibt es keine Kreise aus gerichteten Kanten.
+\end{itemize}
+
+\pagebreak
+
+\subsection*{Vollordnung}
+
+Wir haben bereits sequentielle Beobachtungen von Abläufen erwähnt. 
+\marginline{sequentielle Beobachtung ist eine Vollordnung}
+Diese können Beobachtungen eines Menschen sein oder in einem Protokoll automatisch festgehaltene Aktionen (dann heißen sie Ereignisprotokolle, und das Wort "`Ereignis"' steht hier für Aktion). In beiden Fällen erfolgt diese Beobachtung lokal und hat umgekehrt keinen Einfluss auf den Ablauf selbst. Entsprechende Sequenzen entstehen aber auch, wenn der Ablauf nur die logischen Abhängigkeiten widerspiegelt, aber eine nicht modellierte sequentielle Instanz, zum Beispiel eine Person, tatsächlich die Aktionen nacheinander ausführt.
+
+Im Gegensatz zu einer Halbordnung stehen bei einer Vollordnung je zwei verschiedene Elemente in einer Ordnungsbeziehung.
+
+\sttpDefinitionskasten{\sttpDefinitionskastenSkalierungsfaktorKapPN}{Definition 5.6: Vollordnung}{}{Eine Halbordnung, in der für je zwei Elemente $a, b$ gilt: \[a < b \quad \text{oder}\quad a = b \quad \text{oder}\quad a > b\] wird als Vollordnung bezeichnet.}
+
+\subsection*{Linearisierung einer Halbordnung}
+
+Um von einem halbgeordneten Ablauf zu einer kompatiblen Vollordnung zu kommen, müssen wir eine vollständige, sequentielle Reihenfolge aller Aktionen festlegen. Dies geschieht durch eine sogenannte Linearisierung, bei der alle Aktionen in eine Reihenfolge gebracht werden, ohne die kausalen Abhängigkeiten zu verletzen.
+
+
+\begin{figure}[!htbp]
+	\centering
+	\resizebox{1.0\textwidth}{!}{
+		\petrinetz{
+			\Large % kompletter Text größer
+			
+			\draw[colDummyLine, very thick] (-1,-5) rectangle (25,5);
+			
+			% Transitions (Transitionen in Blau)
+			\node[transition, label=above:$a$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t1) at (2,0) {$t_1$};
+			\node[transition, label=above:$b$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t2) at (6,4) {$t_2$};
+			\node[transition, label={[anchor=south west] $c$}, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t3) at (7,0) {$t_3$};
+			\node[transition, label=below:$d$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t4) at (8,-4) {$t_4$};
+			\node[transition, label=above:$e$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t5) at (10,4) {$t_5$};
+			\node[transition, label=above:$f$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t6) at (12,0) {$t_6$};
+			\node[transition, label=below:$g$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t7) at (16,-4) {$t_7$};
+			\node[transition, label=above:$b$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t8) at (14,4) {$t_8$};
+			\node[transition, label={[anchor=south east] $h$}, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t9) at (17,0) {$t_9$};
+			\node[transition, label=above:$e$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t10) at (18,4) {$t_{10}$};
+			\node[transition, label=above:$z$, draw=COLTRANS, minimum height=\PNTransHeight, minimum width=\PNTransWidth, align=center] (t11) at (22,0) {$t_{11}$};
+			
+			
+			% Kanten (Pfeile)
+			\draw[post] (t1) -- (t2);
+			\draw[post] (t1) -- (t3);
+			\draw[post] (t1) -- (t4);
+			\draw[post] (t2) -- (t5);
+			\draw[post] (t5) -- (t8);
+			\draw[post] (t8) -- (t10);
+			\draw[post] (t10) -- (t11);
+			\draw[post] (t3) -- (t6);
+			\draw[post] (t6) -- (t9);
+			\draw[post] (t9) -- (t11);
+			\draw[post] (t4) -- (t7);
+			\draw[post] (t7) -- (t11);
+			
+			% rote Pfeile
+			-{Stealth[length=5mm]}
+			\draw[post, COLRED,line width=2pt, -{Stealth[length=4mm]}] (t4) -- (t3);
+			\draw[post, COLRED,line width=2pt, -{Stealth[length=4mm]}] (t3) -- (t2);
+			\draw[post, COLRED,line width=2pt, -{Stealth[length=4mm]}] (t5) -- (t6);
+			\draw[post, COLRED,line width=2pt, -{Stealth[length=4mm]}] (t6) -- (t7);
+			\draw[post, COLRED,line width=2pt, -{Stealth[length=4mm]}] (t7) -- (t8);
+			\draw[post, COLRED,line width=2pt, -{Stealth[length=4mm]}] (t10) -- (t9);
+		}
+	}
+	\caption{Linearisierung Ablaufdiagramm}
+	\label{fig:v3-Linearisierung-Ablaufdiagramm}
+\end{figure}
+
+\pagebreak %%% für Druck
+
+Die sequentielle Beobachtung einer Halbordnung ist eine Vollordnung auf derselben Menge, die alle Abhängigkeiten zwischen den Elementen respektiert, 
+also formal gesehen enthält. Sie enthält darüber hinaus weitere Beziehungen, da nun auch die zuvor ungeordneten Elemente geordnet werden. Wir nennen dies Linearisierung der Halbordnung:
+
+\sttpDefinitionskasten{\sttpDefinitionskastenSkalierungsfaktorKapPN}{Definition 5.7: Linearisierung einer Halbordnung}{}{
+\phantomsection
+\label{text:linearisierung_einer_halbordnung}	
+	Eine Linearisierung der Halbordnung $\prec$ ist eine Vollordnung $<$, die die Halbordnung $\prec$ enthält, das heißt es gilt $\prec \; \subseteq \; <$, bzw.\ gleichwertig $$ a \prec b \; \Longrightarrow \; a < b $$
+}
+
+Wir erreichen jede mögliche Linearisierung der Halbordnung eines Ablaufdiagramms, indem wir $\prec$ schrittweise ergänzen: Solange Elemente $a$, $b$ existieren, die ungeordnet sind, fügen wir eine Kante von $a$ nach $b$ hinzu. Aber Vorsicht! Dies können wir nicht gleichzeitig für mehrere Elemente machen, denn die Kante von $a$ nach $b$ kann auch zu neuen Abhängigkeiten zwischen anderen, zuvor ungeordneten Elementen $c$ und $d$ führen (also $c\prec d$), und eine weitere Kante von $d$ nach $c$ würde einen Kreis erzeugen. Das Verfahren ergibt auch nicht immer eine minimale Menge neuer Kanten, denn eine neue Kante kann einem Pfad von später hinzugefügten weiteren neuen Kanten entsprechen. In der Videovorlesung wird dies an einem Beispiel vorgeführt.

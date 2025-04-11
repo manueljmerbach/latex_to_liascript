@@ -1,0 +1,116 @@
+Buchcover für die kommentierten Literaturlisten:
+
+zeitung.png
+Kapitel 1.4, 2.4, 3.4
+https://e7.pngegg.com/pngimages/547/573/png-clipart-magazines-newspapers-computer-icons-news-text-rectangle.png
+
+Buchcover_Ambler_02.jpg
+Kapitel 3.4
+https://m.media-amazon.com/images/I/51ELPp1OmQL.jpg
+
+Buchcover_Ambler_04.jpg
+Kapitel 3.4
+https://m.media-amazon.com/images/I/51NxqwSoPyL.jpg
+
+Buchcover_Balzert.jpg
+Kapitel 2.4, 3.4
+https://images-na.ssl-images-amazon.com/images/I/41JhEm6vCWL._SX349_BO1,204,203,200_.jpg
+
+Buchcover_Beck.jpg
+Kapitel 2.4
+https://images-na.ssl-images-amazon.com/images/I/41YZNSN334L.jpg
+
+Buchcover_Boehm_Turner.jpg
+Kapitel 2.4
+https://images-na.ssl-images-amazon.com/images/I/41HBVtbRuKL._SX379_BO1,204,203,200_.jpg
+
+Buchcover_Broy_Kuhrmann.jpg
+Kapitel 2.4
+https://images-na.ssl-images-amazon.com/images/I/41zm6PTcwAL._SX328_BO1,204,203,200_.jpg
+
+Buchcover_Bruegge_Dutoit.jpg
+Kapitel 3.4
+https://m.media-amazon.com/images/I/51e2SFedhpL.jpg
+
+Buchcover_Cockburn.jpg
+Kapitel 2.4
+https://s3-eu-west-1.amazonaws.com/cover.allsize.lovelybooks.de/agile_software_entwicklung-9783826613463_xxl.jpg
+
+Buchcover_Dumke.jpg
+Kapitel 1.4, 3.4
+https://images-na.ssl-images-amazon.com/images/I/61BvJkzEotL.jpg
+
+Buchcover_Gonzalez.jpg
+Einleitung, Kapitel 1.4, 2.4
+https://images-eu.ssl-images-amazon.com/images/I/51P89JWF58L._SY445_QL70_ML2_.jpg
+
+Buchcover_Jacobson_Booch_Rumbaugh.jpg
+Kapitel 2.4
+https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS2iKdo9wg-_fQxpG8JMgUPRDzRKVxZKfjJz1e3b_1iVKPLqRVB
+
+Buchcover_Kecher_Salvanos.jpg
+Kapitel 3.4
+https://m.media-amazon.com/images/I/81OCCHYOeJL.jpg
+
+Buchcover_Kruchten.jpg
+Kapitel 2.4
+https://i.ebayimg.com/images/g/ZVcAAOSwXWJfMPea/s-l1600.jpg
+
+Buchcover_Lahres_Rayman_Strich.png
+Kapitel 3.4
+https://s3-eu-west-1.amazonaws.com/cover2.galileo-press.de/print/9783836283175_800_2d.png
+
+Buchcover_Laplante.jpg
+Einleitung, Kapitel 1.4, 2.4
+https://images-na.ssl-images-amazon.com/images/I/41bP3RplIpL.jpg
+
+Buchcover_Ludewig_Lichter.jpg
+Kapitel 3.4
+https://dpunkt.de/wp-content/uploads/2020/07/11719.jpg
+
+Buchcover_Marciniak.jpg
+Kapitel 2.4
+https://images-na.ssl-images-amazon.com/images/I/41tdtlzceWL._SX371_BO1,204,203,200_.jpg
+
+Buchcover_Meyer.jpg
+Kapitel 2.4
+https://images-na.ssl-images-amazon.com/images/I/41cuH+pXyCL._SX348_BO1,204,203,200_.jpg
+
+Buchcover_Muehlbauer.jpg
+Kapitel 1.4
+https://images-na.ssl-images-amazon.com/images/I/41315mlHlTL._SX353_BO1,204,203,200_.jpg
+
+Buchcover_Naur_Randell.png
+Kapitel 1.4
+	https://historyofinformation.com/images/Screen_Shot_2020-09-08_at_11.44.58_AM_big.png
+
+Buchcover_Oesterreich_Scheithauer.jpg
+Kapitel 3.4
+https://m.media-amazon.com/images/I/41K9Sph-+oL.jpg
+
+Buchcover_Schaefer.jpg
+Kapitel 3.4
+https://epdf.tips/img/300x300/softwareentwicklung-einstieg-fr-anspruchsvolle-mas_5a445388b7d7bc3420f8fdb6.jpg
+
+Buchcover_Schwaber_Sutherland.png
+Kapitel 2.4
+https://www.scrumguides.org/docs/scrumguide/v2017/2017-Scrum-Guide-German.pdf
+(1. Seite als png gespeichert und noch die grauen Linien um die Unterschriften entfernt.)
+https://scrumschau.files.wordpress.com/2020/10/scrumguide-titelblatt.png
+https://scrumschau.files.wordpress.com/2020/11/bildschirmfoto-2020-11-18-um-18.00.59.png
+
+Buchcover_Sommerville.jpg
+Einleitung, Kapitel 1.4, 2.4, 3.4
+https://docplayer.org/docs-images/96/128699247/images/1-0.jpg
+
+Buchcover_Stachowiak.jpg
+Kapitel 3.4
+https://pictures.abebooks.com/isbn/9783709183281-de.jpg
+
+Buchcover-SWEBOK.jpg
+Kapitel 1.2.2, 1.4, 2.4
+https://images-na.ssl-images-amazon.com/images/I/71xxdEufyhL.jpg
+
+Buchcover_Tanenbaum_Austin.jpg
+Kapitel 1.4
+https://m.media-amazon.com/images/I/51m2mh+W+xL._SY346_.jpg

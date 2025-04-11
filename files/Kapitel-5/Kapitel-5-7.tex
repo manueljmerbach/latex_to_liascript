@@ -1,0 +1,191 @@
+\section{Vorlesung 7: Prozessmodellierung mit Workflow-Netzen}
+
+In der ersten Vorlesung haben Sie gehört, 
+\sttpkapitelverweis{}{S.~\pageref{text:prozesse_als_teilsysteme}}
+dass ein Prozess ein Teilsystem (und somit auch ein System) eines größeren Systems darstellt. Typischerweise sind Prozesse mit einem Ziel verbunden, und es wird erwartet, dass jeder Ablauf des Prozesses dieses Ziel erreicht oder zumindest zu einem gewollten Ende kommt. 
+\marginline{Workflownetze modellieren Prozesse}
+Diese Idee führt uns direkt zur Definition und den Eigenschaften von speziellen Petrinetzen, den \textbf{Workflow-Netzen} \cite{aal98}. Abbildung~\ref{fig:v7_workflownetz} zeigt ein Workflow-Netz.
+
+\begin{figure}[!htbp]
+	\centering
+	\scalebox{0.8}{
+		\petrinetz{ % Stellen
+			\draw[colDummyLine, very thick] (-2.5, -4) rectangle (14.5, 0);
+
+			\node[place, tokens=1, label=left:$s_a$] (place1) at (0,-1) {};
+			\node[place, tokens=0] (place2) at (4,-1) {};
+			\node[place, tokens=0] (place3) at (4,-3) {};
+			\node[place, tokens=0] (place4) at (6,0) {};
+			\node[place, tokens=0, label=right:$s_e$] (place5) at (12,-1) {};
+			\node[place, tokens=0] (place6) at (8,-1) {};
+			\node[place, tokens=0] (place7) at (8,-3) {};
+			
+			% Transitionen
+			\node[transition] (trans1) at (2,-2) {};
+			\node[transition] (trans2) at (2,0) {};
+			\node[transition] (trans3) at (6,-4) {};
+			\node[transition] (trans4) at (6,-2) {};
+			\node[transition] (trans5) at (6,-1) {};
+			\node[transition] (trans6) at (10,0) {};
+			\node[transition] (trans7) at (10,-2) {};
+			
+			% Edges
+			\draw
+			(trans1) edge[post] (place3)
+			(trans1) edge[post] (place2)
+			(place1) edge[post] (trans1)
+			(place1) edge[post] (trans2)
+			(place3) edge[pre, bend left=15] (trans4)
+			(place3) edge[post, bend right=15] (trans3)
+			(place2) edge[post] (trans5)
+			(place4) edge[pre] (trans2)
+			(place4) edge[post] (trans6)
+			(trans6) edge[post] (place5)
+			(trans5) edge[post] (place6)
+			(trans4) edge[pre, bend left=15] (place7)
+			(trans3) edge[post, bend right=15] (place7)
+			(place7) edge[post] (trans7)
+			(place6) edge[post] (trans7)
+			(trans7) edge[post] (place5);
+		}
+	}
+	\caption{Ein Workflow-Netz}
+	\label{fig:v7_workflownetz}
+\end{figure}
+
+Bei Prozessen gibt es einen definierten Anfang und ein erwünschtes Ende, entsprechend eine Anfangs- und eine Endbedingung. Im Workflow-Netz werden sie durch Stellen $s_a$ und $s_e$ modelliert:
+
+\sttpDefinitionskasten{\sttpDefinitionskastenSkalierungsfaktorKapPN}{Workflow-Netze}{}{
+	Ein Workflow-Netz ist ein Petrinetz mit Stellen $s_a$ und $s_e$, so dass gilt:
+	\begin{itemize}
+		\item $s_a$ ist die Anfangsstelle und hat nur ausgehende Kanten. Sie (und nur sie) trägt in der Anfangsmarkierung $m_0$ eine Marke.
+		\item $s_e$ ist die Endstelle und hat nur eingehende Kanten. Wenn nur $s_e$ (einfach) markiert ist, ist der Prozess abgeschlossen und hat sein Ende erreicht. In der Endmarkierung $m_e$ trägt nur $s_e$ (genau) eine Marke.
+		\item Alle anderen Netzelemente liegen jeweils auf gerichteten Pfaden von $s_a$ nach $s_e$ und besitzen daher sowohl eingehende als auch ausgehende Kanten.
+	\end{itemize}
+}
+
+In Workflow-Netzen sollte es immer \textbf{möglich} sein, die Endmarkierung $m_e$ zu erreichen. Aber Vorsicht: Ein Workflow-Netz beschreibt einen Prozess, nicht seinen Ablauf. Anders als bei Ablaufnetzen kann es in Workflow-Netzen auch Schleifen (Zyklen) geben, also auch Transitionen, die mehrfach schalten und Transitionen, die niemals schalten, selbst wenn sie zwischendurch aktiviert waren.
+
+Von Prozessen in der realen Welt wünschen wir uns bestimmte Eigenschaften: 
+\begin{itemize}
+	\item Von jedem erreichbaren Zustand muss der Endzustand erreichbar sein. Das stellt sicher, dass der Prozess abgeschlossen werden kann.
+	\item Wenn der Prozess abgeschlossen ist, dürfen keine weiteren Prozessaktivitäten stattfinden. 
+	\item Jede Aktivität muss prinzipiell stattfinden können.
+\end{itemize}
+
+
+Ein Workflow-Netz wird als \textit{„sound“} bezeichnet, wenn es analoge Eigenschaften auf Modellebene besitzt.
+
+\sttpDefinitionskasten{\sttpDefinitionskastenSkalierungsfaktorKapPN}{Soundness}{}{
+	Ein Workflow-Netz ist \textit{sound}, wenn es die folgenden Bedingungen erfüllt: 
+	\begin{itemize}
+		\item Von jeder von $m_0$ aus erreichbaren Markierung ist eine Markierung $m$ erreichbar mit $m(s_e) > 0$.
+		\item Für jede erreichbare Markierung $m$ mit $m(s_e) > 0$ gilt $m = m_e$ und deshalb insbesondere $m(s_e) = 1$.
+		\item Es gibt keine toten Transitionen, d.h. jede Transition ist in wenigstens einer Schaltfolge enthalten.
+	\end{itemize}
+}
+
+Jeder Prozess ist eingebettet in ein System, und die genannten Eigenschaften haben eine Entsprechung auf Systemebene. Wir kennen allerdings nichts von diesem System außerhalb des Prozesses, außer dass der Prozess immer wieder starten kann. Dasselbe gilt auf Modellebene. Anstatt nun beliebige Petrinetze mit eingebettetem Workflow-Netz zu betrachten, abstrahieren wir von allem, außer von der Möglichkeit, nach Prozessende wieder neu zu beginnen. Dies wird formal modelliert durch eine zusätzliche Transition $t_r$, die die Marke von $s_e$ konsumiert und eine Marke auf der Stelle $s_a$ produziert, und das Spiel beginnt von Neuem. Die Markierung $m_e$ aktiviert $t_r$, und diese überführt $m_e$ nach $m_0$.
+
+Abbildung~\ref{fig:v7_workflownetz_rueckgekoppelt} zeigt das Workflow-Netz aus Abbildung~\ref{fig:v7_workflownetz} ergänzt um eine Transition $t_r$, sodass das Netz rückgekoppelt ist.
+
+\begin{figure}[!htbp]
+	\centering
+	\scalebox{0.8}{
+		\petrinetz{ 
+			\draw[colDummyLine, very thick] (-2.5, -4) rectangle (14.5, 0);
+			
+			\node[place, tokens=1, label=left:$s_a$] (place1) at (0,-1) {};
+			\node[place, tokens=0] (place2) at (4,-1) {};
+			\node[place, tokens=0] (place3) at (4,-3) {};
+			\node[place, tokens=0] (place4) at (6,0) {};
+			\node[place, tokens=0, label=right:$s_e$] (place5) at (12,-1) {};
+			\node[place, tokens=0] (place6) at (8,-1) {};
+			\node[place, tokens=0] (place7) at (8,-3) {};
+			
+			% Transitionen
+			\node[transition] (trans1) at (2,-2) {};
+			\node[transition] (trans2) at (2,0) {};
+			\node[transition] (trans3) at (6,-4) {};
+			\node[transition] (trans4) at (6,-2) {};
+			\node[transition] (trans5) at (6,-1) {};
+			\node[transition] (trans6) at (10,0) {};
+			\node[transition] (trans7) at (10,-2) {};
+			\node[FernUni-MI-green][transition,label=below:{\textcolor{FernUni-MI-green}{$t_r$}}] (trans8) at (6,-5) {};
+			
+			% Edges
+			\draw(trans1) edge[post] (place3);
+			\draw(trans1) edge[post] (place2);
+			\draw(place1) edge[post] (trans1);
+			\draw(place1) edge[post] (trans2);
+			\draw(place3) edge[pre, bend left=15] (trans4);
+			\draw(place3) edge[post, bend right=15] (trans3);
+			\draw(place2) edge[post] (trans5);
+			\draw(place4) edge[pre] (trans2);
+			\draw(place4) edge[post] (trans6);
+			\draw(trans6) edge[post] (place5);
+			\draw(trans5) edge[post] (place6);
+			\draw(trans4) edge[pre, bend left=15] (place7);
+			\draw(trans3) edge[post, bend right=15] (place7);
+			\draw(place7) edge[post] (trans7);
+			\draw(place6) edge[post] (trans7);
+			\draw(trans7) edge[post] (place5);
+			
+			% grüne Kanten (Rückkopplung)
+			\draw[FernUni-MI-green][->] (place5)-- node[right]
+			{\textsf{Rückkopplung}} ++(0,-4) -- (trans8);
+			\draw[FernUni-MI-green][->] (trans8) -- ++(-6,0) -- (place1);
+		}
+	}
+	\caption{Rückgekoppeltes Workflow-Netz}
+	\label{fig:v7_workflownetz_rueckgekoppelt}
+\end{figure}
+
+Für Systemmodelle haben wir Lebendigkeit und Beschränktheit als wünschenswerte Eigenschaften formuliert, für Prozessmodelle nun soundness. Das folgende Theorem besagt, dass diese Eigenschaften von Systemnetzen und Workflow-Netzen eng zusammenhängen, und dass wir statt eines beliebigen Systemnetzes einfach das rückgekoppelte Workflow-Netz als einfachstes Beispiel betrachten können.
+
+\sttpTheorem{\sttpTheoremSkalierungsfaktor}{
+	Ein Workflow-Netz ist sound genau dann, wenn (\( \Rightarrow \) und \( \Leftarrow \)) das rückgekoppelte Workflow-Netz lebendig und beschränkt ist.
+}
+
+\pagebreak %%% für Druck
+
+\textbf{Beweis}
+
+\textbf{(1) Ein Workflow-Netz ist sound. $\Rightarrow$ Das rückgekoppelte Workflow-Netz ist lebendig.}
+
+Sei $m$ eine im rückgekoppelten Netz erreichbare Markierung und $t$ eine Transition. Wir werden zeigen, dass $t$ von $m$ aus aktiviert werden kann.
+
+Da das Workflow-Netz sound ist, kann $t_r$ nur durch $m_e$ aktiviert werden und danach nur $m_0$ erreicht werden. Die im rückgekoppelten Workflow-Netz erreichbare Markierung $m$ ist daher auch im Workflow-Netz erreichbar. Wegen soundness ist von $m$ aus die Markierung $m_e$ erreichbar. Diese aktiviert $t_r$ und wir erreichen die Anfangsmarkierung, und von dort, wieder wegen soundness ($t$ ist nicht tot), eine Markierung, die $t$ aktiviert.
+
+\vspace{\baselineskip}
+
+\textbf{(2) Ein Workflow-Netz ist sound. $\Rightarrow$ Das rückgekoppelte Workflow-Netz ist beschränkt.}
+
+Wir führen einen indirekten Beweis und nehmen an: Das Workflow-Netz ist sound und das rückgekoppelte Workflow-Netz ist unbeschränkt.
+
+In Vorlesung 5 wurde bereits gezeigt, dass es in unbeschränkten Netzen erreichbare Markierungen $m_1$ und $m_2$ gibt, so dass 
+\begin{center}
+	$m_1(s) \leq m_2(s)$ für jede Stelle $s$ 
+	
+	$m_1(s) < m_2(s)$ für wenigstens eine Stelle $s$
+\end{center}
+($m_2$ hat mehr Marken als $m_1$).
+Wie unter (1) gezeigt, sind $m_1$ und $m_2$ wegen sound\-ness auch im Workflow-Netz erreichbar. Auch wegen soundness kann von $m_1$ aus die Endmarkierung $m_e$ erreicht werden. Dieselbe Schaltfolge ist auch von $m_2$ aus aktiviert und führt zu einer Markierung, die $s_e$ markiert, aber nicht $m_e$ ist, sondern ebenfalls weitere Marken hat. Dies widerspricht aber soundness des Workflow-Netzes.
+
+\pagebreak %%% für Druck
+
+\textbf{(3) Das rückgekoppelte Workflow-Netz ist lebendig und beschränkt. $\Rightarrow$ Das Workflow-Netz ist sound.}
+
+\begin{itemize}
+	\item Zu zeigen: Von jeder von $m_0$ aus erreichbaren Markierung ist eine Markierung $m$ erreichbar mit $m(s_e) > 0$.
+	
+	Jede im Workflow-Netz erreichbare Markierung ist auch im rückgekoppelten Work\-flow-Netz erreichbar. Da dieses lebendig ist, kann $t_r$ aktiviert werden, und somit $s_e$ markiert werden. Dies geht natürlich ohne $t_r$ zu schalten, also auch im Workflow-Netz.
+	
+	\item Zu zeigen: Für jede erreichbare Markierung $m$ mit $m(s_e) > 0$ gilt $m = m_e$.
+	
+	Jede derartige Markierung $m$ aktiviert $t_r$. Die Markierung nach dem Schalten von $t_r$ markiert $s_a$ und muss, wegen Beschränktheit, $m_0$ sein. Also ist die Markierung zuvor $m_e$.
+	
+	\item Zu zeigen: Es gibt keine toten Transitionen, d.h., jede Transition ist in wenigstens einer Schaltfolge enthalten.
+	
+	Da das rückgekoppelte Workflow-Netz lebendig ist, gibt es für jede Transition $t$ eine Schaltfolge von $m_0$, die $t$ aktiviert. Wie oben gilt: Es gibt stets auch eine derartige Schaltfolge ohne $t_r$, denn wegen der Beschränktheit wäre die auf $t_r$ folgende Markierung wieder $m_0$.
+\end{itemize}

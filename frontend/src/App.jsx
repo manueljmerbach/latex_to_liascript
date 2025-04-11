@@ -7,8 +7,8 @@ function App() {
   const convertFile = async () => {
     try {
       const response = await axios.post("/convert", {
-        inputFile: "/app/files/Kurs_1793.tex", // Beispielpfad auf dem Server
-        outputFile: "/app/files/dokument6.md", // Ausgabe auf dem Server
+        inputFile: "/files/Kurs_1793.tex", // Beispielpfad auf dem Server
+        outputFile: "/files/dokument.md", // Ausgabe auf dem Server
       });
 
       setStatus(`Erfolg: ${response.data.message}`);

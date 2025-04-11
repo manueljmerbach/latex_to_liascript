@@ -1,0 +1,129 @@
+%%% Seitenrandkästen werden nicht mehr verwendet. Stattdessen Definitions-Kästen
+%% neues Kommando für einen STTP-eigenen Seitenrandkasten (sttpsrk -> srk => Seitenrandkasten)
+%% Dieser Seitenrandkasten wird immer zu einem Begriff im Text gebildet, der dann dort kursiv dargestellt wird.
+%% Ein Seitenrandkasten erhält 4 Parameter
+%%   - Begriff (der Begriff im Text wird kursiv dargestellt)
+%%   - Überschrift (zentriert und fett)
+%%   - Kurztext (zentriert)
+%%   - Langtext
+%\newcommand{\sttpsrk}[4]{\textit{#1} \marginpar{\fbox{\parbox{3cm}{\begin{center}\textbf{#2}\end{center}\begin{center}#3\end{center}#4}}}}
+
+%%% Seitenrandkästen mit Bild werden nicht mehr verwendet.
+%% neues Kommando für einen STTP-eigenen Seitenrandkasten mit Bild (sttpsrkbild -> srkbild => Seitenrandkasten mit Bild)
+%% Ein Seitenrandkasten mit Bild erhält 3 Parameter
+%%   - Überschrift (zentriert und fett)
+%%   - Dateinamen der Grafik
+%%   - Langtext
+%\newcommand{\sttpsrkbild}[3]{\sttpsrk{}{#1}{\includegraphics[width=2.9cm]{#2}}{#3}}
+
+%%% Reinragende Seitenrandkästen werden nicht mehr verwendet.
+%% neues Kommando für einen STTP-eigenen reinragenden Seitenrandkasten (sttprrsrk -> rr => reinragend, srk => Seitenrandkasten)
+%% Ein reinragender Seitenrandkasten erhält 3 Parameter
+%%   - Überschrift (zentriert und fett)
+%%   - Kurztext
+%%   - Langtext
+%\newcommand{\sttprrsrk}[3]{
+	%\begin{wrapfigure}{o}[3cm]{12,5cm}%
+	%\fbox{\parbox{12,2cm}{\begin{center}\textbf{#1}\end{center}\begin{center}#2\end{center}#3}}
+	%\end{wrapfigure}
+	%}
+
+%%--------------------------------------
+%% Kommando für einen Abbildungskasten
+%% In einem Abbildungskasten wird eine Abbildung ähnlich wie in einem Autorenkasten dargestellt
+%% (gleiche Farbe, Rahmen, Schatten, ...).
+%% 
+%% enthält 2 Parameter
+%%   - Bilddatei
+%%   - Skalierungsfaktor
+%\newcommand{\sttpAbbildungskasten}[2]{
+	%	\vspace{2em}
+	%	\tcbox[
+	%		center,							% zentriert
+	%		enhanced,						% ohne enhanced kein "Schatten"
+	%		boxrule=2.4pt,					% Rahmendicke
+	%		left=2mm,						% Abstand zum Rand
+	%		right=2mm,						% Abstand zum Rand
+	%		top=2mm,						% Abstand zum Rand
+	%		bottom=2mm,						% Abstand zum Rand
+	%		colback=gray!5,					% Hintergrundfarbe
+	%		colframe=FernUni-MI-green!30,	% Rahmenfarbe
+	%		sharp corners,					% alle Ecken -> scharfe Ecken
+	%		drop fuzzy shadow				% Schatten
+	%	]
+	%	{
+		%		\includegraphics[scale=#2]{#1}%
+		%	}
+	%	\vspace{2em}
+	%}
+%%--------------------------------------
+
+%%--------------------------------------
+%% neues Kommando für das Logo im Seitenrand (STTP - Abbildung - Logo)
+%\newcommand{\sttpabblogo}[1]{
+	%	\marginline{\includegraphics[height=10pt]{#1}}
+	%}
+%%--------------------------------------
+
+%%% TODO kommentieren
+% neues Kommando für die Leserführung "MindMap (Einsatz hier: Kapitel 3)
+% Das Makro sttpLeserfuehrungMindMap funktioniert wie das Makro \sttpLeserfuehrung.
+% Es werden lediglich andere Sklaierungswerte verwendet.
+% Die beiden Grafiken werden mittels zweier Minipages nebeneinander positioniert.
+% Das Kommando enthält 2 Parameter
+%   - Dateiname der linken Grafik
+%   - Dateiname der rechten Grafik
+%\newcommand{\sttpLeserfuehrungMindMap}[2] {
+	%	\begin{center}
+		%		\begin{minipage}[c]{.4\linewidth} 
+			%			\includegraphics[width=\linewidth]{#1}
+			%		\end{minipage}
+		%		\hspace{.1\linewidth}% Abstand zwischen den beiden Bildern
+		%		\begin{minipage}[c]{.4\linewidth}
+			%			\includegraphics[width=\linewidth]{#2}
+			%		\end{minipage}
+		%	\end{center}
+	%	\vspace{1ex}
+	%}
+%%--------------------------------------
+
+%--------------------------------------
+% neues Kommando für einen Überleitungs-Kasten
+% Das Kommando enthält 4 Parameter
+%   - Titel (Kopfzeile des Kastens)
+%   - Themen (werden rechts neben dem Schriftzug "Themen" angezeigt)
+%   - Text, der im Hauptfeld des Kastens steht
+%   - Text in der sogenannten Statuszeile (für die URL)
+%--------------------------------------
+%\newcommand{\sttpUeberleitungskasten}[4]{
+	%	\begin{tcolorbox}[
+		%			center,
+		%			width=0.9\textwidth,
+		%			enhanced,
+		%			adjusted title=#1,
+		%			fonttitle=\sffamily\bfseries,
+		%			coltitle=FernUni-MI-green!80!black,
+		%			colback=gray!5,
+		%			colframe=FernUni-MI-green!30,
+		%			boxrule=2.4pt,
+		%			sharp corners,
+		%			segmentation style={FernUni-MI-green,solid,opacity=0.3,line width=2.4pt},
+		%			drop fuzzy shadow,
+		%		]
+		%		% -------------------------------------------------
+		%		\begin{labeling}{\textsf{\textbf{Themen:}}}
+			%			\item [\textsf{\textbf{Themen:}}] #2
+			%		\end{labeling}
+		%		% -------------------------------------------------
+		%		\tcblower
+		%		% -------------------------------------------------
+		%		#3
+		%		% -------------------------------------------------
+		%		\tcbline
+		%		% -------------------------------------------------
+		%		\footnotesize{\sttpHervorhebung{$\Rightarrow$} #4}
+		%		% -------------------------------------------------
+		%	\end{tcolorbox}		
+	%}
+%--------------------------------------
+

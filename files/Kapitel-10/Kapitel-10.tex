@@ -1,0 +1,109 @@
+%--- Kapitel 10
+\cleardoublepage
+\chapter{Entwurfsmuster}
+\label{sec:Kap-10}
+
+Entwurfsmuster (engl. Design Patterns) rückten erstmals Mitte der 1990er Jahre mit dem Buch „Design Patterns: Elements of Reusable Object-Oriented Software“ \cite{gam95} von Erich Gamma, Richard Helm, Ralph Johnson und John Vlissides in den Fokus objektorientierter Softwareentwicklung.
+
+Der Begriff Entwurfsmuster wird noch heute mit Erich Gamma verbunden, nicht nur weil er den alphabetisch "`kleinsten"' Nachnamen der vier Autoren hat und als Erstautor aufläuft, sondern weil die Arbeit an Mustern auf seine Dissertation \mbox{zurückgeht}.
+
+Entwurfsmuster sind Schablonen \marginline{Entwurfsmuster vs. Architekturmuster} bewährter Lösungen für wiederkehrende und gleichartige Probleme. Im Unterschied zu Architekturmustern (Kap.~7.1.2) %todo (s.~Lektion~\ref{sec:Lektion-5})
+operieren Entwurfsmuster auf der niedrigeren Ebene einzelner Klassen bzw. kleiner Module und beziehen sich nicht auf die großen Komponenten der Software. Entwurfsmuster beschreiben Lösungen auf einer abstrakten Ebene durch Diagramme und Text. Es handelt sich nicht um fertigen Programmcode, den man direkt ins eigene Programm kopieren könnte. Bestenfalls sind Quellcodebeispiele angegeben. Im Laufe der Jahre sind aber viele Entwurfsmuster für verschiedene Programmiersprachen im Rahmen von Bibliotheken oder Frameworks in Programmcode umgesetzt worden.
+
+Warum nutzt \marginline{Wieder\-verwendung} man überhaupt Entwurfsmuster? Die Wiederverwendung von Teilen guter Entwürfe ist eine erfolgreiche Maßnahme um zu einem guten objekt\-orientierten Entwurf zu kommen. Entwickler mit großer Entwurfserfahrung profitieren häufig davon, dass sie in der Vergangenheit bereits mit ähnlichen Problemen konfrontiert waren, auf deren Lösungen sie bei neuen Softwareentwicklungsprojekten zurück\-greifen können. Durch Entwurfsmuster kann dieses Expertenwissen dokumentiert werden, und es kann auch von anderen Entwicklern genutzt werden. Erich Gamma und Kollegen schreiben in diesem Zusammenhang in ihrem Vorwort:
+
+\sttpzitat{„Entwurfsmuster erfassen Problemlösungen, die im Laufe der Zeit gefunden wurden und sich weiterentwickelt haben. Es sind Entwürfe, auf die man üblicherweise nicht gleich von Anfang an kommt. Sie basieren auf vielen Entwurfsrevisionen und erneutem Programmieren, die Entwickler auf der Suche nach größerer Wiederverwendung und Flexibilität vorgenommen haben. Entwurfsmuster erfassen diese Lösungen auf konzentrierte und einfach anwendbare Weise.“ \cite[XV]{gam11}}{}
+
+\pagebreak %%% für Druck
+
+Das Buch \marginline{Kategorisierung} von Erich Gamma und Kollegen enthält 23 verschiedene Entwurfsmuster, die anhand ihres Einsatzzwecks in drei Kategorien eingeordnet sind: Erzeugende Muster, Strukturmuster und Verhaltensmuster. Erzeugende Muster zielen auf die Instanziierung, also den Prozess der Objekterzeugung. Strukturelle Muster beschäftigen sich mit der Zusammensetzung von Strukturen aus mehreren Klassen bzw. Objekten. Verhaltensmuster betrachten die Interaktion zwischen Objekten.
+
+\vspace{2mm} %%% für Druck
+
+Tabelle~\ref{table:entwurfsmuster_katalogisierung} zeigt die Einteilung der 23 Entwurfsmuster in diese Kategorien.
+
+\vspace{\baselineskip} %%% für Druck
+
+\begin{table}[ht]
+	\setlength{\tabcolsep}{5pt}
+	\renewcommand{\arraystretch}{1.5}
+	
+	\centering
+	\small
+	
+	\begin{tabular}{ |c||p{2.7cm}|p{2.3cm}|p{3.0cm}| }
+		\hline
+		\multirow{2}{6em}{\centering Anwendungs\-bereich} & \multicolumn{3}{c|}{Aufgabe} \\
+		\cline{2-4}
+		& \multicolumn{1}{c|}{Erzeugung}
+		& \multicolumn{1}{c|}{Struktur} & \multicolumn{1}{c|}{Verhalten} \\
+		\hline
+		\hline
+		Klasse & Fabrikmethode & Adapter & Interpreter \newline Schablonenmethode \\
+		\hline
+		Objekt & Abstrakte Fabrik \newline Erbauer \newline Prototyp \newline Singleton
+		& Adapter \newline Brücke \newline Dekorateur \newline Fassade \newline Fliegengewicht \newline Kompositum \newline Proxy
+		& Befehl \newline Beobachter \newline Besucher \newline Iterator \newline Memento \newline Strategie \newline Vermittler \newline Zustand \newline Zuständigkeitskette \\
+		\hline
+	\end{tabular}
+	\caption{Kategorisierung von Entwurfsmustern, nach \cite[14]{gam11}}
+	\label{table:entwurfsmuster_katalogisierung}
+\end{table}
+
+\vspace{\baselineskip} %%% für Druck
+
+Der Anwendungsbereich gibt an, ob sich ein Muster auf Klassen oder auf Objekte bezieht. Klassenmuster behandeln die Beziehungen zwischen Klassen und ihren Unter\-klassen. Im Mittelpunkt dieser Kategorie steht die Generalisierungsbeziehung. Die aus diesen Mustern resultierenden Strukturen sind statisch und können zur Laufzeit nicht mehr geändert werden. Objektmuster beziehen sich auf die Verbindungen zwischen Objekten, so dass die resultierenden Strukturen zur Laufzeit erstellt, geändert und wieder aufgehoben werden können. Sie verwenden hauptsächlich Assoziationen, aber auch die Generalisierung spielt eine gewisse Rolle.
+
+\vspace{2mm} %%% für Druck
+
+Das Muster Adapter kommt zweimal vor: einmal als Adapter auf Klassenebene und einmal als Muster auf Objektebene.
+
+\vspace{2mm} %%% für Druck
+
+Für die Wiederverwendbarkeit eines Entwurfsmusters ist eine übersichtliche und verständliche Dokumentation wichtige Voraussetzung. Diese beschreibt das grundsätzliche Entwurfsproblem, den Anwendungskontext und eine Lösungsstruktur. 
+
+\clearpage %%% für Druck
+
+Ein Entwurfsmuster wird hierfür üblicherweise nach einem Schema folgender oder ähnlicher Art dokumentiert:
+
+\begin{addmargin}[25pt]{25pt}
+\begin{description}
+	\setlength{\itemsep}{2mm} %%% für Druck
+	
+	\item[Zweck] des Musters
+	\item[Synonyme,] unter denen das Muster auch bekannt ist
+	\item[Motivation] Einordnung, Zweck und Einsatzmotive, Fallbeispiele
+	\item[Anwendbarkeit] Indikatoren für den Einsatz des Musters
+	\item[Struktur] des Musters
+	\item[Beteiligte] Klassen und/oder Objekte
+	\item[Zusammenspiel] der beteiligten Klassen bzw. Objekte
+	\item[Konsequenzen] Vor- und Nachteile
+	\item[Implementierung] beispielhafter Quellcode
+	\item[Praxiseinsatz] Beispiele und Nachweise über den erfolgreichen Einsatz
+	\item[Querverweise] und Abgrenzungen zu ähnlichen Mustern
+\end{description}
+\end{addmargin}
+
+In dem Buch „Design Patterns mit Java“ von Olaf Musch \cite{mus21} finden Sie für alle der ursprünglich von Gamma und Kollegen zusammengestellten Muster ausführliche Beschreibungen mit Lebensweltbeispielen für deren Einsatzzweck sowie Quellcodebeispielen für deren Umsetzung in Java.
+
+Die folgenden Abschnitte~\ref{sec:Kap-10.1} bis \ref{sec:Kap-10.3} stellen jeweils beispielhaft ein Entwurfsmuster der drei Entwurfsmusterkategorien vor. Sie basieren auf der vorherigen Version des Kurstextes von Hans-Werner Six und Mario Winter, der sich stark an der Darstellung in \cite{gam95} orientierte. 
+
+% 10.1
+\clearpage
+\input{Kapitel-10/Kapitel-10-1.tex}
+
+% 10.2
+\clearpage
+\input{Kapitel-10/Kapitel-10-2.tex}
+
+% 10.3
+\clearpage
+\input{Kapitel-10/Kapitel-10-3.tex}
+
+% 10.4
+\clearpage
+\input{Kapitel-10/Kapitel-10-4.tex}
+
+% 10.5
+\clearpage
+\input{Kapitel-10/Kapitel-10-5.tex}

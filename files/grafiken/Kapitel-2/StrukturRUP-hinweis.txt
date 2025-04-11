@@ -1,0 +1,7 @@
+Folgende Vorgehensweise:
+- altes png in PowerPoint eingefügt
+- Bezeichnungen überschrieben
+- als PDF exportiert
+- in Acrobat beschnitten
+
+Das PDF kann dann verwendet werden.

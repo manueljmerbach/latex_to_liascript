@@ -1,0 +1,117 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% für die Titelseite
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\title{Kurs 1793}
+%\author{Autoren: Jörg Desel, Maren Stephan}
+%\date{übersetzt von \MeinName, \today{}, \thistime~Uhr}
+
+\newcommand\Kursautor{Prof. Dr. Jörg Desel, Maren Stephan}
+\newcommand\Modulnummer{63812}
+\newcommand\Modulname{Software Engineering}
+\newcommand\Lehrgebiet{Softwaretechnik und Theorie der Programmierung}
+%\newcommand\Zeitstempel{übersetzt von \MeinName, \today{}, \thistime~Uhr}
+
+% Fonts, die gewoehnlich auf Titelseiten vorkommen
+% (übernommen von C. Icking / ProPra SS 2022)
+\newcommand\feuletbold{\fontfamily{lfrs}\fontseries{b}\fontshape{n}}
+\newcommand\feuletlight{\fontfamily{lfrs}\fontseries{l}\fontshape{n}}
+\newcommand\fruttitel{\feuletbold\fontsize{24}{15pt}\selectfont}
+\newcommand\frutsubtitel{\feuletbold\fontsize{12}{14pt}\selectfont}
+\newcommand\frutsubsubtitel{\feuletbold\fontsize{10}{11pt}\selectfont}
+\newcommand\frutfakultaet{\feuletlight\fontsize{18}{12pt}\selectfont}
+\newcommand\frutfakultaetb{\feuletbold\fontsize{18}{12pt}\selectfont}
+\newcommand\fruturheberrecht{\feuletlight\fontsize{9}{10pt}\selectfont}
+\let\frutautor\frutsubtitel
+
+\newcommand\frutzeitstempel{\feuletlight\fontsize{9}{10pt}\selectfont}
+
+%--------------------------------------
+% Für das Deckblatt gibt es extra ein neues Kommando / Makro,
+% damit es sowohl für die erste Seite einer Lektion (Parts)
+% als auch für die Titelseite genutzt werden kann.
+% Der Befehl hat 5 Parameter
+%   [1] Autor(en)
+%   [2] Modulnummer
+%   [3] Modulname
+%   [4] Lektion
+%   [5] Titel der Lektion
+%   [6] Hinweis (wird zur Zeit nicht verwendet)
+%--------------------------------------
+\newcommand\sttpDeckblatt[6]{
+\begin{tikzpicture}[remember picture,overlay]
+	% Zeichnen der farbigen Hintergründe
+	% hellgrüner großer Bereich
+	\fill[FernUni-MI-green-light] (current page.north west) rectangle ([xshift=-3cm, yshift=-19cm] current page.north east);
+	% die dunkelgrüne Form setzt sich aus 2 Rechtecken und einem Kreis zusammen
+	\fill[FernUni-MI-green] ([xshift=2cm, yshift=-19cm] current page.north west) rectangle ([xshift=9cm, yshift=-14cm] current page.north west);
+	\fill[FernUni-MI-green] ([xshift=2cm, yshift=-21cm] current page.north west) rectangle ([xshift=7cm, yshift=-19cm] current page.north west);
+	\fill[FernUni-MI-green] ([xshift=7cm, yshift=-19cm] current page.north west) circle (2cm);
+	%
+	% jetzt kommt der Text ...
+	% Autoren
+	\draw[black] node[anchor=west, xshift=2cm, yshift=-6.5cm] at (current page.north west) {\frutautor\selectfont {#1}};
+	% Modulnummer
+	\draw[black] node[anchor=west, xshift=2cm, yshift=-8.2cm] at (current page.north west) {\fruttitel\selectfont {Modul #2}};
+	% Modulname
+	\draw[black] node[anchor=west, xshift=2cm, yshift=-9.5cm] at (current page.north west) {\fruttitel\selectfont {#3}};
+	% Lektion X
+	\draw[black] node[anchor=west, xshift=2cm, yshift=-11cm] at (current page.north west) {\frutsubtitel\selectfont {#4}};%{\partname~\thepart}};
+	% Untertitel
+	\draw[black] node[anchor=west, xshift=2cm, yshift=-11.6cm] at (current page.north west) {\frutsubtitel\selectfont {#5}};
+	%
+	% weißer Schriftzug: Fakultät M+I
+	\draw[white] node[anchor=west, xshift=2.7cm, yshift=-15.2cm] at (current page.north west) {\frutfakultaet\selectfont Fakultät für};
+	\draw[white] node[anchor=west, xshift=2.7cm, yshift=-16.1cm] at (current page.north west) {\frutfakultaetb\selectfont Mathematik und};
+	\draw[white] node[anchor=west, xshift=2.7cm, yshift=-17.0cm] at (current page.north west) {\frutfakultaetb\selectfont Informatik};
+	%
+	% FernUni-Logo
+	\node[black] [anchor=east, xshift=18cm, yshift=-27.0cm] at (current page.north west) {\includegraphics[width=65mm]{Bilder/feulogo.pdf}};
+	%
+	% Zeitstempel
+	%\draw[black] node[anchor=east, fill=white, xshift=20cm, yshift=-1.0cm] at (current page.north west) {\frutzeitstempel\selectfont {#5}};
+\end{tikzpicture}%
+}
+
+
+%--------------------------------------
+% Für die Rückseite des Deckblatts gibt es ebenfalls ein neues Kommando / Makro,
+% damit es sowohl für die erste Seite einer Lektion (Parts)
+% als auch für die Titelseite genutzt werden kann.
+% Der Befehl hat 2 Parameter
+%   [1] Lektion
+%   [2] Text zu dieser Lektion
+%--------------------------------------
+\newcommand\sttpDeckblattRueckseite[2]{
+	\newgeometry{left=25mm, right=15mm, top=80mm, bottom=15mm}
+	\thispagestyle{empty}
+	{
+		\sffamily % Text der Rückseite ohne Serifen
+		
+		Desel/Stephan: \Modulname\\
+		#1, Hagen 2024
+		
+		\vspace{1cm}
+		#2
+		
+		\vfill
+		Layout und Satz: Andrea Frank
+		
+		\vspace{3cm}
+		
+		\begin{minipage}{1.1cm}
+			\includegraphics[width=1.0cm]{Bilder/elephant_emoji2.png}
+		\end{minipage}
+		-- Bildquelle: Sofie Ascherl, \href{https://creativecommons.org/licenses/by-sa/4.0}{CC BY-SA 4.0}, via OpenMoji
+		
+		\noindent\rule[1ex]{\textwidth}{1pt}
+		{
+			\scriptsize
+			Das Werk ist urheberrechtlich geschützt. Die dadurch begründeten Rechte, insbesondere das Recht der Vervielfältigung und Verbreitung sowie der Übersetzung und des Nachdrucks, bleiben, auch bei nur auszugsweiser Verwertung, vorbehalten. Kein Teil des Werkes darf in irgendeiner Form (Druck, Fotokopie, Mikrofilm oder ein anderes Verfahren) ohne schriftliche Genehmigung der FernUniversität reproduziert oder unter Verwendung elektronischer Systeme verarbeitet, vervielfältigt oder verbreitet werden. Wir weisen darauf hin, dass die vorgenannten Verwertungsalternativen je nach Ausgestaltung der Nutzungsbedingungen bereits durch Einstellen in Cloud-Systeme verwirklicht sein können. Die FernUniversität bedient sich im Falle der Kenntnis von Urheberrechtsverletzungen sowohl zivil- als auch strafrechtlicher Instrumente, um ihre Rechte geltend zu machen.
+			
+			Der Inhalt dieses Studienbriefs wird gedruckt auf Recyclingpapier (80 g/m$\mathsf{^2}$, weiß), hergestellt aus 100\,\% Altpapier.
+		}
+	}
+
+	\restoregeometry
+}

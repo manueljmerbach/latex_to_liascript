@@ -1,0 +1,293 @@
+% das Papierformat zuerst
+% \documentclass[a4paper, 11pt]{article}
+\documentclass[11pt]{scrartcl}
+
+% für Umlaute
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+% für "Deutsch"
+\usepackage[ngerman]{babel}
+
+% für Grafiken
+\usepackage{graphicx}
+
+% für textumfließende Grafiken
+\usepackage{wrapfig} 
+
+% Das hyperref-Paket wird üblicherweise als letztes Paket in der Präambel 
+% geladen, da es sich so auf alle zuvor geladenen Pakete einstellen kann.
+\usepackage{hyperref}
+
+% für die Titelseite
+\title{UML-Grafiken in \LaTeX}
+\author{Andrea Frank}
+\date{\today{}, Hagen}
+
+% hier beginnt das Dokument
+\begin{document}
+
+\maketitle
+
+\newpage
+
+% Inhaltsverzeichnis anzeigen
+\tableofcontents
+
+\newpage
+
+% Kapitelueberschrift
+\section{Grafiken in \LaTeX}
+
+In diesem \LaTeX-Dokument sind Grafiken eingebunden, die mit  verschiedenen UML-Tools erzeugt wurden.
+
+Für die Erstellung der Grafiken wurden die Werkzeuge DrawIO und Visual Paradigm eingesetzt. 
+
+\begin{center}
+    \includegraphics[width=0.1\textwidth]{frog}
+\end{center}
+
+\newpage
+
+% Kapitelueberschrift
+\section{Abbildung 3.19 in verschiedenen Formaten}
+
+% Ueberschrift eines Abschnittes
+\subsection{PNG}
+\begin{figure}[htbp]
+   \centering
+   \setlength{\fboxsep}{5pt}
+   \setlength{\fboxrule}{2pt}
+   \fbox{\includegraphics[width=0.5\textwidth]{DrawIO/Abb-3-19.png}}
+   \label{fig:Abb-3-19-png}
+\end{figure}
+
+\subsection{JPG}
+\begin{figure}[htbp]
+   \centering
+   \setlength{\fboxsep}{5pt}
+   \setlength{\fboxrule}{2pt}
+   \fbox{\includegraphics[width=0.5\textwidth]{DrawIO/Abb-3-19.jpg}}
+   \label{fig:Abb-3-19-jpg}
+\end{figure}
+
+\subsection{PDF}
+\begin{figure}[htbp]
+   \centering
+   \setlength{\fboxsep}{5pt}
+   \setlength{\fboxrule}{2pt}
+   \fbox{\includegraphics[width=0.5\textwidth]{DrawIO/Abb-3-19.pdf}}
+   \label{fig:Abb-3-19-pdf}
+\end{figure}
+
+\subsection{PDF - fixed}
+\begin{figure}[htbp]
+   \centering
+   \setlength{\fboxsep}{5pt}
+   \setlength{\fboxrule}{2pt}
+   \fbox{\includegraphics[width=0.5\textwidth]{DrawIO/Abb-3-19-fixed.pdf}}
+   \label{fig:Abb-3-19-pdf}
+\end{figure}
+
+\newpage
+% Kapitelueberschrift
+\section{Ein Zustandsdiagramm in verschiedenen Formaten}
+
+\subsection{DrawIO}
+
+% Ueberschrift eines Abschnittes
+\subsubsection{PNG}
+
+\begin{figure}[htbp]
+   \centering
+   \setlength{\fboxsep}{5pt}
+   \setlength{\fboxrule}{2pt}
+   \fbox{\includegraphics[width=0.5\textwidth]{DrawIO/Zustandsdiagramm.png}}
+\end{figure}
+
+% Ueberschrift eines Abschnittes
+\subsubsection{JPG}
+
+\begin{figure}[htbp]
+   \centering
+   \setlength{\fboxsep}{5pt}
+   \setlength{\fboxrule}{2pt}
+   \fbox{\includegraphics[width=0.5\textwidth]{DrawIO/Zustandsdiagramm.jpg}}
+\end{figure}
+
+% Ueberschrift eines Abschnittes
+\subsubsection{PDF}
+
+\begin{figure}[htbp]
+   \centering
+   \setlength{\fboxsep}{5pt}
+   \setlength{\fboxrule}{2pt}
+   \fbox{\includegraphics[width=0.5\textwidth]{DrawIO/Zustandsdiagramm.pdf}}
+\end{figure}
+
+\newpage
+
+\subsection{Visual Paradigm}
+
+% Ueberschrift eines Abschnittes
+\subsubsection{PNG}
+
+\begin{figure}[htbp]
+   \centering
+   \setlength{\fboxsep}{5pt}
+   \setlength{\fboxrule}{2pt}
+   \fbox{\includegraphics[width=0.5\textwidth]{Visual-Paradigm/Zustandsdiagramm.png}}
+\end{figure}
+
+% Ueberschrift eines Abschnittes
+\subsubsection{JPG}
+
+\begin{figure}[htbp]
+   \centering
+   \setlength{\fboxsep}{5pt}
+   \setlength{\fboxrule}{2pt}
+   \fbox{\includegraphics[width=0.5\textwidth]{Visual-Paradigm/Zustandsdiagramm.jpg}}
+\end{figure}
+
+% Ueberschrift eines Abschnittes
+\subsubsection{PDF}
+!!! NEGATIV: bei PDF stimmt der ausgeschnittene Zeichenbereich nicht	
+\begin{figure}[htbp]
+   \centering
+   \setlength{\fboxsep}{5pt}
+   \setlength{\fboxrule}{2pt}
+   \fbox{\includegraphics[width=0.5\textwidth]{Visual-Paradigm/Zustandsdiagramm.pdf}}
+\end{figure}
+
+\newpage
+
+% Kapitelueberschrift
+\section{Abbildung 3.28 in verschiedenen Formaten}
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+% Ueberschrift eines Abschnittes
+\subsection{PNG}
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\begin{figure}[htbp]
+   \centering
+   \setlength{\fboxsep}{5pt}
+   \setlength{\fboxrule}{2pt}
+   \fbox{\includegraphics[width=1.0\textwidth]{DrawIO/Abb-3-28.png}}
+   \label{fig:Abb-3-28-png}
+\end{figure}
+
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\newpage
+
+\subsection{JPG}
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\begin{figure}[htbp]
+   \centering
+   \setlength{\fboxsep}{5pt}
+   \setlength{\fboxrule}{2pt}
+   \fbox{\includegraphics[width=1.0\textwidth]{DrawIO/Abb-3-28.jpg}}
+   \label{fig:Abb-3-28-jpg}
+\end{figure}
+
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\newpage
+
+\subsection{PDF}
+
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\begin{figure}[htbp]
+   \centering
+   \setlength{\fboxsep}{5pt}
+   \setlength{\fboxrule}{2pt}
+   \fbox{\includegraphics[width=1.0\textwidth]{DrawIO/Abb-3-28.pdf}}
+   \label{fig:Abb-3-28-pdf}
+\end{figure}
+
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\newpage
+
+% Kapitelueberschrift
+\section{Ein Diagramm mit Image in verschiedenen Formaten}
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+% Ueberschrift eines Abschnittes
+\subsection{PNG}
+
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\begin{wrapfigure}{l}{0.4\textwidth}
+ \vspace{-16pt}
+ \centering 
+ \includegraphics[width=0.35\textwidth]{DrawIO/Diagramm_mit_Image.png}
+ \label{fig:Diagramm-mit-Image-png}
+ \vspace{-10pt}
+\end{wrapfigure}
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\subsection{JPG}
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\begin{wrapfigure}{l}{0.4\textwidth}
+ \vspace{-16pt}
+ \centering 
+ \includegraphics[width=0.35\textwidth]{DrawIO/Diagramm_mit_Image.jpg}
+ \label{fig:Diagramm-mit-Image-jpg}
+ \vspace{-10pt}
+\end{wrapfigure}
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\subsection{PDF}
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\begin{wrapfigure}{l}{0.4\textwidth}
+ \vspace{-16pt}
+ \centering 
+ \includegraphics[width=0.35\textwidth]{DrawIO/Diagramm_mit_Image.pdf}
+ \label{fig:Diagramm-mit-Image-pdf}
+ \vspace{-10pt}
+\end{wrapfigure}
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\newpage
+
+\section{Textumflossene Grafik}
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\begin{wrapfigure}{r}[50pt]{0.3\textwidth}
+ \vspace{-16pt}
+ \centering 
+ \includegraphics[width=0.25\textwidth]{frog}
+ \label{fig:meine-Grafik}
+ \vspace{-10pt}
+\end{wrapfigure}
+Hier kommt der Text, der um das Bild fließt \ldots 
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
+
+\begin{wrapfigure}{l}[50pt]{0.3\textwidth}
+	\centering 
+	\includegraphics[width=0.25\textwidth]{frog}
+\end{wrapfigure}
+
+Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.   
+
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.  
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.
+
+Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.
+\end{document}

@@ -1,0 +1,11 @@
+M1:  IF a>b THEN GOTO M4;
+M2:  b = b-a;
+M3:  GOTO M5;
+M4:  a = a-b;
+M5:  IF (a>0 und b>0) THEN GOTO M1;
+M6:  IF (b=0) THEN GOTO M9;
+M7:  ggT = b;
+M8:  GOTO M10;
+M9:  ggT = a;
+M10: Ausgabe ggT;
+M11: STOP;

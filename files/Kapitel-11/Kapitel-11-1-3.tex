@@ -1,0 +1,40 @@
+\subsection{Wie wird getestet?}
+\label{sec:Kap-11-1-3}
+
+Ein \textit{Testablauf} 
+\marginline{Testablauf}
+ist nicht etwa der Ablauf des Programms für einen Testfall, sondern soll hier den gesamten Prozess des \textbf{systematischen Testens} eines Software\-produkts skizzieren.
+
+\minisec{Planung}
+
+Naturgemäß geht es mit der Planung der Tests los. Dazu gehört die \textit{Teststrategie}: 
+\marginline{Teststrategie}
+Welche Programmfragmente sollen zu welchem Zeitraum bzw. in welcher Phase getestet werden, wie soll dies geschehen (automatisch oder manuell, und durch wen), und wie viel Zeit steht dafür zur Verfügung? Ein ausgewähltes Programmfragment wird im Folgenden „Prüfling“ genannt.
+	
+\minisec{Vorbereitung}
+
+Im Unterschied zu niederschwelligen Tests 
+\marginline{Test\-vorbereitung}
+sollen systematische Tests klar definiert und reproduzierbar sein. Deshalb sind bei der Vorbereitung der Tests die Auswahl der Testfälle festzulegen und die Testumgebung wird bereitgestellt. Zudem geht es hier um die präzise Angabe der Testvorschrift, die auch die Umgebung und Rahmen\-bedingungen mit einschließt.
+	
+\minisec{Durchführung}
+
+Die in der Vorbereitung bereitgestellte Testumgebung wird eingerichtet 
+\marginline{Test\-durchführung}
+und die Testfälle werden gemäß Testvorschrift ausgeführt (genau genommen ist nur dieser Schritt das eigentliche Testen). Jeder Testfall enthält eine Eingabe und die gemäß Spezifikation dazugehörige Ausgabe, auch Soll-Ausgabe genannt. Die tatsächlichen Ausgaben werden mit der Soll-Ausgabe verglichen und dokumentiert. Auch bzw. erst recht falsche Ausgaben sind eine für die Verbesserung des Programms wertvolle Information. Wie bereits erwähnt, wird der Prüfling während der Testdurchführung nicht verändert, auch wenn Fehler bereits offenbar wurden.
+	
+\minisec{Auswertung}
+
+Erst nach der vollständigen Durchführung des Tests 
+\marginline{Testauswertung}
+für alle vorgesehenen Testfälle findet eine Auswertung des Tests statt. Die Testbefunde, also eventuelle Abweichungen der tatsächlichen Ausgaben von den Soll-Ausgaben werden zusammengestellt und dokumentiert. Im Rahmen der Auswertung wird auch festgestellt, ob der Test als erfolgreich angesehen wird oder nicht. Erfolg bedeutet nicht in jedem Fall 100\,\% korrekte Ausgaben, sondern auch geringere Werte sind grundsätzlich als Erfolgs\-kriterium denkbar. Insbesondere können Testfälle, die sich nicht direkt auf den vorgesehenen Eingabebereich beziehen, positiv oder negativ ausfallen. Dies hat nichts mit der eigentlichen Spezifikation zu tun. Ein Programm, das außerhalb seines definierten Eingabebereichs sinnvolle Ausgaben ausgibt, wird \textit{robust} genannt, und Robustheit 
+\marginline{Robustheit}
+ist auch ein Qualitätskriterium. Je nach Anwendungsbereich wird gefordert, dass eine ungültige Eingabe als solche identifiziert und abgewiesen wird, oder dass -- sofern möglich -- eine zur Spezifikation analoge Funktionalität erfüllt wird. Ein Beispiel für den ersten Fall ist die Division durch 0. Hier gibt es kein vernünftiges Ergebnis und insbesondere ist gar kein Ergebnis (zum Beispiel durch eine Endlosschleife oder durch einen Programmabsturz) keine robuste Erweiterung der Programmfunktionalität. Ein Beispiel für den zweiten Fall ist die Addition von ganzen Zahlen, auch wenn nur die Addition positiver ganzer Zahlen spezifiziert wurde. 
+
+\vspace{\baselineskip}
+
+Nicht zum Test selbst gehört die
+
+\minisec{Fehlerbehebung,}
+
+die auf der Analyse der gefundenen Abweichungen zwischen tatsächlichem Verhalten und Soll-Verhalten basiert. Ziel der Analyse ist die Bestimmung der Fehlerursachen. In vielen Fällen kann man diese dann einfach beheben. Manchmal entstehen dabei allerdings unerwartete neue Fehler -- deswegen muss in der nächsten Runde der gesamte Test wiederholt werden. Es ist auch denkbar, dass der gefundene Fehler nicht leicht zu reparieren ist. So ist zum Beispiel bei Auswahl des falschen Algorithmus für eine algorithmische Aufgabenstellung keine lokale Änderung fehlerbehebend, sondern eine andere Auswahl des gesamten Algorithmus. Es ist dann also ein neues Programm zu schreiben.

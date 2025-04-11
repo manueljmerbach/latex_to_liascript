@@ -1,0 +1,48 @@
+\subsection{Strukturorientierter Test (White-Box-Test)}
+\label{sec:Kap-11-1-5}
+
+Der Name White-Box ist eigentlich nicht korrekt, denn in eine weiße Kiste kann man so wenig hineinschauen wie in eine schwarze. Deshalb wird manchmal auch Glass-Box-Test gesagt. Bei dieser Variante ist die, also nun sichtbare, Programmstruktur zusätzliche Grundlage bei der Auswahl der Testfälle. Natürlich geht die Spezifikation ebenfalls ein, denn sie bestimmt ja die gewünschten Ausgaben.
+
+\vspace{2mm} %%% für Druck
+
+Wir betrachten wieder den ggT-Algorithmus aus Abbildung~\ref{fig:flussdiagramm_in_Kap-11}. Da wir ja beim strukturorientiertem Test die Programmstruktur verwenden dürfen, wollen wir sie explizit angeben (Algorithmus~\ref{algo:berechnung_ggt}). Eigentlich ist es eine unmittelbare Übersetzung aus dem Flussdiagramm. Statt einer konkreten Programmiersprache verwenden wir eine übliche Notation im sogenannten Pseudo-Code.
+
+\vspace{\baselineskip} %%% für Druck
+\vspace{\baselineskip} %%% für Druck
+
+\begin{algorithm}[H]
+	\caption{Algorithmus zur Berechnung des ggT}
+	\label{algo:berechnung_ggt}
+	
+	\vspace{2mm} %%% für Druck
+	\vspace{\baselineskip}
+	
+	\KwData{Eingabe: $a,b \geq 1$}
+	\KwResult{Ausgabe: $\ggt (a,b)$}
+	
+	\vspace{2mm} %%% für Druck
+	\vspace{\baselineskip}
+	
+	\Repeat{$a=0 \vee b=0$}{
+		\eIf{$a > b$}{
+			$a = a - b$
+		}{
+			$b = b - a$
+		}
+	}
+	
+	\vspace{2mm} %%% für Druck
+	\vspace{\baselineskip}
+	
+	\eIf{$a=0$}{
+		\Return{$b$}
+	}{
+		\Return{$a$}
+	}
+	
+	\vspace{2mm} %%% für Druck
+	\vspace{\baselineskip}
+\end{algorithm}
+
+\vspace{\baselineskip} %%% für Druck
+\vspace{\baselineskip} %%% für Druck

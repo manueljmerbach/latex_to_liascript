@@ -1,0 +1,56 @@
+\section{Domain-driven Design}
+%\label{sec:Kap-4.2}
+
+Domain-driven Design (DDD) ist ein Entwicklungsansatz für – nicht nur, aber vor allem – objektorientiertes Softwareengineering, der auf dem gleichnamigen Buch von Eric Evans aus dem Jahr 2003 \cite{eva03} beruht. Domain-driven Design könnte man im Deutschen mit domänengetriebenem Entwurf oder domänengetriebenem Design übersetzen. Die englische Bezeichnung hat sich aber auch im deutschsprachigen Softwareengineering-Umfeld so eingebürgert, dass man in der Regel keinen deutschen Begriff für diesen Ansatz verwendet.
+
+Der Ansatz des Domain-driven Design entstand Anfang der 2000er Jahre in einer Zeit, in der Themen wie generische Softwarearchitekturen und komponentenbasierte
+%\sttpkapitelverweis{komponenten\-basier\-tes Softwareengineering}{Kap.~\ref{sec:Kap-x.y}}
+Entwicklung im Trend standen, deren Fokus auf die Wiederverwendung von Konzepten, Entwurfsmustern 
+%\sttpkapitelverweis{Entwurfsmuster}{Kap.~\ref{sec:Kap-x.y}}
+und Programmcodeteilen ausgerichtet war anstatt auf die fachlichen Spezifika der konkreten Domänen, für die die Softwareprodukte entwickelt wurden. Gleichzeitig konzentrierten sich viele der aufkommenden agilen Ansätze so stark auf die Programmierung, dass sie ebenfalls häufig die systematische Erfassung und Modellierung der Domäne vernachlässigten. Insofern ist das Domain-driven Design, das die Domäne und deren explizite Modellierung in den Mittelpunkt des Softwareentwicklungsprozesses stellt, auch eine Art Gegenentwurf zu den Anfang der 2000er Jahre herrschenden Trends im Softwareengineering.
+
+Der DDD-Ansatz geht davon aus, dass der größte Teil der Komplexität 
+\marginline{Domäne als Komplexitätstreiber}
+eines Softwareentwicklungsprojekts durch die komplexen Strukturen und Prozesse der zugrundeliegenden Domäne verursacht wird. Dementsprechend wird die adäquate Modellierung und Umsetzung der Strukturen, Geschäftsprozesse, Interaktionen und Anforderungen der Domäne als zentraler Erfolgsfaktor des Softwareprodukts angesehen. Alle anderen Aspekte des zukünftigen Softwareprodukts wie die Art der Datenhaltung oder die technische Umsetzung von Benutzeroberflächen sind danach – etwas überspitzt formuliert – Beiwerk. 
+
+Die Betonung der Domäne war nicht neu: schon Mitte und Ende der 1990er Jahre hatten Vorgehensmodelle wie der Unified Process (Kap. 2.2.2.2) 
+%\sttpkapitelverweis{Unified Process}{Kap.~\ref{sec:Kap-2.2.2.2}}
+die Wichtigkeit hervorgehoben, sich in Softwareentwicklungsprojekten intensiv mit der Domäne zu befassen. Im Vergleich zu diesen und zur heute oft üblichen Domänenmodellierung, wie wir sie auch in diesem Kurs thematisieren, geht der Ansatz des Domain-driven Design jedoch einen erheblichen Schritt weiter: nicht nur im Rahmen der Anforderungsermittlung, sondern auch in den Prozessen des Entwurfs und der Implementierung sowie als Basis für die 
+%\sttpkapitelverweis{Softwarearchitektur}{Kap.~\ref{sec:Kap-x.y}}
+Softwarearchitektur stehen die fachlichen Strukturen und Prozesse der Domäne anstelle von softwaretechnischen Aspekten im Vordergrund. Dazu gehört auch eine eigene Geschäftslogikschicht in der Softwarearchitektur, die die durch das Domänenmodell spezifizierte fachliche Logik vom Rest der Anwendung entkoppeln soll.
+
+Zentrale Konzepte des Domain-driven Design sind die durchgängige Verwendung einer ubiquitären Sprache (allgegenwärtige Sprache, engl. ubiquitous language) im Softwareentwicklungsprojekt und das Prinzip des sogenannten Bounded Context. 
+
+Der DDD-Ansatz 
+\marginline{ubiquitäre Sprache}
+verlangt die Verwendung einer für alle Beteiligten am Softwareentwicklungsprojekt verständlichen Sprache. Dafür wird die Fachsprache der entsprechenden Domäne verwendet. Während die Domänenexperten und sonstigen Teammitglieder aus dem Umfeld des Kunden somit in gewohnten Begrifflichkeiten kommunizieren können, bedeutet das für die softwaretechnischen Mitglieder des Teams sich neben den Domänenkonzepten auch tief in die genauen Begrifflichkeiten der Domäne einzuarbeiten. Der DDD-Ansatz bezeichnet die Sprache als allgegenwärtige Sprache, weil sie nicht nur in den Kommunikationszusammenhängen zwischen Domänenexperten und Entwicklern eingesetzt werden soll, sondern auch in Diskussionen innerhalb des Entwicklungsteams, in sämtlichen Modellen (auch den implementierungsnahen) und als Sprache des Programmcodes (Benennung von Variablen, Funktionen etc.). Auf diese Weise verringert sich der Abstand zwischen dem Domänenmodell und dem resultierenden Programmcode. Die Sicherstellung der Konsistenz zwischen Modellen und Programmcode muss aber auch bei DDD manuell gewährleistet werden. Es handelt sich um einen modell\textbf{basierten}, nicht um ein modellgetriebenen Ansatz.
+
+Ein weiteres wichtiges Prinzip von DDD ist die Aufteilung des zukünftigen Softwareprodukts in abgrenzbare Komponenten,
+%\sttpgls{Komponente}
+aber eben nicht anhand technischer Aspekte, sondern anhand fachlicher Gegebenheiten der Domäne. Das Prinzip des \textit{Bounded Context} (in Deutsch etwa: begrenzter oder abgegrenzter Kontext) ist eine 
+%\sttpkapitelverweis{Separation of Concerns}{Kap.~\ref{sec:Kap-x.y}}
+fachlich orientierte Version des Teile-und-Herrsche-Prinzips (divide and conquer) der Softwareentwicklung. Für jeden Bounded Context wird ein eigenes Domänenmodell erstellt, das den für die entsprechende Komponente relevanten Teil der Gesamtdomäne beschreibt. Die genaue Definition der Schnittstellen zwischen den Bounded Contexts
+\marginline{Bounded Context}
+ist entscheidend. Dafür muss für jede fachliche Komponente definiert werden, wie sie im Rahmen der Geschäftslogik der Domäne mit den anderen Komponenten interagieren soll. Diese Schnittstellen und die Grenzen der einzelnen Bounded Contexts werden in der sogenannten Context Map dargestellt, um bei der im DDD-Ansatz vorgesehenen stark iterativen Entwicklung das zukünftige Gesamtsystem nicht aus dem Blick zu verlieren.
+
+Der 
+\marginline{Best Practices und Entwurfsmuster}
+DDD-Ansatz liefert Methoden und Heuristiken (Best Practices), aber auch viele konkrete Architektur- und Entwurfsmuster auf so unterschiedliche Ebenen wie Softwarearchitektur und Programmcode für die praktische Umsetzung des domänenzentrierten Ansatzes in konkreten Softwareentwicklungsprojekten. Auch Empfehlungen für die Teamorganisation werden ausgesprochen. So ist zum einen die intensive und feste Einbindung der Domänenexperten erforderlich. Zum anderen sollen die erfahrensten Entwickler im Team für die Modellierung und Umsetzung der Domänenaspekte zuständig sein und deshalb zum Beispiel nicht für die Implementierung und Auswahl von Authentifizierungskomponenten oder für die Auswahl der Oberflächenframeworks – beides Aufgaben, die man in vielen Projekten eher Entwicklern mit Erfahrung zuteilen würde.
+
+Domain-driven Design ist ein Ansatz aus dem Umfeld 
+%\sttpkapitelverweis{Continuous Integration}{Kap.~\ref{sec:Kap-x.y}}
+der agilen Softwareentwicklung. Agile Prinzipien wie die iterative Entwicklung, der starke Einbezug der Domänenexperten, Continuous Integration oder Test-First Development 
+%\sttpkapitelverweis{Test-First Development}{Kap.~\ref{sec:Kap-x.y}}
+sind Bestandteile von DDD. Eher ungewöhnlich im agilen Umfeld – insbesondere zu Beginn der 2000er Jahre – ist allerdings die starke Betonung und der Umfang der Modellierungs- und Dokumentationsarbeiten. Diese beziehen sich sowohl auf die Domäne und auf die Schnittstellen der Bounded Contexts als auch auf Bereiche der Implementierung, 
+%\sttpkapitelverweis{Nachbedingungen und Invarianten}{Kap.~\ref{sec:Kap-x.y}}
+wie der expliziten Dokumentation von Nachbedingungen und Invarianten von Funktionen bzw. Klassen. 
+
+In 
+\marginline{DDD und Microservices}
+den letzten Jahren ist der 20 Jahre alte Ansatz des Domain-driven Design im Kontext des Architekturmusters der sogenannten 
+% TODO Kommentar in Latex-Datei: „evtl. Verweis auf KE6“
+Microservices zunehmend wieder aktuell geworden. Nach dem Microservices-Muster wird ein Softwareprodukt aus vielen Prozessen inklusive fest definierter Schnittstellen komponiert, von denen jeder eine klar abgegrenzte sehr kleine Funktionalität bereitstellt. In diesem Zusammenhang wird vor allem das DDD-Prinzip der Bounded Contexts reaktiviert.
+
+Das 
+\marginline{Literatur}
+Originalbuch zum Domain-driven Design ist \cite{eva03}. Eine deutsche Übersetzung der Domain-driven Design Referenz \cite{eva14} – eine Kurzfassung der wichtigsten DDD-Konzepte –, die Evans 2014 veröffentlicht hat, kann unter \url{https://leanpub.com/ddd-referenz} kostenfrei online gelesen werden. Eine gute Zusammenfassung zu DDD liefert \cite[136-157]{gol15}. Diese beinhaltet auch die Einordnung des DDD in die softwaretechnischen Trends seiner Entstehungszeit. 

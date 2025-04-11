@@ -1,0 +1,37 @@
+%--- Kapitel 8
+\cleardoublepage
+\chapter{Klassen und Objekte im Entwurf}
+\label{sec:Kap-8}
+
+In Kapitel~4 haben wir Klassen und Objekte im Rahmen der Domänenmodellierung betrachtet. Dort haben Sie das Klassendiagramm der UML kennengelernt. Im Rahmen des Entwurfs werden Klassen und Objekte nicht mehr nur aus dem Blickwinkel der Domäne betrachtet, sondern insbesondere aus dem Blickwinkel des zu realisierenden Softwaresystems. Trotzdem gilt weiterhin der Realweltbezug: ein großer Teil der zukünftigen Objekte des Softwaresystems ist von Objekten der Realwelt abgeleitet. Abhängig vom Einsatzzweck der Software werden bestimmte Eigenschaften der Realwelt-Objekte berücksichtigt und andere ignoriert, so dass nur die für die zukünftige Software relevanten Eigenschaften der Realwelt-Objekte betrachtet werden. Die so entstehenden Software-Objekte sind damit Abstraktionen von Realwelt-Objekten. 
+
+Im Rahmen des Entwurfs wird überlegt, welche Software-Objekte benötigt werden und, davon ausgehend, welche entsprechenden Klassen nachher im Programmcode existieren sollen. Hierbei trifft man auf verschiedene Arten von Objekten:
+
+\begin{itemize}
+	\item Die schon bekannten Domänenobjekte, also diejenigen Software-Objekte, die auf Grundlage von Realweltentsprechungen der Domäne spezifiziert werden.
+	\item Objekte, die im Rahmen der Benutzungsschnittstelle benötigt werden, zum Beispiel Bedienelemente wie Eingabefelder, Menüs, Buttons, Scrollbars, Comboboxen, Auflistungselemente, Checkboxen etc. Unabhängig davon, ob man die entsprechenden Klassen in seinem Softwareentwicklungsprojekt über\-wiegend selbst erstellt oder stärker auf vorhandene Klassenbibliotheken oder komplette GUI-Frameworks (GUI: Graphical User Interface, deutsch: grafische 
+	\linebreak %%% für Druck
+	Benutzungs\-oberfläche) zurückgreift, sind diese Objekte nachher Teil des entstandenen Softwaresystems.
+	\item „Controller“-Objekte der Geschäftslogik. Hierunter fallen alle Objekte, die in Mechanismen zur Steuerung der fachlichen Abläufe der Software benötigt werden. Angenommen, im Zoobeispiel ist für das Tierinformationssystem vor\-gesehen, dass, wenn ein Nutzer das ihn interessierende Tier (z.B. den Hamster Paul) aus einer Liste aller Hamster des Zoos auswählt, er eine Detailseite mit Bildern und Informationen zu Hamster Paul angezeigt bekommt. Dort kann er dann noch einen Zeitraum für eine Patenschaft eintragen. Das System muss dafür im Hintergrund steuern, dass jeweils die richtigen \mbox{Informationen} \mbox{angezeigt} werden und bei der Patenschaft vielleicht prüfen, ob das Tier noch frei ist, die Kosten der Patenschaft ausrechnen, dann irgendwie noch mit dem Rechnungssystem des Zoos interagieren etc. Hierfür werden zusätzlich zu Domänen\-objekten wie Tier und Patenschaft und Oberflächenobjekten wie Liste und Beschreibungsseite Objekte bzw. deren Klassen benötigt, die diese Prozesse koordinieren.
+	\item Objekte, die im Rahmen von Cross-Cutting Concerns wie Authentifizierungskomponenten oder Loggingmechanismen benötigt werden.
+	\item Objekte, die aufgrund der Verwendung bestimmter Architektur- oder Entwurfs\-muster hinzukommen. Das sind häufig zusätzliche Abstraktionen und/oder Arten von Container-Objekten. Die Objektmengen aus diesem und dem vorherigen Aufzählungspunkt können sich durchaus überschneiden.
+\end{itemize}
+  
+Für den Prozess der Implementierung müssen alle diese Objekte und ihre Beziehungen zueinander genau spezifiziert sein, denn sonst kann man den Programmcode nicht schreiben. In Softwareentwicklungsprojekten, die die Prozesse Entwurf und Implementierung strikt trennen, wird man diese Arbeit komplett auf der Ebene von grafischen Modellen oder textuellen Entwurfsbeschreibungen machen. Bei starker Verzahnung zwischen Entwurfs- und Implementierungstätigkeiten werden getroffene Entscheidungen dagegen teilweise auch direkt im Programmcode „dokumentiert“, indem entsprechende Klassen mit ihren Attributen und Operationsköpfen (die sogenannte Signatur, s. Lektion 6) sowie ggf. Kommentare dazu in der ausgewählten Programmiersprache angelegt werden.
+
+Die folgenden Abschnitte knüpfen an die Vorstellung des UML-Klassendiagramms in Kapitel~4 an und stellen Elemente vor, die für Zwecke des Entwurfs benötigt werden. Eine komplette Übersicht der Elemente, die in einem UML-Klassendiagramm vorkommen dürfen, finden Sie bei \cite[37-118]{kec18}. 
+
+\clearpage
+\input{Kapitel-8/Kapitel-8-1.tex}
+\clearpage
+\input{Kapitel-8/Kapitel-8-2.tex}
+\clearpage
+\input{Kapitel-8/Kapitel-8-3.tex}
+\clearpage
+\input{Kapitel-8/Kapitel-8-4.tex}
+\clearpage
+\input{Kapitel-8/Kapitel-8-5.tex}
+\clearpage
+\input{Kapitel-8/Kapitel-8-6.tex}
+\clearpage
+\input{Kapitel-8/Kapitel-8-7.tex}

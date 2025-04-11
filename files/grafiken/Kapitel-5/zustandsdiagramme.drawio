@@ -1,0 +1,96 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0" version="24.7.17">
+  <diagram name="Seite-1" id="9vBnI0QFND7eIbvA8HKf">
+    <mxGraphModel dx="1242" dy="659" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ixVdHvie75aWIC1ulR-i-1" value="Futter geladen" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="140" y="200" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-2" value="bei den Löwen" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="450" y="200" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-3" value="&lt;div&gt;Mittagszeit&lt;/div&gt;" style="endArrow=openThin;html=1;rounded=0;endFill=0;endSize=12;verticalAlign=bottom;labelBackgroundColor=none;spacingLeft=7;" edge="1" parent="1" source="ixVdHvie75aWIC1ulR-i-1" target="ixVdHvie75aWIC1ulR-i-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="160" as="sourcePoint" />
+            <mxPoint x="150" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-4" value="bei den Affen" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="450" y="250" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-5" value="&lt;div&gt;bei den Robben&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="450" y="150" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-6" value="" style="endArrow=openThin;html=1;rounded=0;endFill=0;endSize=12;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="1" source="ixVdHvie75aWIC1ulR-i-1" target="ixVdHvie75aWIC1ulR-i-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="235" as="sourcePoint" />
+            <mxPoint x="460" y="235" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-9" value="&lt;div&gt;Mittagszeit&lt;br&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=bottom;resizable=0;points=[];rotation=350;labelBackgroundColor=none;" vertex="1" connectable="0" parent="ixVdHvie75aWIC1ulR-i-6">
+          <mxGeometry x="0.0002" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-7" value="" style="endArrow=openThin;html=1;rounded=0;endFill=0;endSize=12;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="1" source="ixVdHvie75aWIC1ulR-i-1" target="ixVdHvie75aWIC1ulR-i-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="245" as="sourcePoint" />
+            <mxPoint x="470" y="245" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-8" value="Mittagszeit" style="edgeLabel;html=1;align=center;verticalAlign=bottom;resizable=0;points=[];rotation=9;labelBackgroundColor=none;" vertex="1" connectable="0" parent="ixVdHvie75aWIC1ulR-i-7">
+          <mxGeometry x="-0.0023" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-10" value="" style="endArrow=none;html=1;rounded=0;strokeColor=#006666;strokeWidth=3;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="320" as="sourcePoint" />
+            <mxPoint x="120" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-11" value="Futter geladen" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="140" y="400" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-12" value="bei den Löwen" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="450" y="400" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-13" value="Mittagszeit [Fleisch geladen]" style="endArrow=openThin;html=1;rounded=0;endFill=0;endSize=12;verticalAlign=bottom;labelBackgroundColor=none;spacingLeft=20;" edge="1" parent="1" source="ixVdHvie75aWIC1ulR-i-11" target="ixVdHvie75aWIC1ulR-i-12">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="360" as="sourcePoint" />
+            <mxPoint x="150" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-14" value="bei den Affen" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="450" y="450" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-15" value="&lt;div&gt;bei den Robben&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="450" y="350" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-16" value="" style="endArrow=openThin;html=1;rounded=0;endFill=0;endSize=12;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="1" source="ixVdHvie75aWIC1ulR-i-11" target="ixVdHvie75aWIC1ulR-i-15">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="435" as="sourcePoint" />
+            <mxPoint x="460" y="435" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-17" value="&lt;div&gt;Mittagszeit [Fisch geladen]&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=bottom;resizable=0;points=[];rotation=350;labelBackgroundColor=none;" vertex="1" connectable="0" parent="ixVdHvie75aWIC1ulR-i-16">
+          <mxGeometry x="0.0002" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-18" value="" style="endArrow=openThin;html=1;rounded=0;endFill=0;endSize=12;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="1" source="ixVdHvie75aWIC1ulR-i-11" target="ixVdHvie75aWIC1ulR-i-14">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="445" as="sourcePoint" />
+            <mxPoint x="470" y="445" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixVdHvie75aWIC1ulR-i-19" value="Mittagszeit [Obst geladen]" style="edgeLabel;html=1;align=center;verticalAlign=bottom;resizable=0;points=[];rotation=9;labelBackgroundColor=none;" vertex="1" connectable="0" parent="ixVdHvie75aWIC1ulR-i-18">
+          <mxGeometry x="-0.0023" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

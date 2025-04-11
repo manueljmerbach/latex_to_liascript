@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net" modified="2024-04-28T16:34:32.738Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:125.0) Gecko/20100101 Firefox/125.0" etag="p0ZgYwg68A8qqJY1KVuf" version="24.3.0" type="device">
+  <diagram name="Seite-1" id="XjrOl5dTpOE3Hbalspzw">
+    <mxGraphModel dx="202" dy="109" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="hAxz9_hk0F_XmYK4yzdF-20" value="Besucher" style="html=1;whiteSpace=wrap;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="80" y="280" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hAxz9_hk0F_XmYK4yzdF-22" value="Tier" style="html=1;whiteSpace=wrap;fontStyle=3" parent="1" vertex="1">
+          <mxGeometry x="360" y="280" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hAxz9_hk0F_XmYK4yzdF-24" value="Patenschaft" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;verticalAlign=top;labelBackgroundColor=none;" parent="1" source="hAxz9_hk0F_XmYK4yzdF-20" target="hAxz9_hk0F_XmYK4yzdF-22" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="170" y="250" as="sourcePoint" />
+            <mxPoint x="330" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hAxz9_hk0F_XmYK4yzdF-25" value="0..1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;spacingLeft=3;labelBackgroundColor=none;" parent="hAxz9_hk0F_XmYK4yzdF-24" connectable="0" vertex="1">
+          <mxGeometry x="-1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hAxz9_hk0F_XmYK4yzdF-26" value="0..5" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;spacingRight=3;labelBackgroundColor=none;" parent="hAxz9_hk0F_XmYK4yzdF-24" connectable="0" vertex="1">
+          <mxGeometry x="1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hAxz9_hk0F_XmYK4yzdF-27" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" parent="1" target="hAxz9_hk0F_XmYK4yzdF-28" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="300" as="sourcePoint" />
+            <mxPoint x="350" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hAxz9_hk0F_XmYK4yzdF-28" value="Patenschaft" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="200" y="124" width="160" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="hAxz9_hk0F_XmYK4yzdF-29" value="zeitraum" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="hAxz9_hk0F_XmYK4yzdF-28" vertex="1">
+          <mxGeometry y="26" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="hAxz9_hk0F_XmYK4yzdF-30" value="typ" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="hAxz9_hk0F_XmYK4yzdF-28" vertex="1">
+          <mxGeometry y="52" width="160" height="26" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,211 @@
+\section{Vorlesung 4: Eigenschaften von Petrinetzen}
+
+Wir beginnen diese Vorlesung mit der vollständigen Definition von Petrinetzen, die auch Kantengewichte berücksichtigt.
+
+\vspace{-0.3cm} %%% für Druck
+
+\sttpDefinitionskasten{\sttpDefinitionskastenSkalierungsfaktorKapPN}{Definition 5.8: Petrinetz}{}{Ein \textbf{Petrinetz} ist ein Tupel $(S, T, F, m_0)$ mit
+	\begin{itemize}
+		\item $S$ -- Menge der Stellen, endlich
+		\item $T$ -- Menge der Transitionen, endlich, $S \cap T = \emptyset$
+		\item $F$ -- Flussrelation, $F \subseteq (S \times T) \cup (T \times S)$
+		\item $m_0$ -- Anfangsmarkierung, $m_0 : S \to \{0, 1, 2, \dots\}$
+		\item $w$ -- Kantengewichte, $w: F \to \{1, 2, 3, \dots\}$
+	\end{itemize}
+	Ein Kantengewicht spezifiziert, wie viele Marken beim Schalten der Transition von der Stelle konsumiert bzw. produziert werden.
+}
+
+\vspace{-0,8cm} %%% für Druck
+
+\phantomsection
+\label{text:schaltregel}	
+\sttpDefinitionskasten{\sttpDefinitionskastenSkalierungsfaktorKapPN}{Definition 5.9: Schaltregel}{}{
+	Eine Transition $ t $ ist \textit{aktiviert} durch eine Markierung $m$ wenn
+	\[
+	(s,t) \in F \implies w(s,t) \leq m(s)
+	\]
+	
+	Die Nachfolgemarkierung $m'$ wird nach Schalten von $t$ erreicht:
+	\[
+	m'(s) =
+	\begin{cases}
+		m(s) & \text{für } (s,t) \notin F \text{ und } (t,s) \notin F \\
+		m(s) - w(s,t) & \text{für } (s,t) \in F \text{ und } (t,s) \notin F \\
+		m(s) + w(t,s) & \text{für } (s,t) \notin F \text{ und } (t,s) \in F \\
+		m(s) - w(s,t) + w(t,s) & \text{für } (s,t) \in F \text{ und } (t,s) \in F \\
+	\end{cases}
+	\]
+	Eine von einer Markierung $m_1$ aktivierte
+	\emph{Schaltfolge} wird definiert als eine Folge von Transitionen $t_1 \; t_2 \; t_3
+	\ldots t_n$ so dass \[m_1 \xrightarrow{t_1} m_2 \xrightarrow{t_2} m_3
+	\xrightarrow{t_3} \ldots \xrightarrow{t_{n}} m_{n+1},\] wobei die in einer Schaltfolge auftretenden $t_i$
+	nicht alle unterschiedlich sein müssen.\\
+	Unendliche Schaltfolgen sind entsprechend definiert, und sie führen natur\-ge\-mäß nicht zu einer Markierung.
+}
+
+Die Schaltregel definiert, 
+\marginline{Aktivierungs\-bedingung und Auswirkung}
+wann eine Transition schalten kann und wie sich ihr Schalten auswirkt. Beides ist nur von der Markierung der Stellen abhängig, mit denen die Transition unmittelbar verbunden ist. Dies wird in einem dazugehörigen \mbox{Ablaufnetz} deutlich: die entsprechende Aktion wird auch dort durch eine Transition modelliert, deren umgebende Stellen mit den umgebenden Stellen im Systemnetz übereinstimmen.
+
+Formal definiert ist die Schaltregel für eine Markierung, also dem Modell eines globalen Zustands, und es entsteht eine neue Markierung. Von dieser aus kann wieder eine Transition schalten usw., wir erhalten eine Folge nacheinander möglicher Schaltvorgänge, die bei einer endlichen Schaltfolge wieder zu einer Markierung führen.
+
+Schaltfolgen 
+\marginline{Schaltfolge}
+beschreiben wie die Linearisierungen der halbgeordneten Abläufe eine sequentielle Sicht der Abläufe. Tatsächlich stimmen diese Sequenzen überein, wie das folgende Theorem zeigt:
+
+\sttpTheorem{\sttpTheoremSkalierungsfaktor}{Die Menge der sequentiellen Beobachtungen von Ablaufnetzen eines Petrinetzes ist gleich der Menge der von der Anfangsmarkierung aktivierten Schaltfolgen.}
+
+Wir interessieren uns im Folgenden für durch Schaltfolgen erreichte und erreichbare Markierungen sowie die durch sie aktivierten Transitionen. Es wurde nicht formal definiert, welche Markierung durch einen Ablauf erreicht wird. Sie stimmt überein mit der durch eine beliebige Linearisierung erreichten Markierung und deshalb auch mit der Markierung, die durch die entsprechende Schaltfolge erreicht wird.
+
+\subsection*{Zustandsgraph}
+
+An einem Zustandsgraph (auch Erreichbarkeitsgraph) kann man die erreichbaren Markierungen und Schaltfolgen eines Netzes ablesen. Das ist hilfreich bei Erreichbarkeitsanalysen.
+
+%%% Für den Druck wurde die Aufzählung vor die Grafik verschoben ...
+
+\begin{itemize}
+	\item Die Knoten des Zustandsgraphen entsprechen den erreichbaren Markierungen des Petrinetzes. Jeder Knoten gibt an, wie viele Marken sich auf den einzelnen Stellen befinden.
+	\item Der Anfangsknoten repräsentiert die Anfangsmarkierung $m_0$, die initiale Verteilung der Marken im Petrinetz. Dieser Knoten wird gekennzeichnet durch einen Pfeil, der auf den Knoten zeigt.
+	\item Jede Kante zwischen zwei Knoten im Zustandsgraph steht für einen Übergang von einer Markierung zu einer anderen durch das Schalten derjenigen Transition, mit der die Kante beschriftet ist.
+\end{itemize}
+
+\begin{figure}[h!]
+	\centering
+	\begin{minipage}[c]{.45\textwidth} 
+		\centering
+		\scalebox{0.8}{
+			\petrinetz{
+				\draw[colDummyLine](0, 0.9) -- (0, -2.8);
+				
+				% Places
+				\node[place, tokens=1, label=below:$s_1$] (place1) at (0,-2) {};
+				\node[place, tokens=1, label=above:$s_2$] (place2) at (2,0) {};
+				\node[place, tokens=0, label=below:$s_3$] (place3) at (4,-2) {};
+	
+				% Transitions
+				\node[transition, label=above:$t_1$] (trans1) at (0,0) {};
+				\node[transition, label=below:$t_3$] (trans3) at (2,-2) {};
+				\node[transition, label=above:$t_2$] (trans2) at (4,0) {};
+				
+				% Edges
+				\draw
+					(trans1) edge[post] (place2)
+					(place2) edge[post] (trans2)
+					(trans2) edge[post] (place3)
+					(place3) edge[post] (trans3)
+					(trans3) edge[post] node[midway, right] {2} (place2)
+					(place1) edge[post] (trans3)
+					(place1) edge[post] (trans1)
+				;
+			}
+		}
+%		%%% für den Druck keine weiteren Bildunterschriften
+%		Petrinetz zum Zustandsgraph
+	\end{minipage}
+	\begin{minipage}[c]{.05\textwidth} 
+		\centering
+		{\color{FernUni-MI-green}\rule{1pt}{30mm}} % senkrechte farbige Linie
+	\end{minipage}
+	\begin{minipage}[c]{.45\textwidth}
+		\centering
+		\scalebox{0.8}{
+			\petrinetz{
+				\tikzset{
+					node style/.style={draw, circle, fill=blue!50!black, minimum size=3pt, inner sep=0pt}
+				}
+				
+				\draw[colDummyLine](0, 0.9) -- (0, -2.8);
+	
+				% Bommel mit Labels
+				\node[node style, label={above:(110)}] (m0) at (0,0){};
+				\node[node style, label={above:(101)}] (m1) at (2,0) {};
+				\node[node style, label={below:(020)}] (m2) at (0,-2) {};
+				\node[node style, label={below:(011)}] (m3) at (2,-2) {};
+				\node[node style, label={below:(002)}] (m4) at (4,-2) {}; 
+				
+				\draw[->] (-1,0) -- (0,0);
+				\draw[->] (m0) -- (m1) node[midway, above] {$t_2$};
+				\draw[->] (m0) -- (m2) node[midway, left] {$t_1$};
+				\draw[->] (m1) -- (m2) node[midway, left] {$t_3$};
+				\draw[->] (m1) -- (m3) node[midway, right] {$t_1$};
+				\draw[->] (m2) -- (m3) node[midway, below] {$t_2$};
+				\draw[->] (m3) -- (m4)node[midway, below] {$t_2$};
+			}
+		}
+%		%%% für den Druck keine weiteren Bildunterschriften
+%		Zustandsgraph zum Petrinetz
+	\end{minipage}
+	\caption{Petrinetz und Zustandsgraph}
+	\label{fig:petrinetz_und_zustandsgraph}
+\end{figure}
+
+
+Abbildung~\ref{fig:petrinetz_und_zustandsgraph} zeigt ein Petrinetz und den zugehörigen Zustandsgraph. Insbesondere wird sichtbar, dass insgesamt fünf Markierungen (inklusive der Anfangsmarkierung) erreichbar sind.
+
+Schaltfolgen des Petrinetzes sind an den gerichteten Pfaden des Zustandsgraphen abzulesen. So gibt es z.B. einen Pfad, dessen Kanten beschriftet sind mit $t_2$, $t_3$, $t_2$, $t_2$ und dies ist auch eine Schaltfolge des Netzes. Tatsächlich existiert für jede Schaltfolge ein entsprechender Pfad und umgekehrt.
+
+\subsection*{Eigenschaften von Petrinetzen}
+
+Mit Schaltfolgen und Markierungen kann man eine Reihe wichtiger Eigenschaften von Petrinetzen einfach formal definieren:
+
+Ein Petrinetz ist
+
+\begin{itemize}
+	\item \textbf{terminierend}, wenn es keine unendlichen Schaltfolgen gibt,
+	\item \textbf{Deadlock-frei}, wenn jede erreichbare Markierung mindestens eine Transition aktiviert,
+	\item \textbf{lebendig}, wenn jede erreichbare Markierung eine Schaltfolge aktiviert, in der jede Transition vorkommt,
+	\item \textbf{b-beschränkt}, wenn für jede erreichbare Markierung $m$ und jede Stelle $s$ gilt: $m(s) \leq b$,
+	\item \textbf{beschränkt}, wenn es $b$-beschränkt ist für irgendeine Schranke $b$,
+	\item \textbf{sicher}, wenn es 1-beschränkt ist,
+	\item \textbf{reversibel}, wenn $m_0$ von jeder erreichbaren Markierung aus erreichbar ist.
+\end{itemize}
+
+
+\phantomsection
+\label{text:zentrale_eigenschaften_zustandsgraph}
+Diese Eigenschaften 
+\marginline{zentrale Eigen\-schaften am Zustands\-graph ablesen}
+lassen sich mehr oder weniger einfach am Zustandsgraph ablesen:
+
+\begin{itemize}
+	\item Eine Markierung ist \textbf{erreichbar} genau dann, wenn sie im Zustandsgraph als Knoten vorkommt.
+	\item Ein Petrinetz ist \textbf{terminierend} genau dann, wenn der Zustandsgraph endlich ist und keine Zyklen hat.
+	\item Ein Petrinetz ist \textbf{Deadlock-frei} genau dann, wenn jeder Knoten des Zustandsgraph wenigstens einen Nachfolger hat.
+	\item Ein Petrinetz ist \textbf{lebendig} genau dann, wenn es von jedem Knoten des Zustandsgraph aus einen Pfad mit allen Transitionen als Label gibt.
+	\item Ein Petrinetz ist \textbf{beschränkt} genau dann, wenn der Zustandsgraph endlich viele Knoten enthält (siehe folgendes Theorem).
+	\item Ein Petrinetz ist \textbf{reversibel} genau dann, wenn der Zustandsgraph stark 
+	\linebreak %%% für Druck
+	zusammenhängend ist (s.~Vorlesung~6).
+\end{itemize}
+
+Das Petrinetz aus Abbildung~\ref{fig:petrinetz_und_zustandsgraph} ist beschränkt und terminierend, also insbesondere nicht Deadlock-frei, geschweige denn lebendig. Es ist auch nicht reversibel.
+
+\pagebreak %%% für Druck
+
+Das folgende Theorem fasst wichtige Bezüge zwischen den Eigenschaften zusammen:
+
+\sttpTheorem{\sttpTheoremSkalierungsfaktor}{
+	\begin{enumerate}
+		\item[a)] Jedes terminierende Petrinetz ist nicht Deadlock-frei. Die umgekehrte Richtung gilt nicht.
+		\item[b)] Jedes lebendige Petrinetz mit wenigstens einer Transition ist Deadlock-frei.
+		\item[c)] Ein Petrinetz ist genau dann lebendig, wenn für jede Transi\-tion $t$ und jede erreichbare Markierung $m$ gilt: $m$ aktiviert eine Schaltfolge zu einer Markierung $m'$, die $t$ aktiviert.
+		\item[d)] Jedes beschränkte Petrinetz hat endlich viele erreichbare Markierungen und umgekehrt.
+	\end{enumerate}
+}
+
+\textbf{Beweis}
+
+\begin{enumerate}
+	\item[a)] Wenn ein Netz terminierend ist, führt jede Schaltfolge notwendigerweise zu einem Deadlock. Insbesondere existiert damit ein Deadlock und das Netz ist nicht Deadlock-frei. Die umgekehrte Richtung gilt nicht, denn ein Petrinetz kann sowohl unendliche als auch endliche Schaltfolgen besitzen, die zu einem Deadlock führen.
+	
+	\item[b)] Jede erreichbare Markierung eines lebendigen Netzes ermöglicht eine Schalt\-folge, in der alle Transitionen schalten können. Insbesondere wird dabei die erste Transition der Schaltfolge aktiviert, sodass kein Deadlock auftreten kann.
+	
+	\item[c)] Diesen Beweis sollen Sie in einer Einsendeaufgabe selbst finden.
+	
+	\item[d)] Bei derartigen Äquivalenzaussagen müssen wir beide Richtung getrennt betrachten:
+	\begin{enumerate}
+		\item[$\Rightarrow$] Wenn das Netz beschränkt ist, dann ist es auch $b$-beschränkt für ein $b$. \linebreak
+		Jede Stelle kann daher auf höchstens $b+1$ Weisen markiert werden. Da die Stellenmenge $S$ beschränkt ist, können höchstens ${(b+1)}^{|S|}$ Markierungen erreicht werden. Insbesondere ist also die Menge erreichbarer Markierungen endlich.
+		\item[$\Leftarrow$] In einer endlichen Menge von Markierungen existiert ein maximaler Wert, der durch eine der Markierungen einer Stelle zugewiesen wird. Dieser Wert ist eine geeignete Schranke.
+	\end{enumerate}
+\end{enumerate}

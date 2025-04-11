@@ -1,0 +1,28 @@
+\subsection{objektorientierte (Domänen)Modellierung und agile Ansätze}
+\label{sec:Kap-3.2.4}
+
+\sttpzitat{„I was astonished to be invited to what became the meeting that originated the Agile Manifesto because my work had always been based around building models.“ \cite[17]{hun11}}{}
+
+So Stephen J. Mellor, einer der Autoren des Agilen Manifests, im Rückblick.
+
+\pagebreak %%% für Druck
+
+Modelle verbindet man im Allgemeinen tatsächlich eher nicht mit agiler Softwareentwicklung, da Letztere die Bereiche der Programmcodeerstellung und des Testens in den Vordergrund der Softwareentwicklung stellt, während man Modelle vor allem in den Prozessen der Anforderungsermittlung und -analyse sowie des Entwurfs antrifft. Zudem gehört es zur anvisierten Leichtgewichtigkeit der agilen Softwareentwicklung, dass außer dem Programmcode möglichst wenige Artefakte produziert werden (und konsistent gehalten werden müssen). Dagegen haben UML-Diagramme meistens zumindest  \textbf{auch} die Aufgabe, Aspekte zu dokumentieren und müssen daher kontinuierlich mit entsprechendem (Personal)Aufwand aktuell gehalten werden. Insofern passen UML-Modelle und agile Softwareentwicklung nicht unmittelbar zusammen. Mehrere zusammengehörige UML-Diagramme, mit denen verschiedene Sichten auf ein (zu entwickelndes) Softwareprodukt modelliert werden, findet man in agilen Softwareentwicklungsprojekten daher in der Regel kaum.
+
+\textbf{Wenn} zukünftige Softwareprodukte Modellierungsgegenstand in agilen Software\-entwicklungsprojekten sind, dann überwiegend mit dem Fokus, im Entwicklungsteam oder mit dem Kunden über bestimmte Aspekte der Software zu diskutieren. Hier steht der Kommunikationszweck 
+\marginline{Modelle für Kommunika\-tions\-zwecke}
+und weniger der Spezifikationszweck als Grundlage der späteren Implementierung oder der Dokumentationszweck für getroffene Entscheidungen im Vordergrund. Entsprechend kann es sich bei den Modellen anstelle von UML-Diagrammen um einfache Skizzen am Whiteboard, Post-its, Bilder oder Prototypen von Benutzeroberflächen oder kurze textuelle Beschreibungen handeln, über die zudem eher mündlich als schriftlich kommuniziert wird. Die Modelle müssen daher meistens auch nicht für sich selbst sprechen, sondern sind (nur) Bestandteil von Kommunikationszusammenhängen. Scott  W. Ambler, 
+\marginline{agiles Modellieren}
+ein überzeugter Vertreter agilen Vorgehens, hat im Rahmen seines Ansatzes „Agile Modeling“ \cite{amb02} Prinzipien für ein leichtgewichtiges Modellieren aufgestellt. Danach müssen Modelle in der agilen Softwareentwicklung nicht umfassend sein, nicht in jeder Hinsicht konsistent sein und auch nicht für die gesamte Dauer des Entwicklungsprojekts gültig bleiben. Sie können sehr einfach gehalten sein und müssen nur in der konkreten Situation, in der bzw. für die sie modelliert werden, verständlich sein und ihren Einsatzzweck erfüllen.
+
+\vspace{3mm} %%% für Druck
+
+\sttpseitenrandzitat{„An agile model is a model that is just barely good enough.“ \cite[12]{amb02}}{Scott W. Ambler über agile Modelle}
+
+\vspace{3mm} %%% für Druck
+
+Im  Bereich der \textbf{Domänen}modellierung 
+\marginline{agile Domänen\-modellierung}
+unterscheiden sich klassische und agile Ansätze auch, aber weniger deutlich als bei der Modellierung von Softwareprodukten. Die Einbeziehung des Domänenwissens in den Softwareentwicklungsprozess – in der Regel über die Einbeziehung von Kunden und Domänenexperten – ist ein zentraler Bestandteil agiler Softwareentwicklung und findet in jeder Iteration statt. In jeder Iteration wird eine bestimmte Menge von Anforderungen bestimmt und in Programmcode umgesetzt. Diese Anforderungen stehen im Fokus. Tätigkeiten zur Modellierung der Domäne finden in der Regel insoweit statt, wie sie im Rahmen der zu erfüllenden Anforderungen benötigt werden. Modelliert werden diejenigen Objekte, Strukturen, Interaktionen etc. der Domäne, bei denen es einen Zusammenhang zu den aktuellen Anforderungen gibt. Das Domänenmodell entsteht so nicht ein einziges Mal als Ganzes wie in sequentiellen Ansätzen, sondern wächst mit jeder Iteration an. Damit ist es deutlich stärkeren Anpassungen im Laufe des Projekts ausgesetzt als in sequentiell orientierten Projekten.
+
+Es hängt sehr vom konkreten agilen Projekt ab, inwiefern das Domänenwissen \textbf{\mbox{explizit}} dokumentiert wird (zum Beispiel über ein UML-Domänen\-klassen\-diagramm, die Erstellung eines Glossars, die grafische oder textuelle Darstellung von Geschäfts\-prozessen etc.) oder implizit bleibt, zum Beispiel weil Domänenexperten täglich für Fragen des Entwicklungsteams persönlich zur Verfügung stehen können. 

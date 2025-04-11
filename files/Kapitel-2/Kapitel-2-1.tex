@@ -1,0 +1,40 @@
+\section{Vorgehensmodelle – Ziele und Abgrenzungen}
+\label{sec:Kap-2.1}
+
+Die Wahl (und projektspezifische Anpassung) eines Vorgehensmodells gehört als Teil der Projektplanung zu den unterstützenden Prozessen des Softwareengineering und wird dementsprechend in vielen Softwareengineering-Lehrbüchern auch thematisiert. Gleichzeitig findet man Vorgehensmodelle auch in allgemeiner Literatur zum Thema Projektmanagement, da Vorgehensmodelle nicht auf IT-Projekte beschränkt sind.
+
+Vorgehensmodelle stammen ursprünglich aus der Produktionstechnik. Sie unterteilen einen (Produktions)Prozess in logische Abschnitte und definieren zeitliche Abfolgen dieser Prozessabschnitte. Für jeden Prozessabschnitt werden Eintrittsvoraussetzungen, benötigte Ressourcen, durchzuführende Aktivitäten und zu produzierende Ergebnisse (Teilprodukte) festgelegt. Ziel ist es, den Erstellungsprozess eines Produkts so in planbare und kontrollierbare Einheiten zu unterteilen, dass die Erstellung des Produkts mit seinen vorgesehenen Funktionalitäten unter Einhaltung der veranschlagten Zeit- und Kostenbudgets mindestens unterstützt, im Idealfall sogar gesichert wird. Vorgehensmodelle sind in der Regel nicht auf ein einzelnes Produkt ausgerichtet, sondern beschreiben modellhaft abstrahierend und idealisiert Erstellungsprozesse für Kategorien von Produkten. So können (bewährte) Produktionsprozesse wiederholt und auch für andere Produkte übernommen werden.
+
+\minisec{Vorgehensmodelle im Softwareengineering}
+
+Einen idealen Softwareentwicklungsprozess, den man für jede beliebige Softwareentwicklung anwenden könnte, wird es nie geben. Die Menge der durchzuführenden Aufgaben für die Entwicklung eines Softwareprodukts, die Abhängigkeiten und die Reihenfolge dieser Aufgaben und damit auch die Abfolge der sie beinhaltenden (Teil)Prozesse ist spezifisch je nach Softwareentwicklungsprojekt. Vorgehensmodelle können Softwareentwicklungsprozesse jedoch ein Stück weit standardisieren. Sie sind Modelle für die Entwicklung von Softwareprodukten und werden in größerem Maße seit den 1980er Jahren eingesetzt. Sie geben einen (je nach Vorgehensmodell mehr oder weniger flexiblen) Rahmen für die auszuführenden Arbeitsschritte während eines Softwareentwicklungsprozesses vor. Ihr Einsatz soll insbesondere folgende Ziele erfüllen: 
+\begin{itemize}
+	\item die Komplexitätsreduktion des Softwareentwicklungsprozesses
+	\item die Möglichkeit, Softwareprodukte in (großen) Teams zu erstellen
+	\item die Sicherstellung von Prozess- und Produktqualität
+	\item die strukturierte Steuerung und Kontrolle konkreter Softwareentwicklungsprozesse
+	\item die Wiederholbarkeit von (bewährten) Methoden und Vorgehensweisen
+	\item die Optimierung bestehender Prozesse bezüglich Zeit, Kosten und Qualität
+\end{itemize}
+
+Heute werden im Softwareengineering viele unterschiedliche Vorgehensmodelle eingesetzt. Sie unterscheiden sich unter anderem darin, wie detailliert sie die Abhängigkeiten und Abfolgen der einzelnen (Teil)Prozesse festlegen und in welchem Umfang sie durchzuführende Aufgaben vorgeben, und damit letztlich in der Frage, wie viel Raum sie der Individualität eines konkreten Softwareentwicklungsprozesses geben.
+
+Manche Vorgehensmodelle legen den Fokus auf einzelne Softwareentwicklungsprojekte während andere aus einem höheren Blickwinkel die gesamte Softwareentwicklungsprojekt durchführende Organisation (Firma, Institution) betrachten. Einige Vorgehensmodelle lassen sich auch für beide Ebenen anwenden. In diesem Text betrachten wir nur auf Entwicklungsprojekte bezogene Vorgehensmodelle. Diese werden in der Literatur auch als \textit{Prozessmodelle} bezeichnet. In jüngerer Zeit begegnet einem zudem häufiger auch der Begriff des \textit{Entwicklungsmodells}. Im Englischen werden projektbezogene Vorgehensmodelle mit dem Begriff \textit{Software Life Cycle Model} bezeichnet, 
+\marginline{Software-Lebenszyklus}
+womit begrifflich der Gegenstandsbereich von Vorgehensmodellen, nämlich der Software-Lebenszyklus, deutlicher wird als in den deutschen Bezeichnungen. Unter einem Software-Lebenszyklus versteht man im engeren Sinne den Prozess von der Erhebung der Anforderungen an die zu erstellende Software bis zur Auslieferung des fertigen Softwareprodukts, im Englischen auch als Software Development Life Cycle (SDLC) bezeichnet. Das Wort Zyklus im Begriff trägt dabei der Tatsache Rechnung, dass auch ein fertiges Softwareprodukt überarbeitet werden und somit der Softwareentwicklungsprozess wieder von vorne beginnen kann. Erweiterte Definitionen ergänzen den SDLC um weitere Prozesse wie zum Beispiel Einsatz, Wartung, Weiterentwicklung und Ausmusterung eines Softwareprodukts, aber auch um Prozesse aus den Bereichen Konfiguration und langfristige Qualitätssicherung zum Software Product Life Cycle (SPLC).
+
+Von Vorgehensmodellen zu unterscheiden sind \textit{Qualitätsmodelle} und \textit{Reifegrad-
+	\linebreak %%% für Druck
+	modelle}, was aufgrund mancher Überschneidung aber nicht immer konsequent möglich ist. Für Informationen zu einem bestimmten Vorgehensmodell lohnt es sich daher auch in Literaturkapiteln zu Qualitäts- und Reifegradmodellen nachzuschlagen, vielleicht hat die jeweilige Autorin/ der jeweilige Autor das entsprechende Vorgehensmodell dort verortet. Qualitätsmodelle 
+\marginline{Qualitäts\-modelle}
+bestimmen Qualitätsmerkmale und geben für diese Merkmale Qualitätskriterien und Maßsysteme vor, mit denen die Qualität von Softwareprodukten oder von Softwareentwicklungsprozessen bewertet werden kann. Viele Vorgehensmodelle beinhalten selber keine expliziten Vorgaben zu Qualitätssicherungsmaßnahmen. Konkrete Softwareentwicklungsprojekte, die nach solchen Vorgehensmodellen arbeiten, verwenden daher meist zusätzlich Qualitätsmodelle als Referenz für die Sicherstellung der Qualität ihrer Software oder ihres Entwicklungsprozesses.
+
+Reifegradmodelle (engl. software process assessment model) 
+\marginline{Reifegrad\-modelle}
+bemessen die Fähigkeit einer Organisation (Softwareentwicklungs)Projekte durchzuführen. Sie tragen ihren Namen aufgrund der von ihnen definierten sogenannten Reifegradstufen, auf denen sich eine Organisation befinden kann. Der Reifegrad sagt aus, wie stark Softwareentwicklungsprozesse in der Organisation schon institutionalisiert sind. Dazu sind jeder Reifegradstufe eine Menge von Anforderungen zugeordnet, die eine Organisation erfüllen muss, um die entsprechende Reifegradstufe zu erreichen. Beispiele für Reifegradmodelle sind CMMI und SPICE\footnote{CMMI: Capability Maturity Model Integration; SPICE: Software Process Improvement and Capability Determination. Für eine Einführung in diese beiden Modelle siehe \cite[565-590]{bal08}. Zu Reifegradmodellen im Allgemeinen siehe \cite[Kap. 8]{swe14} und \cite{sha11}.}. Reifegradmodelle werden wir nicht behandeln.
+
+\pagebreak %%% für Druck
+
+Aufgrund der Unterschiedlichkeit 
+\marginline{Vorgehens\-modelle legen strukturierte Verfahren fest} % dieser Absatz
+der im Softwareengineering eingesetzten Vorgehensmodelle lässt sich nicht allgemeingültig aufzählen, welche Elemente Vorgehensmodelle genau enthalten und welche Vorgaben sie machen. Allen Vorgehensmodellen gemeinsam ist, dass sie strukturierte Verfahren für die Entwicklung von Softwareprodukten festlegen. So können Reihenfolgen von Prozessen vorgegeben, zu erstellende Artefakte des Entwicklungsprozesses festgelegt und Abfolgen durchzuführender Arbeitsschritte bestimmt werden. Je nach konkretem Vorgehensmodell kann es zusätzlich zum Beispiel Festlegungen zu benötigten Rollen und Kompetenzen, anzuwendenden Methoden oder einzusetzenden Entwicklungswerkzeugen geben. In anderen Vorgehensmodellen drückt sich strukturiertes Verfahren statt durch die Vorgabe von Prozessreihenfolgen dagegen eher durch die Vorgabe grundsätzlicherer Leitlinien und Prinzipien (\zb „den Auftraggeber institutionalisiert ins Projekt einbinden“, „nur lauffähigen Code einchecken“, „gemeinsames Code-Eigentum“) und fester Kommunikationsformate aus.

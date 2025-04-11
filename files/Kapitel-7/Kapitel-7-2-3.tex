@@ -1,0 +1,23 @@
+\vspace{2mm} %%% für Druck
+
+\subsection{Fazit}
+\label{sec:Kap-7.2.3}
+
+Neben übergreifenderen Entwurfsprinzipien, wie wir sie in den beiden vorherigen Abschnitten vorgestellt haben, gibt es auch viele kleinere Prinzipien wie „Codeduplizierung vermeiden“ oder „zukünftige Erweiterungen“ mitdenken. Auf einige davon treffen Sie noch im folgenden Kapitel, wenn wir unseren Blickwinkel ganz auf die niedrige Komponentenebene der Klassen richten. Auf andere, die sehr Programmcode-nah sind, wie den Umgang mit Sichtbarkeiten in einer Klasse, gehen wir in Lektion~6 ein.
+
+\vspace{2mm} %%% für Druck
+  
+Allen Entwurfsprinzipien -- den übergreifenden und den kleinen, den abstrakten und den Programmcode-nahen -- ist gemein, dass sie eine Idealvorstellung betrachten, wie eine Komponente sein muss. Wir hatten in Abschnitt~\ref{sec:Kap-7.1} eine Komponente als Einheit zusammengehöriger Funktionalität definiert. Hier verfeinern wir diese Definition entsprechend dieser Idealvorstellungen (basierend auf \cite[309f.]{bro21}). Eine Komponente
+
+\begin{itemize}
+	\setlength{\itemsep}{2mm} %%% für Druck
+	\item kapselt Teilfunktionalität des Gesamtsystems,
+	\item bietet ihre Dienstleistungen über eine oder mehrere klar spezifizierte Schnittstellen anderen Komponenten an,
+	\item kann Abhängigkeiten zu den Diensten anderer Komponenten haben. Diese Abhängigkeiten müssen dann aber klar spezifiziert sein,
+	\item kann unabhängig von anderen Komponenten entwickelt werden,
+	\item kann grundsätzlich auch unabhängig von anderen Komponenten eingesetzt werden, erbringt ihre volle Funktionalität aber aufgrund eventueller Abhängig\-keiten zu den Diensten anderer Komponenten erst im Zusammenwirken,
+	\item kann mit anderen Komponenten zu größeren Einheiten kombiniert werden. Die Komponente selber ändert sich dabei nicht.
+\end{itemize} 
+
+
+

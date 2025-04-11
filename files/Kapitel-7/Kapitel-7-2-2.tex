@@ -1,0 +1,64 @@
+\vspace{-2mm} %%% für Druck
+
+\subsection{Entwurfsprinzipien zu Komponentenzuständigkeiten}
+\label{sec:Kap-7.2.2}
+
+\vspace{-2mm} %%% für Druck
+
+Im vorherigen Abschnitt haben wir Entwurfsprinzipien betrachtet, die die Gestaltung von Schnittstellen betrachten und bei denen somit die Zusammenarbeit zwischen den Komponenten im Fokus steht. Ebenso wichtig für eine möglichst geringe Komplexität des zukünftigen Softwaresystems ist eine geeignete Aufteilung der zu erbringenden Aufgaben auf die Komponenten. Hier geht es also um Zuständigkeiten.
+
+Entwurfsprinzipien in diesem Bereich gehen von der Prämisse aus, dass es -- euphemistisch ausgedrückt -- suboptimal ist, wenn es keine klaren Zuständigkeiten gibt. Dies ist durchaus mit menschlichen Arbeitszusammenhängen vergleichbar: Wenn jeder irgendwie so ein bisschen für alles zuständig ist, aber nie komplett für alles aus einem Bereich, jeder etwas andere Arbeitsprozesse bevorzugt und man nicht sicher weiß, ob sich jemand anderes schon gekümmert hat \ldots, dann gibt es irgendwann Chaos. Und je mehr Menschen beteiligt sind, desto wahrscheinlicher und desto schneller befindet man sich in dieser Situation. Chaos auf der Ebene von Softwaresystemen und Komponenten bedeutet Komplexität, die nicht mehr beherrscht wird. Die Folgen sind Systeme, die nicht wartbar sind, nicht reproduzierbare Fehler verursachen, eine undurchschaubare Benutzungsoberfläche haben, inkonsistente Daten produzieren etc.
+
+\vspace{0.8mm} %%% für Druck
+
+Ein bekanntes Entwurfsprinzip zur Vermeidung einer solchen Situation ist 
+\marginline{Separation of Concerns}
+\textit{Sepa\-ration of Concerns (SoC)}, in deutschen Übersetzungen als Trennung der Belange/""Anliegen bezeichnet. Das SoC-Prinzip wird häufig mit der Ebene der Software\-architektur assoziiert. Es funktioniert durchaus auch auf niedrigeren Komponenten\-ebenen und wird auch dort verwendet, nur nennt man es dann nicht immer SoC (\su). 
+
+\vspace{0.8mm} %%% für Druck
+
+Die Grundaussage ist, dass getrennte Anliegen von getrennten Komponenten behandelt werden sollen. SoC beinhaltet ebenfalls, dass ein bestimmtes Anliegen nur durch eine Komponente repräsentiert wird und nicht über mehrere Komponenten verstreut sein soll. Das führt zu einer 1-zu-1-Beziehung zwischen Anliegen und Komponente.
+
+\vspace{0.8mm} %%% für Druck
+
+Beispiele für Anliegen auf der Ebene der Architektur sind Benutzerinteraktion oder Datenbankmanagement. Nach dem SoC-Prinzip sollte es bei diesen Beispielen keine Komponente geben, die gleichzeitig Aufgaben aus dem Bereich der Benutzer\-inter\-aktion und Aufgaben aus dem Bereich Datenbankmanagement übernimmt. Gleichzeitig sollen alle Aufgaben aus dem jeweiligen Bereich in derselben Komponente verortet sein. Für die beiden Beispiele ist das genau das, was die Schichtenarchitektur aus Abschnitt~\ref{sec:Kap-7.1.2.1} berücksichtigt: Die Benutzerinteraktion ist in einer Komponente, nämlich in der obersten Schicht der Architektur, und das Datenbankmanagement ist in einer anderen Komponente (eine der unteren Schichten). 
+
+\vspace{0.8mm} %%% für Druck
+
+Es gibt aber architektonische Anliegen, das klassische Beispiel ist Authentifizierung, die in mehreren Schichten relevant sind und für die man dementsprechend in mehreren Schichten Komponenten vorsehen würde. Bei Anwendung des SoC-Prinzips müsste sich der gesamte Programmcode für die Authentifizierungsaufgaben der verschiedenen Ebenen aber in einer Komponente befinden. Das ließe sich durchaus lösen, indem eine solche Authentifizierungskomponente so weit unten in der Schichten\-architektur platziert würde, dass sich alle Dienstnutzer-Komponenten, die irgendeine Art von Authentifizierungsfunktionalität benötigen, in Schichten über ihr befinden. Der enorme Nachteil dieser Lösung ist ein deutlich erhöhter Kommunikationsbedarf zwischen Komponenten, und das häufig sogar über mehrere Schichten. 
+
+\vspace{0.8mm} %%% für Druck
+
+Für solche Anliegen, die bereichsübergreifend sind und daher in der Architektur auf mehreren Schichten berücksichtigt werden müssen (man nennt sie 
+\marginline{Cross-Cutting Concerns} 
+Cross-Cutting Concerns), verletzt man teilweise bewusst das SoC-Prinzip. Den umgekehrten Weg geht übrigens die sogenannte „Aspektorientierte Programmierung“. Sie stellt das SoC-Prinzip für solche Cross-Cutting Concerns in den Vordergrund und verletzt dafür bewusst das objekt\-orientierte Kapselungsprinzip. Ob aspektorientierte Programmierung ein eigenes Programmierparadigma ist oder nur eine „Erweiterung“ der objektorientierten Programmierung, wird nicht einheitlich gesehen. Ausführliche Informationen zur aspektorientierten Programmierung und wie man sie im Rahmen der objektorientierten Programmierung einsetzen kann, finden Sie bei \cite[533-578]{lah18}. 
+
+Das Separation of Concerns-Prinzip ist eigentlich nicht spezifisch auf die Ebene der Softwarearchitektur ausgerichtet. Auch getrennte Komponenten für Datenhaltung und Datendarstellung, für Berechnungen und Anzeige der Ergebnisse dieser Berechnungen oder für die Gestaltung von Inhaltsbereich und Navigationsbereich einer Website ist angewendetes Separation of Concerns. Wenn wir auf eine ganz niedrige Abstraktionsebene gehen und Operationen als Komponenten einer Klasse ansehen, dann könnte man sogar die Aufteilung in Attributwert-lesende Operationen (get-Operationen) und Attributwert-schreibende Operationen (set-Operationen) als dem SoC-Prinzip folgend ansehen. 
+
+\vspace{1.8mm} %%% für Druck
+
+Bei all den Komponentenbegriffen unterhalb der Ebene der Softwarearchitektur spricht man selten explizit davon, dass man das SoC-Prinzip berücksichtigt. \mbox{Eventuell} hat das auch damit zu tun, dass auf diesen Ebenen mit dem Single Responsibility Principle ein eng verwandtes Prinzip recht bekannt ist.
+
+\vspace{1.8mm} %%% für Druck
+
+Das \textit{Single Responsibility Principle (SRP)}
+\marginline{Single Responsibility Principle}
+fokussiert auf die Zuständigkeiten der einzelnen Klassen innerhalb des Programms. Sie können aber auch hier den Begriff Klasse durch Komponente ersetzen und das Prinzip eine Ebene höher anwenden. Das SRP besagt, dass jede Klasse nur genau eine Verantwortung übernehmen soll. Gleichzeitig soll jede Verantwortung genau einer Klasse zugeordnet werden. Genau wie beim Separation of Concerns-Prinzip haben wir hier wieder eine 1-zu-1-Beziehung.
+ 
+\vspace{1.8mm} %%% für Druck
+
+In der Literatur findet sich für die Aussage des Prinzips auch die Formulierung „nur eine Aufgabe haben“ oder die Formulierung, dass jede Klasse nur aus genau einem Grund geändert werden soll – die Unterschiedlichkeit ist in der Genese des Prinzips begründet (s. \cite[406]{bro21}). Alle Formulierungen meinen aber dasselbe: Eine Klasse ist für eine bestimmte Aufgabe verantwortlich und nur wenn sich an dieser Aufgabe etwas ändert, ist das ein Grund die Klasse anzupassen. Wenn man andere Gründe findet, die Klasse zu ändern, dann bedeutet das, dass die Klasse entgegen des Prinzips eben nicht nur für die eine Aufgabe, sondern offensichtlich auch noch für etwas anderes zuständig war. 
+
+\vspace{1.8mm} %%% für Druck
+
+Was soll man sich jetzt unter einer solchen \textbf{Aufgabe} vorstellen? Im Grunde geht es ganz einfach um die Anforderungen an das Softwaresystem. Nach dem SRP-Prinzip soll jede einzelne Klasse die Verantwortung für einen klar definierten Teil der Anforderungen übernehmen und deren Umsetzung gewährleisten. Gleichzeitig darf keine andere Klasse für die Umsetzung derselben Anforderungen zuständig sein. Und außerdem dürfen am Ende auch keine Anforderungen übrig bleiben, weil keine der Klassen Verantwortung für sie hat. Die Aufgabe einer einzelnen Klasse besteht also aus einer oder mehreren zusammengehörigen Anforderungen. Der einzige Grund die Klasse zu verändern, ist, dass sich die Anforderungen, für die die Klasse zuständig ist, geändert haben. 
+
+\vspace{1.8mm} %%% für Druck
+
+Bleibt noch die Frage, nach welchen Gesichtspunkten die Anforderungen aufgeteilt werden. Meine fünfzehn Anforderungen willkürlich auf vier Klassen zu verteilen, ist sicher nicht zielführend in Richtung Komplexitätsvermeidung. Hier arbeitet SRP nach dem Separation of Concerns-Prinzip: logisch getrennte Anliegen (hier Anforderungen) werden in getrennten Klassen behandelt; Anforderungen, die logisch zusammengehören, dementsprechend in derselben Klasse behandelt. Für diejenigen von Ihnen, denen der Begriff Kohäsion schon etwas sagt: hohe Kohäsion der Klasse ist das Kriterium, anhand dessen beim SRP die Aufgabe einer Klasse spezifiziert wird. Wir werden das Thema Kohäsion in Lektion~6 behandeln.
+
+\vspace{2mm} %%% für Druck
+
+Was unterscheidet SRP und SoC 
+\marginline{SRP und SoC} 
+oder ist es dasselbe? Das ist eine durchaus uneinheitlich beantwortete Frage. Ein Unterschied ist sicherlich der Blickwinkel. Das Separation of Concerns-Prinzip beginnt bei den Aufgaben, die insgesamt zu tun sind, trennt alles, was logisch nicht zusammengehört und bündelt das logisch Zusammengehörige in derselben Komponente. Das Single Responsibility-Prinzip beginnt bei der Komponente und spezifiziert anhand des logischen Zusammenhangs, welchen Teil der Gesamtaufgaben diese Komponente übernehmen soll. Das tut es für alle Komponenten. SoC fokussiert also auf die Aufgaben, SRP auf die Komponenten. Allerdings ist das Ergebnis am Ende dasselbe: eine Menge an Komponenten, jede von ihnen in sich logisch zusammenhängend und nach außen aufgrund der logisch unterschiedlichen Anliegen von den anderen Komponenten getrennt. Auch die Argumen\-tation SoC arbeitet auf der Ebene der Softwarearchitektur und SRP auf der Ebene der Klassen und damit sind Anliegen im Sinne von SoC etwas viel Größeres als das, was SRP als Aufgabe betrachtet, ist sicherlich nicht falsch -- man macht es oft so -- aber wie oben mehrfach erwähnt, sind bei beiden die Grenzen fließend. Wir schließen uns hier der Meinung an, dass SRP eine bestimmte Ausgestaltung (Ausprägung, Version) von SoC ist, die vorwiegend auf Ebene der Klassen operiert und die Verantwortung der einzelnen Klasse in den Fokus nimmt anstelle der Gesamtheit der Aufgaben. 

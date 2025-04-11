@@ -1,0 +1,458 @@
+\section{Vorlesung 6: Abläufe von Petrinetzen}
+
+In Vorlesung 2 haben Sie gesehen, 
+\sttpkapitelverweis{}{S.~\pageref{text:linearisierung_einer_halbordnung}}
+dass man durch die Linearisierung eines halbgeordneten Ablaufs auf die sequentiellen Beobachtungen schließen kann, indem allen nicht geordneten Elementen eine eindeutige Reihenfolge zugewiesen wird. In Vorlesung 5 haben wir festgestellt, dass alle Linearisierungen von Abläufen mögliche Schaltfolgen des Petrinetzes sind, und umgekehrt.
+
+Nun ist es auch möglich, Abläufe ausgehend von den Schaltfolgen eines Petri\-netzes zu konstruieren. Das Ziel ist, dass eine Linearisierung des konstruierten Ablaufs der gegebenen Schaltfolge entspricht, die Schaltfolge also eine mögliche sequentielle Beobachtung des Ablaufs darstellt. Das genaue Vorgehen können Sie in der Videovorlesung 6 nachvollziehen.
+
+Grundsätzlich gibt es in deterministischen Netzen \textbf{einen eindeutigen} Ablauf, der durch jede Schaltfolge generiert wird. Interessant sind deshalb nicht-deterministische Netze. Wir werden im Folgenden Beispiele für drei unterschiedliche Möglichkeiten vorstellen:
+
+\begin{itemize}
+	\item Zwei unterschiedliche Schaltfolgen führen zu demselben Ablauf. (1)
+	\item Eine Schaltfolge führt zu zwei unterschiedlichen Abläufen. (2)
+	\item Zwei unterschiedliche Schaltfolgen führen zu zwei unterschiedlichen Abläufen. (3)
+\end{itemize}
+
+Im Warenautomat aus Abbildung~\ref{fig:v6-Keksautomat_ados} stehen  $t_4$ und $t_5$ nach Schalten von $t_3$ in Konflikt, und in der linken Komponente des Netzes gibt es drei Marken, die wir im Ablauf unterscheiden müssen.
+
+\begin{figure}[!htbp]
+	\centering
+	\scalebox{0.8}{
+		\petrinetz{ 
+			\node[place, tokens=1, label=above: $s_1$] (place1) at (2,2) {}; 
+			\node[place, tokens=2, label=below: $s_5$] (place2) at (2,-2) {}; 
+			\node[place, tokens=1, label=above: $s_2$] (place3) at (6,2) {}; 
+			\node[place, tokens=0, label=below: $s_4$] (place4) at (6,-2) {}; 
+			\node[place, tokens=0, label=right: $s_3$] (place5) at (10,0) {}; 
+			\node[transition, label=left: $t_1$] (trans1) at (0,0) {}; 
+			\node[transition, label=left: $t_2$] (trans2) at (4,0) {}; 
+			\node[transition, label=above: $t_3$] (trans3) at (8,2) {}; 
+			\node[transition, label=below: $t_5$] (trans4) at (8,0) {};
+			\node[transition, label=below: $t_4$] (trans5) at (8,-2) {};
+			
+			\draw 
+			(trans1)edge[post, bend left=30](place1) (trans2)edge[post, bend left=30](place2) (place2)edge[post, bend left=30](trans1) (place1)edge[post, bend left=30](trans2) 
+			(place3)edge[pre, bend right=30](trans2) 
+			(place3)edge[post](trans3) 
+			(trans3)edge[post, bend left=30](place5) 
+			(place5)edge[post](trans4) 
+			(place5)edge[post, bend left=30](trans5) 
+			(place4)edge[pre](trans5) 
+			(trans4)edge[post, bend left=30](place3) 
+			(place4)edge[post, bend left=30](trans2);
+		}
+	}
+	\caption{Ein Petrinetz (Systemmodell)}
+	\label{fig:v6-Keksautomat_ados}
+\end{figure}
+
+\clearpage %%% für Druck
+
+Betrachten wir die folgende Schaltfolge: 
+
+$$t_3 \; t_4 \; t_1 \; t_2 \; t_1 \; t_3$$
+
+Abbildung~\ref{fig:v6-Ablauf} oben zeigt einen passenden Ablauf, bei dem $t_5$ nicht schaltet. Die Transition $t_2$ konsumiert die Marke, die in der Anfangsmarkierung auf $s_1$ liegt.
+
+\vspace{1ex}
+
+{ %% Scope beginnen (damit \newlength keine Auswirkung auf den übrigen Text hat)
+
+\newlength{\mywidth}%
+\setlength{\mywidth}{\textwidth}%
+\addtolength{\mywidth}{\marginparwidth}%
+
+\begin{figure}[!htbp]
+	\begin{addmargin*}[0cm]{-\marginparwidth}
+		
+	\centering
+	\resizebox{1.0\mywidth}{!}{
+		\petrinetz{
+			% Ablauf 1
+ 			\draw[colDummyLine] (-1,1) rectangle (25,-7);
+			
+			% Places
+			\node[place, tokens=1,label=left:$s_1$] (place1) at (0, 0) {};
+			\node[place, tokens=1,label=left:$s_2$] (place2) at (0, -2) {};
+			\node[place, tokens=1, label=left:$s_5$] (place3) at (0, -4) {};
+			\node[place, tokens=1, label=left:$s_5$] (place4) at (0, -6) {};
+			\node[place, label=below:$s_3$] (place5) at (4, -2) {};
+			\node[place, label=right:$s_1$] (place6) at (4, -4) {};
+			\node[place, label=right:$s_1$] (place7) at (4, -6) {};
+			\node[place, label=below:$s_4$] (place8) at (8, -2) {};
+			\node[place, label=below:$s_2$] (place9) at (12, -1) {};
+			\node[place, label=right:$s_5$] (place10) at (12, -3) {};
+			\node[place, label=right:$s_3$] (place11) at (16, -1) {};
+			
+			% Transitions
+			\node[transition, label=center:$t_3$] (trans1) at (2, -2) {};
+			\node[transition, label=center:$t_1$] (trans2) at (2, -6) {};
+			\node[transition, label=center:$t_1$] (trans3) at (2, -4) {};
+			\node[transition, label=center:$t_4$] (trans4) at (6, -2) {};
+			\node[transition, label=center:$t_2$] (trans5) at (10, -2) {};
+			\node[transition, label=center:$t_3$] (trans6) at (14, -1) {};
+			
+			% Edges
+			\draw[post, bend left=20] (place1) to (trans5);
+			\draw (place2) edge[post] (trans1);
+			\draw (place3) edge[post] (trans3);
+			\draw (place4) edge[post] (trans2);
+			\draw (trans1) edge[post] (place5);
+			\draw (trans2) edge[post] (place7);
+			\draw (trans3) edge[post] (place6);
+			\draw (place5) edge[post] (trans4);
+			\draw (trans4) edge[post] (place8);
+			\draw (place8) edge[post] (trans5);
+			\draw (trans5) edge[post] (place9);
+			\draw (trans5) edge[post] (place10);
+			\draw (place9) edge[post] (trans6);
+			\draw (trans6) edge[post] (place11);
+		}
+	}
+	
+	\vspace{-2mm}
+	{\color{FernUni-MI-green}\rule{0.9\mywidth}{1pt}} % waagerechte farbige Linie
+	\vspace{2mm}
+	
+	\resizebox{1.0\mywidth}{!}{
+		\petrinetz{
+			% Ablauf 2
+ 			\draw[colDummyLine] (-1,1) rectangle (25,-7);
+			
+			% Places
+			\node[place, tokens=1,label=left:$s_1$] (place1) at (0, 0) {};
+			\node[place, tokens=1,label=left:$s_2$] (place2) at (0, -2) {};
+			\node[place, tokens=1, label=left:$s_5$] (place3) at (0, -4) {};
+			\node[place, tokens=1, label=left:$s_5$] (place4) at (0, -6) {};
+			\node[place, label=below:$s_3$] (place5) at (4, -2) {};
+			\node[place, label=right:$s_1$] (place6) at (4, -4) {};
+			\node[place, label=right:$s_1$] (place7) at (4, -6) {};
+			\node[place, label=below:$s_4$] (place8) at (8, -2) {};
+			\node[place, label=below:$s_2$] (place9) at (12, -1) {};
+			\node[place, label=right:$s_5$] (place10) at (12, -3) {};
+			\node[place, label=right:$s_3$] (place11) at (16, -1) {};
+			
+			% Transitions
+			\node[transition, label=center:$t_3$] (trans1) at (2, -2) {};
+			\node[transition, label=center:$t_1$] (trans2) at (2, -6) {};
+			\node[transition, label=center:$t_1$] (trans3) at (2, -4) {};
+			\node[transition, label=center:$t_4$] (trans4) at (6, -2) {};
+			\node[transition, label=center:$t_2$] (trans5) at (10, -2) {};
+			\node[transition, label=center:$t_3$] (trans6) at (14, -1) {};
+			
+			% Edges
+			\draw[post] (place7) to (trans5);
+			\draw (place2) edge[post] (trans1);
+			\draw (place3) edge[post] (trans3);
+			\draw (place4) edge[post] (trans2);
+			\draw (trans1) edge[post] (place5);
+			\draw (trans2) edge[post] (place7);
+			\draw (trans3) edge[post] (place6);
+			\draw (place5) edge[post] (trans4);
+			\draw (trans4) edge[post] (place8);
+			\draw (place8) edge[post] (trans5);
+			\draw (trans5) edge[post] (place9);
+			\draw (trans5) edge[post] (place10);
+			\draw (place9) edge[post] (trans6);
+			\draw (trans6) edge[post] (place11);
+		}
+	}
+
+	\vspace{-2mm}
+	{\color{FernUni-MI-green}\rule{0.9\mywidth}{1pt}} % waagerechte farbige Linie
+	\vspace{2mm}
+
+	\resizebox{1.0\mywidth}{!}{
+		\petrinetz{
+			% Ablauf 3
+ 			\draw[colDummyLine] (-1,1) rectangle (25,-7);
+			
+			% Places
+			\node[place, tokens=1,label=left:$s_1$] (place1) at (0, 0) {};
+			\node[place, tokens=1,label=left:$s_2$] (place2) at (0, -2) {};
+			\node[place, tokens=1, label=left:$s_5$] (place3) at (0, -4) {};
+			\node[place, tokens=1, label=left:$s_5$] (place4) at (0, -6) {};
+			\node[place, label=below:$s_3$] (place5) at (4, -2) {};
+			\node[place, label=right:$s_1$] (place6) at (4, -4) {};
+			\node[place, label=below:$s_1$] (place7) at (4, -6) {};
+			\node[place, label=below:$s_2$] (place8) at (8, -2) {};
+			\node[place, label=below:$s_2$] (place9) at (20, -1) {};
+			\node[place, label=right:$s_5$] (place10) at (20, -3) {};
+			\node[place, label=right:$s_3$] (place11) at (24, -1) {};
+			\node[place, label=below:$s_3$] (place12) at (12, -2) {};
+			\node[place, label=above:$s_4$] (place13) at (16, -2) {};
+			
+			% Transitions
+			\node[transition, label=center:$t_3$] (trans1) at (2, -2) {};
+			\node[transition, label=center:$t_1$] (trans2) at (2, -6) {};
+			\node[transition, label=center:$t_1$] (trans3) at (2, -4) {};
+			\node[transition, label=center:$t_5$] (trans4) at (6, -2) {};
+			\node[transition, label=center:$t_2$] (trans5) at (18, -2) {};
+			\node[transition, label=center:$t_3$] (trans6) at (22, -1) {};
+			\node[transition, label=center:$t_3$] (trans7) at (10, -2) {};
+			\node[transition, label=center:$t_4$] (trans8) at (14, -2) {};
+			
+			% Edges
+			\draw[post] (place7) to (trans5);
+			\draw (place2) edge[post] (trans1);
+			\draw (place3) edge[post] (trans3);
+			\draw (place4) edge[post] (trans2);
+			\draw (trans1) edge[post] (place5);
+			\draw (trans2) edge[post] (place7);
+			\draw (trans3) edge[post] (place6);
+			\draw (place5) edge[post] (trans4);
+			\draw (trans4) edge[post] (place8);
+			%\draw (place8) edge[post] (trans5);
+			\draw (trans5) edge[post] (place9);
+			\draw (trans5) edge[post] (place10);
+			\draw (place9) edge[post] (trans6);
+			\draw (trans6) edge[post] (place11);
+			\draw (place8) edge[post] (trans7);
+			\draw (trans7) edge[post] (place12);
+			\draw (place12) edge[post] (trans8);
+			\draw (trans8) edge[post] (place13);
+			\draw (place13) edge[post] (trans5);
+		}
+	}
+	\caption{Verschiedene Abläufe zum Systemmodell}
+	\label{fig:v6-Ablauf}
+	
+	\end{addmargin*}
+\end{figure}
+
+} %% Scope beenden (um \newlength lokal zu halten)
+
+\clearpage
+
+(1) Derselbe Ablauf kann entstehen, wenn wir mit einer anderen Linearisierung der Halbordnung als Schaltfolge beginnen, also z.B. mit:
+
+$$t_1 \; t_1\; t_3 \; t_4 \; t_2 \; t_3$$
+
+(2) In Abbildung~\ref{fig:v6-Ablauf} Mitte sehen wir einen anderen Ablauf zu derselben Schaltfolge. $t_2$ konsumiert nun eine Marke, die in der Anfangsmarkierung auf $s_5$ liegt und nach einmaligem Schalten von $t_1$ auf $s_1$. Bei der Konstruktion eines Ablaufes haben wir die Wahl, welche mit $s_1$ beschriftete Stelle durch eine Kante mit der neuen Transition verbunden werden soll. Das liegt daran, dass nach den zuvor geschalteten Transitionen mehrere Marken auf $s_1$ liegen. Umgekehrt gilt: Bei 1-beschränkten Netzen tritt dieses Phänomen nicht auf. 
+
+\vspace{\baselineskip}
+
+(3) Dieser dritte mögliche Ablauf -- Sie sehen das Potenzial für unendlich mehr davon -- in Abbildung~\ref{fig:v6-Ablauf} unten ist länger, weil das Schalten von $t_5$ dazu führt, dass $t_4$ erst später schalten kann. Grundlage dieses Ablaufs ist z.B. die Schaltfolge
+
+$$t_3 \; t_5 \; t_1 \; t_3 \; t_1 \; t_4 \; t_2 \;  t_3 $$
+
+Aus der Konstruktionsvorschrift der Abläufe ergibt sich:
+\begin{itemize}
+	\item Führt im Ablauf eine Kante von einer mit $s$ beschrifteten Stelle zu einer mit $t$ beschrifteten Transition, dann führt auch im Systemnetz eine Kante von $s$ nach $t$. Dasselbe gilt für Kanten von Transitionen zu Stellen.
+	\item Zu jedem Pfad des Ablaufs von einem mit $x$ beschrifteten Knoten zu einem mit $y$ beschrifteten Knoten gibt es einen Pfad von $x$ nach $y$ des Petrinetzes. 
+\end{itemize}
+
+Dieses Wissen hilft uns gleich bei dem Beweis einer Aussage, die in vielen Fällen sehr nützlich ist, effizient zu entscheiden, dass ein Netz nicht beschränkt ist.
+
+Zuvor brauchen wir noch eine zusätzliche Definition:
+
+\sttpDefinitionskasten{\sttpDefinitionskastenSkalierungsfaktorKapPN}{Definition 5.10: Zusammenhang}{}{
+	Ein Petrinetz ist
+	\begin{itemize}
+		\item stark zusammenhängend, wenn von jedem Knoten zu jedem anderen Knoten ein gerichteter Pfad von gerichteten Kanten führt.
+		\item zusammenhängend, wenn von jedem Knoten zu jedem anderen Knoten ein ungerichteter Pfad führt, in dem zwei aufeinander folgende Knoten in irgendeiner Richtung durch eine Kante verbunden sind.
+	\end{itemize}Für beide Eigenschaften gibt es sehr effiziente Algorithmen, die entscheiden, ob ein gegebenes Petrinetz die Eigenschaft erfüllt oder nicht.}
+
+\sttpTheorem{\sttpTheoremSkalierungsfaktor}{
+	Jedes lebendige und beschränkte Petrinetz ist stark zusammenhängend, wenn es zusammenhängend ist.
+	
+	In der Konsequenz gilt für zusammenhängende Netze auch:
+	\begin{itemize}
+		\item Ein Netz, das lebendig, aber nicht stark zusammenhängend ist, kann nicht beschränkt sein.
+		\item Ein Netz, das beschränkt, aber nicht stark zusammenhängend ist, kann nicht lebendig sein.
+	\end{itemize}
+}
+
+\begin{center}
+	\begin{tabular}{ll}
+		%--------------------------------------
+		% Erste Reihe
+		\parbox{0.55\textwidth}{
+			\scalebox{0.4}{
+				\petrinetz{
+					% Places
+					\node[place, tokens=0] (place1) at (1.5,2.6) {};
+					\node[place, tokens=1] (place2) at (1.5,-2.6) {};
+					\node[place, tokens=0] (place3) at (6,0) {};
+					\node[place, tokens=0] (place4) at (12,0) {};
+					\node[place, tokens=0] (place5) at (16.5,2.6) {};
+					\node[place, tokens=1] (place6) at (16.5,-2.6) {};
+					\node[place, tokens=0] (place7) at (9,2.6) {};
+					\node[place, tokens=0] (place8) at (9,-2.6) {};
+					
+					% Transitions
+					\node[transition] (trans1) at (0,0) {};
+					\node[transition] (trans2) at (4.5,2.6) {};
+					\node[transition] (trans3) at (4.5,-2.6) {};
+					\node[transition] (trans4) at (13.5,2.6) {};
+					\node[transition] (trans5) at (13.5,-2.6) {};
+					\node[transition] (trans6) at (18,0) {};
+					
+					% Kanten
+					\draw
+					(trans1) edge[post, bend left=20] (place1)
+					(place1) edge[post, bend left=20] (trans2)
+					(trans2) edge[post, bend left=20] (place3)
+					(place3) edge[post, bend left=20] (trans3)
+					(trans3) edge[post, bend left=20] (place2)
+					(place2) edge[post, bend left=20] (trans1)
+					(trans2) edge[post] (place7)
+					(place7) edge[post] (trans4)
+					(trans5) edge[post] (place8)
+					(place8) edge[post] (trans3)
+					(trans4) edge[post, bend right=20] (place4)
+					(place4) edge[post, bend right=20] (trans5)
+					(trans5) edge[post, bend right=20] (place6)
+					(place6) edge[post, bend right=20] (trans6)
+					(trans6) edge[post, bend right=20] (place5)
+					(place5) edge[post, bend right=20] (trans4);
+				}
+			}
+		}
+		
+		& \textbf{stark zusammenhängend} \\
+		
+		%--------------------------------------
+		&  \\ % eine Leerzeile für den Abstand
+		&  \\ % eine Leerzeile für den Abstand
+		%--------------------------------------
+		
+		% Zweite Reihe
+		\parbox{0.55\textwidth}{
+			\scalebox{0.4}{
+				\petrinetz{
+					% Places
+					\node[place, tokens=0] (place1) at (1.5,2.6) {};
+					\node[place, tokens=1] (place2) at (1.5,-2.6) {};
+					\node[place, tokens=0] (place3) at (6,0) {};
+					\node[place, tokens=0] (place4) at (12,0) {};
+					\node[place, tokens=0] (place5) at (16.5,2.6) {};
+					\node[place, tokens=1] (place6) at (16.5,-2.6) {};
+					\node[place, tokens=0] (place8) at (9,-2.6) {};
+					
+					% Transitions
+					\node[transition] (trans1) at (0,0) {};
+					\node[transition] (trans2) at (4.5,2.6) {};
+					\node[transition] (trans3) at (4.5,-2.6) {};
+					\node[transition] (trans4) at (13.5,2.6) {};
+					\node[transition] (trans5) at (13.5,-2.6) {};
+					\node[transition] (trans6) at (18,0) {};
+					
+					% Kanten
+					\draw
+					(trans1) edge[post, bend left=20] (place1)
+					(place1) edge[post, bend left=20] (trans2)
+					(trans2) edge[post, bend left=20] (place3)
+					(place3) edge[post, bend left=20] (trans3)
+					(trans3) edge[post, bend left=20] (place2)
+					(place2) edge[post, bend left=20] (trans1)
+					
+					(trans5) edge[post] (place8)
+					(place8) edge[post] (trans3)
+					(trans4) edge[post, bend right=20] (place4)
+					(place4) edge[post, bend right=20] (trans5)
+					(trans5) edge[post, bend right=20] (place6)
+					(place6) edge[post, bend right=20] (trans6)
+					(trans6) edge[post, bend right=20] (place5)
+					(place5) edge[post, bend right=20] (trans4);
+				}
+			}
+		}
+		
+		& \parbox{0.3\textwidth}{
+			\textbf{zusammenhängend}
+			
+			\vspace{\baselineskip}
+			
+			\textbf{nicht stark\\ zusammenhängend}
+		} \\
+		
+		%--------------------------------------
+		&  \\ % eine Leerzeile für den Abstand
+		&  \\ % eine Leerzeile für den Abstand
+		%--------------------------------------
+		
+		% Dritte Reihe
+		\parbox{0.55\textwidth}{
+			\scalebox{0.4}{
+				\petrinetz{
+					% Places
+					\node[place, tokens=0] (place1) at (1.5,2.6) {};
+					\node[place, tokens=1] (place2) at (1.5,-2.6) {};
+					\node[place, tokens=0] (place3) at (6,0) {};
+					\node[place, tokens=0] (place4) at (12,0) {};
+					\node[place, tokens=0] (place5) at (16.5,2.6) {};
+					\node[place, tokens=1] (place6) at (16.5,-2.6) {};
+					
+					% Transitions
+					\node[transition] (trans1) at (0,0) {};
+					\node[transition] (trans2) at (4.5,2.6) {};
+					\node[transition] (trans3) at (4.5,-2.6) {};
+					\node[transition] (trans4) at (13.5,2.6) {};
+					\node[transition] (trans5) at (13.5,-2.6) {};
+					\node[transition] (trans6) at (18,0) {};
+					
+					% Kanten
+					\draw
+					(trans1) edge[post, bend left=20] (place1)
+					(place1) edge[post, bend left=20] (trans2)
+					(trans2) edge[post, bend left=20] (place3)
+					(place3) edge[post, bend left=20] (trans3)
+					(trans3) edge[post, bend left=20] (place2)
+					(place2) edge[post, bend left=20] (trans1)
+					(trans4) edge[post, bend right=20] (place4)
+					(place4) edge[post, bend right=20] (trans5)
+					(trans5) edge[post, bend right=20] (place6)
+					(place6) edge[post, bend right=20] (trans6)
+					(trans6) edge[post, bend right=20] (place5)
+					(place5) edge[post, bend right=20] (trans4);
+				}
+			}
+		}
+		
+		& \textbf{nicht zusammenhängend} \\
+		%--------------------------------------
+	\end{tabular}
+\end{center}
+
+\vspace{1em}
+
+\textbf{Beweis}
+
+Wir führen den Beweis indirekt: Angenommen, es gibt ein lebendiges, beschränktes und zusammenhängendes Petrinetz, das nicht stark zusammenhängend ist.
+
+Wir wissen aus den Definitionen: In einem zusammenhängenden Netz gibt es für je zwei Knoten $x$ und $y$ einen \emph{ungerichteten} Pfad von $x$ nach $y$, der aus Kanten besteht, die vorwärts oder aber auch rückwärts durchlaufen werden können. In einem stark zusammenhängenden Netz gibt es dagegen für je zwei Knoten $x$ und $y$ einen \emph{gerichteten} Pfad von $x$ nach $y$, der nur aus Vorwärtskanten besteht. Ist daher ein Netz zusammenhängend, aber nicht stark zusammenhängend, existieren zwei Knoten $a$ und $b$, sodass eine Kante von $a$ nach $b$ führt und kein gerichteter Pfad zurück von $b$ nach $a$ -- andernfalls könnte man jede Rückwärtskante im ungerichteten Pfad durch einen gerichteten Pfad ersetzen.
+
+\pagebreak %%% für Druck
+
+Zwei benachbarte Elemente eines Netzes bestehen immer aus einer Stelle und einer Transition, in beliebiger Reihenfolge. Es gibt für die Knoten $a$ und $b$ also zwei mögliche Konstellationen.
+\begin{enumerate}
+	\item $a$ ist eine Transition und $b$ ist eine Stelle.
+	\item $a$ ist eine Stelle und $b$ ist eine Transition.
+\end{enumerate}
+Beide müssen wir untersuchen.
+
+\vspace{\baselineskip}
+
+\textbf{Fall 1: $\pmb{a}$ ist eine Transition und $\pmb{b}$ ist eine Stelle.}
+
+Da wir angenommen haben, dass das Netz beschränkt ist, gibt es eine Schranke \( s \) der Stelle  \( b \). Weil das Netz zusätzlich lebendig ist, kann die Transition \( a \) beliebig oft schalten.\newline
+Wir konstruieren einen Ablauf, in dem \( a \) \( s + 1 \) Mal schaltet, und damit jedes Mal eine Marke an die Stelle \( b \) abgibt. In diesem Ablauf streichen wir alle Knoten, die von den mit $b$ beschrifteten Stellen über einen gerichteten Pfad erreichbar sind. Dies betrifft nicht $a$-Transitionen oder ihre Voraussetzungen, da ja im System kein Pfad von $b$ nach $a$ führt. Das so reduzierte Ablaufnetz führt zu einer Markierung, in der die Stelle $b$ mindestens $s+1$ Marken trägt, im Widerspruch zur angenommenen Schranke $s$.
+
+\vspace{\baselineskip}
+
+\textbf{Fall 2: $\pmb{a}$ ist eine Stelle und $\pmb{b}$ ist eine Transition.}
+
+Sei \( s \) nun die Schranke der Stelle \( a \).\newline
+Wie in Fall 1 kann die Transition \( b \) beliebig oft schalten.\newline
+Wir konstruieren einen Ablauf, in dem \( b \) \( s + 1 \) Mal schaltet und jedes Mal eine Marke von der Stelle \( a \) verbraucht.\newline
+In diesem Ablauf streichen wir alle $s+1$ $b$-Transitionen. Für wenigstens $b+1$ 
+\linebreak %%% für Druck
+$a$-Stellen gibt es dann keine ausgehende Kante. Dies betrifft keine Voraussetzungen der $a$-Stellen, da ja im System kein Pfad von $b$ nach $a$ führt. Das so reduzierte Ablaufnetz führt zu einer Markierung, in der die Stelle $a$ mindestens $s+1$ Marken trägt, im Widerspruch zur angenommenen Schranke $s$.
+
+Auch in diesem Fall erhalten wir einen Widerspruch.
+
+\vspace{\baselineskip}
+
+In beiden Fällen führt unsere Annahme zu einem Widerspruch mit der Beschränktheit des Netzes. Daher muss unsere Beweisannahme, dass das Petrinetz nicht stark zusammenhängend ist, falsch sein. Folglich muss jedes lebendige, beschränkte und zusammenhängende Petrinetz stark zusammenhängend sein.

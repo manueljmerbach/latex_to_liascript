@@ -1,0 +1,646 @@
+%%-----------------------------------------------------
+%%---------- Makros für deutsche Abkürzungen ----------
+%%-----------------------------------------------------
+\newcommand{\dasHeisst}{d.h.\@\xspace}
+\newcommand{\sa}{s.a.\@\xspace}
+\newcommand{\so}{s.o.\@\xspace}
+\newcommand{\su}{s.u.\@\xspace}
+\newcommand{\zb}{z.B.\@\xspace}
+
+% Über dieses Makro wird die Kapitelüberschrift für das Fallbeispiel erzeugt.
+% Darin enthalten sind auch der Eintrag für das Inhaltsverzeichnis sowie die Angaben für linke und rechte Kopfzeile.
+\newcommand{\FallBeispielZoo}{
+	\chapter*{Fallbeispiel Zoo ~~~ \raisebox{-0.35cm}{\includegraphics[height=1.0cm]{Bilder/elephant_emoji.png}}}
+	\addcontentsline{toc}{chapter}{Fallbeispiel Zoo ~~~ \raisebox{-0.25cm}{\includegraphics[height=0.8cm]{Bilder/elephant_emoji.png}}}
+	\markboth{Fallbeispiel Zoo ~ \raisebox{-0.15cm}{\includegraphics[height=0.6cm]{Bilder/elephant_emoji.png}}}{\raisebox{-0.15cm}{\includegraphics[height=0.6cm]{Bilder/elephant_emoji2.png}} ~ Fallbeispiel Zoo}
+}
+
+% neues Kommando für farblich hervorgehobenen Text 
+% Im Kurstext wird diese Hervorhebung verwendet, wenn der erste Satz eines Absatzes hervorgehoben werden soll. Funktioniert aber auch an jeder beliebigen Stelle.
+% Hervorgehobener Text wird in FernUni-MI-green dargestellt.
+% Das Kommando erhält 1 Parameter
+%   - Text, der farblich hervorgehoben wird
+\newcommand{\sttpHervorhebung}[1]{\textcolor{FernUni-MI-green}{#1}}
+
+%% Glossar vorerst auf Kommentar
+%% neues Kommando für einen STTP-eigenen Glossareintrag (sttpgls -> gls => Glossar)
+%% Der Glossar-Begriff zu dem Glossar-Schlüsselwort wird im Seitenrand angezeigt und mit einem entsprechenden Icon versehen.
+%\newcommand{\sttpgls}[1]{\marginline{\includegraphics[height=0.3cm]{Bilder/gluehbirne.png} \gls{#1}}}
+
+% neues Kommando für einen Kapitelverweis
+% Ein Kapitelverweis wird im Seitenrand positioniert und sieht wie folgt aus: "`Begriff"' -> "`Kap. 1.1"' (mit Verlinkung).
+% Der Kapitelverweis erhält 2 Parameter
+%   - Begriff
+%   - Verweis (der eigentliche Verweis soll allerdings beim Aufruf gemacht werden)
+\newcommand{\sttpkapitelverweis}[2]{\marginline{#1 $\rightarrow$~#2}}
+
+%--------------------------------------
+% neues Kommando für einen Eintrag in der 'Kommentierten Literatur' (KommLitItem -> Komm(entierte) Lit(eratur) Item (Eintrag))
+% enthält 7 Parameter
+%   - Autor(en)
+%   - Jahr
+%   - Titel
+%   - Key für die Literatur-Referenz
+%   - #5 wird derzeit nicht verwendet
+%     Dateinamen der Grafik für das Buchcover
+%     Wenn der Parameter leer bleibt ('{}'), wird kein Buchcover angezeigt.
+%   - #6 wird derzeit nicht verwendet
+%     Seitenangabe, wenn es nur ein Artikel aus dem Buchcover ist.
+%     Wenn der Parameter leer bleibt ('{}'), wird der Text nicht angezeigt.
+%     Wird auch nur angezeigt, wenn ein Buchcover angegeben ist (Parameter #5).
+%   - Kommentar zu diesem Eintrag der Literaturliste
+%--------------------------------------
+\newcommand{\sttpKommLitItem}[7]{
+	\needspace{2\baselineskip} \noindent 
+	\textit{#1 
+%		\ifthenelse{\equal{#5}{\empty}}
+%			{} % kein Buchcover angegeben
+%			{
+%				\ifthenelse{\equal{#6}{\empty}}
+%				{\sttpMarginPicture{#5}} % Anzeige Buchcover ohne Text
+%				{\sttpMarginPictureWithText{#5}{#6}} % Anzeige Buchcover mit Text
+%			} % else
+		(#2). #3
+	}~\cite{#4}\smallskip\\#7\\
+}
+%--------------------------------------
+% Dieses Kommando ist ein Helfs-Befehl, mit dem eine zusätzliche die Fußnote hinter der Lietratur-Referenz in der 'kommentierten Literaturliste' erzeugt werden kann (dies kommt beim ersten Eintrag in der Einleitung vor).
+%   - Fußnoten-Text (8. Parameter)
+\newcommand{\sttpKommLitItemMitFussnote}[8]{
+	\needspace{2\baselineskip} \noindent 
+	\textit{#1 
+%		\ifthenelse{\equal{#5}{\empty}}
+%			{} % kein Buchcover angegeben
+%			{
+%				\ifthenelse{\equal{#6}{\empty}}
+%				{\sttpMarginPicture{#5}} % Anzeige Buchcover ohne Text
+%				{\sttpMarginPictureWithText{#5}{#6}} % Anzeige Buchcover mit Text
+%			} % else
+		(#2). #3
+	}~\cite{#4}\footnote{#8}\smallskip\\#7\\
+}
+%--------------------------------------
+
+%--------------------------------------
+% Ich verwende ein neues Kommando für Bilder, die im Seitenrand (marginpar) an
+% der oberen Kante eines Absatzes positioniert werden.
+% Der Befehl hat 1 Parameter
+%   - Dateinamen der Grafik (Buchcover)
+% Benutzt wird dies für die Buchcover der Werke, die in den kommentierten Literaturlisten vorgestellt werden.
+% Quelle: Bild in Marginpar an oberer Kante des Absatzes positionieren
+% https://texwelt.de/fragen/11095/bild-in-marginpar-an-oberer-kante-des-absatzes-positionieren
+%--------------------------------------
+\newcommand{\sttpMarginPicture}[1]{%
+	\sttpMarginPictureWithText{#1}{}
+}
+%--------------------------------------
+% Den Befehl gibt es auch noch in einer etwas abgewandelten Form, so dass eine zusätzliche Seitenangabe gemacht werden kann.
+% Der Befehl hat 2 Parameter
+%   - Dateinamen der Grafik (Buchcover)
+%   - Text für die Seitenangabe
+%     Diese wird unterhalb des Buchcovers angezeigt.
+%--------------------------------------
+\newcommand{\sttpMarginPictureWithText}[2]{%
+  \leavevmode\marginline{%
+    \raisebox{\dimexpr-\totalheight+\ht\strutbox\relax}%
+      [\ht\strutbox][\dp\strutbox]{
+					\parbox[b]{2.6cm}{\centering \includegraphics[width=2.2cm]{#1}\\#2}
+		}
+	}
+}
+%--------------------------------------
+% Das folgende Makro ist für ein Bild im Seitenrand (marginpar) gedacht.
+% Das Makro sttpMarginPicture kann dafür nicht verwendet werden, da das für die Buchcover gebastelt wurde.
+% Auch hier sollen Bilder im Seitenrand (marginpar) an der oberen Kante eines Absatzes positioniert werden.
+% Der Befehl hat 1 Parameter
+%   - komplette Angabe für das einzufügende Bild (samt "\includegraphics[width...]{}")
+% Benutzt wird dies erstmal für die kleinen bunten Kästen, die aus der Abbildung 3.1 (MindMap) stammen.
+%
+% Quelle: Bild in Marginpar an oberer Kante des Absatzes positionieren
+% https://texwelt.de/fragen/11095/bild-in-marginpar-an-oberer-kante-des-absatzes-positionieren
+%--------------------------------------
+\newcommand{\sttpForImageInMargin}[1]{%
+	\leavevmode\marginline{%
+		\raisebox{\dimexpr-\totalheight+\ht\strutbox\relax}%
+		[\ht\strutbox][\dp\strutbox]{
+			\parbox[b]{\marginparwidth}{#1}
+		}
+	}
+}
+%--------------------------------------
+
+% neues Kommando für einen Autoren-Kasten
+% In einem Autorenkasten wird das Bild des Autors, der Name, das Geburtsdatum und ein erklärender Text angezeigt.
+% enthält 5 Parameter
+%   [1] - Name des Autors
+%   [2] - Geburtsjahr
+%   [3] - Todesjahr (wird nur angezeigt, wenn nicht leer)
+%   [4] - erweiterter Text
+%   [5] - Bilddatei
+%   [6] - Datum der Aufnahme (nur Jahr)
+%   [7] - Quellenangabe
+\newcommand{\sttpAutorenkasten}[7]{
+	\vspace{2ex}
+	\phantomsection % damit hyperref korrekt funktioniert
+	\addcontentsline{lofr}{section}{Foto #1 #6. #7} % Eintrag fuer das Foto in das Quellenverzeichnis
+	\begin{tcolorbox}[
+			center,
+			width=0.8\textwidth,
+			enhanced,
+			%--Beginn Bildquelle--Angaben für die Bildquelle im "title"
+			flip title={sharp corners},
+			coltitle=black,
+			colbacktitle=gray!5,
+			fonttitle=\tiny,% andere mögliche Größen: \small, \footnotesize, \scriptsize, \tiny
+			title={Bildquelle: #7 (#6)},
+			%--Ende Bildquelle--
+			sidebyside, % upper and lower part nebeneinander statt untereinander
+			segmentation empty, % keine Trennlinie
+			lefthand width=4.0cm,
+			boxrule=2.4pt,
+			left=2mm, right=2mm, top=2mm, bottom=2mm, middle=2mm,
+			titlerule=0pt,
+			colback=gray!5,
+			colframe=FernUni-MI-green!30,
+			sharp corners,
+			drop fuzzy shadow
+		]
+		% -------------------------------------------------
+		\begin{center}
+			\includegraphics[width=2.5cm]{#5}%
+			\\
+			\vspace{2mm}
+			\textbf{\mbox{#1}}
+			\\
+			\textbf{\footnotesize{\mbox{(\**#2\ifthenelse{\equal{#3}{\empty}}{}{,~\dag#3})}}}
+		\end{center}
+		\tcblower % -------------------------------------------------
+		#4
+		% -------------------------------------------------
+	\end{tcolorbox}
+	\vspace{2ex}
+}
+
+%%--------------------------------------
+% neues Kommando für einen Definitions-Kasten
+% In einem Definitions-Kasten wird ein Begriff, ein Kurztext (kursiv) und ein Langtext (normal) angezeigt.
+% Das Kommando enthält 4 Parameter
+%   - relative Breite des Kastens zur Textbreite
+%   - Begriff, wird fett in einer farblich unterlegten Box dargestellt
+%   - Kurztext, wird kursiv dargestellt (bei leerem Parameter entfällt dieser Text)
+%   - Langtext, wird normal dargestellt (bei leerem Parameter entfällt dieser Text)
+%%--------------------------------------
+% Alle Definitionskästen haben eine Breite von 0.8\textwidth.
+% In Kapitel 5 (Petrinetze / PN) werden die Kästen mit 0.9 skaliert.
+\newcommand{\sttpDefinitionskastenSkalierungsfaktor}{0.8}
+\newcommand{\sttpDefinitionskastenSkalierungsfaktorKapPN}{0.9}
+%%--------------------------------------
+\newcommand{\faktorBreite}{\sttpDefinitionskastenSkalierungsfaktor}
+\newcommand{\sttpDefinitionskasten}[4]{
+	\vspace{2ex}
+	\begin{tcolorbox}[
+		center,
+		width=#1\textwidth,
+		enhanced,
+		adjusted title=#2,
+		% Das kleine "i"-Symbol in der Titelzeile des Kastens entfernen.
+		%after title={\hfill\includegraphics[height=0.3cm]{Bilder/i.png}},
+		fonttitle=\sffamily\bfseries,
+		coltitle=FernUni-MI-green!80!black,
+		enlarge top initially by=0mm,
+		enlarge bottom finally by=2mm,
+		left=2mm,right=2mm,middle=0.5mm,
+		segmentation hidden,
+		sharp corners,
+		boxrule=2.4pt,
+		colback=gray!5,
+		colframe=FernUni-MI-green!30,
+		drop fuzzy shadow,
+	]
+% TODO AF: nochmal prüfen
+%		% -------------------------------------------------
+%		% Kurztext nur anzeigen, wenn nicht leer
+%		\ifthenelse{\equal{#2}{\empty}}{}{\textit{#2}}
+%		% -------------------------------------------------
+%		% den Wechsel "`tcblower"' nur dann einfügen, wenn beide Elemente nicht leer sind
+%		\ifthenelse{\equal{#2}{}}{}{\ifthenelse{\equal{#3}{}}{}{\tcblower}}
+%		% -------------------------------------------------
+%		% Langtext nur anzeigen, wenn nicht leer
+%		\ifthenelse{\equal{#3}{\empty}}{}{#3}
+%		% -------------------------------------------------
+%
+		% -------------------------------------------------
+		% Kurztext nur anzeigen, wenn nicht leer
+		\ifx&#3&\empty\else\textit{#3}\fi
+		% -------------------------------------------------
+		% Den Wechsel "`tcblower"' nur dann einfügen, wenn beide Elemente nicht leer sind
+		\ifx&#3&\empty\else\ifx&#4&\empty\else\tcblower\fi\fi
+		% -------------------------------------------------
+		% Langtext nur anzeigen, wenn nicht leer
+		\ifx&#4&\empty\else#4\fi
+		% -------------------------------------------------
+	\end{tcolorbox}
+	\vspace{2ex}
+}
+
+%%--------------------------------------
+% neues Kommando für einen Kasten mit Theorem
+% In einem Kasten mit Theorem wird der angegebene Text angezeigt, zusammen mit dem String "Theorem:".
+% Das Kommando enthält 2 Parameter
+%   - relative Breite des Kastens zur Textbreite
+%   - Textinhalt des Theorems
+%%--------------------------------------
+% Ein Kasten für ein Therorem hat standardmäßig die Breite 0.9\textwidth.
+\newcommand{\sttpTheoremSkalierungsfaktor}{0.9}
+%%--------------------------------------
+\newcommand{\sttpTheorem}[2]{
+	\vspace{1ex}
+	\begin{tcolorbox}[
+		center,
+		width=#1\textwidth,
+		colback=FernUni-MI-green!5!white,
+		colframe=FernUni-MI-green!40!white
+	]
+	\textbf{Theorem:} #2
+	\end{tcolorbox}
+	\vspace{1ex}
+}
+
+% neues Kommando für einen Hinweis-Kasten
+% In einem Hinweis-Kasten wird - ähnlich wie in einem Definitions-Kasten - ein Kurztext (fett) und ein Langtext (normale Schriftgröße) angezeigt.
+% Zusätzlich erhält der Kasten 'Hinweis' als Überschrift.
+% Das Kommando enthält 3 Parameter
+%   - relative Breite des Kastens zur Textbreite
+%   - Kurztext, wird fett dargestellt (bei leerem Parameter entfällt dieser Text)
+%   - Langtext, wird normal dargestellt (bei leerem Parameter entfällt dieser Text)
+\newcommand{\sttpHinweiskasten}[3]{
+	\vspace{2ex}
+	\begin{tcolorbox}[
+		center,
+		width=#1\textwidth,
+		enhanced,
+		title=Hinweis,
+		attach boxed title to top left={xshift=-1mm,yshift=-\tcboxedtitleheight+1mm},
+		boxed title style={colframe=FernUni-MI-green,colback=FernUni-MI-green!50},
+		fonttitle=\sffamily\bfseries,
+		top=\tcboxedtitleheight, % Abstand oben, gleiche Höhe wie 'height of the boxedtitle'
+		middle=0.5mm,
+		segmentation hidden,
+		colback=gray!5,
+		colframe=FernUni-MI-green!30,
+		drop fuzzy shadow
+	]
+		% -------------------------------------------------
+		% Kurztext (fett) nur anzeigen, wenn nicht leer
+		\ifthenelse{\equal{#2}{\empty}}{}{\textbf{#2}}
+		% -------------------------------------------------
+		% den Wechsel Upper/Lower (tcblower) nur dann einfügen, wenn beide Elemente nicht leer sind
+		\ifthenelse{\equal{#2}{}}{}{\ifthenelse{\equal{#3}{}}{}{\tcblower}}
+		% -------------------------------------------------
+		% Langtext (normal) nur anzeigen, wenn nicht leer
+		\ifthenelse{\equal{#3}{\empty}}{}{{#3}}		
+		% -------------------------------------------------
+	\end{tcolorbox}
+	\vspace{2ex}
+}
+
+% neues Kommando für einen Kasten
+% In einem Kasten wird - ähnlich wie in einem Hinweis-Kasten - ein Text angezeigt.
+% Der Kasten geht allerdings über die gesamte Textbreite, die Hintergrundfarbe ist weiß und der Rahmen ist etwas schmaler.
+% Das Kommando enthält 1 Parameter
+%   - Text, der angezeigt werden soll
+\newcommand{\sttpKasten}[1]{
+	\vspace{1ex}
+	\begin{tcolorbox}[width=\textwidth,
+		left=2mm,right=2mm,middle=0.5mm,
+		% breakable, % breakable führt dazu, dass die Fußnoten innerhalb einer tcolorbox dargestellt werden und nicht am Seitenende
+		bicolor,sharp corners,boxrule=1.5pt,colback=white,colbacklower=white,colframe=FernUni-MI-green!50]
+		#1
+	\end{tcolorbox}
+	\vspace{1ex}
+}
+% Bei diesem Kasten ist zudem Seitenumbruch innerhalb des Kastens erlaubt.
+% Aber Achtung: dann sind keine "normalen" Fußnoten möglich.
+\newcommand{\sttpKastenBreakable}[1]{
+	\vspace{1ex}
+	\begin{tcolorbox}[width=\textwidth,
+		left=2mm,right=2mm,middle=0.5mm,
+		breakable, % breakable führt dazu, dass die Fußnoten innerhalb einer tcolorbox dargestellt werden und nicht am Seitenende
+		bicolor,sharp corners,boxrule=1.5pt,colback=white,colbacklower=white,colframe=FernUni-MI-green!50]
+		#1
+	\end{tcolorbox}
+	\vspace{1ex}
+}
+
+% neues Kommando für ein Zitat (wichtiges Zitat, dass direkt zum Text gehört)
+% Das Zitat selbst wird kursiv dargestellt.
+% Es soll kein Einzug der ersten Zeile vorgenommen werden (\noindent).
+% Die Quelle erscheint rechtsbündig und in etwas kleinerer Schriftart darunter.
+% Vor und nach dem Zitat wird ein vertikaler Abstand zum restlichen Text eingefügt.
+% ---
+% Anmerkung von Maren:
+% Quelle kommt direkt hinter das Zitat in den ersten Parameter, 
+% zweiter Parameter bleibt leer, wenn nur Quelle. 
+% Zweiter Parameter für inhaltliche Zusätze 
+% ---
+% Das Kommando enthält 2 Parameter
+%   - Zitattext (wird kursiv dargestellt)
+%   - Quelle (wird rechtsbündig dargestellt) (kann auch leer bleiben)
+\newcommand{\sttpzitat}[2]{
+	\vspace{1ex}
+	\noindent
+	\textit{#1}
+
+	\ifthenelse{\equal{#2}{\empty}}
+	{} % keine Ausgabe, wenn #2 leer ist
+	{
+		{\raggedleft
+			\small #2\\ % Anmerkung: die abschließenden "`\\" werden benötigt, damit der Text wirklich rechtsbündig ausgegeben wird
+		}
+	}
+	\vspace{1ex}
+}
+
+% neues Kommando für ein Seitenrand-Zitat
+% Ein Seitenrand-Zitat reicht nicht über die gesamte Seitenbreite.
+% Es wird in einem Kasten dargestellt, der "`Außenrand-bündig"' ausgerichtet ist.
+% Das Zitat selbst wird kursiv dargestellt.
+% Die Quelle erscheint rechtsbündig und in etwas kleinerer Schriftart darunter.
+% Vor und nach dem Zitat wird ein vertikaler Abstand zum restlichen Text eingefügt.
+% Das Kommando enthält 2 Parameter
+%   - Zitattext (wird kursiv dargestellt)
+%   - Quelle (wird rechtsbündig dargestellt)
+\newcommand{\sttpseitenrandzitat}[2]{
+	\begin{tcolorbox}[
+		if odd page={flush right}{flush left}, % ACHTUNG: die Unterscheidung linke Seite / rechte Seite geschieht manchmal erst nach dem 2. TeX-Durchlauf!
+		width=1.0\textwidth,
+		%width=0.75\textwidth, % alte Einstellung
+		top=1.5mm,bottom=1.5mm,left=1.5mm,right=1.5mm,middle=0mm,
+		bicolor,sharp corners,boxrule=1pt,colback=white,colbacklower=white,colframe=FernUni-MI-green!30,
+		halign lower=right]
+		% \tcbifoddpage{Odd}{Even} page!\\
+		\textit{#1}
+		\tcblower
+		{\small #2}
+	\end{tcolorbox}
+}
+
+%%% TODO kommentieren
+% neues Kommando für die Leserführung (Einsatz erstmal nur in Kapitel 2)
+% Die beiden Grafiken werden mittels zweier Minipages nebeneinander positioniert.
+% Das Kommando enthält 2 Parameter
+%   - Dateiname der linken Grafik
+%   - Dateiname der rechten Grafik
+\newcommand{\sttpLeserfuehrung}[2] {
+	\vspace{1ex}
+	\begin{center}
+		\begin{minipage}[c]{.34\textwidth} 
+			\includegraphics[scale=0.25]{#1}
+		\end{minipage}
+		\begin{minipage}[c]{.65\textwidth}
+			\centering
+			\includegraphics[scale=0.9]{#2}
+		\end{minipage}
+	\end{center}
+	\vspace{1ex}
+}
+
+
+%--------------------------------------
+% Das Kommando \sttpUMLText ist ein zentrales Marko, mit dem
+% Text auf eine bestimmte Art (Typewriter-Schriftart ohne 
+% Umbruch) dargestellt werden kann.
+% Aktuell wird der Text mit \texttt{...} und ohne Umbruch
+% (\mbox{...}) formatiert.
+%
+% Das Kommando enthält 1 Parameter
+%   - Text, der entsprechend dargestellt werden soll
+%--------------------------------------
+% Achtung: es dürfen keine Leerzeichen und Zeilenumbrüche innerhalb
+% des folgenden Makros enthalten sein.
+\newcommand{\sttpUMLText}[1]{\mbox{\texttt{#1}}}
+%--------------------------------------
+
+%--------------------------------------
+% neues Kommando für einen Kasten, in dem eine Anforderung dargestellt wird
+% Der Text wird in Schreibmaschinenschrift dargestellt.
+% Der Text wird zentriert dargestellt.
+% Der Text wird in einem Kasten (100% Textbreite) mit hellgrünem Rand dargestellt.
+%
+% Das Kommando enthält 1 Parameter
+%   - Text, der entsprechend dargestellt werden soll
+%--------------------------------------
+\newcommand{\sttpAnforderungText}[1]{
+	\begin{tcolorbox}[
+		width=\textwidth,
+		top=1.5mm,bottom=1.5mm,left=1.5mm,right=1.5mm,middle=0mm,
+		sharp corners,
+		boxrule=10pt,
+		colback=white,
+		colframe=FernUni-MI-green!30,
+		halign=flush center,
+		]
+		\texttt{#1}
+	\end{tcolorbox}
+}
+
+
+%--------------------------------------
+% neues Kommando für eine farbige kleine Box mit enthaltenem Text
+% TODO kommentieren ...
+%--------------------------------------
+\newtcbox{\sttpMindMapText}[1][red]{
+	on line,
+	arc=0pt,
+	outer arc=2pt,
+	colback={#1},
+	colframe={#1},
+	coltext=white,
+	boxsep=0pt,
+	left=4pt,right=4pt,top=2pt,bottom=1pt,
+	boxrule=1pt, 
+}
+% folgende Farben werden für die Texte benötigt
+\definecolor{colMindMap1}{RGB}{153,0,0}
+\definecolor{colMindMap2}{RGB}{74,74,186}
+\definecolor{colMindMap3}{RGB}{0,102,204}
+\definecolor{colMindMap4}{RGB}{200,112,4}
+\definecolor{colMindMap5}{RGB}{38,115,77}
+
+
+%--------------------------------------
+% neues Kommando für eine Karteikarte
+% Das Kommando enthält die folgenden 9 Parameter:
+%   - Breite der Karteikarte (3cm oder ..., bitte nicht in "0.8\textwidth" angeben, das funktioniert z.B. in Tabellen nicht)
+%   - Skalierungsfaktor
+%   - Rotierungswinkel
+%   - Kategorie (Kopfzeile des Kastens)
+%   - Überschrift im 1. Teil
+%   - Text zum 1. Teil
+%   - Überschrift im 2. Teil
+%   - Text zum 2. Teil (wenn leer, dann ohne Anzeige vom 2. Teil (auch ohne Überschrift #7))
+%   - Ersteller-Name (wenn leer, dann ohne Anzeige dieser Zeile)
+%--------------------------------------
+% fuer die Karteikarte verwenden wir eine Schreibschrift
+\newcommand*\schreibschrift{\fontfamily{wela}\selectfont}
+% Für die Karteikarte können diese "Variablen" für den Skalierungsfaktor und den Rotierungswinkel verwendet werden.
+% Das macht insbesondere dann Sinn, wenn ein und dieselbe Karteikarte an verschiedenen Stellen in verschiedenen
+% Skalierungsgrößen und verschieden rotiert verwendet werden soll.
+\newcommand{\sttpKarteikarteSkalierungsfaktor}{1.0}
+\newcommand{\sttpKarteikarteRotierungswinkel}{0}
+%--------------------------------------
+\newcommand{\sttpKarteikarte}[9]{
+	\smallskip
+	\begin{tcolorbox}[
+		skin=bicolor,
+		center,
+		width=#1,
+		%enhanced,
+		adjusted title=#4,
+		fonttitle=\large\sffamily\bfseries,
+		toptitle=2pt,
+		bottomtitle=2pt,
+		coltitle=FernUni-MI-green!80!black,
+		colback=white,%gray!5,
+		colframe=FernUni-MI-green!30,
+		colbacklower=FernUni-MI-green!10,
+		boxrule=1pt,
+		rounded corners,
+		segmentation style={solid,line width=1pt}, % Trennlinie 
+		% drop fuzzy shadow, % Schatten
+		%
+		% mit folgenden Zeilen kann man Karopapier in Hintergrund anzeigen
+		%underlay={
+		%    \begin{tcbclipinterior}
+		%        \draw[help lines,step=4mm,FernUni-MI-green!10,shift={(interior.north west)}]
+		%        (interior.south west) grid (interior.north east);
+		%    \end{tcbclipinterior}
+		%},
+		scale=#2,
+		rotate=#3,
+		]
+		% -------------------------------------------------
+		\textsf{\textbf{#5}}\\
+		\schreibschrift{\textbf{#6}}
+		% -------------------------------------------------
+		\ifthenelse{\equal{#8}{\empty}}
+		{
+			% Text zum 2. Teil leer -> keine Anzeige
+		}
+		{
+			\tcbline
+			% -------------------------------------------------
+			\textsf{\textbf{#7}}\\
+			\schreibschrift{\textbf{#8}}
+		}
+		% -------------------------------------------------
+		% Wenn der Parameter für den Ersteller-Namen leer ist, fällt die Anzeige dieser zeile weg.
+		\ifthenelse{\equal{#9}{\empty}}
+		{
+			% Ersteller-Name leer -> keine Anzeige
+		}
+		{
+			% Ersteller-Name nicht leer -> Anzeige mittels tcblower
+			\tcblower
+			% -------------------------------------------------
+			\small \textsf{\textbf{Ersteller:}} #9
+			% -------------------------------------------------
+		}
+	\end{tcolorbox}		
+	\smallskip
+}
+
+%--------------------------------------
+% neues Kommando für einen Universal-Kasten
+% In einem Universal-Kasten wird eine Überschrift (mittig in der Kopfzeile) und 
+% ein Text (normal im Kasten) angezeigt. Der Kasten ist so breit wie der Text.
+% Das Kommando enthält 2 Parameter
+%   - Überschrift, wird fett und zentriert in einer farblich unterlegten Box dargestellt
+%   - Text, wird normal dargestellt
+% Ergänzung: Wenn der erste Parameter leer bleibt (keine Überschrift),
+%            dann wird die Titelzeile im Kasten gar nicht angezeigt.
+%--------------------------------------
+\newcommand{\sttpUniversalkasten}[2]{
+	\ifthenelse{\equal{#1}{\empty}}
+	{
+		% Ausgabe ohne Titelzeile, wenn #1 leer ist
+		\begin{tcolorbox}[
+			center,
+			width=\textwidth,
+			enhanced,
+			%adjusted title=#1,
+			%halign title=center,
+			% Das kleine "i"-Symbol in der Titelzeile des Kastens entfernen.
+			%after title={\hfill\includegraphics[height=0.3cm]{Bilder/elephant_emoji.png}},
+			%fonttitle=\sffamily\bfseries,
+			%coltitle=FernUni-MI-green!80!black,
+			enlarge top initially by=0mm,
+			enlarge bottom finally by=2mm,
+			left=2mm,right=2mm,middle=0.5mm,
+			segmentation hidden,
+			sharp corners,
+			boxrule=2.4pt,
+			colback=gray!5,
+			colframe=FernUni-MI-green!30,
+			drop fuzzy shadow,
+		]
+		#2
+		\end{tcolorbox}
+	}
+	{
+		\vspace{2ex}
+		% Ausgabe mit Titelzeile, wenn #1 NICHT leer ist
+		\begin{tcolorbox}[
+			center,
+			width=\textwidth,
+			enhanced,
+			adjusted title=#1,
+			halign title=center,
+			% Das kleine "i"-Symbol in der Titelzeile des Kastens entfernen.
+			%after title={\hfill\includegraphics[height=0.3cm]{Bilder/elephant_emoji.png}},
+			fonttitle=\sffamily\bfseries,
+			coltitle=FernUni-MI-green!80!black,
+			enlarge top initially by=0mm,
+			enlarge bottom finally by=2mm,
+			left=2mm,right=2mm,middle=0.5mm,
+			segmentation hidden,
+			sharp corners,
+			boxrule=2.4pt,
+			colback=gray!5,
+			colframe=FernUni-MI-green!30,
+			drop fuzzy shadow,
+		]
+		#2
+		\end{tcolorbox}
+		\vspace{2ex}
+	}
+}
+
+
+%--------------------------------------
+% Die folgenden Einstellungen sind für die "algorithm"-Umgebung,
+% die in Kurseinheit 7 / Kapitel 11 verwendet wird.
+% z.B. Farben in der algorithm-Umgebung
+%--------------------------------------
+% Text-Style in Conditions (If, While, Repeat, ...)
+% Wird gebraucht für "if odd(n)". Ansonsten ist "odd" immer kursiv.
+% Quelle: https://tex.stackexchange.com/questions/301793/in-algorithm2e-how-to-force-non-italic-font-in-the-condition-block-of-while
+\SetArgSty{textnormal}
+%--------------------------------------
+% Einzelne Zeilen können farblich hervorgehoben werden.
+% Quelle: https://tex.stackexchange.com/questions/149779/how-can-i-colourfuly-highlight-some-lines-of-an-algorithm-using-algorithm2e
+\def\HiLi{\leavevmode\rlap{\hbox to \hsize{\color{FernUni-MI-green!5}\leaders\hrule height .8\baselineskip depth .5ex\hfill}}}
+%--------------------------------------
+% Titelzeile wird farblich unterlegt.
+% Quelle: https://tex.stackexchange.com/questions/176057/algorithm2e-and-color
+\makeatletter
+\renewcommand{\algocf@makecaption@ruled}[2]{%
+	\global\sbox\algocf@capbox{\colorbox{FernUni-MI-green!20}{\hskip\AlCapHSkip% .5\algomargin%
+			\parbox[t]{\hsize}{\algocf@captiontext{\strut#1}{\strut#2\strut}}\hskip 1.5\algomargin}}% then caption is not centered
+}%
+\setlength{\interspacetitleruled}{0pt}%
+\makeatother
+%--------------------------------------
+% "ggt" wird in Formeln damit nicht kursiv dargestellt
+\newcommand{\ggt}{{\text{ggT}}}
+%--------------------------------------

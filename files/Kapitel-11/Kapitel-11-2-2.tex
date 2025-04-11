@@ -1,0 +1,173 @@
+\subsection{Partielle Korrektheit}
+\label{sec:Kap-11-2-2}
+
+Die Ideen von Robert Floyd zu Zusicherungen an Kanten von Flussdiagrammen wurden von Tony Hoare für Programmcode übernommen und weiter formalisiert \cite{hoa69}. 
+
+\vspace{1.7mm} %%% für Druck
+
+Bekannt geworden sind sogenannte \emph{Hoare-Tripel}
+\marginline{Hoare-Tripel}
+
+\vspace{\baselineskip} %%% für Druck
+
+$$\text{ \{Vorbedingung\} \;\; Programm \;\; \{Nachbedingung\} }$$
+
+\vspace{\baselineskip} %%% für Druck
+
+mit der Bedeutung: Wenn die \emph{Vorbedingung} erfüllt ist und das Programm ausgeführt wird, ist anschließend die \emph{Nachbedingung} erfüllt. Die Vor- und Nachbedingungen werden hier auch Zusicherungen genannt. Sie haben Hoare-Tripel bereits in der vorhergehenden Lektion kennengelernt. Hier benötigen (und definieren) wir sie wieder und verwenden sie in einem noch formaleren Kontext. Wichtig ist, dass ein Hoare-Tripel nichts dazu sagt, was gilt, wenn die Vorbedingung vor Ausführung des Programms nicht erfüllt ist. Wichtig ist zudem, dass die Nachbedingung nur erfüllt sein muss, wenn das Programm tatsächlich vollständig ausgeführt wurde. Bei einer Endlosschleife zum Beispiel gilt das Hoare-Tripel ebenfalls als erfüllt. Statt „erfüllt“ sagt man auch „gültig“.
+
+Das Programm ist \emph{partiell korrekt}, wenn für jede gültige Eingabe (die die Vorbedingung erfüllt) jede Ausgabe die Nachbedingung erfüllt. In die Nachbedingung muss man also die Spezifikation hineincodieren, oft in Bezug auf die Vorbedingung.
+
+Um die partielle Korrektheit eines Programms zu beweisen, betrachtet man einzelne Programmstücke, in diesem Kontext auch \textit{Segmente} genannt, und viele Zusicherungen innerhalb des Programms. Für jedes Segment $S$, das von einzelnen Anweisungen bis hin zu dem vollständigen Programm gehen kann, werden dann Hoare-Tripel $\{P\} \; S \; \{Q\}$ betrachtet bzw. im mathematischen Sinne als gültig bewiesen. Der eigentliche Clou bei diesem sogenannten \emph{Hoare-Kalkül} 
+\marginline{Hoare-Kalkül}
+ist, dass man gültige Hoare-Tripel aus anderen Hoare-Tripeln ableiten kann, das heißt (fast) rein syntaktisch und damit auch für einen Rechner leicht nachprüfbar herleiten kann.
+
+\vspace{\baselineskip} %%% für Druck
+
+\sttpAutorenkasten{Tony Hoare}{1934}{}{Britischer Informatiker. Entwickelte den Quicksort-Algo\-rith\-mus, das Hoare-Kalkül sowie die Prozessalgebra CSP. Erhielt 1980 den Turing Award. Emeritierter Professor der Universität Oxford.}{Bilder/Autoren/hoare.jpg}{2011}{Rama, \href{https://creativecommons.org/licenses/by-sa/2.0/fr/deed.en}{CC BY-SA 2.0 FR}, via \href{https://commons.wikimedia.org/wiki/File:Sir_Tony_Hoare_IMG_5123.jpg}{Wikimedia Commons}}
+
+\vspace{\baselineskip} %%% für Druck
+
+Betrachten wir zunächst eine Zuweisung $x = e$, wobei $x$ eine Variable und $e$ ein Ausdruck ist, in dem auch Variablen (möglicherweise auch $x$) samt Operatoren vorkommen können. Es sollte klar sein, was sich durch Ausführung dieser Anweisung verändert, sofern man von Funktionsaufrufen, Nebeneffekten usw. absieht: Der Wert des Ausdrucks $e$ wird ermittelt und der Variable $x$ zugewiesen. Insbesondere ändert sich ausschließlich der Wert von $x$. Das heißt aber, dass alle Zusicherungen, die $x$ nicht betreffen und vor Ausführung der Zuweisung gelten, auch danach gelten, also nicht verändert werden. Nach der Zuweisung gelten alle Aussagen für die Variable $x$, die vorher für den Ausdruck $e$ galten.
+
+Sehen wir uns ein Beispiel an: Unsere Vorbedingung sei $\{y > z\}$ und der Befehl, den wir betrachten, sei $x = y + 1$. Der Ausdruck $e$ ist also $y + 1$. Was gilt laut Vorbedingung für $y+1$? Aus $y > z$ folgt $y + 1 > z + 1$. Also gilt nach der Ausführung die Nachbedingung $\{x > z + 1\}$ und natürlich immer noch $\{y>z\}$, denn $y$ und $z$ wurden ja nicht verändert. Tatsächlich erhält man die Nachbedingung $\{x > z + 1\}$ aus $\{ y + 1 > z + 1\}$, in dem man syntaktisch (!) die Zeichenkette „$y+1$“, also den Ausdruck $e$, durch das Zeichen $x$ ersetzt.
+
+Das generelle Vorgehen lautet wie folgt: Wir führen eine logische Umformung der Vorbedingung aus, so dass der Ausdruck (hier $e$) als Teilterm vorkommt und ersetzen diesen durch das Variablensymbol (hier $x$). Natürlich reicht eine Implikation für die logische Umformung aus, denn wenn $P$ gilt und zugleich $P \Rightarrow Q$ gilt, dann gilt \mbox{auch $Q$}.
+
+Formal verwendeten wir bis hierhin bereits zwei Regeln, die im Hoare-Kalkül durch Angabe von Prämissen (Voraussetzungen, über dem Strich) und Konklusion (Folgerung, unter dem Strich) wie folgt notiert werden:
+
+\minisec{Konsequenzregel}
+
+\vspace{2mm} %%% für Druck
+
+$$\frac{P'\Rightarrow P \quad \{P\}\; S\; \{Q\}\quad Q \Rightarrow Q'}{\{P'\}\; S\; \{Q'\}}$$ 
+
+\minisec{Zuweisungsregel}
+
+$$\frac{}{\{P[x/e]\} \quad x = e \quad \{P\}}$$
+
+Die Zuweisungsregel hat also keine Prämisse. $[x/e]$ entspricht dem syntaktischen Ausdruck für $P$, in dem alle Vorkommen von $x$ durch $e$ ersetzt werden.
+
+Die weiteren Regeln folgen nun dem Aufbau der Programmstruktur. Wir betrachten hier der Einfachheit halber eine primitive Programmiersprache, die nur die \mbox{Strukturen}
+\begin{itemize}
+	\item Sequenz ($S$; $S'$),
+	\item Verzweigung (\textbf{if} $B$ \textbf{then} $S$ \textbf{else} $S'$)
+	\item Schleife (\textbf{while} $B$ \textbf{do} $S$)
+\end{itemize}
+
+kennt. Damit kann man allerdings grundsätzlich bereits alle Algorithmen darstellen.
+
+\minisec{Sequenzregel}
+
+\vspace{2mm} %%% für Druck
+
+
+$$\frac{\{P\} \; S \; \{Q\} \quad \{Q\} \; S' \; \{R\}}{\{P\} \; S;S' \; \{R\}}$$
+
+Die Korrektheit dieser Regel ist recht offensichtlich. Angenommen: Wenn $P$ gilt und das Programmsegment $S$ ausgeführt wird, gilt anschließend $Q$, und wenn $Q$ gilt und das Programmsegment $S'$ ausgeführt wird, gilt anschließend $R$. Dann können wir bei Vorliegen von $P$ die Segmente $S$ und $S'$ nacheinander ausführen, und es gilt anschließend $R$.
+
+\minisec{Verzweigungsregel}
+
+\vspace{2mm} %%% für Druck
+
+$$\frac{\{P \wedge B\} \; S \; \{Q\} \quad \{P \wedge \neg B\} \; S' \; \{Q\}}{\{P\} \; \textbf{if} \; B \; \textbf{then} \; S \; \textbf{else} \; S' \; \{Q\}}$$
+
+Auch hier ist die Korrektheit leicht zu begründen. Dieses Programmsegment besteht aus den beiden Alternativen $S$ und $S'$, die je nach Auswertung der Bedingung $B$ ausgeführt werden. Gilt $B$, wird $S$ ausgeführt, und wir können für $S$ natürlich $B$ als zusätzliche Vorbedingung verwenden. Gilt $B$ dagegen nicht, wird $S'$ mit zusätzlicher Vorbedingung $\neg B$ ausgeführt. Es gehört zur Prämisse außerdem, dass in beiden Fällen anschließend $Q$ gilt. Also gilt dies auch für das gesamte Programmsegment.
+
+\minisec{Schleifenregel}
+
+\vspace{2mm} %%% für Druck
+
+$$\frac{\{P \wedge B\} \; S \; \{P\}}{\{P\} \; \textbf{while} \; B \; \textbf{do} \; S \; \{P \wedge \neg B\} }$$
+
+\vspace{2mm} %%% für Druck
+
+Die Prämisse sagt etwas über den Schleifenrumpf $S$ aus: Wir betrachten eine Bedingung $P$, die vor und nach der Ausführung von $S$ gilt. Diese Bedingung heißt \emph{Schleifen\-invariante}, 
+\marginline{Schleifen\-invariante}
+denn sie wird durch den gesamten Schleifenrumpf nicht verändert. Es kann aber durchaus sein (und ist meist so), dass $P$ nach nur teilweiser Ausführung von $S$ nicht mehr gilt. Es kommt nur darauf an, dass die Schleifen\-invariante $P$ nach vollständiger Abarbeitung von $S$ gilt. Als zusätzliche Vorbedingung können wir bei der Prämisse $B$ annehmen. Hier nutzen wir aus, dass die Schleife nur bei Gültigkeit von $B$ betreten wird.
+
+\vspace{2mm} %%% für Druck
+
+Nehmen wir nun an, dass die Schleife etliche Male durchlaufen wurde und schließlich verlassen wird. Dann gilt jedenfalls $\neg B$, denn sonst würde sie ja nicht verlassen. Und es gilt aufgrund der Prämisse weiterhin $P$, denn zu jedem Ende eines Schleifendurchlaufs, also auch des letzten Schleifendurchlaufs, wurde $P$ ja wiederhergestellt. Wird die Schleife gar nicht durchlaufen, weil gleich $\neg B$ gilt, ist die Nachbedingung der Konklusion natürlich auch erfüllt. Wenn die Schleife allerdings niemals verlassen wird, gilt auch niemals nach Beendigung des Schleifenrumpfs $\neg B$ und die Nachbedingung insgesamt wird nicht erfüllt. Die Regel ist in diesem Fall dennoch korrekt, denn sie sagt ja nur etwas darüber aus, welche Nachbedingungen nach Beendigung eines Programmsegments erfüllt sind.
+
+\vspace{2mm} %%% für Druck
+
+Die Schleifeninvariante sieht formal so unschuldig aus, doch ist das Finden geeigneter Schleifeninvarianten für die erfolgreiche Verifikation eines Programms mit Schleifen manchmal gar nicht so leicht. Man sagt umgekehrt, dass man eine geeignete Schlei\-fen\-in\-va\-ri\-ante dann und nur dann findet, wenn man die Idee des Programms und seiner Schleifenstruktur vollständig verstanden hat.
+
+\vspace{2mm} %%% für Druck
+
+Wir schreiben nun das bereits verwendete Beispielprogramm zur Bestimmung des ggT zweier positiver Zahlen vollständig mit Zusicherungen auf (s.~Algorithmus~\ref{algo:berechnung_ggt_mit_zusicherungen}). Manche Variablen sind Programmvariablen (hier $a$ und $b$), andere zusätzliche 
+\linebreak %%% für Druck
+Variablen (hier $g$).
+
+\vspace{-2mm}
+
+\begin{algorithm}
+	\caption{Algorithmus zur Berechnung des ggT von $a$ und $b$ mit Zusicherungen}
+	\label{algo:berechnung_ggt_mit_zusicherungen}
+	
+	\vspace{2mm} %%% für Druck
+	\vspace{\baselineskip}
+	
+	\KwData{Eingabe: $a, b > 0$}
+	\KwResult{Ausgabe: $\ggt(a,b)$}
+	
+	\vspace{2mm} %%% für Druck
+	\vspace{\baselineskip}
+	
+	\HiLi $\{a > 0, \, b > 0, \, g = \ggt(a,b)\}$ \\
+	
+	\vspace{2mm} %%% für Druck
+	\vspace{\baselineskip}
+	
+	\While{$a \neq b$}
+	{
+		\vspace{2mm} %%% für Druck
+		\vspace{\baselineskip}
+		
+		\HiLi $\{a > 0, \, b > 0, \, a \neq b, \, g = \ggt(a,b)\}$ \\
+		
+		\vspace{2mm} %%% für Druck
+		\vspace{\baselineskip}
+		
+		\eIf{$a > b$}{
+			\HiLi $\{a > b > 0, \, g = \ggt(a,b)\}$ \\
+			\HiLi $\{a - b > 0, \, b > 0, \, g = \ggt(a-b,b)\}$ \\
+			\vspace{\baselineskip} %%% für Druck
+			$a = a - b$ \\
+			\vspace{\baselineskip} %%% für Druck
+			\HiLi $\{a > 0, \, b > 0, \, g = \ggt(a,b)\}$
+		}{
+			\HiLi $\{a \neq b, \, 0 < a \leq b, \, g = \ggt(a,b)\}$ \\
+			\HiLi $\{0 < a < b, \, g = \ggt(a,b)\}$ \\
+			\HiLi $\{b - a > 0, \, a > 0, \, g = \ggt(a,b-a)\}$ \\
+			\vspace{\baselineskip} %%% für Druck
+			$b = b - a$ \\
+			\vspace{\baselineskip} %%% für Druck
+			\HiLi $\{b > 0, \, a > 0, \, g = \ggt(a,b)\}$
+		}
+	}
+	\;
+	
+	\vspace{2mm} %%% für Druck
+	\vspace{\baselineskip}
+	
+	\HiLi $\{a = b, \, a > 0, \, b > 0, \, g= \ggt(a,b)\}$ \\
+	\HiLi $\{g = a\}$
+	
+	\vspace{2mm} %%% für Druck
+	\vspace{\baselineskip}
+	
+	\Return{$a$}
+
+	\vspace{2mm} %%% für Druck
+	\vspace{\baselineskip}
+\end{algorithm}
+
+\clearpage %%% für Druck
+
+Unter Anwendung der genannten Regeln können wir nachweisen, dass das Programm, wenn überhaupt, mit der Ausgabe $a$ terminiert, die den gesuchten Wert $g$ hat. Dies macht man von innen nach außen; wir beginnen mit der Zuweisungs\-regel für die beiden Zuweisungen, wenden dann die Verzweigungsregel und schließlich die Schleifenregel an. Die erforderlichen Zusicherungen lassen sich allerdings kaum von innen nach außen erraten, hierfür sollte man die Logik des Programms und ins\-besondere der Schleife gut verstehen.
+
+\vspace{2mm} %%% für Druck
+
+Bevor wir in den nächsten Abschnitten zwei weitere Beispiele für die Anwendung des Hoare-Kalküls angeben werden, wollen wir die Frage beantworten, ob wir jedes korrekte Programm tatsächlich auf diesem Wege verifizieren können. Im Grunde hieße dies, dass wir stets eine geeignete Schleifeninvariante angeben können und entsprechend das Programm mit Zusicherungen annotieren können, so dass mit Hilfe der Hoare'schen Regeln die Korrektheit syntaktisch nachprüfbar ist. Die Antwort darauf ist etwas komplex: Ja, das Hoare-Kalkül ist vollständig, und jedes korrekte Programm (der hier verwendeten Sprache) lässt sich auf diesem Weg verifizieren. Ein guter Teil einer Verifikation mag allerdings in der Logik versteckt sein: Unsere erste Regel, die Konsequenzregel, verwendet als Prämisse Implikationen $P' \Rightarrow P$ und $Q \Rightarrow Q'$. Da $P, P'$ bzw. $Q, Q'$ komplexe logische Ausdrücke sein können und die Gültigkeit der Implikation nicht in jeder Logik durch Anwendung syntaktischer Regeln nachgewiesen werden kann, ist hier auch eine grundsätzliche Schranke für die rein syntaktische Verifikation verborgen. Dies betrifft aber nicht die Regeln, die sich auf die Struktur eines Programms beziehen.

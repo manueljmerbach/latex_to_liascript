@@ -1,0 +1,25 @@
+\babel@toc {ngerman}{}
+\contentsline {section}{\numberline {1}Grafiken in \LaTeX }{3}{section.1}%
+\contentsline {section}{\numberline {2}Abbildung 3.19 in verschiedenen Formaten}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}PNG}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}JPG}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}PDF}{4}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}PDF - fixed}{4}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Ein Zustandsdiagramm in verschiedenen Formaten}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}DrawIO}{5}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}PNG}{5}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}JPG}{5}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}PDF}{5}{subsubsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.2}Visual Paradigm}{6}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}PNG}{6}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}JPG}{6}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}PDF}{6}{subsubsection.3.2.3}%
+\contentsline {section}{\numberline {4}Abbildung 3.28 in verschiedenen Formaten}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}PNG}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}JPG}{9}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}PDF}{10}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Ein Diagramm mit Image in verschiedenen Formaten}{11}{section.5}%
+\contentsline {subsection}{\numberline {5.1}PNG}{11}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}JPG}{11}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}PDF}{11}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Textumflossene Grafik}{13}{section.6}%

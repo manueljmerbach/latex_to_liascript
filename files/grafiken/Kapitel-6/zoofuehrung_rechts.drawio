@@ -1,0 +1,74 @@
+<mxfile host="app.diagrams.net" modified="2023-11-12T18:19:31.371Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0" etag="20zqjDG9J030u1VqPgWs" version="22.1.0" type="device">
+  <diagram name="Seite-1" id="7HZo79V3s2V_UL9Evl4V">
+    <mxGraphModel dx="1044" dy="643" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Wle4dZuMMzVTWvQN1LAY-1" value="Zoobesucher" style="html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="320" y="200" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Wle4dZuMMzVTWvQN1LAY-5" value="Führung" style="html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="80" y="200" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Wle4dZuMMzVTWvQN1LAY-17" value="Zooführung" style="html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="320" y="320" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Wle4dZuMMzVTWvQN1LAY-18" value="Fütterungsführung" style="html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="320" y="80" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Wle4dZuMMzVTWvQN1LAY-20" value="" style="endArrow=block;html=1;rounded=0;endFill=0;endSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;" edge="1" parent="1" source="Wle4dZuMMzVTWvQN1LAY-17" target="Wle4dZuMMzVTWvQN1LAY-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="300" as="sourcePoint" />
+            <mxPoint x="260" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Wle4dZuMMzVTWvQN1LAY-21" value="" style="endArrow=block;html=1;rounded=0;endFill=0;endSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;curved=1;" edge="1" parent="1" source="Wle4dZuMMzVTWvQN1LAY-18" target="Wle4dZuMMzVTWvQN1LAY-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="330" y="150" as="sourcePoint" />
+            <mxPoint x="150" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Wle4dZuMMzVTWvQN1LAY-30" value="nimmt teil" style="endArrow=none;html=1;endFill=0;verticalAlign=middle;spacingBottom=6;labelPosition=left;verticalLabelPosition=middle;align=right;spacingRight=3;exitX=0.5;exitY=1;exitDx=0;exitDy=0;labelBackgroundColor=none;" edge="1" parent="1" source="Wle4dZuMMzVTWvQN1LAY-1" target="Wle4dZuMMzVTWvQN1LAY-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="250" as="sourcePoint" />
+            <mxPoint x="380" y="290" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Wle4dZuMMzVTWvQN1LAY-31" value="1..30" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10;spacingTop=0;spacingLeft=4;spacing=2;" connectable="0" vertex="1" parent="Wle4dZuMMzVTWvQN1LAY-30">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Wle4dZuMMzVTWvQN1LAY-32" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;*&lt;/font&gt;" style="resizable=0;html=1;align=left;verticalAlign=bottom;labelBackgroundColor=none;fontSize=16;spacingLeft=4;spacing=2;spacingBottom=-6;spacingRight=0;spacingTop=0;labelPosition=right;verticalLabelPosition=middle;" connectable="0" vertex="1" parent="Wle4dZuMMzVTWvQN1LAY-30">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Wle4dZuMMzVTWvQN1LAY-33" value="" style="triangle;whiteSpace=wrap;html=1;dashed=0;direction=north;fillColor=#000000;aspect=fixed;rotation=-180;" vertex="1" parent="1">
+          <mxGeometry x="370" y="288" width="4.5" height="9" as="geometry" />
+        </mxCell>
+        <mxCell id="Wle4dZuMMzVTWvQN1LAY-34" value="nimmt teil" style="endArrow=none;html=1;endFill=0;verticalAlign=middle;spacingBottom=0;labelPosition=left;verticalLabelPosition=middle;align=right;spacingRight=3;entryX=0.5;entryY=1;entryDx=0;entryDy=0;spacingTop=6;labelBackgroundColor=none;" edge="1" parent="1" source="Wle4dZuMMzVTWvQN1LAY-1" target="Wle4dZuMMzVTWvQN1LAY-18">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="390" y="250" as="sourcePoint" />
+            <mxPoint x="390" y="330" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Wle4dZuMMzVTWvQN1LAY-35" value="1..5" style="resizable=0;html=1;align=left;verticalAlign=bottom;labelBackgroundColor=none;fontSize=10;spacingTop=0;spacingLeft=4;spacing=2;spacingBottom=2;" connectable="0" vertex="1" parent="Wle4dZuMMzVTWvQN1LAY-34">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Wle4dZuMMzVTWvQN1LAY-36" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;*&lt;/font&gt;" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=16;spacingLeft=4;spacing=2;spacingBottom=-6;spacingRight=0;spacingTop=0;labelPosition=right;verticalLabelPosition=middle;" connectable="0" vertex="1" parent="Wle4dZuMMzVTWvQN1LAY-34">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Wle4dZuMMzVTWvQN1LAY-37" value="" style="triangle;whiteSpace=wrap;html=1;dashed=0;direction=north;fillColor=#000000;aspect=fixed;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="370" y="145" width="4.5" height="9" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

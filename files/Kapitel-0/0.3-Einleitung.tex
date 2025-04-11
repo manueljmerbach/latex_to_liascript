@@ -1,0 +1,64 @@
+\cleardoublepage
+\chapter*{Einleitung}
+\addcontentsline{toc}{chapter}{Einleitung}
+\markboth{Einleitung}{Einleitung}
+\label{sec:Kap-0.3}
+
+\vspace{3cm} %%% für Druck
+\vspace{\baselineskip} %%% für Druck
+
+\sttpzitat{„[...] software, as an industrial product, is invisible to most of the world, except when it fails or crashes.“ \cite[1]{del14}}{} 
+
+In fast allen Lebensbereichen verlassen wir uns darauf, dass technische Systeme zuverlässig funktionieren. Und in den allermeisten technischen Systemen spielt heute Software eine entscheidende Rolle. Wir brauchen daher Software, die zuverlässig und während der gesamten Einsatzdauer eines Systems ihre Aufgaben erfüllt. Leider haben wir alle bereits die Erfahrung gemacht, dass dieser Anspruch häufig nicht erfüllt wird. Softwaresysteme stürzen ab oder liefern falsche Ergebnisse. Andere technische Systeme, wie zum Beispiel Autos, versagen ihren Dienst, weil die eingebettete Software nicht so funktioniert, wie sie sollte. Manchmal erfüllt Software auch deshalb nicht die Erwartungen, weil bei der Softwareentwicklung diese Erwartungen, also die Anforderungen an die Software, nicht klar waren, oder weil sie missverständlich formuliert, widersprüchlich oder unvollständig waren. 
+
+Bei früheren technischen Systemen – solchen, die keine Software beinhalteten – konnte durch über Jahrhunderte etablierte Methoden des Ingenieurwesens ein hohes Maß an Zuverlässigkeit erreicht werden.
+\marginline{etablierte Methoden des Ingenieur\-wesens} 
+Über mathematische Berechnungen kann man das Verhalten statischer und dynamischer Systeme recht genau vorhersagen und durch entsprechende Materialauswahl und –dimensionierung Defekte, zum Beispiel durch Bruch, sehr unwahrscheinlich machen. Zum ingenieurmäßigen Vorgehen im Verlauf der Entwicklung technischer Systeme gehören noch weitere Aspekte. So gibt es etablierte Prinzipien für das Vorgehen unter Einbindung verschiedener Spezialisten. Es gibt Sprachen und Zeichenkonventionen, die den jeweils Beteiligten präzise vermitteln, was genau gemeint ist, ohne dabei mit irrelevanten Informationen zu verwirren. 
+
+Die Entwicklung von Software nach dem Vorbild der Ingenieurwissenschaften zu gestalten, mit dem Ziel sie zu professionalisieren, war und 
+\marginline{Software\-engineering}
+ist Aufgabe des \textit{Software\-engineering}. Softwareengineering ist damit der Bereich in der Informatik, der Techniken, Methoden, Herangehensweisen, Notationen und Werkzeuge für die \mbox{Erstellung} von Software liefert, die die Wahrscheinlichkeit erhöhen sollen, dass am Ende von Softwareentwicklungsprozessen die resultierenden Softwareprodukte die an sie gestellten Anforderungen erfüllen.
+
+\sttpDefinitionskasten{\sttpDefinitionskastenSkalierungsfaktor}{Softwareprodukt}{Das Ergebnis eines Softwareentwicklungsprozesses.}{Wir unterscheiden im Rahmen dieses Textes nicht, ob die produzierte Software tatsächlich verkauft wird, für einen Auftraggeber individuell erstellt wurde oder für die eigene Firma bzw. Insti\-tu\-tion entwickelt wurde.}
+
+Viele Schwierigkeiten oder Fehlerquellen werden bei der Erstellung kleiner, übersichtlicher Softwareprogramme nicht sichtbar. Dies hatte zur Folge, dass die \mbox{\textbf{industrielle}} Softwareentwicklung anfangs vielfach unterschätzt wurde. Man meinte mit entsprechend mehr Personen oder in entsprechend mehr Zeit ein großes Projekt ganz analog zu einem kleinen Projekt organisieren zu können, ohne dabei den Qualitätsanspruch zu verlieren. Dies klappt natürlich genauso wenig, wie es gelingen würde mit Methoden des Einfamilienhausbaus in zehnfacher Zeit ein 10-Familienhaus zu errichten, oder gar in derselben Zeit mit zehnfachem Personaleinsatz. 
+
+\sttpDefinitionskasten{\sttpDefinitionskastenSkalierungsfaktor}{Soft\-ware\-ent\-wick\-lungs\-pro\-jekt (Projekt)}{Der Entwicklungsprozess eines konkreten Softwareprodukts.}{Ein Softwareentwicklungsprojekt besitzt in der Regel definierte Start- und Endpunkte, einen mehr oder weniger detaillierten Zeitplan und ein bestimmtes Budget.}
+
+Ein ähnliches Problem haben wir auch in der Softwareengineering-Lehre: Wie macht man jemandem, der schon viele kleine Programme erfolgreich geschrieben hat deutlich, dass er deshalb noch lange nicht in der Lage sein muss, ein großes Software\-system zu erstellen? Erschwerend kommt hinzu, dass die Erstellung komplexer Softwaresysteme grundsätzlich im Team erfolgt und diese Zusammenarbeit in der System\-erstel\-lung ganz neue Herausforderungen mit sich bringt. Naturgemäß sind unsere Beispiele im Text und in den Übungsaufgaben nicht so komplex wie Projekte in der Realität. Sie müssen uns einfach glauben, dass Sie die Konzepte des Software\-engineering im Kleinen lernen müssen – obwohl sie dort manchmal übertrieben erscheinen mögen –, um dieselben Konzepte später im Großen einsetzen zu können.
+
+Softwareengineering ist ein weitverzweigtes und selbst in der wissenschaftlichen Behandlung in vielen Bereichen schnelllebiges Thema. Nicht nur die Fülle an Literatur, sondern vor allem auch die dort verwendeten unterschiedlichen Herangehensweisen an das Thema erschweren es, zu konkreten Themenbereichen des Software\-engineering die passende weiterführende Literatur zu finden. Jedes Kapitel dieses Textes schließt daher mit einer kommentierten \marginline{kommentierte Literatur} Literaturliste, die einerseits die für den jeweiligen Kapitelinhalt verwendete Literatur angibt, andererseits und vor allem aber auch dabei unterstützen soll, weiterführende Literatur je nach persönlicher Interessen\-lage zu finden. Drei Werke sollen bereits hier in der Einleitung vorgestellt werden, da sie sich mit sehr vielen der im Text behandelten Themen befassen. 
+\\
+
+\phantomsection
+\label{sec:Kap-0.3:Sommerville}
+%Bilder/Buchcover/Buchcover_Sommerville.jpg
+\sttpKommLitItemMitFussnote{Sommerville}{2018}{Software Engineering}{som18}{}{}
+{Seit vielen Jahren eines der wichtigsten Standardlehrbücher zum Thema Softwareengineering. Die dieser deutschen Übersetzung von 2018 zugrunde liegende zehnte englische Auflage stammt aus dem Jahr 2015. Die erste Auflage des Buchs erschien 1980 und war nach Aussage des Autors das erste Lehrbuch über Softwareengineering. Die verschiedenen Auflagen des Buchs unterscheiden sich teilweise deutlich, da der Autor stets bemüht ist, aktuelle Entwicklungen oder Schwerpunktänderungen im Softwareengineering in der jeweils aktuellen Auflage zu berücksichtigen. Für Aspekte des Softwareengineering, die heute nicht mehr im Fokus stehen und daher in neueren Auflagen knapper behandelt werden, lohnt sich oft der Blick in ältere Auflagen. Zudem finden sich auf der Website zum Buch (\href{https://software-engineering-book.com}{https://software-engineering-book.com}) detailliertere Informationen zu manchen im Buch nur knapp behandelten Themen.}
+{Die Angabe in eckigen Klammern verweist auf den entsprechenden Eintrag im Literaturverzeichnis am Ende der Lektion. Dort finden Sie die komplette Literaturangabe zu der hier nur als Kurztitel aufgeführten Literatur.}
+
+%Bilder/Buchcover/Buchcover_Laplante.jpg
+\sttpKommLitItem{Laplante}{2011}{Encyclopedia of Software Engineering}{lap11}{}{}
+{Insgesamt etwa 1400 Seiten umfassendes mehrbändiges Werk zu einer breiten Vielfalt relevanter Aspekte des Softwareengineering. Die von verschiedenen Autorinnen und Autoren verfassten Überblicksartikel zu Themen aus dem Bereich des Softwareengineering sind in der Regel um die zehn Seiten lang und eignen sich sehr gut als Einstieg in interessierende Themen. Da es sich um eine Enzyklopädie handelt, sind die Artikel alphabetisch sortiert.}
+
+%Bilder/Buchcover/Buchcover_Gonzalez.jpg
+\sttpKommLitItem{Gonzalez/Díaz-Herrera/Tucker}{2014}{Computing Handbook}{gon14}{}{}
+{Ein Informatikhandbuch, das auch Softwareengineering-Themen behandelt. Die von verschiedenen Autorinnen und Autoren verfassten Artikel sind jeweils etwa zwanzig Seiten lang und zeichnen sich durch eine hohe Detaildichte aus. Als Einstieg in ein vollständig neues Thema sind sie mitunter schwierig zu lesen. Als Vertiefung für ein Thema, von dem man schon die Grundlagen kennt, eignen sie sich dafür umso besser.}
+
+An dieser Stelle folgen üblicherweise die Hinweise zum Aufbau des Textes und zu den Inhalten der einzelnen Kapitel. Lassen Sie uns dies noch etwas verschieben und uns in Kapitel~\ref{sec:Kap-1} zunächst mit der Frage beschäftigen, wie Softwareengineering entstanden ist und was heute darunter verstanden wird.
+
+\newpage
+
+\sttpUniversalkasten{Lernziele zu Lektion 1}{Nach dieser Lektion
+\begin{itemize}
+	\item kennen Sie wichtige Meilensteine der geschichtlichen Entwicklung des Softwareengineering und können ihre Bedeutung für die heutige Ausrichtung des Softwareengineering einordnen,
+	\item haben Sie einen ersten Überblick über die Kernprozesse des Software\-engineering,
+	\item können Sie den Zusammenhang zwischen den Prozessen des Software\-engineering und Vorgehensmodellen erläutern,
+	\item kennen Sie die wichtigsten Kategorien von Vorgehensmodellen und können Sie anhand ihrer Charakteristika voneinander abgrenzen,
+	\item können Sie zentrale Merkmale der im Text vorgestellten Vorgehensmodelle wiedergeben.
+\end{itemize}
+}
+
+
+
+

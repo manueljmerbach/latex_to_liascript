@@ -1,0 +1,50 @@
+\subsection{Architektonische Entscheidungen}
+\label{sec:Kap-7.1.1}
+
+Die gewählte Softwarearchitektur hat großen Einfluss darauf, wie leistungsfähig und benutzerfreundlich, wie sicher und zuverlässig und auch wie wartbar das spätere Softwareprodukt sein wird. Die Festlegung der Architektur ist somit auch die Verbindung zwischen den Ergebnissen aus dem Prozess des Requirements Engineering – insbesondere im Hinblick auf die nichtfunktionalen Anforderungen – und dem Entwurf und der Umsetzung der einzelnen Funktionalitäten des Softwareprodukts. Bei \cite[194]{som18} finden Sie Verweise auf Studien, die sich sehr detailliert mit der Bedeutung der nichtfunktionalen Anforderungen für die Auswahl und Ausgestaltung der Softwarearchitektur beschäftigen.
+
+Es gibt keine Softwarearchitektur, die die ideale Lösung für alle Softwareprodukte ist. Zudem ist es ist in der Regel nicht möglich, beim Entwurf der Software\-architektur alle gewünschten Systemeigenschaften zugleich zu optimieren. Jede gewählte Software\-architektur wird auch nachteilige Systemeigenschaften erzeugen, die man wegen anderer Vorteile in Kauf nimmt. So führt erhöhte Sicherheit häufig zu geringerer Benutzerfreundlichkeit oder Effizienz. Verringerte Reaktionszeiten, zum Beispiel von Datenbanken, lassen sich oft nur durch zusätzliche Speicherstrukturen (Caches etc.) ausgleichen, wodurch aber die Wartbarkeit des Systems abnehmen kann. 
+
+Für den Entwurf der Softwarearchitektur müssen eine Reihe von Entscheidungen getroffen werden. Die wichtigsten sind:
+
+\begin{itemize}
+	\item Welche der aufgestellten Qualitätsanforderungen sind prioritär? Welche Konsequenzen hat diese Priorisierung auf die anderen gewünschten Qualitäts\-eigenschaften des Softwareprodukts? Und sind diese Konsequenzen tolerierbar?
+	\item Wie sieht das technologische Umfeld aus, in dem das Softwareprodukt zum Einsatz kommen soll? Welche Rahmenbedingungen beim Einsatz des Software\-produkts sind außerdem zu berücksichtigen?
+\end{itemize}
+
+\vspace{\baselineskip} %%% für Druck
+
+Jede in diesen Bereichen gefundene Antwort wird für oder gegen eine bestimmte Softwarearchitektur sprechen. Idealerweise ist die schlussendlich gewählte Softwarearchitektur dann der bestmögliche Kompromiss.
+
+\vspace{\baselineskip} %%% für Druck
+
+\minisec{Der Einfluss der Qualitätsanforderungen auf die Softwarearchitektur}
+Es sind von den Anforderungen insbesondere die Qualitätsanforderungen 
+\linebreak %%% für Druck
+(s. Kap.~6.2.2), %TODO (s.~Kap.~\ref{sec:Kap-6.2.2}),
+die eine hohe Relevanz für den Entwurf der Softwarearchitektur in einem Softwareentwicklungsprojekt haben. Wie bereits erwähnt, stehen manche von diesen in Konflikt zueinander. Je nachdem, welche man priorisiert, wird die resultierende Softwarearchitektur anders aussehen. \marginline{Qualitäts\-anforderungen beeinflussen Qualitäts\-anforderungen} Wenn das Softwaresystem zum Beispiel ohne übermäßige Kosten regelmäßig aktualisiert und um neue Funktionen erweitert werden soll (Qualitätskriterien: Wartbarkeit, Erweiterbarkeit), ist es in der Regel sinnvoll, es aus vielen kleinen und in sich abgeschlossenen Komponenten aufzu\-bauen, die einzeln verändert oder sogar ganz ausgetauscht werden können, ohne dass andere Komponenten angepasst werden müssen. Gemeinsame Daten\-strukturen der Komponenten würde man vermeiden, um diese so unabhängig wie möglich voneinander zu halten. Wenn dagegen die Reaktionsgeschwindigkeit (Antwortzeitverhalten) für das Softwaresystem Priorität hat, kann eine Soft\-ware\-ar\-chi\-tek\-tur mit solch einer feingranularen Zerlegung in Komponenten unpassend sein, weil ein Overhead durch die notwendige Kommunikation der Komponenten erzeugt wird. Wenn dabei unterschiedlich strukturierte Daten zwischen den Komponenten ausgetauscht und reorganisiert werden müssen, nimmt die mit einer derartigen Architektur erreich\-bare Reaktionsgeschwindigkeit noch weiter ab. 
+
+\vspace{2mm} %%% für Druck
+
+Ein anderes Beispiel: Wenn die (ständige) Verfügbarkeit das relevante Kriterium für das Softwaresystem ist, es also nicht zu Ausfallzeiten des Systems kommen darf, benötigt man eine Softwarearchitektur, in der redundante Komponenten vorgesehen sind. Sollte im Betrieb dann eine bestimmte Komponente ausfallen, kann das System dies kompensieren. Gleichzeitig würde eine solche Softwarearchitektur auch einen Mechanismus vorsehen müssen, der den Ausfall erkennen und auf die redundanten Komponenten umstellen kann. \marginline{Architektur beeinflusst Betrieb} Dies alles erhöht die Komplexität des Software\-systems und verringert zum Beispiel die Wartbarkeit. Diese schwierigere Wartbarkeit würde man im späteren Betrieb des Softwareprodukts eventuell durch einen höheren Personaleinsatz für Wartungstätigkeiten ausgleichen. Die Entscheidung für eine bestimmte Softwarearchitektur kann also auch Auswirkungen auf den späteren Softwarebetrieb haben.
+
+\vspace{2mm} %%% für Druck
+
+Entscheidungen zur Priorisierung bestimmter Qualitätsanforderungen haben zudem nicht nur Konsequenzen für die Berücksichtigung anderer Qualitätsanforderungen im Betrieb des Softwareprodukts, sondern können sich auch schon während des Software\-entwicklungs\-projekts auswirken. So erhöht ein komplexeres System die Gefahr, Fehler bei der Implementierung zu machen. Zugunsten der späteren Produktqualität müssen daher – neben den sowieso höheren Zeit- und Personalressourcen für ein komplexeres System – zusätzliche Ressourcen für umfangreichere Testaktivitäten vorgesehen werden.
+
+\vspace{1.4mm} %%% für Druck
+
+\minisec{Rahmenbedingungen des Softwarebetriebs als Einflussfaktoren}
+
+Wie \marginline{Betriebsfaktoren beeinflussen Architektur} eben erwähnt kann die gewählte Softwarearchitektur Aspekte des Software\-betriebs beeinflussen. Deutlich relevanter ist aber der umgekehrte Fall. Die Rahmenbedingungen des späteren Softwarebetriebs sind Einflussfaktoren auf die Ausgestaltung der Softwarearchitektur. Rahmenbedingungen, die in vielen Software\-entwicklungs\-projekten eine Rolle spielen, sind die vorgesehene Produktlebensdauer und die erwartete Anzahl der Nutzer. Mit Produktlebensdauer ist gemeint, wie viele Jahre das Softwareprodukt eingesetzt werden soll. Je länger die geplante Lebensdauer ist, desto wichtiger ist es, dass das Produkt um zusätzliche Funktionalitäten erweitert werden kann (Erweiterbarkeit) und dass die Umsetzung vorhandener Funktionalitäten bei technologischen Fortschritten entsprechend modifiziert werden kann (Modifizierbarkeit, Anpassbarkeit, Austauschbarkeit von Komponenten). Je höher die erwartete Anzahl an Nutzern ist, desto wichtiger werden Performanz-Kriterien wie Datendurchsatz pro Zeit und Speichernutzung. Wenn die zukünftige Anzahl an Nutzern schwer geschätzt werden kann oder zu erwarten ist, dass sie sich im Laufe des Betriebs stark verändert, wird zudem das Kriterium Skalierbarkeit wichtig.
+
+\vspace{1mm} %%% für Druck
+
+Auch das Kriterium Kompatibilität muss häufig berücksichtigt werden. Wenn es notwendig ist, dass das zu entwickelnde Softwareprodukt kompatibel ist zu anderen eingesetzten Softwaresystemen oder auch abwärtskompatibel zu vorherigen Versionen der eigenen Software, kann dies die Wahlmöglichkeiten beim Architekturentwurf einschränken. Notwendig sind zumindest zusätzliche Import- und Exportmöglichkeiten für ältere Datenformate oder anderweitige Schnittstellen zu den anderen eingesetzten Systemen. Noch stärker einschränkend sind eventuelle (Unternehmens)Vorgaben zu bestimmten einzusetzenden Datenbanktechnologien, Frame\-works etc. der bestehenden Systeme.
+
+\vspace{1mm} %%% für Druck
+
+Letzterer Aspekt \marginline{technologische Umgebung beeinflusst Architektur} 
+berührt auch schon den Einfluss des späteren technologischen Umfelds auf die Softwarearchitektur.  Für den Entwurf der Softwarearchitektur ist es wichtig zu wissen bzw. festzulegen, in welcher Hard- und Softwareumgebung das zu entwickelnde Softwareprodukt betrieben werden soll. Zum Beispiel benötigen die meisten Softwaresysteme irgendeine Form von Datenspeichersystem. Klassischer\-weise waren das meist relationale Datenbanksysteme, in denen die Daten strukturiert abgelegt sind und die eine ausgereifte Transaktionsverwaltung anbieten. Für Softwareprodukte, in denen die jederzeitige Konsistenz der Daten entscheidend ist, wählt man in der Regel auch heute relationale Datenbanken. Neben den relationalen Datenbanken gibt es verschiedene andere Formen von Datenbanken, wie zum Beispiel dokumentenorientierte Datenbanken, Graphdatenbanken oder Objektdatenbanken. Diese und weitere fasst man in Abgrenzung zu den relationalen Datenbanken unter dem Begriff NoSQL-Datenbanken zusammen (SQL ist eine Abfragesprache, die in relationalen Datenbanken eingesetzt wird). In NoSQL-Datenbanken sind die Daten meist flexibler anhand der Bedürfnisse des konkreten Softwaresystems organisierbar. Zudem sind sie häufig darauf ausgerichtet, mit sehr großen Datenmengen und/oder einer hohen Anzahl an Datenzugriffen performant umzugehen. Je nachdem, welche Art von Datenbanktechnologie für ein zu entwickelndes Softwareprodukt verwendet werden soll, wird sich die benötigte Softwarearchitektur unterscheiden, die Entscheidung für eine bestimmte Datenbank somit die Wahlmöglichkeiten beim Architekturentwurf einschränken. Idealerweise sollte die Architektur natürlich so unabhängig in ihren Komponenten gestaltet sein, dass man die Datenbank später einfach austauschen kann. In der Praxis funktioniert ein Wechsel der Datenbanktechnologie aber in der Regel nicht ohne umfangreichere Änderungen in vielen Komponenten.
+
+Ein zentraler Aspekt für den Architekturentwurf ist zudem die Plattform, auf der das zu entwickelnde Softwareprodukt betrieben werden soll. Desktop-basierte (für PC und Laptops, teilweise „offline“ laufend), Browser-basierte (Browser als Client) und mobile (Smartphones, Tablets etc.) Versionen desselben Softwareprodukts werden sich in ihrer Architektur stark unterscheiden, weil die Rahmenbedingungen der Plattformen unterschiedlich sind, \zb in Bezug auf Prozessorleistung, Größe des Speichers, tolerierbarer Stromverbrauch, Ein- und Ausgabegeräte etc.

@@ -1,0 +1,42 @@
+\subsection{Entwurfsprinzipien zur Schnittstellengestaltung}
+\label{sec:Kap-7.2.1}
+
+Wir beginnen auf der niedrigen Abstraktionsebene der Klassen und Objekte: Ein zentrales Charakteristikum der Objektorientierung ist die Kapselung von Daten und Operationen innerhalb eines Objekts. Auf den Daten eines Objekts arbeiten bei konsequenter Einhaltung des Prinzips der Kapselung nur seine eigenen Operationen. Ein Entwurfsprinzip, das die Einhaltung der Kapselung unterstützen soll, ist das \textit{Geheimnisprinzip} 
+\marginline{Geheimnis\-prinzip} 
+(engl. Information Hiding). Es besagt, dass ein Objekt nur genau den Teil seiner Funktionalität nach außen für Objekte anderer Klassen zur Verfügung stellt, den diese benötigen. Auf Klassenebene bedeutet das, dass die Implemen\-tierungs\-details einer Klasse vor anderen Klassen verborgen werden, das heißt, dass die Programmierung der Funktionalitäten in den anderen Klassen nicht davon abhängig sein darf, wie der Programmcode dieser einen Klasse aussieht. So sollen zum Beispiel der konkrete Programmcode der Operationen, verwendete Daten\-strukturen, aber auch die Attribute einer Klasse anderen Klassen nicht bekannt sein. Zudem brauchen nur die Operationen außen bekannt sein, die auch außerhalb der Klasse benötigt werden. Operationen, die zum Beispiel interne Berechnungen durchführen oder verwendet werden, um eine komplexere Funktionalität auf mehrere Operationen aufzuteilen, können verborgen sein. 
+
+Den Teil einer Klasse, der nach außen sichtbar ist, nennt man seine \textit{Schnittstelle}. Die Schnittstelle enthält all das, was Objekte anderer Klassen kennen müssen, um die Funktionalität des Objekts dieser Klasse verwenden zu können. \marginline{Schnittstelle} Die Schnittstelle der Klasse gibt Auskunft darüber, \textbf{was} die Klasse tut, aber nicht \textbf{wie} sie es tut. Objekte anderer Klassen rufen über die Schnittstelle die Dienstleistungen (Funktionalitäten) der Klasse auf.
+
+\vspace{-0.1mm} %%% für Druck
+
+Wir gehen jetzt eine Ebene höher, abstrahieren von einzelnen Klassen und sprechen allgemeiner von Komponenten. Eine Komponente kann dabei einer einzelnen Klasse entsprechen, aber ebenso gut auch eine logisch zusammengehörige Menge mehrerer Klassen sein. Die Schnittstelle einer Komponente macht genau das Gleiche, was die Schnittstelle der Klasse von eben getan hat: sie gibt Auskunft darüber, was die Komponente tut, damit andere Komponenten über diese Schnittstelle die benötigten Dienstleistungen von ihr erhalten können. Noch eine Ebene höher bei den Architektur\-komponenten haben wir das gleiche Prinzip: Die Komponente, zum Beispiel eine der Schichten einer Schichtenarchitektur, gibt über ihre Schnittstelle Auskunft über ihre Dienstleistungen. Im Unterschied zur niedrigen Ebene der Klassen wendet man das Geheimnisprinzip auf den höheren Ebenen oft nicht ganz so strikt an, verbirgt also nicht immer die komplette innere Struktur der Komponente (aus welchen Teilkomponenten besteht sie, wie verteilen sich ihre Funktionalitäten auf ihre Teile etc.), da auch zu viel Abstraktion die Komplexität eines Systems erhöhen kann. 
+
+\vspace{-0.1mm} %%% für Druck
+
+Alle anderen Entwurfsprinzipien, die sich mit Schnittstellen von Komponenten beschäftigen, konkretisieren das Geheimnisprinzip, indem sie spezifizieren, wie die Schnittstelle der Komponente aussehen soll und damit festlegen, was und wie viel und in welcher Form nach außen sichtbar sein soll. 
+
+\vspace{-0.1mm} %%% für Druck
+
+Schnittstellen sollten sich möglichst nicht verändern, weil sonst alle Komponenten, die diese Schnittstelle verwenden, ebenfalls geändert werden müssten. Im besten Fall betrifft das nur den Aufrufmechanismus für die Schnittstelle in den verwendenden Komponenten, aber selbst das kann aufwändig sein und ist in jedem Fall fehleranfällig. \marginline{stabile Schnittstellen} Einen echten Namen hat diese kleine Regel nicht, Sie finden sie unter Schlagworten wie „stabile Schnittstellen“ oder „feste Schnittstellen“ in der Literatur.
+
+\vspace{-0.1mm} %%% für Druck
+
+Ein echtes Entwurfsprinzip ist \textit{Program to Interfaces}, 
+\marginline{Program to Interfaces} 
+auf Deutsch „Programmiere gegen Schnittstellen“, auch unter der Bezeichnung „Trennung der Schnittstelle von der Programmierung“ zu finden. Insbesondere in der letzten Übersetzung (und in manchen Beschreibungen in der Literatur) wirkt es zunächst wie altes Geheimnisprinzip in neuen Schläuchen. Das Prinzip geht aber darüber hinaus. Etwas vereinfacht ausgedrückt: Das Geheimnisprinzip sagt, \textbf{was} von der Komponente verborgen bleiben soll. Das Program~to Interfaces-Prinzip sagt, \textbf{dass} die Komponente verborgen bleiben soll. Das Prinzip wird üblicherweise auf der niedrigen Ebene der Klassen kommuniziert, ließe sich von der Idee her aber auch auf die höheren Ebenen übertragen. 
+
+\vspace{-0.1mm} %%% für Druck
+
+Die Idee des Program to Interfaces-Prinzips ist, dass man die Implementierung einer Komponente und die Schnittstelle, die man Dienstnutzer-Komponenten zur Verfügung stellt, als zwei komplett getrennte Aspekte betrachtet und nicht als zwei Teilstücke derselben Komponente. Ihre Verbindung ist, dass die Schnittstelle Funktionalität der Art anbietet, wie sie die Implementierung der Komponente erbringen kann. Dem Dienstnutzer, der die Schnittstelle verwendet, bleibt verborgen, welche Komponente genau die Dienstleistung erbringt. Genau genommen ist diese Schnittstelle dann auch nicht mehr die Schnittstelle einer \textbf{bestimmten} Komponente, sondern die einer Art „Komponenten-Verwandtschaft“, nämlich alle potenziellen Komponenten, die genau die in der Schnittstelle spezifizierte Funktionalität erbringen könnten.
+ 
+Der Sinn hinter dem Program to Interfaces-Prinzip ist Austauschbarkeit. Indem man Schnittstelle und Implementierung so voneinander separiert, kann man die konkrete Implementierung (also die ganze Komponente) wegnehmen und durch eine andere Komponente mit gleicher Wirkungsweise ersetzen, ohne dass die Dienstnutzer davon etwas merken. 
+
+Ein anderes Entwurfsprinzip, das sich mit Schnittstellen befasst, ist das 
+\marginline{Interface Segregation Principle} 
+\textit{Interface \mbox{Segregation} Principle}. Es konkretisiert das Geheimnisprinzip, indem aus „Die 
+\linebreak %%% für Druck
+Schnittstelle der Komponente enthält nur das, was die Dienstnutzer-Komponenten brauchen“ ein „Die Schnittstelle für eine Dienstnutzer-Komponente enthält nur genau das, was diese Komponente braucht“ wird. Und das läuft dann darauf hinaus, dass es zu einer Komponente mehrere Schnittstellen gibt, von denen jede für eine andere Dienstnutzerrolle gedacht ist und entsprechend nur die Funktionalität zur Verfügung stellt, die genau diese Rolle benötigt. Analogie aus einem ganz anderen Bereich: das ist ein wenig ähnlich zur Idee hinter den User Stories in der Anforderungs\-ermittlung.
+
+Der Sinn hinter dem Prinzip ist, dass von Änderungen an einer Schnittstelle möglichst wenige Dienstnutzerrollen betroffen sind, nämlich nur diejenigen, die die geänderte Funktionalität überhaupt verwenden. Wenn man stattdessen nur die eine Schnittstelle für alle Dienstnutzer-Komponenten verwenden würde, müssten eventuell auch solche Dienstnutzer-Komponenten verändert werden, die den geänderten Teil der Schnittstelle gar nicht verwenden – mindestens müsste geprüft werden, \textbf{ob} sich etwas für sie ändert.
+
+Mit Änderungen an Schnittstellen sollte man zwar insgesamt vorsichtig sein, doch insbesondere wenn ein Softwareprodukt auf eine neue Version umgestellt wird oder andere Dienstnutzer-Komponenten mit zusätzlichen Bedürfnissen hinzukommen, lassen sie sich nicht immer vermeiden.

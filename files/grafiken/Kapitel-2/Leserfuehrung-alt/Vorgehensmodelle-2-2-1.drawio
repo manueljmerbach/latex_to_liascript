@@ -1,0 +1,41 @@
+<mxfile host="app.diagrams.net" modified="2023-12-19T15:51:52.946Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0" etag="2X2fvxlnMpSr9TS-GgrJ" version="22.1.11" type="device">
+  <diagram id="BUvfRwf0zNBMPw8hF7Nk" name="Seite-1">
+    <mxGraphModel dx="1050" dy="566" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="-PD2Vxn3dhthJd1rQcdL-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillOpacity=20;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="680" y="60" width="400" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="77L2NzXK1E5qu7S03sZm-1" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;fillColor=#006666;fillOpacity=20;" parent="1" vertex="1">
+          <mxGeometry x="680" y="120" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-1" value="Wasserfallmodell" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="70" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-21" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="kW_KDMngMzazlsKr2CsW-12" target="kW_KDMngMzazlsKr2CsW-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-22" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="kW_KDMngMzazlsKr2CsW-12" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="920" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-23" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="kW_KDMngMzazlsKr2CsW-12" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="920" y="204" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-12" value="Sequentielle Modelle" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="690" y="130" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="J0UttUj1w9NfQx0U-1I0-2" value="V-Modell" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="130" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="J0UttUj1w9NfQx0U-1I0-3" value="..." style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="190" width="150" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

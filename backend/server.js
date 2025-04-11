@@ -19,7 +19,7 @@ const __dirname = dirname(__filename);
 app.use(express.json());
 
 // Ersetze hier ggf. die URL mit deiner finalen Render-URL
-app.use('/convert', cors({ origin: 'https://dein-frontend.onrender.com' }));
+//app.use('/convert', cors({ origin: 'https://dein-frontend.onrender.com' }));
 
 // Endpunkt für Pandoc-Konvertierung
 app.post('/convert', (req, res) => {

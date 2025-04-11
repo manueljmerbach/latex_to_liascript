@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" modified="2024-06-01T10:02:01.898Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0" etag="Te61QjFVhyzdbL_9YYh-" version="24.4.13" type="device">
+  <diagram name="Seite-1" id="I2eWZBP_tuwL0JRMm-bY">
+    <mxGraphModel dx="724" dy="391" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bzeAjOeh5vsoRjToFjSR-1" value="Tier" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="280" y="40" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bzeAjOeh5vsoRjToFjSR-2" value="Gehege" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bzeAjOeh5vsoRjToFjSR-3" value="" style="endArrow=open;html=1;rounded=0;align=center;verticalAlign=top;endFill=0;labelBackgroundColor=none;jumpSize=10;endSize=10;startArrow=open;startFill=0;startSize=10;" edge="1" parent="1" source="bzeAjOeh5vsoRjToFjSR-2" target="bzeAjOeh5vsoRjToFjSR-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="290" as="sourcePoint" />
+            <mxPoint x="510" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bzeAjOeh5vsoRjToFjSR-4" value="1" style="resizable=0;html=1;align=left;verticalAlign=bottom;labelBackgroundColor=none;spacing=2;spacingLeft=4;spacingBottom=3;" connectable="0" vertex="1" parent="bzeAjOeh5vsoRjToFjSR-3">
+          <mxGeometry x="-1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bzeAjOeh5vsoRjToFjSR-5" value="1..&lt;sub&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;*&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/sub&gt;" style="resizable=0;html=1;align=right;verticalAlign=bottom;labelBackgroundColor=none;spacingRight=4;spacing=2;" connectable="0" vertex="1" parent="bzeAjOeh5vsoRjToFjSR-3">
+          <mxGeometry x="1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bzeAjOeh5vsoRjToFjSR-7" value="Tier" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="280" y="140" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bzeAjOeh5vsoRjToFjSR-8" value="Gehege" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="140" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bzeAjOeh5vsoRjToFjSR-9" value="" style="endArrow=open;html=1;rounded=0;align=center;verticalAlign=top;endFill=0;labelBackgroundColor=none;jumpSize=10;endSize=10;startArrow=cross;startFill=0;" edge="1" parent="1" source="bzeAjOeh5vsoRjToFjSR-8" target="bzeAjOeh5vsoRjToFjSR-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="390" as="sourcePoint" />
+            <mxPoint x="510" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bzeAjOeh5vsoRjToFjSR-10" value="1" style="resizable=0;html=1;align=left;verticalAlign=bottom;labelBackgroundColor=none;spacing=2;spacingLeft=4;spacingBottom=3;" connectable="0" vertex="1" parent="bzeAjOeh5vsoRjToFjSR-9">
+          <mxGeometry x="-1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bzeAjOeh5vsoRjToFjSR-11" value="1..&lt;sub&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;*&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/sub&gt;" style="resizable=0;html=1;align=right;verticalAlign=bottom;labelBackgroundColor=none;spacingRight=4;" connectable="0" vertex="1" parent="bzeAjOeh5vsoRjToFjSR-9">
+          <mxGeometry x="1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bzeAjOeh5vsoRjToFjSR-17" value="" style="endArrow=none;html=1;rounded=0;strokeColor=#006666;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="20" y="110" as="sourcePoint" />
+            <mxPoint x="400" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

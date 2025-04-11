@@ -1,0 +1,222 @@
+<!--START ALGORITHMUS-->
+
+<a href="#" data-toggle="modal" data-target="#imageModal_A1008" style="text-decoration: none; cursor: pointer;"
+    onmouseover="this.style.textDecoration='none'" onmouseout="this.style.textDecoration='none';">
+    <div class="card pl-5 pr-5 pt-3 m-2 shadow-sm"
+        style="border: 1px solid #d1d4d9;width: 35rem;text-align:left;font-family: Arial, sans-serif;font-size:small; color:#4e4f52;font-weight:thin;">
+        <p>
+            <strong>Eingabe</strong>: \(n, m \geq 1\)<br>
+            <strong>Ausgabe:</strong> \(n \cdot m\)
+        </p>
+        <p><span style="background-color: #00666614;">&nbsp;{\(n =\geq 1; m \geq 1\)}&nbsp;</span><br><span
+                style="background-color: #00666614;">&nbsp;{\(e = n \cdot m\)}&nbsp; <tt
+                    style="font-size:x-small;"><strong>/* \(e\) ist keine Programmvariable, ihr Wert ist das gewünschte
+                        Ergebnis */</strong></tt> </span><br>&nbsp; \(p=0;\)<br>
+            <span style="background-color: #00666614;">&nbsp;{\(n \geq 1, m \geq 1, p = 0, e = n \cdot m\)}&nbsp;
+            </span><br><span style="background-color: #00666614;">&nbsp;{\(n \cdot m + p = e\)}&nbsp;</span>
+        </p>
+        <p style="margin-bottom:0;margin-top:2;"><span
+                style="margin-bottom:0;color:#006666;"><strong>while</strong></span> \( n \neq k\) <span
+                style="margin-bottom:0;color:#006666;"><strong>do</strong></span></p>
+        <div class="row" style="display: flex;">
+            <!--ERSTER VERTIKALER STRICH-->
+            <div class="col-1" style="flex:0.01;">
+                <div style="background-color:#d1d4d9;height: 33em; width: 0.4em;"></div>
+            </div>
+            <p></p>
+            <!--rechte Seite-->
+            <div class="col" style="flex:1;">
+                <p style="margin-top:2%;margin-bottom:2%"><span style="background-color: #00666614;">&nbsp;{\(n \cdot m
+                        + p = e\)}&nbsp; <br></span></p>
+                <span style="color:#006666;margin-bottom:0;"><strong>if</strong></span> \(odd(n)\) <span
+                    style="color:#006666;"><strong>then</strong></span>
+                <div class="row" style="display: flex;">
+                    <div class="col-1" style="flex:0.01;">
+                        <!--ZWEITER VERTIKALER STRICH-->
+                        <div style="background-color: #d1d4d9;height: 9em; width: 0.4em;"></div>
+                    </div>
+                    <!--rechte Seite-->
+                    <div class="col" style="flex:1;">
+                        <p style="margin-top:1%;margin-bottom:1%"><span style="background-color: #00666614;">&nbsp;{\( n
+                                \cdot m + p = e, (n \ DIV \ 2) \cdot 2 + 1 = n\)}&nbsp; </span></p>
+                        <p style="margin-top:0%;margin-bottom:1%"><span
+                                style="background-color: #00666614;">&nbsp;{\([(n \ DIV \ 2) \cdot 2 + 1] \cdot m + p =
+                                e \)}&nbsp; <br></span></p>
+                        <p style="margin-top:0%;margin-bottom:1%"><span
+                                style="background-color: #00666614;"><span>&nbsp;{\(n \ DIV \ 2) \cdot 2 \cdot m + p + m
+                                    = e \)}&nbsp; </span><br></span></p>
+                        <p style="margin-top:0%;margin-bottom:1%">&nbsp; \(p = p + m\)</p>
+                        <p style="margin-top:0%;margin-bottom:1%"><span style="background-color: #00666614;">&nbsp;{\(n
+                                \ DIV \ 2) \cdot 2 \cdot m + p = e \)}&nbsp; </span></p>
+                    </div>
+                </div>
+                <p style="margin-bottom:0;margin-top:0;"><span
+                        style="margin-bottom:0;color:#006666;"><strong>else</strong></span></p>
+
+                <div class="row" style="display: flex;">
+                    <div class="col-1" style="flex:0.01;">
+                        <!--DRITTER VERTIKALER STRICH-->
+                        <div style="background-color: #d1d4d9;height: 4em; width: 0.4em;"></div>
+                    </div>
+                    <!--rechte Seite-->
+                    <div class="col" style="flex:1;">
+                        <p style="margin-top:1%;margin-bottom:1%"><span style="background-color: #00666614;">&nbsp;{\( n
+                                \cdot m + p = e, (n \ DIV \ 2) \cdot 2 = n\)}&nbsp; </span>
+
+                        </p>
+                        <p style="margin-top:0%;margin-bottom:1%"><span
+                                style="background-color: #00666614;"><span>&nbsp;{\(n \ DIV \ 2) \cdot 2 \cdot m + p = e
+                                    \)}&nbsp; </span></span></p>
+                    </div>
+                </div>
+                <p style="margin-top:0%;margin-bottom:1%"><span style="background-color: #00666614;"><br></span></p>
+                <p style="margin-top:0%;margin-bottom:1%"><span style="background-color: #00666614;">&nbsp;{\((n \ DIV \
+                        2) \cdot 2 \cdot m + p = e \)}&nbsp; </span></p>
+                <p style="margin-top:0%;margin-bottom:1%">\(n = n \ DIV \ 2;\)</p>
+                <p style="margin-top:0%;margin-bottom:1%"><span style="background-color: #00666614;">&nbsp;{\(n \cdot 2
+                        \cdot m + p = e \)}&nbsp; </span></p>
+                <p style="margin-top:0%;margin-bottom:1%"><span style="background-color: #00666614;">&nbsp;{\(n \cdot m
+                        \cdot 2 + p = e \)}&nbsp; </span></p>
+                <p style="margin-top:0%;margin-bottom:1%">\(m = m \cdot 2\)&lt;</p>
+                <p style="margin-top:0%;margin-bottom:1%"><span style="background-color: #00666614;">&nbsp;{\(n \cdot m
+                        + p = e \)}&nbsp; </span></p>
+            </div>
+        </div>
+        <p style="margin-top:0%;margin-bottom:2%"><strong>;</strong></p>
+        <p style="margin-top:4%;margin-bottom:1%"><span style="background-color: #00666614;">{\( n \cdot m + p = e, n =
+                1\)}&nbsp;</span></p>
+        <p style="margin-top:0%;margin-bottom:1%"><span style="background-color: #00666614;">&nbsp;{\( p + m = e
+                \)}&nbsp;</span></p>
+        <p style="margin-top:4%;margin-bottom:4%"><span style="background-color: #00666614;"><strong>return</strong>\(p
+                + m\)</span></p>
+        <div class="row" style="display: flex;">
+            <div class="col" style="flex:1;">
+            </div>
+        </div>
+    </div><span style="color:grey;text-align:center;">Algorithmus 11.8: Multiplikation durch Halbieren mit
+        Zusicherungen</span>
+</a>
+
+<!-- Modal for Fullscreen Image -->
+<div class="modal fade" id="imageModal_A1008" tabindex="-1" aria-labelledby="imageModalLabel" overflow="hidden"
+    style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <figure class="text-center">
+                    <div class="card pl-5 pr-5 pt-3 m-2 shadow-sm"
+                        style="border: 1px solid #d1d4d9;width: 35rem;text-align:left;font-family: Arial, sans-serif;font-size:small; color:#4e4f52;font-weight:thin;">
+                        <p>
+                            <strong>Eingabe</strong>: \(n, m \geq 1\)<br>
+                            <strong>Ausgabe:</strong> \(n \cdot m\)
+                        </p>
+                        <p><span style="background-color: #00666614;">&nbsp;{\(n =\geq 1; m \geq
+                                1\)}&nbsp;</span><br><span style="background-color: #00666614;">&nbsp;{\(e = n \cdot
+                                m\)}&nbsp; <tt style="font-size:x-small;"><strong>/* \(e\) ist keine
+                                        Programmvariable, ihr Wert ist das gewünschte Ergebnis */</strong></tt>
+                            </span><br>&nbsp; \(p=0;\)<br>
+                            <span style="background-color: #00666614;">&nbsp;{\(n \geq 1, m \geq 1, p = 0, e = n
+                                \cdot m\)}&nbsp; </span><br><span style="background-color: #00666614;">&nbsp;{\(n
+                                \cdot m + p = e\)}&nbsp;</span>
+                        </p>
+                        <p style="margin-bottom:0;margin-top:2;"><span
+                                style="margin-bottom:0;color:#006666;"><strong>while</strong></span> \( n \neq k\)
+                            <span style="margin-bottom:0;color:#006666;"><strong>do</strong></span>
+                        </p>
+                        <div class="row" style="display: flex;">
+                            <!--ERSTER VERTIKALER STRICH-->
+                            <div class="col-1" style="flex:0.01;">
+                                <div style="background-color:#d1d4d9;height: 33em; width: 0.4em;"></div>
+                            </div>
+                            <p></p>
+                            <!--rechte Seite-->
+                            <div class="col" style="flex:1;">
+                                <p style="margin-top:2%;margin-bottom:2%"><span
+                                        style="background-color: #00666614;">&nbsp;{\(n \cdot m + p = e\)}&nbsp;
+                                        <br></span></p>
+                                <span style="color:#006666;margin-bottom:0;"><strong>if</strong></span> \(odd(n)\)
+                                <span style="color:#006666;"><strong>then</strong></span>
+                                <div class="row" style="display: flex;">
+                                    <div class="col-1" style="flex:0.01;">
+                                        <!--ZWEITER VERTIKALER STRICH-->
+                                        <div style="background-color: #d1d4d9;height: 9em; width: 0.4em;"></div>
+                                    </div>
+                                    <!--rechte Seite-->
+                                    <div class="col" style="flex:1;">
+                                        <p style="margin-top:1%;margin-bottom:1%"><span
+                                                style="background-color: #00666614;">&nbsp;{\( n \cdot m + p = e, (n
+                                                \ DIV \ 2) \cdot 2 + 1 = n\)}&nbsp; </span></p>
+                                        <p style="margin-top:0%;margin-bottom:1%"><span
+                                                style="background-color: #00666614;">&nbsp;{\([(n \ DIV \ 2) \cdot 2
+                                                + 1] \cdot m + p = e \)}&nbsp; <br></span></p>
+                                        <p style="margin-top:0%;margin-bottom:1%"><span
+                                                style="background-color: #00666614;"><span>&nbsp;{\(n \ DIV \ 2)
+                                                    \cdot 2 \cdot m + p + m = e \)}&nbsp; </span><br></span></p>
+                                        <p style="margin-top:0%;margin-bottom:1%">&nbsp; \(p = p + m\)</p>
+                                        <p style="margin-top:0%;margin-bottom:1%"><span
+                                                style="background-color: #00666614;">&nbsp;{\(n \ DIV \ 2) \cdot 2
+                                                \cdot m + p = e \)}&nbsp; </span></p>
+                                    </div>
+                                </div>
+                                <p style="margin-bottom:0;margin-top:0;"><span
+                                        style="margin-bottom:0;color:#006666;"><strong>else</strong></span></p>
+
+                                <div class="row" style="display: flex;">
+                                    <div class="col-1" style="flex:0.01;">
+                                        <!--DRITTER VERTIKALER STRICH-->
+                                        <div style="background-color: #d1d4d9;height: 4em; width: 0.4em;"></div>
+                                    </div>
+                                    <!--rechte Seite-->
+                                    <div class="col" style="flex:1;">
+                                        <p style="margin-top:1%;margin-bottom:1%"><span
+                                                style="background-color: #00666614;">&nbsp;{\( n \cdot m + p = e, (n
+                                                \ DIV \ 2) \cdot 2 = n\)}&nbsp; </span>
+
+                                        </p>
+                                        <p style="margin-top:0%;margin-bottom:1%"><span
+                                                style="background-color: #00666614;"><span>&nbsp;{\(n \ DIV \ 2)
+                                                    \cdot 2 \cdot m + p = e \)}&nbsp; </span></span></p>
+                                    </div>
+                                </div>
+
+
+                                <p style="margin-top:0%;margin-bottom:1%"><span
+                                        style="background-color: #00666614;"><br></span></p>
+                                <p style="margin-top:0%;margin-bottom:1%"><span
+                                        style="background-color: #00666614;">&nbsp;{\((n \ DIV \ 2) \cdot 2 \cdot m
+                                        + p = e \)}&nbsp; </span></p>
+                                <p style="margin-top:0%;margin-bottom:1%">\(n = n \ DIV \ 2;\)</p>
+                                <p style="margin-top:0%;margin-bottom:1%"><span
+                                        style="background-color: #00666614;">&nbsp;{\(n \cdot 2 \cdot m + p = e
+                                        \)}&nbsp; </span></p>
+                                <p style="margin-top:0%;margin-bottom:1%"><span
+                                        style="background-color: #00666614;">&nbsp;{\(n \cdot m \cdot 2 + p = e
+                                        \)}&nbsp; </span></p>
+                                <p style="margin-top:0%;margin-bottom:1%">\(m = m \cdot 2\)&lt;</p>
+                                <p style="margin-top:0%;margin-bottom:1%"><span
+                                        style="background-color: #00666614;">&nbsp;{\(n \cdot m + p = e \)}&nbsp;
+                                    </span></p>
+                            </div>
+                        </div>
+                        <p style="margin-top:0%;margin-bottom:2%"><strong>;</strong></p>
+                        <p style="margin-top:4%;margin-bottom:1%"><span style="background-color: #00666614;">{\( n
+                                \cdot m + p = e, n = 1\)}&nbsp;</span></p>
+                        <p style="margin-top:0%;margin-bottom:1%"><span style="background-color: #00666614;">&nbsp;{\( p
+                                + m = e \)}&nbsp;</span></p>
+                        <p style="margin-top:4%;margin-bottom:4%"><span
+                                style="background-color: #00666614;"><strong>return</strong>\(p + m\)</span></p>
+                        <div class="row" style="display: flex;">
+                            <div class="col" style="flex:1;">
+                            </div>
+                        </div>
+                    </div>
+                    <figcaption class="figure-caption" style="font-weight: bold; font-size: 1;">Algorithmus 11.5:
+                        Algorithmus zur Berechnung des ggT von \(a\) und \(b\) mit Zusicherungen</figcaption>
+
+                </figure>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ENDE BILD -->

@@ -1,0 +1,78 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0" version="25.0.3">
+  <diagram id="BUvfRwf0zNBMPw8hF7Nk" name="Seite-1">
+    <mxGraphModel dx="2074" dy="1142" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="kW_KDMngMzazlsKr2CsW-1" value="Wasserfallmodell" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.5;darkOpacity2=0.4;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="130" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-2" value="Rational Unified Process" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.5;darkOpacity2=0.4;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="265" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-4" value="..." style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.5;darkOpacity2=0.4;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="180" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-6" value="Extreme Programming" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.5;darkOpacity2=0.4;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="380" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-7" value="..." style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.5;darkOpacity2=0.4;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="315" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-8" value="Scrum" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.5;darkOpacity2=0.4;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="430" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-9" value="..." style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.5;darkOpacity2=0.4;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="480" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-25" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="kW_KDMngMzazlsKr2CsW-10" target="kW_KDMngMzazlsKr2CsW-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-26" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="kW_KDMngMzazlsKr2CsW-10" target="kW_KDMngMzazlsKr2CsW-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-10" value="Iterativ-inkrementelle Modelle" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.5;darkOpacity2=0.4;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="690" y="290" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-21" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="kW_KDMngMzazlsKr2CsW-12" target="kW_KDMngMzazlsKr2CsW-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-23" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="kW_KDMngMzazlsKr2CsW-12" target="kW_KDMngMzazlsKr2CsW-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-12" value="Sequentielle Modelle" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.5;darkOpacity2=0.4;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="690" y="160" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-27" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="kW_KDMngMzazlsKr2CsW-13" target="kW_KDMngMzazlsKr2CsW-6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-28" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="kW_KDMngMzazlsKr2CsW-13" target="kW_KDMngMzazlsKr2CsW-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-29" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="kW_KDMngMzazlsKr2CsW-13" target="kW_KDMngMzazlsKr2CsW-9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-13" value="Agile Modelle" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.5;darkOpacity2=0.4;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="690" y="430" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-18" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="kW_KDMngMzazlsKr2CsW-14" target="kW_KDMngMzazlsKr2CsW-10" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="310" as="targetPoint" />
+            <mxPoint x="650" y="350" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-19" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;endArrow=none;endFill=0;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;fontSize=12;exitX=0;exitY=0;exitDx=40;exitDy=8;exitPerimeter=0;" parent="1" source="kW_KDMngMzazlsKr2CsW-14" target="kW_KDMngMzazlsKr2CsW-13" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="510" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-20" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;exitX=0;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="kW_KDMngMzazlsKr2CsW-14" target="kW_KDMngMzazlsKr2CsW-12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-14" value="Vorgehensmodelle" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.5;darkOpacity2=0.4;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="460" y="290" width="150" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

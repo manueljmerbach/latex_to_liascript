@@ -1,0 +1,52 @@
+\newgeometry{left=25mm, right=15mm, top=20mm, bottom=20mm,
+	marginparwidth=5mm, marginparsep=1mm}
+%TODO @Maren: Falls diese Seite wieder eine Kopfzeile haben soll, muss die folgende Zeile - \thispagestyle{empty} - auskommenitert werden.
+\thispagestyle{empty}
+
+\phantomsection
+\label{text:lektion2_whiteboard_s1}
+\minisec{\hspace{1cm}Whiteboard mit Karteikarten}
+
+%\begin{figure}[h!]
+
+{ %% Scope beginnen (damit \renewcommand keine Auswirkung auf andere Karteikarten hat)
+	\setlength{\unitlength}{1mm}
+	\renewcommand{\sttpKarteikarteSkalierungsfaktor}{0.85}
+	
+	\begin{picture}(0,0)
+		\put(-35,-44){
+			\renewcommand{\sttpKarteikarteRotierungswinkel}{0}
+			\input{Karteikarten/karteikarte_tierarztFrage.tex}
+		}
+		\put(48,-45){
+			\renewcommand{\sttpKarteikarteRotierungswinkel}{-4}
+			\input{Karteikarten/karteikarte_standardSoftware.tex}
+		}
+		\put(12,-116){
+			\renewcommand{\sttpKarteikarteRotierungswinkel}{-2}
+			\input{Karteikarten/karteikarte_tierpflegerAufgaben.tex}
+		}
+		\put(-41,-170){
+			\renewcommand{\sttpKarteikarteRotierungswinkel}{2}
+			\input{Karteikarten/karteikarte__dummy5.tex}
+		}
+		\put(42,-177){
+			\renewcommand{\sttpKarteikarteRotierungswinkel}{-1}
+			\input{Karteikarten/karteikarte_kaefige.tex}
+		}
+		\put(64,-232){
+			\renewcommand{\sttpKarteikarteRotierungswinkel}{-3}
+			\input{Karteikarten/karteikarte__dummy3.tex}
+		}
+		\put(-20,-247){
+			\renewcommand{\sttpKarteikarteRotierungswinkel}{1}
+			\input{Karteikarten/karteikarte_prioritaeten.tex}
+		}
+	\end{picture}
+} %% Scope beenden (um \renewcommand lokal zu halten)
+
+%\caption{Whiteboard}
+%\label{fig:lektion2_whiteboard_s1}
+%\end{figure}
+
+\restoregeometry

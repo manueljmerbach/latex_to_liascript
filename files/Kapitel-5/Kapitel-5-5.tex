@@ -1,0 +1,49 @@
+\section{Vorlesung 5: Analyse von Petrinetzen}
+
+Nachdem verschiedene Eigenschaften von Petrinetzen definiert wurden, geht es jetzt zur Analyse von Petrinetzen. Es geht um die Frage, ob ein gegebenes Netz eine Eigenschaft hat oder nicht.
+
+Für beschränkte Petrinetze gelingt die Analyse zuverlässig 
+\sttpkapitelverweis{}{S.~\pageref{text:zentrale_eigenschaften_zustandsgraph}}
+durch Konstruktion und Analyse des Zustandsgraph (der allerdings sehr groß werden kann). 
+Bei einem unbeschränktem Petrinetz ist die Analyse seiner Eigenschaften oft kniffliger. Interessant ist z.B die Frage, ob ...
+\begin{itemize}
+	\item \textbf{... eine Markierung erreichbar ist.} Das Problem der Erreichbarkeit ist sehr komplex und in seiner allgemeinen Form nicht einfach zu lösen (obwohl es theoretisch entscheidbar ist).
+	\item \textbf{... das Netz lebendig ist.} Dies ist ebenfalls ein sehr komplexes, aber entscheidbares Problem.
+	\item \textbf{... das Netz beschränkt ist.} 
+	\marginline{Unbeschränkt\-heit bestimmen}
+	Die Beschränktheit eines Petrinetzes lässt sich während der Konstruktion des Zustandsgraph erkennen. Das Netz ist unbeschränkt, wenn der Zustandsgraph unendlich groß ist, aber man kann genau dies nach Konstruktion eines endlichen Teils entdecken.
+\end{itemize}
+
+Wie findet man also heraus, ob ein Netz (un)beschränkt ist? Die Petrinetz-Theorie bietet viele effiziente Verfahren, die wenigstens hinreichende Bedingungen für Beschränktheit prüfen. In folgenden Vorlesungen werden Sie einige davon kennenlernen. Im allgemeinen Fall aber kommen wir um die Konstruktion des Zustandsgraph bzw. eines sehr großen, aber endlichen Teil des Zustandsgraph nicht herum. Das folgende Theorem formuliert eine Eigenschaft unbeschränkter Netze, die bei der Konstruktion des Zustandsgraph eines unbeschränkten Netzes irgendwann entdeckt wird.
+
+\sttpTheorem{\sttpTheoremSkalierungsfaktor}{
+	Ein Petrinetz ist unbeschränkt genau dann, wenn es eine von $m_0$ erreichbare Markierung $m$ und eine von $m$ erreichbare Markierung $m'$ gibt, sodass gilt:
+	\begin{addmargin}[25pt]{25pt}
+		Für jede Stelle $s$ gilt: $m'(s) \geq m(s)$, und für wenigstens eine Stelle $s$ gilt: $m'(s) > m(s)$.
+	\end{addmargin}
+}
+
+\textbf{Beweis}
+
+Eine Richtung des Beweises ist sehr einfach: Wenn es wie in der Aussage beschriebene Markierungen $m$ und $m'$ gibt, dann kann die Schaltfolge von $m$ nach $m'$ von $m$ aus auch beliebig oft stattfinden, und die Markenzahl auf $s$ erhöht sich über alle Schranken hinweg. Das Petrinetz ist dann also unbeschränkt.
+
+Die umgekehrte Richtung ist nicht so einfach. Für einen formalen Beweis benötigt man Dickson's Lemma\footnote{
+	Dickson's Lemma besagt, dass jede nichtleere Teilmenge $T \subseteq \mathbb{N}^r$ (wobei $r$ eine natürliche Zahl ist) bezüglich der komponentenweisen Ordnung nur endlich viele minimale Elemente besitzt. Die komponentenweise Ordnung auf $\mathbb{N}^r$ bedeutet, dass für zwei Elemente $(a_1, a_2, \dots, a_r)$ und $(b_1, b_2, \dots, b_r)$ gilt: 
+	$(a_1, a_2, \dots, a_r) \leq (b_1, b_2, \dots, b_r)$ genau dann, wenn $a_i \leq b_i$ für alle $i = 1, 2, \dots, r$.
+	}, 
+deshalb soll hier nur die Idee skizziert werden. 
+
+\clearpage %%% für Druck
+
+Der Beweis ist nicht prüfungsrelevant.
+
+Da die Menge $T$ der Transitionen endlich ist, existieren höchstens $|T|$ Schaltfolgen der Länge 1, höchstens $|T|^2$ Schaltfolgen der Länge 2, und allgemein höchstens $|T|^n$ Schaltfolgen der Länge $n$. Weil jede erreichbare Markierung durch eine Schaltfolge erreicht wird, können unendlich viele Markierungen nur erreicht werden, wenn es auch wenigstens eine unendliche Schaltfolge gibt, in der auch unendlich viele unterschiedliche Markierungen erreicht werden (werden nur endlich viele Markierungen in einer unendlichen Schaltfolge erreicht, dann unterscheidet diese sich diesbezüglich nicht von ihrem endlichen Anfangsstück, in dem alle in ihr überhaupt erreichten Markierungen bereits vorkommen).
+
+Betrachten wir nun also eine unendliche Schaltfolge, in der auch unendlich viele unterschiedliche Markierungen erreicht werden. Sei $m_0 \: m_1 \: m_2 \ldots$ eine Folge von in dieser Schaltfolge (nacheinander, aber nicht notwendigerweise unmittelbar nacheinander) erreichten Markierungen, die sich alle voneinander unterscheiden. Nun nutzen wir aus, dass auch die Stellenmenge endlich ist und betrachten eine beliebige Reihenfolge $s_1, s_2, \ldots , s_n$ der Stellen.
+
+Für $s_1$ existiert ein minimaler Wert $k_1$ von $\{m_0 (s_1), m_1 (s_1), m_2 (s_1,)\ldots\}$ und eine erste Markierung $m_{i^1_1}$ in der Folge $m_0 \: m_1 \: m_2 \ldots$, sodass $m_{i^1_1} (s_1) = k_1$. In der verbleibenden Restfolge $m_{i^1_1+1}, m_{i^1_1+2}, \ldots$ existiert wieder ein minimaler Wert $k_2$ für die Markierung von $s_1$ und es gilt natürlich $k_2 \geq k_1$. Wir wählen  $m_{i^1_2}$ als erste Markierung der Restfolge, für die $m_{i^1_2} (s_1) = k_2$. Diese Prozedur können wir beliebig fortsetzen; also existiert eine unendliche Folge von Markierungen $m_{i^1_1}\; m_{i^1_2} \;m_{i^1_3}\ldots$ mit der Eigenschaft $m_{i^1_1} (s_1) \leq m_{i^1_2}(s_1) \leq  m_{i^1_3} (s_1)\ldots$. Per Konstruktion ist $m_{i^i_1}$ von $m_0$ erreichbar, $m_{i^1_2} $ von $m_{i^1_1} $, $m_{i^1_3} $ von $m_{i^1_2} $ usw.
+
+Auf dieser Folge $m_{i^1_1} \; m_{i^1_2} \; m_{i^1_3}\ldots$ können wir nun dasselbe mit der Stelle $s_2$ anstellen und erhalten somit eine weitere Folge voneinander erreichbarer Markierungen $m_{i^2_1}\; m_{i^2_2}\; m_{i^2_3}\ldots$, für die nun auch für die Stelle $s_2$ gilt $m_{i^2_1} (s_2) \leq m_{i^2_2} (s_2) \leq m_{i^2_3}(s_2)\ldots$ (und natürlich auch noch $m_{i^2_1} (s_1) \leq m_{i^2_2} (s_1) \leq m_{i^2_3}(s_1)\ldots$).
+
+Entsprechend verfahren wir nacheinander für $s_3$, $s_4$ bis zu $s_n$, also für alle Stellen. Dadurch erhalten wir eine unendliche Folge voneinander erreichbarer
+Markierungen $m_{i^n_1}\; m_{i^n_2}\; m_{i^n_3}\ldots$, sodass für jede Stelle $s$ gilt $m_{i^n_1} (s) \leq m_{i^n_2} (s) \leq m_{i^n_3}(s)\ldots$. Betrachten wir die ersten beiden Elemente dieser Folge. Es gilt nach Konstruktion: $m_{i^n_1}$ ist von $m_0$ erreichbar, und $m_{i^n_2}$ von $m_{i^n_1}$. Da alle Markierungen in der Ursprungsfolge unterschiedlich sind, gilt dies auch für  $m_{i^n_2}$ und $m_{i^n_1}$. Folglich gilt für wenigstens eine Stelle $s$: $m_{i^n_1} (s) < m_{i^n_2} (s)$, und damit ist mit $m:= m_{i^n_1}$ und $m':= m_{i^n_2}$ bewiesen, was wir beweisen wollten.

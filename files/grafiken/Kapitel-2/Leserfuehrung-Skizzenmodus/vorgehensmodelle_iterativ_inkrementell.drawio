@@ -1,0 +1,31 @@
+<mxfile host="app.diagrams.net" modified="2024-02-14T12:35:23.143Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0" etag="pT7-LOGVeDkQ8gaqHYrn" version="22.1.21" type="device">
+  <diagram name="Seite-1" id="-S0L3_pyWht-dhJOyMNh">
+    <mxGraphModel dx="1434" dy="782" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="EV7ddVlTxMX8zivaCgZl-1" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;fillOpacity=20;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="400" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="EV7ddVlTxMX8zivaCgZl-2" value="Rational Unified Process" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="280" y="50" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="EV7ddVlTxMX8zivaCgZl-3" value="..." style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="280" y="100" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="EV7ddVlTxMX8zivaCgZl-4" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" edge="1" parent="1" source="EV7ddVlTxMX8zivaCgZl-6" target="EV7ddVlTxMX8zivaCgZl-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EV7ddVlTxMX8zivaCgZl-5" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" edge="1" parent="1" source="EV7ddVlTxMX8zivaCgZl-6" target="EV7ddVlTxMX8zivaCgZl-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EV7ddVlTxMX8zivaCgZl-7" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;fillColor=#006666;fillOpacity=20;" vertex="1" parent="1">
+          <mxGeometry x="40" y="63" width="170" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="EV7ddVlTxMX8zivaCgZl-6" value="Iterativ-inkrementelle Modelle" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="50" y="75" width="150" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,433 @@
+% Anmerkung zur Schriftgröße:
+% Voreingestellt ist bei scrbook, scrreprt und scrartcl fontsize=11pt. (s. scrguide.pdf, S. 61)
+
+\documentclass[
+paper=a4, % default-Einstellung
+twoside, % default-Einstellung
+fontsize = 11pt, % default-Einstellung
+%%%BCOR=8mm, % Bindungs-Korrektur. Wird nicht benötigt, da Seitenränder mit "newgeometry"(s.u.) konfiguriert werden
+%
+% In KOMA-Script wird bei Verwendung des Gliederungsbefehls \part auf Gliederungsnummern mit abschließendem Punkt umgeschaltet.
+% Dies kann mit der folgenden Einstellung abgeschaltet werden (s. scrguide.pdf, S. 105).
+% numbers=noendperiod
+numbers=noendperiod,
+% Breite der Kopfzeile auf die Breite des Textbereichs einschließlich der Marginalienspalte und natürlich des Abstandes zwischen den beiden setzen (s. scrguide.pdf, S. 277)
+headwidth=textwithmarginpar,
+% Trennlinie anzeigen und auf 1pt setzen (s. srcguide.pdf, S. 278)
+headsepline=1pt,
+% Einschalten von 'chapterprefix' (s. srcguide.pdf, S. 102)
+chapterprefix=true,
+% Abbildungsverzeichnis als nicht nummerierter Eintrag im Inhaltsverzeichnis (s. scrguide.pdf, S. 153)
+listof=totoc,
+% Literaturverzeichnis als nicht nummerierter Eintrag im Inhaltsverzeichnis (s. scrguide.pdf, S. 159)
+bibliography=totoc,
+%%-----------------------------------------
+%% Index vorerst auf Kommentar
+% Stichwortverzeichnis als nicht nummerierter Eintrag im Inhaltsverzeichnis (s. scrguide.pdf, S. 160)
+%index=totoc,
+%%-----------------------------------------
+% Vakatseiten unterdrücken. Das brauchen wir für die Rückseite des Deckblatts. Dafür müssen wir aber vor jedem "Part" und vor jedem "Chapter" ein "\cleardoublepage" einfügen.
+open=any
+]{scrbook}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Seitenformat hier zentral festlegen
+%%%%% ... am einfachsten mit newgeometry
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[pass]{geometry}
+% schmaler Seitenrand
+\newgeometry{
+	left=25mm, right=45mm, top=30mm, bottom=40mm,
+	marginparwidth=30mm
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% für Umlaute und Encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% für 'Deutsch'
+\usepackage[ngerman]{babel}
+
+% ??? wird das noch gebraucht --- ja, sonst gibt es eine Warning
+\usepackage[babel, german=quotes]{csquotes} % einfache Handhabung von quotations
+
+% für eigene verwendete Farben
+% xcolor wird für die tcolorbox benötigt (tcolorbox wird bei den Autoren-Kästen verwendet)
+% xcolor muss vor dem Definieren der eigenen Farben geladen werden.
+\usepackage[dvipsnames]{xcolor}
+
+% Kopf- und Fußzeilen konfigurieren
+\usepackage{scrlayer-scrpage}
+
+%% Index vorerst auf Kommentar
+%% Package für einen Index
+%% Quellen: 
+%% https://www1.ku.de/urz/schriften/makeidx.pdf
+%% https://www.namsu.de/Extra/pakete/Makeidx.html
+%\usepackage{makeidx}
+%\makeindex
+
+% Mit Hilfe dieses Packages kann ein Seitenumbruch verhindert werden.
+% Quelle: https://golatex.de/viewtopic.php?t=2070
+% Quelle: http://ctan.org/pkg/needspace
+% Eine interessante Alternative ist das needspace-Paket, damit kann man den zumindest benötigten Platz angeben, so dass nach Bedarf umgebrochen wird. Damit lassen sich beispielsweise Einleitung und ein oder zwei folgende Aufzählungspunkte zusammenhalten, ohne dass die komplette Umgebung auf eine Seite gezwungen ist, also in der Folge auch Seitenumbrüche enthalten darf. Die Dokumentation zu needspace findet sich in needspace.sty selbst.
+% needspace habe ich in der kommentierten Literaturliste verwendet, um die Autor/Titelangabe mit den ersten ein bis zwei Zeilen des Kommentars zusammenzuhalten (s. Makro \kommlititem).
+\usepackage{needspace}
+
+% tcolorbox wird bei den Autoren- und anderen Kästen verwendet
+\usepackage[most]{tcolorbox}
+
+% mit dem Paket können wir die Sprechblasen gut als Aufzählungspunkte verwenden
+\usepackage{enumitem}
+
+% Dieses Package unterstützt das Verbinden von Zeilen in Tabellen ...
+\usepackage{multirow}
+% ...und dieses Umbrüche, wenn große Tabellen über mehrere Seiten gehen.
+\usepackage{longtable}
+
+\usepackage{latexsym}
+
+% Dieses Package benötigen wir für die Darstellung der mathematischen Symbole für Zahlenmengen (\mathbb{}).
+\usepackage{amsfonts} 
+
+%--------------------------------------------------
+% Fußnoten innerhalb von tcolorbox wurden nicht am Seitenende angezeigt, sondern ebenfalls innerhalb der tcolorbox.
+% Das kann man mit dem folgenden Code verhindern.
+% Quelle: https://tex.stackexchange.com/questions/558709/tcolorbox-footnotes-at-end-of-each-page/558922#558922
+% Anmerkung: funktioniert nicht mit "breakable"
+%--------------------------------------------------
+\usepackage{footnotehyper}
+\makesavenoteenv{tcolorbox}
+%--------------------------------------------------
+
+% wird für die Deckblätter verwendet
+\usepackage{tikz}
+
+% Für Listings werden die beiden folgenden Pakete benötigt.
+\usepackage{sourcecodepro}
+\usepackage{listings}
+
+% weiters Paket für die Darstellung der Algorithmen in Kapitel Qualitätssicherung
+\usepackage[linesnumberedhidden,ruled,vlined,algochapter,german]{algorithm2e}
+
+% Seiten komplett bebildern
+% Wird hier gebraucht: Zoo-Grafik auf ganzer Seite
+% Tipp von hier: https://www.julo.ch/blog/latex-bilder-komplette-seite/
+\usepackage{graphicx}
+\usepackage[absolute]{textpos}
+
+% Workaround gegen die verpixelte Schrift
+\usepackage{lmodern}
+
+% Das hyperref-Paket wird üblicherweise als letztes Paket in der Präambel 
+% geladen, da es sich so auf alle zuvor geladenen Pakete einstellen kann.
+\usepackage{hyperref}
+
+% https://ctan.mc1.root.project-creative.net/macros/latex/contrib/oberdiek/hypcap.pdf
+% Links auf Gleitumgebungen springen nicht zur Beschriftung,
+% sondern zum Anfang der Gleitumgebung
+\usepackage[figure]{hypcap}
+
+% Das Package wird u.a. fuer das Makro \zb benoetigt.
+\usepackage{xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Angaben für das Glossar
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Vorerst auf Kommentar, da kein Glossar verwendet wird.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Glossaries
+%% http://ftp.fau.de/ctan/macros/latex/contrib/glossaries/glossariesbegin.pdf
+%% As with all packages, you need to load glossaries with \usepackage, but there are certain packages that must be loaded before glossaries, if they are required:
+%% hyperref, babel, polyglossia, inputenc and fontenc.
+%% (You don’t have to load these packages, but if you want them, you must load them before glossaries.)
+%
+%% für die Verwendung eines Glossars
+%\usepackage[
+%%acronym,     % ein Abkürzungsverzeichnis erstellen
+%nonumberlist, % keine Seitenzahlen anzeigen
+%toc,          % Einträge im Inhaltsverzeichnis
+%nopostdot,    % kein extra Punkt am (Satz-)Ende des Glossartextes
+%%section,     % im Inhaltsverzeichnis auf section-Ebene erscheinen
+%%numberedsection,
+%style=altlistgroup      % alternativ "style=altlist" verwenden, dann werden die Begriffe nicht nach Anfangsbuchstaben gruppiert.
+%]
+%{glossaries}
+%\makeglossaries
+%
+%% Datei mit den Glossar-Einträgen einbinden
+%\input{Glossar/Glossar-Entries.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Angaben für das Literaturverzeichnis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[
+	backend=biber,
+	style=alphabetic,
+	%citestyle=authoryear
+]{biblatex} % biblatex mit biber laden
+
+\DeclareFieldFormat{labelalpha}{\thefield{entrykey}}
+\DeclareFieldFormat{extraalpha}{}
+%\DeclareFieldFormat*{volume}{Vol.~#1} %% auf diese Weise könnte man Bd. durch Vol. ersetzen
+
+\ExecuteBibliographyOptions{
+% Beim Eintrag sorting=nyt funktionierte die Sortierung nicht wie gewünscht.
+% Der Eintrag "swe14" wurde unter "b" einsortiert (Autorname Bourque).
+% sorting=debug -> jetzt stimmt die Sortierung, aber bitte nochmal kontrollieren
+%	sorting=nyt,   % Sortierung Autor, Jahr, Titel
+	sorting=debug, % Eigentlich nur fuer die Fehlersuche vorgesehen.
+	               % Sortierung nach den Eintragsschlüsseln
+	bibwarn=true,  % Probleme mit den Daten, die Backend betreffen anzeigen
+	isbn=false,    % keine isbn anzeigen
+	doi=true,      % erstmal doch DOI anzeigen
+	url=true       % erstmal doch URL anzeigen
+}
+
+% Definieren der Ueberschrift fuer die Literatur-Verzeichnisse der einzelnen Lektionen
+\defbibheading{subbibliography}{%
+	\chapter*{Literatur für Lektion \ref{refsection:\therefsection}}
+	\addcontentsline{toc}{chapter}{Literatur für Lektion \ref{refsection:\therefsection}}
+	\markboth{Literatur für Lektion \ref{refsection:\therefsection}}{Literatur für Lektion \ref{refsection:\therefsection}}
+}
+
+% bib-Datei laden
+% Die bib-Datei erzeugt Maren aus der Citavi-Datenbank.
+\addbibresource{Kurs_1793_Literatur.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Für zusätzliche Inhaltsverzeichnisse
+%%%%% pro Kapitel
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Idee stammt von hier
+% https://texwelt.de/fragen/6162/kapiteltitel-und-kapitel-inhaltsverzeichnis
+\usepackage{etoc}
+\newcommand{\chaptertoc}[1][Inhalt der \partname~\thepart]{%
+	\etocsettocstyle{\addsec*{#1}}{}%
+	\localtableofcontents%
+	\cleardoublepage%
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Angaben für ein zusätzliches Verzeichnis
+%%%%% für die Quellenangaben verschiedener Abbildungen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareNewTOC[%
+type=figreference,%
+types=figreferences,%
+float,%
+floattype=4,%
+name=Quelle,%
+floatpos=ht,%
+listname={Verzeichnis der Quellenangaben für Abbildungen}%
+]{lofr}
+
+\setuptoc{lofr}{chapteratlist}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Einstellungen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%--------------------------------------------------
+% Konfiguration für hyperref
+%--------------------------------------------------
+% Die Optionen für hyperref besser erst mittels \hypersetup konfigurieren, da sonst
+% die Leerzeichen in title, subject, keywords und author verschluckt werden.
+\hypersetup{
+	bookmarks=true,%
+	bookmarksopen=false,% Klappt die Bookmarks in Acrobat aus
+	pdftitle   = {Modul 63812 - Software Engineering},
+	pdfsubject = {Software Engineering},
+	pdfauthor  = {Prof. Dr. Jörg Desel und Maren Stephan},
+	%pdfkeywords = {Stichwort1, Stichwort2 ...},
+	%pdfcreator  = {Mit welcher Anwendung i.d.R. pdflatex},
+	%pdfproducer = {LaTeX with hyperref}
+	%
+	% Durch die folgenden Optionen werden alle Links farblich mit einem Rand markiert (Default-Einstellung).
+	colorlinks=false,
+	linkbordercolor={1 0 0},% red
+	urlbordercolor={0 1 1},% cyan
+	citebordercolor={0 1 0},% green
+	%
+	% Durch die folgenden Optionen werden alle Links nicht farblich hervorgehoben, sondern stattdessen in Schwarz angezeigt.
+	% (ACHTUNG: die Texte sind dann IMMER schwarz, auch da, wo man eigentlich andere Farben gesetzt hat.)
+	%colorlinks=true,
+	%linkcolor=black,
+	%urlcolor=black,
+	%citecolor=black,	
+	%
+	% Evtl. ist das unsere gewünschte/bevorzugte Einstellung.
+	% Alle Links werden mit normalem Text angezeigt - keine Hervorhebungen. Damit klappt es auch mit den ursprünglich eingestellten Farben von Texten, die jetzt zu Links werden (z.B. Inhaltsverzeichnis).
+	% hidelinks, 
+}
+%--------------------------------------------------
+
+%--------------------------------------------------
+% Definieren des Grüns der Fakultät M+I (RGB-Wert: #006666)
+%--------------------------------------------------
+\definecolor{FernUni-MI-green}{RGB}{0,102,102}
+\definecolor{FernUni-MI-green-light}{RGB}{224,236,236}
+%--------------------------------------------------
+
+%--------------------------------------------------
+% Kopf- und Fußzeilen konfigurieren
+%--------------------------------------------------
+\ihead{\headmark}
+\ohead{\thepage}
+\ofoot[\thepage]{}
+\pagestyle{scrheadings} % (s. scrguide.pdf, S. 258)
+
+% Schriftart für Kopf- und Fußzeilen:
+% grün, ohne Serifen und fett
+\setkomafont{pagehead}{\normalfont\color{FernUni-MI-green}}
+\addtokomafont{pagehead}{\sffamily\bfseries}
+\setkomafont{pagefoot}{\normalfont\color{FernUni-MI-green}}
+\addtokomafont{pagefoot}{\sffamily\bfseries}
+% Fußzeilen werden nur auf der ersten Seite eines Kapitels angezeigt
+%--------------------------------------------------
+
+%--------------------------------------------------
+% Formatierung der Gliederungsebenen 
+% (Part / Chapter / Section / Subsection / Subsubsection / Paragraph / SubParagraph / Minisec)
+%--------------------------------------------------
+%--- Schriftart für alle sieben Gliederungsebenen bestimmen (s. scrguide.pdf, S. 110)
+\setkomafont{disposition}{\normalfont\color{FernUni-MI-green}}
+\addtokomafont{disposition}{\bfseries}
+\addtokomafont{disposition}{\sffamily}
+%--- Schriftart für die Gliederungsebene 'Kapitel' bestimmen
+\setkomafont{chapterprefix}{\Huge} % für 'Kapitel X'
+\setkomafont{chapter}{\Large} % für den Titel
+%--- Schriftart für die Gliederungsebene 'Part' bestimmen
+\setkomafont{partnumber}{\normalsize} % für 'Lektion X'
+\setkomafont{part}{\normalsize} % für den Untertitel (gleiche Formatierung wie 'partnumber', damit auch der Anhang entsprechend ausgezeichnet wird)
+
+%--- part ---
+% bei Part soll 'Lektion X' (arabische Nummerierung) ausgegeben werden, auch im Inhaltsverzeichnis
+\renewcaptionname{ngerman}{\partname}{Lektion}
+\renewcommand\thepart{\arabic{part}}
+\renewcommand*{\partformat}{\partname~\thepart\autodot}
+
+% Einstellung 'Part' für das Inhaltsverzeichnis
+%\addtokomafont{partentry}{\normalsize \bfseries} % Font für den Eintrag 'Part' im Inhaltsverzeichnis
+\addtokomafont{partentrypagenumber}{\nullfont} % keine Seitenangabe für den Eintrag 'Part' im Inhaltsverzeichnis
+
+\renewcommand*{\addparttocentry}[2]{
+	\addtocentrydefault{part}{}{\partname~#1~\\#2}% Ausgabe von 'Lektion X', neue Zeile, Untertitels im Inhaltsverzeichnis. Funktioniert aber nicht für den Anhang, daher wird für den Anhang dieser Befehl neu konfiguriert
+}
+
+% Keine Kopf- und Fußzeile auf der 'Part'-Seite
+\renewcommand\partpagestyle{empty}
+
+% 'Part'-Seite mit FerUni-Deckblatt
+\renewcommand*{\partlineswithprefixformat}[3]{%
+	\sttpDeckblatt{\Kursautor}{\Modulnummer}{\Modulname}{\partname~\thepart}{#3}{\Zeitstempel}
+}
+
+%--- chapter ---
+% bei Chapter wird der Text 'Kapitel X' rechtsbündig ausgegeben und
+% beim Kapiteltext werden zusätzlich zwei horizontale Linien ausgegeben
+\renewcommand{\chapterlineswithprefixformat}[3]{
+	{\raggedleft #2}
+	\noindent\rule[1ex]{\textwidth}{5pt}
+	#3
+	\noindent\rule{\textwidth}{5pt}
+}
+
+% Einstellung 'Chapter' in der Kopfzeile
+% im Kolumnentitel (Heading) nur die Kapitelnummer, aber nicht 'Kapitel' ausgeben (s. scrguide.pdf, S. 120)
+\renewcommand*\chaptermarkformat{\thechapter\autodot\enskip}
+
+%--- Nummerierung ---
+% Überschriften werden bis Ebene subsubsection nummeriert (s. scrguide.pdf, S. 121)
+\setcounter{secnumdepth}{\subsubsectiontocdepth}
+% Überschriften werden bis Ebene subsubsection ins Inhaltsverzeichnis aufgenommen
+\setcounter{tocdepth}{\subsubsectiontocdepth}
+%--------------------------------------------------
+
+%--------------------------------------------------
+% Formatierung der Fußnoten
+%--------------------------------------------------
+% durchgängige Nummerierung der Fußnoten 
+% Idee von hier: https://golatex.de/viewtopic.php?t=2232
+\usepackage{chngcntr}
+\counterwithout{footnote}{chapter}
+
+% Formatierung der Fußnoten (s. scrguide.pdf, S. 98)
+\deffootnote{1.5em}{1em}{%
+	\textsuperscript{\thefootnotemark}%
+}
+%--------------------------------------------------
+
+%--------------------------------------------------
+% Marginalien in farbig, fett und ohne Serifen
+%--------------------------------------------------
+\let\MLine\marginline
+\renewcommand{\marginline}[1]{\MLine{\textcolor{FernUni-MI-green}{\textbf{\textsf{#1}}}}}
+%--------------------------------------------------
+
+%--------------------------------------------------
+% Textformatierung
+%--------------------------------------------------
+% Textformatierung: Kein Einzug, etwas Abstand zwischen den Absätzen (s. scrguide.pdf, S. 506)
+\setparsizes{0pt}{1ex}{0pt plus 1fil}
+
+% Textformatierung: Schriftart Frutiger (aus feultr.cls - Briefvorlage FernUni)
+%\renewcommand{\rmdefault}{lfrs}
+%\renewcommand{\seriesdefault}{l}
+%\renewcommand{\shapedefault}{n}
+
+% Für die serifenlose Schrift verwenden wir Frutiger.
+\renewcommand{\sfdefault}{lfrs}
+
+%--------------------------------------------------
+
+% Einstellungen zum "Debuggen"
+%\usepackage{layout}
+%\usepackage{showframe}
+
+%--------------------------------------------------
+% zentrale Trennhilfe für Silbentrennung
+% Für bestimmte Wörter, die häufig im Text vorkommen und immer wieder falsch 
+% getrennt werden, sollten wir hier eine zentrale Trennhilfe konfigurieren.
+% Insbesondere "Software" wird gerne falsch getrennt (Softwa-re). Das gilt auch für die
+% mit dem Begriff "Software" zusammengesetzten Wörter.
+% Wir werden hier aber nur die Trennhilfen für Wörter vorgeben, die im Text häufig falsch getrennt werden.
+%--------------------------------------------------
+\hyphenation{Soft-ware Soft-ware-archi-tek-tur Soft-ware-engi-nee-ring Soft-ware-ent-wick-lung Soft-ware-ent-wick-lungs-pro-jekt Soft-ware-ent-wick-lungs-pro-jek-ten Soft-ware-ent-wick-lungs-pro-jekts Soft-ware-pro-dukt Soft-ware-pro-duk-te Soft-ware-pro-dukts Soft-ware-ent-wick-lungs-team Soft-ware-sys-tem Soft-ware-sys-te-me 
+	Soft-ware-test Soft-ware-tests
+	Petri-netz Petri-netze Petri-net-zen
+	Model-lierung
+	pa-ral-lel pa-ral-le-le
+	IEEE
+	SEVOCAB
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Deklarationen und Macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{Makros/makros.tex}
+\input{Makros/makros_petrinetze.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% temporäre Pakete und Einstellungen (nur für Entwicklungszeit)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\input{tmp_Inhalt/tmp_packages.tex}
+% Die Datei muss aus der Vorlage kopiert und entsprechend angepasst werden.
+%\input{tmp_Inhalt/tmp_Meine_Einstellungen.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% für die Titelseite
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{Kurs_1793_Titelseite.tex}

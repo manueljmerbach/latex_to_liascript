@@ -1,0 +1,46 @@
+\section{Anforderungsmanagement}
+\label{sec:Kap-6.5}
+
+\vspace{\baselineskip} %%% für Druck
+
+Jede Formulierung einer Anforderung, sei sie natürlichsprachlich, formalisiert sprachlich oder graphisch, wird in irgendeiner Weise als Dokument vorliegen. Da die Anforderungen Grundlage für den Softwareentwurf sind, aber auch Grundlage für ein Angebot, für einen Preis und für einen Vertrag über die Erstellung eines Software\-systems sein können, kommt ihnen organisatorisch und auch juristisch eine besondere Bedeutung zu. Auch wenn für den Entwurf stets nur die letzte Version der Anforderungen relevant ist, sollte die Entwicklung der Anforderungen systematisch festgehalten werden und Bezüge zwischen Anforderungsformulierungen sichtbar sein. Zur Motivation drei Beispiele:
+
+\vspace{1mm} %%% für Druck
+
+\begin{itemize}
+	\item Nach Auslieferung eines Softwaresystems zeigt sich der Auftraggeber unzufrieden und beklagt, dass eine bestimmte Anforderung durch das System nicht erfüllt sei. Er verlangt Nachbesserung, die aber nur mit großem Aufwand und nicht innerhalb der gesetzten Frist möglich ist. Es kommt zum Streit. Der Auftraggeber kann tatsächlich nachweisen, dass die Anforderung von einem bestimmten Stakeholder zu einem bestimmten Zeitpunkt geäußert wurde und auch zu Protokoll genommen wurde. Allerdings hat sich bei der Anforderungsvalidierung herausgestellt, dass diese Anforderung im Widerspruch zu anderen Anforderungen gestanden hat und deshalb in Absprache mit dem Auftraggeber verändert wurde – in der veränderten Form wird sie aber tatsächlich erfüllt. Um dies alles nachvollziehen zu können, muss also auch die Historie der Anforderungen in ihren jeweiligen Formulierungen festgehalten
+	\linebreak %%% für Druck
+	werden.
+
+	\vspace{1mm} %%% für Druck
+
+	\item Das Entwicklerteam eines Softwaresystems hält eine Anforderung in ihrer mehrfach modifizierten Formulierung für unlogisch und fragt sich, ob
+	\linebreak %%% für Druck
+	während der Anforderungsermittlung oder -validierung ein Fehler geschehen ist. Wer mag ein Interesse an der dort formulierten Systemeigenschaft haben? Um nicht gegen die eigene Überzeugung zu entwickeln, soll nachvollzogen werden, von wem (von welchem Stakeholder) diese Anforderung eigentlich stammt. In der zuletzt abgestimmten Form hat die Anforderungssammlung keine Autoren mehr, denn sie ist in der Validierungsphase mehrfach überarbeitet worden, Anforderungen wurden kombiniert, aus komplexen Anforderungen vereinfacht, sprachlich auf eine einheitliche Abstraktionsebene gebracht usw. Um dennoch der Kernaussage der Anforderung auf den Grund gehen zu können, muss die Entwicklung der Anforderungen nachvollziehbar sein. In anderen Worten: für jede Anforderung, die während des gesamten Teilprozesses betrachtet wird, muss der Weg bis zum Ursprung (bzw. den Ursprüngen) dieser Anforderung transparent nachvollziehbar sein.
+
+	\vspace{1mm} %%% für Druck
+
+	\item In mehreren Anforderungen kommt derselbe Begriff vor, in einer Anforderung wird dieser Begriff im Detail erläutert. Da es sich stets um dasselbe handelt, muss das Detailwissen aus der einen Anforderung auch bei Berücksichtigung der anderen Anforderungen eingehen. Der Entwickler kann aber nicht für jeden vorkommenden Begriff alle Anforderungen im Auge haben, die damit etwas zu tun haben könnten. Er muss vielmehr darin unterstützt werden, zusammenhängende Anforderungen auch zusammen zu sehen und zu verstehen, und insbesondere entsprechende Beziehungen zwischen Anforderungen 
+	\linebreak %%% für Druck
+	zu erkennen.
+\end{itemize}
+
+Was folgt nun daraus für das Management der Anforderungen? Für jede Anforderung muss einerseits ihre Historie bis hin zum Ursprung nachvollziehbar sein. Dieser Ursprung besteht oft aus Textdokumenten. Aber auch Audio- und Video\-dateien sowie Dokumente anderer Dokumenttypen sind denkbar, zum Beispiel für die Doku\-mentation technischer Systeme. Idealerweise bestehen die Bezüge nicht nur aus Links auf die jeweiligen Dokumente, Dokumentnamen oder auf Orte, wo sich die Dokumente befinden, sondern geben auch an, auf welche Stelle eines Dokuments sich die Verbindung bezieht (Wo wird in einer Audio-Aufzeichnung die Anforderung erwähnt? Welches Synonym wurde durch einen neuen Begriff ersetzt?). 
+
+\vspace{1mm} %%% für Druck
+
+Andererseits müssen auch Querbezüge zwischen den aktuellen Dokumenten bzw. zwischen Dokumenten derselben „Generation“ festgehalten werden. Manche Anforderungen ergeben nur dann einen Sinn, wenn man sie im Zusammenhang mit einer anderen Anforderung liest, in der zum Beispiel ein verwendeter Begriff definiert und erklärt wird.
+
+\vspace{1mm} %%% für Druck
+
+Dies alles kann man natürlich mit einem Zettelkasten und Post-its organisieren, aber bei größeren Systemen und einer umfangreichen Anforderungssammlung ist das sicherlich keine gute Idee. Eine derartige Organisation würde zudem von einzelnen Personen abhängen, die (vielleicht) den Überblick behalten haben. Tatsächlich setzt man aber in den meisten Fällen entsprechende Content-Management Systeme ein, die Dokumente verschiedenster Typen organisieren können und die genannten Bezüge zwischen den Dokumenten und den darin verborgenen Anforderungen auf transparente Weise darstellen. Wichtig dabei ist, dass die Verwaltung und auch die Weiterentwicklung und die Modifikation all dieser Dokumente nicht von der Expertise einzelner Personen abhängen darf, die wieder – oft ungewollt und unbewusst – ihr implizites Wissen einbringen.
+
+\vspace{1mm} %%% für Druck
+
+Auch wenn alle Beispiele, die im Rahmen eines Universitätsmoduls vorkommen können, doch relativ klein und übersichtlich sind, ist die gedankliche Übertragung auf Systeme im Großen und die Anforderungsermittlung bei sehr vielen Stakeholdern schwierig. Bei wirklich großen Systemen ist die Ermittlung und auch die Verwaltung der Anforderungen eine äußerst komplexe und auch erfolgskritische Aufgabe, die ein hohes Maß an Professionalisierung und Automatisierung erfordert. Dies nicht zuletzt deshalb, weil sich Anforderungen auch nach Projektbeginn ändern und neue hinzukommen, und dies nicht nur bei einer agilen Vorgehensweise. Die meisten fehlgeschlagenen Großprojekte sind (wenigstens auch) an fehlerhaftem oder unzureichendem Management der Anforderungen gescheitert. Das wahrscheinlich in Deutschland bekannteste Beispiel ist der Berliner Flughafen BER, wo es allerdings nicht um ein Softwareprojekt ging. Sie können mit Internetsuche oder noch besser mit ChatGPT beeindruckende Listen von Softwareprojekten finden, die aufgrund schlechten Anforderungsmanagements nie beendet wurden, ihren Kostenrahmen deutlich überzogen haben oder erst Jahre nach der ursprünglich geplanten Auslieferung fertig
+\linebreak %%% für Druck
+wurden.
+
+\pagebreak %%% für Druck
+
+Wir alle haben zudem Erfahrungen mit Softwaresystemen gemacht, in denen wir irgendwann eine Rolle als Stakeholder gespielt haben, sei es als direkter Anwender oder anderer Nutzer. Wie oft ärgert man sich über die Schnittstelle oder die Funktionalität! Die eigenen Anforderungen, die natürlich der Entwicklung nicht zugrunde lagen, werden nicht berücksichtigt. Also wurden entsprechende Anforderungen entweder nicht erhoben oder sie sind bei dem Anforderungsmanagement unter den Tisch gefallen oder so verfälscht worden, dass sie der ursprünglichen Intention nicht mehr entsprechen.

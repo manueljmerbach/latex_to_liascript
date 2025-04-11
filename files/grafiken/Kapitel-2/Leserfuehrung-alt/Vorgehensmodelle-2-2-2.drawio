@@ -1,0 +1,37 @@
+<mxfile host="app.diagrams.net" modified="2023-12-19T16:03:36.351Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0" etag="_Be6JFCvKjwjA1r1ofjT" version="22.1.11" type="device">
+  <diagram id="BUvfRwf0zNBMPw8hF7Nk" name="Seite-1">
+    <mxGraphModel dx="600" dy="323" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="VH0EOoQqH9ZZ3GVrLHr7-1" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="680" y="220" width="400" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="VH0EOoQqH9ZZ3GVrLHr7-2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#006666;fillOpacity=20;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="680" y="280" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-2" value="Rational Unified Process" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="290" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-5" value="Spiralmodell" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="230" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-7" value="..." style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="350" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-24" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="kW_KDMngMzazlsKr2CsW-10" target="kW_KDMngMzazlsKr2CsW-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-25" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="kW_KDMngMzazlsKr2CsW-10" target="kW_KDMngMzazlsKr2CsW-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-26" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="kW_KDMngMzazlsKr2CsW-10" target="kW_KDMngMzazlsKr2CsW-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kW_KDMngMzazlsKr2CsW-10" value="Iterativ-inkrementelle Modelle" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="690" y="290" width="150" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

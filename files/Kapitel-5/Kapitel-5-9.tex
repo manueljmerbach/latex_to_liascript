@@ -1,0 +1,382 @@
+\section{Vorlesung 9: Höhere Petrinetze und andere Erweiterungen}
+
+Höhere Petrinetze, auch als „High-Level“ Petrinetze bekannt, erweitern die sogenannten elementaren Petrinetze, wie sie in den vorherigen Kapiteln behandelt wurden, um diese Aspekte:
+\begin{itemize}
+	\item Statt der nicht unterscheidbaren schwarzen Punkte können nun beliebige Objekte als Marken auf den Stellen verwendet werden. Formal ist die Markierung einer Stelle eine Multimenge von Objekten, denn ein Objekt kann grundsätzlich mehrfach vorkommen.
+	
+	\item Marken können Werte wie Zahlen, Zeichenketten oder Datentupel darstellen, die für Entscheidungsprozesse und Bedingungen innerhalb des Netzes genutzt werden können.
+	
+	\item Transitionen können Bedingungen (Guards) haben, die auf den Werten der eingehenden Marken ausgewertet werden. Sie können auch Operationen auf diesen Werten durchführen und die Ergebnisse an ausgehende Marken weitergeben.
+\end{itemize}
+
+Es gibt unterschiedliche Fälle, in denen man Marken unterscheiden möchte:
+\begin{itemize}
+	
+	\item Wenn Transitionen basierend auf Attributen oder Werten der Marken aktiviert werden sollen. Beispielsweise kann ein (Geschäfts)-Prozess unter\-schied\-liche Pfade nehmen, abhängig von dem Dokument, das als Marke repräsentiert wird (Beispiel~1).
+	
+	\item Wenn man den Weg einzelner Elemente durch das System nachverfolgen möchte. Wenn also die Bewegung der Marke tatsächlich das Verhalten visualisiert (ebenfalls Beispiel 1).
+	
+	\item Wenn die Modellierung von vielen, ähnlichen Stellen zu aufwändig und unübersichtlich wird. Um tatsächliche Systeme in der Praxis darzustellen, braucht man oft sehr viele Stellen. Dann werden die Netze unübersichtlich; man sagt manchmal, sie hätten die Größe einer Wandtapete (Beispiel 2).
+	
+\end{itemize}
+
+\begin{figure}[!htbp]
+	\centering
+	\scalebox{0.8}{
+		\petrinetz{
+			\draw[colDummyLine, very thick] (-7,4) rectangle (9,-2);
+			
+			% Stellen
+			\node[place, tokens=1, label=left:$s_a$] (place1) at (-6,1) {};
+			\node[place, tokens=0] (place8) at (2,0) {};
+			\node[place, tokens=0] (place7) at (2,2) {};
+			\node[place, tokens=0] (place5) at (2,4) {};
+			\node[place, tokens=0] (place4) at (2,-2) {};
+			\node[place, tokens=0, FernUni-MI-green, line width=2pt] (place3) at (-2,-1) {};
+			\node[place, tokens=0, FernUni-MI-green, line width=2pt] (place2) at (-2,3) {};
+			\node[place, tokens=0, label=right:$s_e$] (place6) at (6,1) {};
+			
+			% Transitionen
+			\node[transition] (trans1) at (-4,1) {};
+			\node[transition] (trans2) at (0,2) {};
+			\node[transition] (trans3) at (0,0) {};
+			\node[transition] (trans4) at (4,3) {};
+			\node[transition] (trans5) at (4,-1) {};
+			\node[transition] (trans6) at (0,4) {};
+			\node[transition] (trans7) at (0,-2) {};
+			
+			% Kanten
+			\draw(place1)edge[post](trans1);
+			
+			\draw[FernUni-MI-green](place2)edge[post, line width=2pt](trans2);
+			\draw[FernUni-MI-green](place3)edge[post, line width=2pt](trans3);
+			\draw[FernUni-MI-green](place3)edge[post, line width=2pt](trans7);
+			\draw[FernUni-MI-green](place2)edge[post, line width=2pt](trans6);
+			
+			\draw
+			(trans6) edge[post](place5)
+			(trans3) edge[post](place8)
+			(place8) edge[post](trans4)
+			(place7) edge[post](trans5)
+			(trans1) edge[post](place2)
+			(place5) edge[post](trans4)
+			(trans5) edge[post](place6)
+			(place4) edge[post](trans5)
+			(trans1) edge[post](place3)
+			(trans7) edge[post](place4)
+			(trans2) edge[post](place7)
+			(trans4) edge[post](place6);			
+		}
+	}
+	\caption{Workflow-Netz}
+	\label{fig:v9_wfn}
+\end{figure}
+
+\textbf{Beispiel 1}
+
+Im Workflow-Netz in Abbildung~\ref{fig:v9_wfn} gibt es zwei vorwärts verzweigte Stellen (hervorgehoben), an denen durch irgendwelche Kriterien, die im Netz nicht modelliert sind, entschieden wird, welche Aktivität jeweils ausgeführt wird, d.h. welche Transition schaltet. Schaltet in beiden Fällen die obere Transition oder in beiden Fällen die untere Transition, kann die Endstelle erreicht werden. In allen anderen Fällen kommt es zu einem Deadlock, keine Transition kann mehr schalten.
+
+\vspace{\baselineskip}
+
+Führen wir das an einem Beispiel aus der realen Welt weiter aus: 
+\marginline{Realwelt\-beispiel Versicherungs\-unternehmen}
+In der Schadens\-abtei\-lung eines KFZ-Versicherungsunternehmens wird ab einer bestimmten Schadenshöhe -- in unserem Beispiel 1000~€ -- ein zusätzliches Gutachten angefordert und eine Vertragswerkstatt beauftragt.
+
+\vspace{\baselineskip} %%% für Druck
+
+\begin{figure}[!htbp]
+	\begin{addmargin*}[0cm]{-\marginparwidth}
+		
+	\centering
+	\scalebox{0.8}{
+		\petrinetz{
+			\draw[colDummyLine, very thick] (-8.5, 4) rectangle (12.5, -2);
+			
+			% Places
+			\node[place, label=left:$s_a$] (place1) at (-6,1) {};
+			\node[place, tokens=0] (place8) at (6,0) {};
+			\node[place, tokens=0] (place7) at (6,2) {};
+			\node[place, tokens=0] (place5) at (6,4) {};
+			\node[place, tokens=0] (place4) at (6,-2) {};
+			\node[place, tokens=0] (place3) at (-2,-1) {\includegraphics[height=0.6cm]{Bilder/Kapitel-5/Aufsatz.png}};
+			\node[place, tokens=0] (place2) at (-2,3) {\includegraphics[height=0.6cm]{Bilder/Kapitel-5/Aufsatz.png}};
+			\node[place, tokens=0, label=right:$s_e$] (place6) at (10,1) {};
+			
+			% Transitions
+			\node[transition, label=below:$t_1$] (trans1) at (-4,1) {};
+			\node[transition, label=below:$t_3$] (trans2) at (2,2) {\; Schadenshöhe $\leq 1000$ € \;};
+			\node[transition, label=below:$t_4$] (trans3) at (2,0) {\; Schadenshöhe $> 1000$ € \;};
+			\node[transition] (trans4) at (8,3) {};
+			\node[transition] (trans5) at (8,-1) {};
+			\node[transition, label=below:$t_2$] (trans6) at (2,4) {\; Schadenshöhe $> 1000$ € \;};
+			\node[transition, label=below:$t_5$] (trans7) at (2,-2) {\; Schadenshöhe $\leq 1000$ € \;};
+			
+			\draw(place1)edge[post](trans1);
+			\draw(place2)edge[post](trans2);
+			
+			\draw(place3)edge[post](trans3);
+			\draw(place3)edge[post](trans7);
+			\draw(place2)edge[post](trans6);
+			\draw
+			(trans6) edge[post](place5) 
+			(trans3) edge[post](place8)
+			(place8) edge[post](trans4)
+			(place7) edge[post](trans5)
+			(trans1) edge[post](place2)
+			(trans4)edge[pre](place5)
+			(trans5)edge[post](place6)
+			(place4)edge[post](trans5)
+			(trans1) edge[post](place3)
+			(trans7) edge[post](place4)
+			(trans2) edge[post](place7)
+			(trans4) edge[post](place6);
+		}
+	}
+	\caption{Dokumente als Marken}
+	\label{fig:v9_document_token}
+	
+	\end{addmargin*}
+\end{figure}
+
+\vspace{\baselineskip} %%% für Druck
+
+Abbildung~\ref{fig:v9_document_token} zeigt diesen Prozess im Modell. Marken repräsentieren dabei Dokumente. Nach Schalten der Transition $t_1$ gibt es zwei Marken, die sich auf den nachfolgenden Stellen befinden und die Transitionen $t_2$ bis $t_5$ aktivieren. Die Beschriftungen in den Transitionen geben die jeweiligen Schaltbedingungen an, man nennt sie „Guards“. Eine Transition kann nur dann schalten, wenn die in dem Guard formulierte Bedingung \textit{wahr} ist. Da in unserem Beispiel sowohl die Schadenshöhe als auch die Bedingungen für beide Alternativen identisch sind, verhindern wir durch die zusätzlichen Bedingungen für das Schalten der Transitionen, dass Deadlocks auftreten. Das Workflow-Netz wird dadurch sound. Umgekehrt können Guards auch bewirken, dass Transitionen gar nicht mehr schalten können und so soundness zerstört wird.
+
+Ein formales High-Level Petrinetz für dieses Beispiel wird in Abbildung~\ref{fig:v9_formale_schadensabwicklung} dargestellt.
+
+\pagebreak %%% für Druck
+
+\vspace{\baselineskip} %%% für Druck
+
+\begin{figure}[!htbp]
+	\begin{addmargin*}[0cm]{-\marginparwidth}
+		
+	\centering
+	\scalebox{0.8}{
+		\petrinetz{
+			\draw[colDummyLine, very thick] (-8.5, 4) rectangle (12.5, -2);
+			
+			% Places
+			\node[place, label=left:$s_a$] (place1) at (-7,1) {$\langle x, y, z \rangle$};
+			\node[place, tokens=0] (place8) at (6,0) {};
+			\node[place, tokens=0] (place7) at (6,2) {};
+			\node[place, tokens=0] (place5) at (6,4) {};
+			\node[place, tokens=0] (place4) at (6,-2) {};
+			\node[place, tokens=0] (place3) at (-2,-1){};
+			\node[place, tokens=0] (place2) at (-2,3){};
+			\node[place, tokens=0, label=right:$s_e$] (place6) at (10,1) {};
+			\node[transition, label=below:$t_1$] (trans1) at (-4,1) {};
+			\node[transition, label=below:$t_3$] (trans2) at (2,2) {\; $[z \leq 1000]$ \;};
+			\node[transition, label=below:$t_4$] (trans3) at (2,0) {\;$[z > 1000]$ \;};
+			\node[transition] (trans4) at (8,3) {};
+			\node[transition] (trans5) at (8,-1) {};
+			\node[transition, label=below:$t_2$] (trans6) at (2,4) {\; $[z > 1000]$ \;};
+			\node[transition, label=below:$t_5$] (trans7) at (2,-2) {\; $[z \leq 1000]$ \;};
+			
+			\draw(place1)edge[post] node[above] {$\langle x, y, z \rangle$} (trans1);
+			\draw(place2)edge[post]node[below] {$\langle x, z \rangle$}(trans2);
+			
+			\draw(place3)edge[post]node[above] {$\langle y, z \rangle$}(trans3);
+			\draw(place3)edge[post]node[below] {$\langle y, z \rangle$}(trans7);
+			\draw(place2)edge[post]node[above] {$\langle x, z \rangle$}(trans6);
+			\draw(trans6) edge[post]node[above] {$\langle x \rangle$}(place5);
+			\draw(trans3) edge[post]node[above] {$\langle y\rangle$}(place8);
+			\draw(place8) edge[post]node[above] {$\langle y \rangle$}(trans4);
+			\draw(place7) edge[post]node[right] {$\langle x \rangle$}(trans5);
+			\draw(trans1) edge[post]node[right] {$\langle  y,z \rangle$}(place3);
+			\draw(trans1) edge[post]node[right] {$\langle  x,z \rangle$}(place2);
+			\draw(trans4)edge[pre]node[above] {$\langle x \rangle$}(place5);
+			\draw(trans5)edge[post]node[right] {$\langle x,y \rangle$}(place6);
+			\draw(place4)edge[post]node[above] {$\langle y \rangle$}(trans5);
+			\draw(trans4) edge[post]node[right] {$\langle x,y \rangle$}(place6);
+			\draw(trans7) edge[post]node[above] {$\langle y \rangle$}(place4);
+			\draw(trans2) edge[post]node[above] {$\langle x \rangle$}(place7);
+		}
+	}
+	\caption{Höheres Petrinetz}
+	\label{fig:v9_formale_schadensabwicklung}
+
+	\end{addmargin*}
+\end{figure}
+
+\vspace{\baselineskip} %%% für Druck
+
+Dokumente werden als Tupel abstrahiert. Die Komponente $z$ stellt die Schadenshöhe dar, auf die in den Guards der Transitionen $t_2$ bis $t_5$ Bezug genommen wird. 
+
+\textbf{Beispiel 2}
+
+Eine völlig andere Motivation für High-Level Petrinetze ist die Modellierung gleichartiger Komponenten mit nur einem Modell. Die Idee wird besonders schön deutlich am berühmten Beispiel der fünf Philosophen \cite{dij71}.
+
+Fünf Philosophen sitzen um einen runden Tisch. 
+\marginline{Dining Philosophers Problem}
+Jeder Philosoph denkt und isst abwechselnd. Zum Essen benötigt er zwei Stäbchen (ursprünglich hat Dijkstra das Beispiel mit Gabeln formuliert, aber chinesische Esswerkzeuge sind passender). Das Problem ist nun, dass es nur insgesamt fünf Stäbchen gibt, jeweils eines zwischen zwei Philosophen. Daher können zwei benachbarte Philosophen nie zugleich essen. Es geht bei diesem Beispiel da\-rum, ob ein Philosoph gänzlich vom Essen ausgeschlossen werden kann und um ähnliche Fragestellungen, die uns hier im Rahmen der Modellierung aber nicht interessieren.
+
+Abbildung~\ref{fig:v9_fuenf_philosophen} repräsentiert in jedem der fünf Zyklen die wechselnden Zustände eines Philosophen. Anfangs denken alle Philosophen. Die inneren Transitionen beschreiben jeweils die Übergänge zu essenden Philosophen, die äußeren Transitionen führen jeweils zurück zum Denken. Es war mühselig genug, dieses Netz so schön zu zeichnen; deshalb haben wir auf die vollständige Benennung aller Transitionen und Stellen verzichtet. Sie ergeben sich aber auch aus Symmetriegründen von selbst. Glücklicherweise hat Dijkstra nur fünf Philosophen betrachtet und nicht z.B. 127, sonst wäre das Netz doch arg groß geworden.
+
+\clearpage %%% für Druck --- die beiden folgenden Abbildungen sollen auf eine Seite!
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.7\linewidth]{Bilder/Kapitel-5/philosophen1.png}
+	\caption{Das Dining Philosophers Problem}
+	\label{fig:enter-label}
+\end{figure}
+
+\begin{figure}[!htbp]
+	\centering
+	\scalebox{0.8}{
+		\petrinetz{
+			\draw[colDummyLine, very thick] (-5,-5) rectangle (5,5);
+			
+			% neue erste Umlaufbahn: 5 Transitionen 
+			
+			\node[transition] (trans1)  at ({2*cos(270)}, {2*sin(270)}) {}; 
+			\node[transition] (trans2)  at ({2*cos(342)}, {2*sin(342)}) {}; 
+			\node[transition, label=below:$t_1$] (trans3)  at ({2*cos(54)},  {2*sin(54)})  {}; 
+			\node[transition] (trans4)  at ({2*cos(126)}, {2*sin(126)}) {}; 
+			\node[transition] (trans5)  at ({2*cos(198)}, {2*sin(198)}) {}; 
+			
+			%neue 2. Umlaufbahn 10 Stellen Philosophen und 5 Stäbchen
+			
+			%Stäbchen
+			\node[place, tokens=1] (place6) at ({4*cos(306)}, {4*sin(306)}) {};
+			\node[place, tokens=1,label=right: $s_2$] (place7) at ({4*cos(18)},  {4*sin(18)})  {};
+			\node[place, tokens=1,label=above: $s_1$] (place8) at ({4*cos(90)},  {4*sin(90)})  {}; 
+			\node[place, tokens=1] (place9) at ({4*cos(162)}, {4*sin(162)}) {}; 
+			\node[place, tokens=1] (place10) at ({4*cos(234)}, {4*sin(234)}) {}; 
+			
+			%Philosphen
+			
+			\node[place, tokens=1] (place1) at ({3.5*cos(280)}, {3.5*sin(280)}) {}; 
+			\node[place, tokens=1] (place2) at ({3.5*cos(352)}, {3.5*sin(352)}) {}; 
+			\node[place, tokens=1,label=left: $d$] (place3) at ({3.5*cos(64)},  {3.5*sin(64)})  {}; 
+			\node[place, tokens=1] (place4) at ({3.5*cos(136)}, {3.5*sin(136)}) {}; 
+			\node[place, tokens=1] (place5) at ({3.5*cos(208)}, {3.5*sin(208)}) {}; 
+			
+			\node[place, tokens=0] (place11) at ({3.5*cos(260)}, {3.5*sin(260)}) {}; 
+			\node[place, tokens=0] (place12) at ({3.5*cos(332)}, {3.5*sin(332)}) {};
+			\node[place, tokens=0,label=right: $e$] (place13) at ({3.5*cos(44)},  {3.5*sin(44)})  {}; 
+			\node[place, tokens=0] (place14) at ({3.5*cos(116)}, {3.5*sin(116)}) {}; 
+			\node[place, tokens=0] (place15) at ({3.5*cos(188)}, {3.5*sin(188)}) {}; 
+			
+			% neue 3. Umlaufbahn: Transitionen des Gabeln wegnehmen
+			\node[transition] (trans6)  at ({5*cos(270)}, {5*sin(270)}) {}; 
+			\node[transition] (trans7)  at ({5*cos(342)}, {5*sin(342)}) {}; 
+			\node[transition, label=above:$t_2$] (trans8)  at ({5*cos(54)},  {5*sin(54)})  {}; 
+			\node[transition] (trans9)  at ({5*cos(126)}, {5*sin(126)}) {}; 
+			\node[transition] (trans10)  at ({5*cos(198)}, {5*sin(198)}) {}; 
+			
+			% Kanten
+			\draw (place1) edge[post, bend right=15](trans1);
+			\draw (place2) edge[post, bend right=15](trans2);
+			\draw (place3) edge[post, bend right=15](trans3);
+			\draw (place4) edge[post, bend right=15](trans4);
+			\draw (place5) edge[post, bend right=15](trans5);
+			\draw (place6) edge[post](trans1);
+			\draw (place6) edge[post](trans2);
+			\draw (place7) edge[post](trans2);
+			\draw (place7) edge[post](trans3);
+			\draw (place8) edge[post](trans3);
+			\draw (place8) edge[post](trans4);
+			\draw (place9) edge[post](trans4);
+			\draw (place9) edge[post](trans5);
+			\draw (place10) edge[post](trans5);
+			\draw (place10) edge[post](trans1);
+			\draw (place11) edge[pre, bend left=15](trans1);
+			\draw (place12) edge[pre, bend left=15](trans2);
+			\draw (place13) edge[pre, bend left=15](trans3);
+			\draw (place14) edge[pre, bend left=15](trans4);
+			\draw (place15) edge[pre, bend left=15](trans5);
+			%links
+			\draw (place15) edge[post, bend right=15](trans10);
+			\draw (place9) edge[pre](trans10);
+			\draw (place10) edge[pre](trans10);
+			\draw (place5) edge[pre, bend left=15](trans10);
+			%oben links
+			\draw (place14) edge[post, bend right=15](trans9);
+			\draw (place8) edge[pre](trans9);
+			\draw (place9) edge[pre](trans9);
+			\draw (place4) edge[pre, bend left=15](trans9);
+			
+			%oben rechts
+			\draw (place13) edge[post, bend right=15](trans8);
+			\draw (place7) edge[pre](trans8);
+			\draw (place8) edge[pre](trans8);
+			\draw (place3) edge[pre, bend left=15](trans8);
+			%rechts
+			\draw (place12) edge[post, bend right=15](trans7);
+			\draw (place6) edge[pre](trans7);
+			\draw (place7) edge[pre](trans7);
+			\draw (place2) edge[pre, bend left=15](trans7);
+			%unten
+			\draw (place11) edge[post, bend right=15](trans6);
+			\draw (place10) edge[pre](trans6);
+			\draw (place6) edge[pre](trans6);
+			\draw (place1) edge[pre, bend left=15](trans6);
+		}
+	}
+	\caption{Das Dining Philosophers Problem als elementares Petrinetz} \label{fig:v9_fuenf_philosophen}
+\end{figure}
+
+\pagebreak %%% für Druck
+
+High-Level Petrinetze können nun genutzt werden, um wiederkehrende Elemente quasi „aufeinander zu falten“ (dies wird technisch tatsächlich als „folding“
+\marginline{folding}
+bezeichnet). Eine Stelle des High-Level Petrinetzes repräsentiert alle denkenden Philosophen, eine andere alle essenden Philosophen, und nur zwei Transitionen alle möglichen Übergänge (s.~Abb.~\ref{fig:v9_fuenf_philosophen_colored}). 
+
+
+\begin{figure}[!htbp]
+	\centering
+	\scalebox{0.8}{
+		\petrinetz{
+			\draw[colDummyLine, very thick] (-1,-3) rectangle (5,3);
+			
+			% Places
+			\node[place, tokens=0, label=left:Pd] (place1) at (0,0) {}
+			[children are tokens,token distance=1.1ex]
+			child {node [token,blue!30!green] {}}
+			child {node [token,blue!10!green] {}}
+			child {node [token,blue] {}}
+			child {node [token, blue!70!green!25!white] {}}
+			child {node [token, green!50!blue] {}};
+			\node[place, tokens=0, label=right:S] (place2) at (2,0) {}
+			[children are tokens,token distance=1.1ex]
+			child {node [token,red!30!yellow] {}}
+			child {node [token,red!10!yellow] {}}
+			child {node [token,red!50!yellow] {}}
+			child {node [token, red!70!yellow] {}}
+			child {node [token, red] {}};
+			
+			\node[place, tokens=0, label=right:Pe] (place3) at (4,0) {};
+			
+			\node[transition,label=above:$t_2$] (trans1) at (2,2) {};
+			\node[transition, label=below:$t_1$] (trans2) at (2,-2) {};
+			
+			\draw
+			(place1) edge[pre, bend left=30](trans1)
+			(place3) edge[post, bend right=30](trans1)
+			(trans2) edge[post, bend right=30](place3)
+			(trans2) edge[pre, bend left=30](place1)
+			(trans1) edge[post](place2)
+			%(place3) edge[post, bend left=30](trans3)
+			(place2) edge[post](trans2);
+			%(trans4) edge[post, bend right=30](place5)
+			%(trans4) edge[post, bend left=30](place3)
+			%(trans3) edge[post](place4)
+			%(place4) edge[post](trans4)
+			%(trans3) edge[pre, bend left=30](place5);
+		}
+	}
+	\caption{Das Dining Philosophers Problem als Coloured Petrinetz}
+	\label{fig:v9_fuenf_philosophen_colored}
+\end{figure}
+
+
+Natürlich müssen wir unterscheiden, welche Philosophen in einem Zustand gerade essen oder gerade denken. Und deshalb müssen wir die Marken in den Stellen unterscheiden. Wir greifen hier die Metapher der farbigen Marken auf; 
+\marginline{Coloured \\ Petri Nets}
+höhere Petrinetze werden oft auch „Coloured Petri Nets“ genannt \cite{jen09}.
+
+In der Videovorlesung können sie erkennen, wie durch geeignete Kantenanschriften die Spielregeln spezifiziert werden, sodass weiterhin ein Philosoph nicht irgendwelche Stäbchen verwenden kann.
+
+Für die Lösung besonderer Modellierungs- und Simulationsaufgaben, wie der Ermittlung von Flaschenhälsen, Optimierung von Ressourcenverteilung usw. gibt es weitere spezielle Petrinetze, die Wahrscheinlichkeiten und zeitliche Aspekte direkt berücksichtigen. Davon gibt es auch wieder viele Varianten, die teilweise im Widerspruch zu Petris Postulat der fehlenden, global verfügbaren Zeit stehen. Die wichtigsten Repräsentanten sind „Time Petri Nets“, „Timed Petri Nets“ und „Stochastic Petri Nets“. Viele Aspekte von Zeit und Wahrscheinlichkeit lassen sich aber auch durch Coloured Petri Nets modellieren.
+

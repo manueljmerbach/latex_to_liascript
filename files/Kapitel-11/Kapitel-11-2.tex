@@ -1,0 +1,16 @@
+\section{Korrektheitsbeweise}
+\label{sec:Kap-11-2}
+
+Der Begriff „Beweis“ im Titel dieses Abschnitts ist durchaus wie in der Mathematik zu verstehen; es geht um einen formalen Beweis einer mathematisch formulierten Aussage. Ein Programmcode wird dafür als formales Objekt interpretiert. Die dazugehörige Aussage, die der funktionalen Spezifikation des Programms entspricht, muss ebenfalls als mathematisches Objekt formuliert werden. Dafür werden Logiken in verschiedenen Varianten verwendet, von Aussagenlogik über Prädikatenlogik bis hin zu temporalen Logiken, in denen auch der Verlauf von Zustandsänderungen oder von Ereignissen beschrieben werden kann.
+
+Wie eingangs dieser Lektion bereits erwähnt, unterscheiden wir grundsätzlich zwei Konzepte für Korrektheitsbeweise, die beide auch „Programmverifikation“ oder nur „Verifikation“ genannt werden:
+
+\begin{enumerate}
+	\item \textbf{Beweis der Korrektheit}\\
+	Es wird ein Beweis erstellt, dass das Programm die Spezifikation erfüllt. Die Beweisführung muss formalen Anforderungen genügen wie ein Beweis in der Mathematik und kann von anderen Menschen nachvollzogen werden. Eine noch vertrauenswürdigere Variante dieses Verfahrens liegt vor, wenn der Beweis durch sogenannte Proof Checker automatisiert geprüft werden kann. Allerdings muss man dann streng genommen dem Proof Checker vertrauen bzw. auch dessen Korrektheit beweisen.
+	
+	\item \textbf{Model Checking}\\
+	Der Begriff „Model“ in „Model Checking“ bezieht sich auf den Modellbegriff der Logik. Ein Modell in der Logik ist eine algebraische Struktur, für die ein gegebenes logisches Axiomensystem erfüllt ist. Die Analogie ist hier ein Programm, das eine gegebene Spezifikation erfüllt. Ein Model Checker prüft und entscheidet, ob dies der Fall ist. Er gibt im positiven Fall OK aus, andernfalls (wenigstens) ein Gegenbeispiel, \dasHeisst einen Programmablauf, in dem die Verletzung der Spezifikation sichtbar wird.
+\end{enumerate}
+
+Wir wollen hier nur den ersten Punkt aufgreifen, also Korrektheitsbeweise, und dies auch nur recht kurz und oberflächlich. Das Ziel ist dabei nicht, dass Sie in der Praxis Korrektheitsbeweise durchführen werden (dafür sind die meisten Programme auch zu komplex), sondern dass Sie verstehen, was Korrektheit und Verifikation bedeuten und dass Korrektheit grundsätzlich auch beweisbar ist.

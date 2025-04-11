@@ -1,0 +1,64 @@
+<mxfile host="app.diagrams.net" modified="2023-11-13T10:42:43.620Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0" etag="ZTtoiYJIt6SlYgEOA62o" version="22.1.0" type="device">
+  <diagram name="Seite-1" id="ShBiYY95SjRawN6a6ssa">
+    <mxGraphModel dx="1242" dy="659" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="0ZB4v4bP1DNJAjfR8GdP-2" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;" parent="1" vertex="1">
+          <mxGeometry x="60" y="110" width="100" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="0ZB4v4bP1DNJAjfR8GdP-1" value="Herr Müller" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="95" y="150" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="0ZB4v4bP1DNJAjfR8GdP-3" value="&lt;u&gt;herrMüller : Lehrer&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="360" y="120" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="0ZB4v4bP1DNJAjfR8GdP-5" value="&lt;u&gt;herrMüller : Fußballer&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="360" y="200" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="0ZB4v4bP1DNJAjfR8GdP-6" value="Abstraktion" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.999;exitY=0.214;exitDx=0;exitDy=0;exitPerimeter=0;verticalAlign=top;spacing=2;spacingLeft=0;align=center;labelBackgroundColor=none;" parent="1" source="0ZB4v4bP1DNJAjfR8GdP-2" target="0ZB4v4bP1DNJAjfR8GdP-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="170" y="140" as="sourcePoint" />
+            <mxPoint x="440" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ZB4v4bP1DNJAjfR8GdP-7" value="&lt;div&gt;Abstraktion&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.786;exitDx=0;exitDy=0;exitPerimeter=0;verticalAlign=bottom;align=center;labelBackgroundColor=none;" parent="1" source="0ZB4v4bP1DNJAjfR8GdP-2" target="0ZB4v4bP1DNJAjfR8GdP-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="170" y="220" as="sourcePoint" />
+            <mxPoint x="440" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ZB4v4bP1DNJAjfR8GdP-8" value="&lt;b&gt;Lehrer&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="210" y="50" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ZB4v4bP1DNJAjfR8GdP-9" value="&lt;b&gt;Fußballer&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="210" y="280" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ZB4v4bP1DNJAjfR8GdP-10" value="&lt;div&gt;beschrieben durch&lt;br&gt;&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;align=left;spacing=6;labelBackgroundColor=none;" parent="1" target="0ZB4v4bP1DNJAjfR8GdP-8" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="140" as="sourcePoint" />
+            <mxPoint x="270" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ZB4v4bP1DNJAjfR8GdP-11" value="bechrieben durch" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;align=left;spacing=6;labelBackgroundColor=none;" parent="1" target="0ZB4v4bP1DNJAjfR8GdP-9" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="220" as="sourcePoint" />
+            <mxPoint x="170" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ZB4v4bP1DNJAjfR8GdP-14" value="Klasse" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#006666;" parent="1" vertex="1">
+          <mxGeometry x="230" y="20" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ZB4v4bP1DNJAjfR8GdP-15" value="Klasse" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#006666;" parent="1" vertex="1">
+          <mxGeometry x="230" y="310" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ZB4v4bP1DNJAjfR8GdP-16" value="Realwelt-Objekt" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#006666;" parent="1" vertex="1">
+          <mxGeometry x="60" y="250" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ZB4v4bP1DNJAjfR8GdP-17" value="&lt;div&gt;Modellierte Realwelt-Objekte&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#006666;" parent="1" vertex="1">
+          <mxGeometry x="341" y="165" width="178" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

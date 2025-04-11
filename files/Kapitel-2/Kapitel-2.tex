@@ -1,0 +1,48 @@
+\cleardoublepage
+\chapter{Vorgehensmodelle im Softwareengineering}
+\label{sec:Kap-2}
+
+\vspace{-1cm}
+
+Wir haben uns in Abschnitt~\ref{sec:Kap-1.2.2} bereits mit dem Softwareentwicklungsprozess und seinen Kernprozessen Anforderungsermittlung/-analyse, Entwurf, Implementierung, Testen, Wartung befasst und dabei sicherlich wenigstens implizit eine gewisse Reihenfolge der Prozesse vermittelt. Auf den ersten Blick erscheint es durchaus naheliegend eine kausale und damit auch zeitliche Abhängigkeit dieser Prozesse untereinander anzunehmen. Es ist zum Beispiel wenig sinnvoll eine Software zu implementieren, von der nicht definiert ist, welche Anforderungen an sie gestellt sind, und es ist nicht möglich Programmcode zu testen, der noch nicht existiert. Daher erscheint es richtig, dass der Prozess der Anforderungsermittlung/-analyse immer vor dem Prozess der Implementierung und Letzterer immer vor dem Prozess des Testens stattfinden muss. Bei genauerem Hinsehen ist die zeitliche Abfolge der Prozesse allerdings weniger eindeutig: So könnte man zum Beispiel die Basisfunktionalitäten einer grafischen Oberfläche implementieren, bevor definiert wurde, welche Buttons und Menüeinträge genau existieren sollen. In diesem Fall würde nur eine sehr allgemein gehaltene Anforderung ("`Es gibt eine grafische Oberfläche"') an das zu erstellende Softwareprodukt definiert, auf deren Grundlage bereits mit der Implementierung begonnen werden könnte. Konkretere Anforderungen könnten später definiert werden. Ähnliches gilt für die Abhängigkeit zwischen Implementierung und Testen: Auch wenn konkreter Programmcode erst dann getestet werden kann, wenn er geschrieben ist, könnten die Testfälle für den zu erstellenden Programmcode durchaus schon vorher spezifiziert werden. Für alle anderen Test- und Qualitätssicherungsmaßnahmen, deren Testgegenstand nicht der reine Programmcode, sondern andere Artefakte des Softwareentwicklungsprozesses sind, gilt dies umso mehr.
+
+\sttpDefinitionskasten{\sttpDefinitionskastenSkalierungsfaktor}{Artefakt}{Das Ergebnis einer Tätigkeit im Softwareentwicklungsprozess.}{Bei Artefakten kann es sich um jegliche Art von Dokumenten oder um Diagramme, formale Spezifikationen, Modelle, einzelne Modell\-ele\-mente, Quellcode oder sonstige Ergebnisse handeln.}
+
+\clearpage %%% für Druck
+
+Wir halten fest, dass zwischen den Kernprozessen des Softwareengineering keine grundsätzlichen zeitlichen Abfolgen bestehen. Abbildung~\ref{fig:prozesse_softwareengineering} zeigt die Kernprozesse des Softwareengineering daher ganz bewusst in einer zufälligen Anordnung. Wie oben aber auch deutlich wurde, existieren auf tieferliegenden Ebenen (Teilprozesse, Aktivitäten, Aufgaben) dagegen sehr wohl Abhängigkeiten. Jedes vernünftige Vorgehen in einem Softwareentwicklungsprojekt wird diese Abhängigkeiten natürlich berücksichtigen.
+
+\begin{figure}[h!]
+    \centering
+		\includegraphics[scale=1.0]{Bilder/Kapitel-2/Abb-2-1.pdf}
+    \caption{Kernprozesse des Softwareengineering}
+    \label{fig:prozesse_softwareengineering}
+\end{figure}
+
+Die Einordnung von Prozessen und Teilprozessen in kausal-zeitliche Abfolgen ist Aufgabe von \textit{Vorgehensmodellen}. 
+\marginline{von Prozessen\\zu Vorgehens\-modellen}
+Im Rahmen des Softwareengineering beschreiben Vorgehensmodelle, \textbf{wie} der Entwicklungsvorgang von Softwareprodukten ablaufen soll. Je nach Zielrichtung des Vorgehensmodells werden dafür die einzelnen Prozesse und Teilprozesse des Softwareentwicklungsprozesses in bestimmter Reihenfolge und mit bestimmter Schwerpunktsetzung zusammengesetzt, wobei (Teil)Prozese auch wiederholt stattfinden können. Ergebnis ist die Definition eines idealtypisch ablaufenden Softwareentwicklungsprozesses. Für die Entwicklung eines \textbf{konkreten} Softwareprodukts müssen innerhalb des Rahmens des gewählten Vorgehensmodells dann die durchzuführenden konkreten Teilprozesse, Aktivitäten und Aufgaben für die Erstellung des Softwareprodukts bestimmt werden.
+
+% 2.1
+\clearpage
+\input{Kapitel-2/Kapitel-2-1.tex}
+
+% 2.2
+\clearpage
+\input{Kapitel-2/Kapitel-2-2.tex}
+\input{Kapitel-2/Kapitel-2-2-1.tex}
+\input{Kapitel-2/Kapitel-2-2-1-1.tex}
+\input{Kapitel-2/Kapitel-2-2-2.tex}
+\input{Kapitel-2/Kapitel-2-2-2-1.tex}
+\input{Kapitel-2/Kapitel-2-2-3.tex}
+\input{Kapitel-2/Kapitel-2-2-3-1.tex}
+\input{Kapitel-2/Kapitel-2-2-3-2.tex}
+
+% 2.3
+\clearpage
+\input{Kapitel-2/Kapitel-2-3.tex}
+
+% 2.4
+% Kommentierte Literatur beginnt auf neuer Seite
+\clearpage
+\input{Kapitel-2/Kapitel-2-4.tex}

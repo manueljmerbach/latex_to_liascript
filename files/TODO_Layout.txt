@@ -1,0 +1,25 @@
+Fehler
+- Bei den Zitaten erscheinen die Seitenzahlen der Quelle nicht im PDF. In der .tex-Datei sind sie angegeben.
+  Rückfrage an Maren: Kann ich nicht nachvollziehen. Bitte genauere Angabe. Eventuell ist das nur bei Dir so (biber <-> biblatex). 
+- erledigt: falsche Kopfzeile in der Einleitung: da steht Inhaltsverzeichnis statt Einleitung
+
+strukturelle Änderungen
+- erledigt: Element der Zwischenüberschriften einbauen (aktuell fett gesetzt und mit Kommentar TODO versehen in den .tex-Dateien von Kapitel 1)
+- erledigt, aber noch nicht ganz ok (was soll nach dem Pfeil angezeigt werden? vorher 1.1): Kapitelverweis NATO-Konferenz auf Seite 16 von Kap. 1.1. umbiegen auf die neue Zwischenüberschrift "Konferenz software Engineering 1968" (S. 20)
+- erledigt: Glossareintrag "Anwendungsprogrammierer vs. Systemprogrammierer" umbenennen nur in "Anwendungsprogrammierer"
+- erledigt: 1.1: Kapitelverweis Kapselung ändern in Glossarverweis Kapselung
+
+
+Layout-Änderungen
+- erledigt: Zitate sollen keinen Einzug kriegen
+- in Aufzählungslisten weniger Abstand zwischen den einzelnen Aufzählungspunkten
+- Definitionskasten: im Langtext mal versuchen, den Zeilenabstand noch etwas zu verringern. Vielleicht hilft das, den Stellenwert des Kurztextes gegenüber dem Langtext noch zu erhöhen NEU 6.11.20: Marc findet die unterschiedlichen Schriftgrößen im Kasten irritierend, er hat gedacht, das wär ein Formatfehler. Vielleicht geht es mit Zeilenabstand verrringern bei Langtext, aber gleiche Schriftgröße wie Kurztext?
+- erledigt sich vielleicht, wenn wir auf die Uni-Schriftart gewechselt sind: die eckigen Klammern, in denen die Literaturverweise stehen, sehen seltsam aus. Die im Text sind noch besser als die in den kommentierten Literaturlisten. In KommLit vielleicht die Klammern nicht kursiv setzen, die ID-Einträge der Literatur sind ja auch nicht kursiv.
+- NEU 6.11.20 nach Gespräch mit Marc, wie er es im Go-Kurs handhabt: Marginalien, Glossar-und Kapitelverweise alle eine Ebene kleiner (small?) als die Schrift des Haupttextes. Das reicht vielleicht schon, damit sich die Seitenrand-Sachen vom Haupttext abheben. Zeilenabstand erstmal nicht reduzieren. Was man ansonsten noch machen könnte, wäre die Seitenrand-Sachen in serifenloser Schrift zu setzen, wie die Überschriften, das setzt aber voraus, dass wir nicht auf die serifenlose Frutiger-Schrift wechseln, sondern bei der Serifenschrift für den Haupttext bleiben (Marc ist extrem dafür nicht Frutiger zu nehmen :-), ich bin noch unentschlossen)[ALT:Bei Marginalien, Glossar-und Kapitelverweise, die mehrzeilig sind, den Zeilenabstand reduzieren, damit er weniger ist als der Zeilenabstand vom Haupttext. Evtl. bei Glossar- und Kapitelverweisen (bei Marginalien nicht!) auch noch die Schriftgröße reduzieren]
+- Einzug nur bei Absätzen, die auf andere Absätze folgen "Der erste Absatz nach einer Überschrift, nach einer Leerzeile oder sonstigen Einschüben – wie längeren Zitaten, Abbildungen, Tabellen, Aufzählungen und dergleichen – beginnt stumpf (d. h. ohne Einzug)" (https://de.wikipedia.org/wiki/Einzug_(Typografie)) - würde ich beim letzten Absatz der Einleitung, der auf den Literaturabsatz folgt, auch so machen und auch bei allen Absätzen, die hinter Kästen (Definition, Autor etc.) kommen
+- erledigt: bei mehrzeiligen Fußnoten ist ein Einzug ab der zweiten Zeile. Kriegen wir den weg? In der .tex-Datei kann ich nicht erkennen, wieso der kommt.
+
+NEU 6.11.20
+- erledigt: ich habe eine neue Layout-Variante in Kap. 2.2.1 (sequentielle Modelle) - die ich auch in anderen Kapiteln nehmen möchte -  eingeführt: Der erste Satz eines Absatzes wird hervorgehoben. Aktuell habe ich den nur fett gesetzt, besser wäre aber vielleicht, wenn der in der Farbe wie die Zwischenüberschriften (paragraph) sein könnte. Kann man das subparagraph-Tag dafür nutzen oder ein selbst erstelltes Tag? Inhaltlich ist es kein Paragraph, sondern eine bestimmte Form der Hervorhebung (wie kursiv oder fett), also vielleicht doch lieber ein Hervorhebungs-Tag statt subparagraph? Habe die Stellen im Quellcode markiert
+- aus meiner Sicht können erledigte Aspekte von dieser Liste dann auch gelöscht werden, es sei denn du möchtest sie archiviert haben
+- Schönes Wochenende, lg Maren

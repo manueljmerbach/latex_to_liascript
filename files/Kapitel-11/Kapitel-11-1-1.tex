@@ -1,0 +1,58 @@
+\subsection{Wann wird getestet?}
+\label{sec:Kap-11-1-1}
+
+\minisec{Debugging}
+Jeder Softwareentwickler 
+\marginline{Debugging}
+kennt es: Man schreibt ein Programmstückchen und probiert es gleich aus, schon um Tipp- oder Gedankenfehler zu entlarven. Dieses Vorgehen war in den Anfangszeiten der Computer weniger ausgeprägt, als die Eingabe stets über Lochkarten geschah und die Ausgabe eines Testlaufs erst Minuten oder Stunden später gedruckt vorlag – Bildschirme als Benutzungsschnittstelle gab es noch nicht. Damals hat man bereits aus Effizienzgründen sehr genau hingeschaut, ob das Programmstückchen syntaktisch korrekt ist und wohl das Gewünschte leistet. Heutzutage sind kleine Testläufe in Sekunden erledigt, und entsprechend haben sich Programmierer daran gewöhnt, diese auch regelmäßig durchzuführen. Es geht dabei darum zu prüfen, ob das Programm überhaupt läuft und ob es das leistet, was der Programmierer gerade implementieren wollte, häufig abgeleitet aus der Spezifikation des Programms. Läuft das Programm nicht oder sind die Ergebnisse offensichtlich falsch, wird das Programm verbessert und wieder getestet.
+
+Man nennt dieses Vorgehen auch \emph{Debugging}\footnote{von \emph{Bug}, was eigentlich Käfer heißt, aber in der Computersprache Fehler bezeichnet; im Internet finden sich viele nette Geschichten, wie es zu diesem Namen für Fehler kam.}. Wenn das Programm läuft und die Ergebnisse den Vorstellungen des Entwicklers entsprechen, wird das Debugging beendet.
+
+Wichtig ist, dass beim Debugging Missverständnisse bei der Interpretation der Spezifikation nicht erkannt werden, denn der Programmierer hat ja beim Schreiben und beim Testen des Programms dieselbe, vielleicht falsche, Vorstellung. Auch kann es sein, dass der Programmierer zwar die Spezifikation richtig verstanden hat, aber bei der Implementierung gewisse Sonderfälle schlicht übersehen hat. Auf diese wird er dann natürlich beim Debugging auch nicht kommen.
+
+Debugging beschränkt sich nicht auf eine Analyse des Eingabe- / Ausgabeverhaltens, also auf die Frage, ob ein Programm das leistet, was in der Spezifikation versprochen wurde. Insbesondere dann, wenn dies nicht der Fall ist, will man mehr über das tatsächliche Verhalten des Programms wissen. Grob gesagt, hat der Entwickler eine Vorstellung davon, wie das Programm für bestimmte Eingaben abläuft und zum Ergebnis kommt. Nun will er wissen, ob der Programmablauf tatsächlich dieser Vorstellung entspricht. Oder, falls das Ergebnis fehlerhaft ist, an welcher Stelle es erste Abweichungen gab.
+
+Eine recht alte Möglichkeit, den Programmablauf zu "`überwachen"', ist die Ausgabe von Variablenwerten an verschiedenen Stellen des Programms. Bei geschickter Wahl der überwachten Variablen und Programmstellen für die Ausgabe erhält man so ein hinreichendes Bild von einem Ablauf. Allerdings kann die Ausgabe recht umfangreich sein. Zudem ist es oft sehr arbeitsaufwändig, alle Werte nachzuvollziehen und zu kontrollieren. Ein weiterer Nachteil ist, dass diese Ausgabebefehle während des Debuggings immer wieder hinzugefügt und entfernt werden müssen -- und schließlich ganz gestrichen werden.
+
+Eine Alternative, die von manchen Programmiersprachen angeboten wird, greift auf das Konzept der Zusicherungen (assertions)
+\marginline{Zusicherungen}
+zurück, das wir in Abschnitt~9.2.1 % todo Abschnitt~\ref{sec:Kap-9.2.1}
+bereits eingeführt haben. Eine Zusicherung ist ein logischer Ausdruck, der meist den Wert einer Variablen durch Kombination anderer Variablenwerte beschreibt, aber auch andere Zusammenhänge zwischen Variablenwerten sind möglich. Zusicherungen werden in den Programmcode an relevante Stellen geschrieben. Mit der Zusicherung wird ausgedrückt, welchen Variablenwert man an dieser Stelle erwartet. Eine Zusicherung sollte erfüllt sein, nachdem die davor stehende Anweisung ausgeführt wurde, andernfalls liegt ein Fehler vor und eine entsprechende Fehlermeldung wird ausgegeben. "`Fehler"' bedeutet hier, dass der Programmierer einen Fehler gemacht hat und das Programm nicht so läuft, wie er es sich vorgestellt hat. Entsprechende Fehlermeldungen sind deshalb sehr hilfreich, um entsprechende Gedankenfehler bei der Programmierung zu entdecken. Nach der Testphase kann die Überprüfung der Zusicherungen global ausgeschaltet werden, so dass im Betrieb keine Laufzeit\-beeinflussung vorliegt.
+
+Zusicherungen und durch sie ausgelöste Fehler sind unbedingt zu unterscheiden von Ausnahmen (exceptions). Diese beschreiben nicht Programmfehler, sondern Datenfehler bzw. Abweichungen von erwarteten Dateneigenschaften. Während im korrekten Programm Zusicherungen immer erfüllt sind, können Ausnahmen immer vorkommen. Deshalb werden Zusicherungen beim Einsatz eines Softwareprodukts nicht mehr überprüft, Ausnahmen aber sehr wohl.
+
+\minisec{Unsystematisches Testen}
+Der jetzt 
+\marginline{Wegwerf-Test}
+beschriebene Einsatz von Testverfahren hat keinen wirklichen Namen und wird manchmal als "`Wegwerf-Test"' bezeichnet. Er liegt irgendwo zwischen Debugging und dem systematischen Test. Der Ersteller einer Software selbst oder jemand anders führt das Programm für irgendwelche Eingabedaten aus. Findet man dabei Fehler, so wird entweder das Problem an den Programmierer zurückverwiesen, oder aber es wird der Grund für den Fehler gleich gesucht, um das Programm zu korrigieren. Dabei könnten allerdings neue Fehler entstehen, doch das wird beim unsystematischen Testen durch entsprechende Vorsicht und Einsicht in das Programm und seine Funktionsweise versucht zu vermeiden. Man testet so lange bis man meint, dass es genug sei und die Überzeugung erlangt, dass das Programm grundsätzlich für alle gültigen Eingaben läuft und leistet was es soll.
+
+Da die Testläufe weder geplant noch dokumentiert werden, ist es sehr gut möglich, dass dieselben Tests wiederholt durchgeführt werden, ohne dass dies zu neuen Erkenntnissen führt (deshalb "`Wegwerf-Test"'). Insbesondere wenn das Testen vom Programmierer selbst durchgeführt wird, bestehen ansonsten dieselben Nachteile wie beim Debugging.
+
+Meist kann die tatsächliche Ausgabe einer Programmausführung nicht sogleich geprüft werden, da die entsprechende korrekte, zu erwartende Ausgabe erst ermittelt werden muss. Auch hierin liegt eine Fehlerquelle, weil manchmal die Programm\-ausgabe fälschlich als korrekt vermutet wird und ihr mehr Vertrauen geschenkt wird als der aus anderen Gründen oft fehlerhaften händisch\footnote{"`händisch"' heißt hier natürlich nicht wirklich mit den Händen, sondern nur ohne Rechner\-unterstützung; manchmal sagt man auch "`zu Fuß"'.} ermittelten vermeintlichen Soll-Ausgabe. 
+
+\minisec{Systematisches Testen}
+\begin{itemize}
+	\item Der erste wichtige 
+	\marginline{Test-Spezialisten}
+	Unterschied zu den bisher genannten Tests ist, dass nun die Tests von \emph{Spezialisten für das Testen} durchgeführt werden, insbesondere also nicht vom Programmierer der Software bzw. nicht allein von ihm. Die Tests sind geplant. Eingaben und entsprechende Ausgaben, die das Programm liefern soll, existieren bereits, bevor das Programm ausgeführt wird. Diese werden \emph{Testfälle} genannt.
+
+	\item Für das Testen 
+	\marginline{Testvorschrift}
+	selbst, also für die Erstellung der Testläufe, liegt eine \emph{Test\-vorschrift} vor, die auch weitere Bedingungen für Testläufe beschreibt und dadurch die Ergebnisse reproduzierbar macht. 
+
+	\item Soll-Resultate 
+	\marginline{Soll-Resultate}
+	liegen vor Durchführung der Tests vor und können sofort mit den Ist-Resultaten verglichen werden. 
+
+	\item Es geht nicht 
+	\marginline{Analyse}
+	sofort darum, Ursachen für Fehler zu finden und die Fehler zu bereinigen, sondern zunächst um eine umfassende Analyse des Verhaltens einer nicht andauernd geänderten Programmversion.
+
+	\item Die Testergebnisse
+	\marginline{Dokumentation}
+	werden dokumentiert.
+\end{itemize}
+
+Natürlich werden als fehlerhaft erkannte Programme nach einem systematischen Test auch korrigiert; Fehler können aus den nicht bestandenen Testläufen ermittelt werden. Anschließend wird der Test wiederholt, wobei meist alle Testfälle wiederholt werden. Dafür werden oft automatisierte Tests eingesetzt, um den manuellen Aufwand klein zu halten. Wenn zuvor genannte \emph{Testziele}
+\marginline{Testziele}
+erreicht wurden, endet das Verfahren.

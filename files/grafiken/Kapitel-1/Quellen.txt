@@ -1,0 +1,11 @@
+Abb. 1.2: Assemblerprogramm
+Inhalt von hier: https://de.wikipedia.org/wiki/Assemblersprache
+
+Abb 1.3: GOTO-Programm
+Inhalt selbst überlegt, Idee von hier: https://de.wikipedia.org/wiki/GOTO-Programm#Beispiele
+
+Abb. 1.4: Flussdiagramm
+selbst überlegt und gezeichnet, Elemente wie in https://de.wikipedia.org/wiki/Programmablaufplan
+
+Abb. 1.5: Nassi-Shneidergram-Diagram
+selbst gezeichnet, Idee aus https://de.wikipedia.org/wiki/Nassi-Shneiderman-Diagramm

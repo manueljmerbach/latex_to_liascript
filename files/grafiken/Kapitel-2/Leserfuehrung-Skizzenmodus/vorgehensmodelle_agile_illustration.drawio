@@ -1,0 +1,84 @@
+<mxfile host="app.diagrams.net" modified="2024-02-14T12:14:35.764Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0" etag="uUV7DkDPt7nbkrw5OVBw" version="22.1.21" type="device">
+  <diagram id="BUvfRwf0zNBMPw8hF7Nk" name="Seite-1">
+    <mxGraphModel dx="1434" dy="782" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="rCmdb4S8XYp6djSzERX_-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="450" y="70" width="630" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="-PD2Vxn3dhthJd1rQcdL-1" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;fillColor=#006666;fillOpacity=20;" parent="1" vertex="1">
+          <mxGeometry x="680" y="320" width="400" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-1" value="Wasserfallmodell" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="80" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-2" value="Rational Unified Process" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="215" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-3" value="..." style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="130" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-4" value="Extreme Programming" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="330" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-5" value="..." style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="265" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-6" value="Scrum" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="380" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-7" value="..." style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="920" y="430" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-8" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="HTCuvmp-RIzc3nW0Hrsy-10" target="HTCuvmp-RIzc3nW0Hrsy-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-9" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="HTCuvmp-RIzc3nW0Hrsy-10" target="HTCuvmp-RIzc3nW0Hrsy-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-10" value="Iterativ-inkrementelle Modelle" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="690" y="240" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-11" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="HTCuvmp-RIzc3nW0Hrsy-13" target="HTCuvmp-RIzc3nW0Hrsy-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-12" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="HTCuvmp-RIzc3nW0Hrsy-13" target="HTCuvmp-RIzc3nW0Hrsy-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-13" value="Sequentielle Modelle" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="690" y="110" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-14" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="HTCuvmp-RIzc3nW0Hrsy-17" target="HTCuvmp-RIzc3nW0Hrsy-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-15" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="HTCuvmp-RIzc3nW0Hrsy-17" target="HTCuvmp-RIzc3nW0Hrsy-6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-16" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="HTCuvmp-RIzc3nW0Hrsy-17" target="HTCuvmp-RIzc3nW0Hrsy-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-17" value="Agile Modelle" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="690" y="380" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-18" style="rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;endArrow=none;endFill=0;fontSize=12;" parent="1" source="HTCuvmp-RIzc3nW0Hrsy-21" target="HTCuvmp-RIzc3nW0Hrsy-10" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="260" as="targetPoint" />
+            <mxPoint x="650" y="300" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-19" style="rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;endArrow=none;endFill=0;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;fontSize=12;exitX=0;exitY=0;exitDx=40;exitDy=8;exitPerimeter=0;" parent="1" source="HTCuvmp-RIzc3nW0Hrsy-21" target="HTCuvmp-RIzc3nW0Hrsy-17" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="510" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-20" style="edgeStyle=none;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=24;entryDy=150;entryPerimeter=0;shadow=0;endArrow=none;endFill=0;fontSize=12;exitX=0;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="HTCuvmp-RIzc3nW0Hrsy-21" target="HTCuvmp-RIzc3nW0Hrsy-13" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HTCuvmp-RIzc3nW0Hrsy-21" value="Vorgehensmodelle" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0;darkOpacity2=0;sketch=1;size=8;rotation=0;flipV=0;direction=south;portConstraintRotation=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="460" y="240" width="150" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

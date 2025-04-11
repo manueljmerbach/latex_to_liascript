@@ -1,0 +1,79 @@
+%--- Kapitel 6
+\cleardoublepage
+\chapter{Requirements Engineering}
+\label{sec:Kap-6}
+
+Seit Anfang der 2000er Jahre erhält der Prozess des Requirements Engineering 
+\marginline{Bedeutung des Requirements Engineering}
+innerhalb des Softwareengineering-Umfelds eine stark wachsende Aufmerksamkeit. Das hat sicher auch damit zu tun, dass Studien seit dieser Zeit ungenügendes Require\-ments Engineering als einen der Hauptgründe für das Scheitern von Software\-entwicklungs\-projekten identifizieren. Bei \cite[4]{ebe22} finden Sie Verweise auf entsprechende Studien der 2000er bis 2020er Jahre. 
+
+\phantomsection
+\label{sec:Kap-6:IREB}
+2006 gründeten internationale Softwareengineering-Expertinnen und -Experten von Industrieunternehmen, Beratungsdienstleistern, Universitäten und Fachhochschulen das „International Requirements Engineering Board (IREB)“ (\href{https://www.ireb.org}{www.ireb.org}) mit dem Ziel, den Prozess des Requirements Engineering zu professionalisieren. IREB ist eine Non-Profit-Organisation, die mittlerweile eine wichtige Rolle bei der Standardisierung von Begriffen und Aktivitäten des Requirements Engineering einnimmt. Dazu hat auch beigetragen, dass IREB mit dem „Certified Professional for Require\-ments Engineering \mbox{(CPRE)}“ ein Zertifizierungsprogramm anbietet, das von vielen Unternehmen zur Weiterbildung ihrer Mitarbeiterinnen und Mitarbeiter genutzt wird. Der Fokus von CPRE liegt auf der Vermittlung von in der Praxis relevanten und bewährten Methoden des Requirements Engineering.
+
+Es gibt außerordentlich viel Literatur 
+\marginline{Literatur}
+zum Thema Requirements Engineering, neben den entsprechenden Kapiteln in Softwareengineering-Lehrbüchern und -Handbüchern auch sehr viele explizit nur dem Requirements Engineering gewidmete Mono\-graphien sowie zahlreiche Zeitschriftenartikel zu einzelnen Aspekten des Themas. Ganz grob lassen sich zwei Kategorien von Autoren unterscheiden -- wobei es natürlich auch Schnittmengen gibt. Zum einen diejenigen, die sich im Umfeld von Universitäten, Fachhochschulen oder Forschungseinrichtungen bewegen und Methoden des Requirements Engineering unter Lehr- oder Forschungsaspekten in einem größeren Kontext betrachten. Zum anderen diejenigen, die Unternehmen und Projekte zum Thema Require\-ments Engineering beraten und schulen und dessen Methoden sehr praxisnah mit Checklisten, Schablonen, Erfahrungswerten etc. vermitteln.
+
+Beide Ansätze haben ihre Vor- und Nachteile. Gerade für Anfänger des Requirements Engineering lohnt es sich, Literatur aus beiden Kategorien zu lesen. Beiden Literaturkategorien gemeinsam ist, dass fast jeder Autor / jede Autorin seine / ihre eigenen Schwerpunkte setzt und damit in verschiedener Literatur häufig unterschiedliche Methoden für den Umgang mit Anforderungen vorgestellt werden. Das hat insofern seine Berechtigung als für unterschiedliche Software\-entwicklungs\-projekte, Teams und Domänen durchaus unterschiedliche Methoden jeweils besser geeignet sein können, beruht aber natürlich auch auf Vorlieben der Vorstellenden. 
+
+Alle Inhalte und Methoden des Requirements Engineering im Detail hier im Modul vorzustellen ist nicht möglich, und auch nicht sinnvoll. Wir orientieren uns für die Struktur dieses Kapitels überwiegend an SWEBOK und an dem IREB-Standard. Frei von Vorlieben ist unsere Auswahl selbstverständlich auch nicht. Weiterführende Literaturverweise finden Sie in dieser Lektion außer am Ende des Kapitels auch schon eingestreut in die inhaltlichen Abschnitte.
+
+\vspace{\baselineskip} %%% für Druck
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{Bilder/Kapitel-6/aktivitaeten_requirements_engineering.pdf}
+	\caption{Teilprozesse des Requirements Engineering}
+	\label{fig:aktivitaeten_requirements_engineering}
+\end{figure}
+
+\vspace{\baselineskip} %%% für Druck
+
+Der Prozess des Requirements Engineering kann in die vier Teilprozesse "`Anforderungsermittlung"', "`Erstellung der Anforderungsspezifikation"', "`Anforderungs-
+\linebreak %%% für Druck
+validierung"' und "`Anforderungsmanagement"' unterteilt werden (s.~Abb.~\ref{fig:aktivitaeten_requirements_engineering}). In allen vier Teilprozessen kommt der Begriff \textit{Anforderung} vor.
+
+Abschnitt~\ref{sec:Kap-6.2} wird sich nachher detaillierter mit Anforderungen, ihren Quellen, ihren Beziehungen und den Möglichkeiten, sie zu kategorisieren, beschäftigen. An dieser Stelle sagen wir erstmal allgemein: \marginline{Anforderung}
+Eine Anforderung ist etwas, das \textbf{„jemand“} von dem (zukünftigen) Softwareprodukt erwartet, um ein bestimmtes Problem lösen oder ein bestimmtes Ziel erreichen zu können. Und wir beginnen dieses Kapitel mit dem „jemand“, die oder der eine Anforderung stellt -- dem sogenannten Stakeholder.
+
+
+
+% 6.1
+\clearpage
+\input{Kapitel-6/Kapitel-6-1.tex}
+\input{Kapitel-6/Kapitel-6-1-1.tex}
+\input{Kapitel-6/Kapitel-6-1-2.tex}
+\input{Kapitel-6/Kapitel-6-1-2-1.tex}
+\input{Kapitel-6/Kapitel-6-1-2-2.tex}
+\input{Kapitel-6/Kapitel-6-1-3.tex}
+\input{Kapitel-6/Kapitel-6-1-3-1.tex}
+\input{Kapitel-6/Kapitel-6-1-3-2.tex}
+\newpage
+\input{Kapitel-6/Kapitel-6-1-4_zoo.tex}
+% 6.2
+\clearpage
+% ACHTUNG: im nächsten Abschnitt explizit mit "\markboth" die Texte für die Kopfzeilen neu setzen, da diese nach "Zoo" kaputt sind.
+\input{Kapitel-6/Kapitel-6-2.tex}
+\input{Kapitel-6/Kapitel-6-2-1.tex}
+\input{Kapitel-6/Kapitel-6-2-2.tex}
+\input{Kapitel-6/Kapitel-6-2-3.tex}
+\input{Kapitel-6/Kapitel-6-2-4.tex}
+% 6.3
+\clearpage
+\input{Kapitel-6/Kapitel-6-3.tex}
+\input{Kapitel-6/Kapitel-6-3-1.tex}
+\input{Kapitel-6/Kapitel-6-3-2.tex}
+% 6.4
+\clearpage
+\input{Kapitel-6/Kapitel-6-4.tex}
+\input{Kapitel-6/Kapitel-6-4-1.tex}
+\input{Kapitel-6/Kapitel-6-4-2.tex}
+\input{Kapitel-6/Kapitel-6-4-3.tex}
+\input{Kapitel-6/Kapitel-6-4-4.tex}
+% 6.5
+\clearpage
+\input{Kapitel-6/Kapitel-6-5.tex}
+% 6.6 kommentierte Literatur
+\clearpage
+\input{Kapitel-6/Kapitel-6-6.tex}

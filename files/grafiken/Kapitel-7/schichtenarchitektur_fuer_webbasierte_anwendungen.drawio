@@ -1,0 +1,25 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0" version="25.0.3">
+  <diagram name="Seite-1" id="yRRMuj4A54Kedyb65zgp">
+    <mxGraphModel dx="1637" dy="893" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="3n5Y109dJ8ltZIz8SSRi-1" value="Browserbasierte oder mobile Benutzeroberfläche" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#006666;strokeWidth=2;glass=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="3n5Y109dJ8ltZIz8SSRi-2" value="Transaktions- und Datenbankmanagement" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#006666;strokeWidth=2;glass=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="240" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="3n5Y109dJ8ltZIz8SSRi-3" value="Gemeinsame Basisdienste" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#006666;strokeWidth=2;glass=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="200" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="3n5Y109dJ8ltZIz8SSRi-4" value="Anwendungsspezifische Funktionalität" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#006666;strokeWidth=2;glass=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="160" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="3n5Y109dJ8ltZIz8SSRi-5" value="Authentifizierung und UI-Verwaltung" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#006666;strokeWidth=2;glass=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="340" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

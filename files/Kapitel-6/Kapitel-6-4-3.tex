@@ -1,0 +1,15 @@
+\subsection{Korrektheit}
+\label{sec:Kap-6.4.3}
+
+\vspace{-1mm} %%% für Druck
+
+Verwandt mit der Konsistenz ist die Korrektheit. Während fehlende Konsistenz sich in Widersprüchen manifestiert, fordert Korrektheit die Einhaltung von Regeln in einem weiteren Sinn. Hierunter fällt, dass Anforderungen syntaktisch korrekt sein müssen, als natürlichsprachliche Sätze also überhaupt einen Sinn haben. Diese Regeln sind nicht übergreifend gegeben, sondern für verschiedene Entwicklungsprojekte und insbesondere für verschiedene und verschieden formalisierte Sprachen der Anforderungsermittlung unterschiedlich und unterschiedlich umfassend. Dazu gehört typischer\-weise stets syntaktische Korrektheit der jeweiligen Formulierungen bzw. Modelle aus der Anforderungsbeschreibung. Auch kann es übergreifende Regeln geben, die zum Beispiel fordern, dass verwendete Begriffe anderswo definiert sein müssen. Grundsätzlich erlaubt eine stärkere Formalisierung der Sprache für die Anforderungen mehr (sinnvolle) Regeln und damit auch mehr Möglichkeiten zur Überprüfung der Korrektheit. Diese Überprüfung wird auch \textit{Verifikation} genannt.
+
+Für die in Lektion 3 eingeführten Petrinetze sind \zb die Regeln sinnvoll, dass man
+\begin{itemize}
+	\item jede Transition überhaupt jemals schalten kann, 
+	\item stets einen definierten Endzustand erreichen kann,
+	\item im Falle von Workflow-Netzen: dass das Netz sound ist.
+\end{itemize}
+
+Da \textit{Verifikation} und \textit{Validierung} oft verwechselt werden, hier nochmal der grundsätzliche Unterschied (der in der Literatur leider nicht konsequent Berücksichtigung findet): Bei der \textit{Verifikation} geht es nur um die Anforderungen selbst, es gibt keinen Bezug zur Realwelt. Sie kann ohne Mitwirkung der Stakeholder durchgeführt werden. Bei der \textit{Validierung} geht es ausschließlich um den Bezug der Anforderungen zur Realwelt. Sie kann ausschließlich unter Mitwirkung der Stakeholder durchgeführt werden.

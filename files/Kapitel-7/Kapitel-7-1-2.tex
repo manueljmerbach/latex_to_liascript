@@ -1,0 +1,20 @@
+\subsection{Architekturmuster}
+\label{sec:Kap-7.1.2}
+
+Zwar ist die Gestaltung der Softwarearchitektur spezifisch pro Projekt, doch bedeutet das nicht, dass jedes Softwareentwicklungsprojekt immer wieder von vorne beginnen muss. Zum einen gibt es mit Architekturmustern Beschreibungen bewährter Architekturlösungen, zum anderen haben sich im Laufe der Zeit einige allgemeine Entwurfsprinzipien (s.~Kap.~\ref{sec:Kap-7.2}) als sinnvoll herausgebildet. An beiden kann man sich für sein eigenes Softwaresystem orientieren. Architekturmuster und Entwurfsprinzipien sind keine alternativen Optionen, zwischen denen man sich entscheiden muss, sondern können in Kombination verwendet werden. Meistens basieren die Architektur\-muster sogar auf einem oder mehreren der Entwurfsprinzipien.
+
+Architekturmuster (ursprünglich: Architekturstile, engl. architectural style) gibt es vermehrt seit den 1990er Jahren. Sie sind Beschreibungen von bewährten Strategien zum Aufbau eines Softwaresystems aus Komponenten sowie zur logischen Gruppierung und Interaktion dieser Komponenten. Üblicherweise werden Architekturmuster in einer Mischung aus Diagrammen und textueller Beschreibung kommuniziert. Wie ihr Name sagt, setzen sie auf der hohen Abstraktionsebene der Software\-architektur an (im Unterschied zu den vielleicht bekannteren Entwurfs\-mustern) und sind konzeptionelle Schablonen und kein Programmcode (im Unterschied zu Frameworks). Architektur\-muster bieten Softwareentwicklungsteams die Möglichkeit, Experten\-wissen und Erfahrungen im Aufbau von Softwarearchitekturen für das eigene Projekt einzusetzen. Sie ermöglichen somit Wiederverwendung auf einer konzeptionellen Ebene. 
+
+In fast allen Softwareentwicklungsprojekten wird heute in unterschiedlich starkem Maß und auf verschiedenen Ebenen (konzeptionell, programmiersprachlich) auf 
+\linebreak %%% für Druck
+Wieder\-verwendung \marginline {Wieder\-verwendung} gesetzt. \cite[341]{bro21} definieren Wiederverwendung in der 
+\linebreak %%% für Druck
+Software\-entwicklung als „die Nutzung existierenden Wissens und existierender 
+\linebreak %%% für Druck
+Software\-artefakte zur Entwicklung neuer Systeme“. Vorteile von Wiederverwendung -- nicht nur in Bezug auf Muster oder allgemeine Entwurfsprinzipien, sondern auch auf programm\-code\-nähere Wiederverwendung durch Frameworks, Komponenten, 
+\linebreak %%% für Druck
+Klassen\-bibliotheken etc. --  sind in der Regel auch Zeit- und Kostenersparnisse, wobei diese durch erhöhten Einarbeitungsaufwand in die wiederverwendeten Teile und deren oft umfangreiche Dokumentationen aber auch wieder reduziert werden können. Eigentlich relevanter als Kostenersparnis -- möglicherweise nicht für das einzelne Projekt, aber im Ganzen gesehen -- ist die Qualitätssteigerung der resultierenden Softwareprodukte durch Wiederverwendung bewährter und getesteter Schablonen oder Komponenten. Mehr Details zur Wichtigkeit von Wiederverwendung in der heutigen Softwareentwicklung und den verschiedenen Ebenen, auf denen Wiederverwendung stattfinden kann, finden Sie bei \cite[341-346]{bro21}.
+
+Bekannte Architekturmuster sind die Schichtenarchitektur sowie Client-Server-
+\linebreak %%% für Druck
+Architekturen mit MVC-Muster.

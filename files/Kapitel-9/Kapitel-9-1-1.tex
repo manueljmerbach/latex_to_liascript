@@ -1,0 +1,53 @@
+\subsection{Sichtbarkeiten und Interfaces}
+\label{sec:Kap-9.1.1}
+
+Nach dem Geheimnisprinzip (Kap.~7.2.1) % todo (Kap.~\ref{sec:Kap-7.2.1}) 
+soll nur das von einer Klasse bekannt sein, was die Dienstnutzer benötigen. Der Rest bleibt verborgen. Ein wichtiger Aspekt für die Umsetzung des Geheimnisprinzips im Programmcode ist der Einsatz der sogenannten \textit{Sichtbarkeiten}.
+
+Mit Sichtbarkeiten \marginline{Sichtbarkeiten} kann man den direkten Zugriff auf die Attribute und Operationen einer Klasse von außerhalb der Klasse einschränken. Die Sichtbarkeit eines Attributs gibt an, inwiefern Objekte fremder Klassen auf das entsprechende Attribut einer Instanz dieser Klasse zugreifen dürfen. Die UML unterscheidet die Sichtbarkeiten öffentlich (\sttpUMLText{public}), privat (\sttpUMLText{private}), geschützt (\sttpUMLText{protected}) und paketweit (\sttpUMLText{package}). Für Operationen gelten dieselben Sichtbarkeiten wie für Attribute. Sichtbarkeit in Bezug auf Operationen bestimmt dabei den Kontext, aus dem heraus Operationsaufrufe erfolgen dürfen. In der UML-Darstellung einer Klasse wird die Sichtbarkeit von Attributen und Operationen jeweils als Symbol (s.~Tabelle~\ref{table:sichtbarkeiten_in_UML}) vor deren Namen angegeben. 
+
+\begin{table}[ht]
+	\setlength{\tabcolsep}{10pt}
+	\renewcommand{\arraystretch}{1.5}
+	
+	\centering
+	\begin{tabular}{|l|c|p{7cm}|}
+		\hline
+		Sichtbarkeit & \parbox[c][30pt]{2cm}{Symbol zur \\ Darstellung} & Bedeutung \\
+		\hline
+		public & + & für alle Klassen sichtbar \\
+		\hline
+		private & -- & nur für die definierende Klasse sichtbar \\
+		\hline
+		protected & \# & neben der definierenden Klasse nur für Klassen sichtbar, die sich in der Vererbungs\-hierarchie unterhalb der definierenden Klasse befinden \\
+		\hline
+		package & $\sim$ & nur für Klassen sichtbar, die sich im selben Paket befinden wie die definierende Klasse \\
+		\hline
+	\end{tabular}
+	\caption{Sichtbarkeiten in UML}
+	\label{table:sichtbarkeiten_in_UML}
+\end{table}
+
+Konkrete objektorientierte Programmiersprachen verwenden teilweise leicht abweichende Bedeutungen und manchmal auch andere Schlüsselwörter. In Java umfasst die Sichtbarkeit \sttpUMLText{protected} auch Klassen, die nicht Teil der Vererbungshierarchie sind, sofern sie sich im selben Paket befinden wie die definierende Klasse. Das Schlüssel\-wort \sttpUMLText{package} für die paketweite Sichtbarkeit kommt in Java nicht vor. Paketweit sichtbar sind in Java per Default alle Attribute und Operationen, für die keine Sichtbarkeit angegeben wird.
+
+Zur strengen \marginline{Sichtbarkeit von Attributen}
+Einhaltung des Geheimnisprinzips sollten alle Attribute die Sichtbarkeit \sttpUMLText{private} bekommen. Für Attribute einer Klasse, die im Rahmen von Vererbung auch in Instanzen abgeleiteter Klassen zur Verfügung stehen sollen, kann man Getter (get-Operationen) und Setter (set-Operationen) (s.~Kap.~8.2) %todo(s. Kap.~\ref{sec:Kap-8.2})
+mit Sichtbarkeit \sttpUMLText{protected} vorsehen bzw. mit Sichtbarkeit \sttpUMLText{package} für Attribute, die paketweit benötigt werden. 
+
+Über 
+\marginline{Sichtbarkeit von Operationen}
+die Bestimmung von Sichtbarkeiten für Operationen legt eine Klasse fest, welche Operationen öffentlich aufrufbar sein sollen und welche nicht. Zur Unterstützung des Geheimnisprinzips sollten nur diejenigen Operationen einer Klasse die Sichtbarkeit \sttpUMLText{public} bekommen, die auch wirklich außerhalb der Klasse benötigt werden. Alle anderen Operationen der Klasse brauchen nicht nach außen sichtbar sein und sollten daher die Sichtbarkeit \sttpUMLText{private} (bzw. in Sonderfällen \sttpUMLText{protected} oder \sttpUMLText{package}) erhalten. 
+
+Wenn man das Geheimnisprinzip komplett beachtet, dann dürfen auch die vom Dienstleister zur Verfügung gestellten öffentlich sichtbaren Operationen den Dienstnutzern nicht im Implementierungsdetail bekannt sein. Für die Nutzung der dahinter liegenden Funktionalität benötigen Dienstnutzer nur die Informationen, welche Funktionalität eine Operation abbildet und wie und unter welchen Voraussetzungen sie genutzt werden kann. Hier kommt die sogenannte \textit{Signatur} einer Operation ins Spiel. 
+
+Die Signatur \marginline{Signatur} besteht aus 
+
+\begin{itemize}
+	\item dem Namen (Bezeichner) der Operation,
+	\item einer Parameterliste (die auch leer sein kann) und
+	\item ggf. einem Rückgabetyp.
+\end{itemize}
+
+Wenn Dienstnutzern die Signatur einer Operation bekannt ist, können Sie deren Funktionalität aufrufen, ohne den Programmcode der entsprechenden Opera\-tionen kennen zu müssen. In Abschnitt 8.6 in Lektion 5 hatten Sie das Konzept der 
+\marginline{Interfaces} 
+\mbox{Interfaces} kennengelernt, mit dem man einen solchen Mechanismus vorsehen kann. In Java verwendet man dazu das Schlüsselwort \sttpUMLText{interface} statt \sttpUMLText{class} und erstellt so eine zusätzliche Interface-Quellcodedatei. Bei der entsprechenden Klasse gibt man durch \sttpUMLText{class MeineKlasse implements MeinInterface} an, dass diese das Interface implementiert. Wenn man von der Klasse ausgeht, führt man im Interface die Signaturen aller öffentlichen Operationen der Klasse auf. Wenn man weitergehendere Entwurfsprinzipien zur Schnittstellengestaltung anwendet (s. Kap. 7.2.1), geht man eher den umgekehrten Weg. Das Interface bzw. die Interfaces (Interface Segre\-ga\-tion Principle) werden anhand der Nutzungsbedürfnisse der Dienstnutzer spezifiziert, die Klasse -- je nach Entwurfsprinzip sogar mehrere Klassen -- muss die im Interface spezifizierten Operationen anbieten.

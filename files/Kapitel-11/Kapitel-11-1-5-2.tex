@@ -1,0 +1,94 @@
+\vspace{2mm} %%% für Druck
+
+\minisec{Zweigüberdeckung} % ist absichtlich nur noch \minisec
+
+\vspace{2mm} %%% für Druck
+
+So ganz falsch war unsere Überlegung bei dem zuletzt betrachteten, fehlerhaften Algorithmus (Algorithmus~\ref{algo:erster_reparaturversuch}) aber doch nicht: Wird die Schleife nur einmal ausgeführt, dann ist das Ergebnis immer richtig! Erst wenn die Schleife mindestens ein zweites Mal ausgeführt wird, kann etwas Unerwünschtes passieren. Wann immer im Pro\-gramm\-ab\-lauf zu Beginn der Schleife $a=b>1$ gilt, gilt am Ende der Schleife $a>0 $ und $b=0$. Die Schleife wird also nicht verlassen, aber auch ihre nächste Ausführung ändert die Werte von $a$ und $ b $ nicht mehr. Also wird die Schleife wieder und wieder ausgeführt und die Abbruchbedingung nie erfüllt. Nun ist "`gar kein Ergebnis"' natürlich fast so schlimm wie ein falsches Ergebnis. Dieser Testlauf zeigt also, dass das Programm nicht korrekt ist. Um ihn allerdings zu finden, reichte die Anweisungsüberdeckung nicht aus. Erst wenn die Schleifenabbruchbedingung einmal zu \emph{falsch} ausgewertet wird, kann man den Fehler sehen. Eine reine Anweisungs\-über\-deckung fordert aber nicht, dass jede Bedingung, sei sie im Kontext einer Verzweigung oder einer Schleife, mit beiden möglichen Auswertungen \emph{wahr} und \emph{falsch} in den Testläufen vorkommt. \emph{Zweigüberdeckung} 
+\marginline{Zweig\-überdeckung}
+bedeutet dagegen, dass genau dies der Fall ist. Das heißt insbesondere, dass jede \textbf{repeat}-Schleife mehrmals durchlaufen werden muss und dass jede \textbf{while}-Schleife wenigstens einmal durchlaufen werden muss.
+
+\vspace{3mm} %%% für Druck
+
+Widmen wir uns wieder unserem ggT-Algorithmus. Bis jetzt haben wir noch kein wirklich befriedigendes Programm gesehen. Algorithmus~\ref{algo:berechnung_ggt} ist zwar korrekt, doch gibt es einen unerreichbaren Zweig. Das Programm terminiert, wenn die Differenz von $a$ und $b$ den Wert 0 ergibt, und dies kann nur entstehen durch die Anweisung $b=b-a$, wenn zuvor $a=b$ gilt. Daher liegt es doch nahe, auf den letzten Schleifendurchlauf zu verzichten und gleich $a=b?$ als Schleifenabbruchbedingung aufzunehmen. So machen wir es und erhalten:
+
+\vspace{\baselineskip} %%% für Druck
+\vspace{\baselineskip} %%% für Druck
+
+\begin{algorithm}[H]
+	\caption{Zweiter Reparaturversuch}
+	\label{algo:zweiter_reparaturversuch}
+	
+	\vspace{2mm} %%% für Druck
+	\vspace{\baselineskip}
+	
+	\KwData{Eingabe: $a,b \geq 1$}
+	\KwResult{Ausgabe: $\ggt (a,b)$}
+	
+	\vspace{2mm} %%% für Druck
+	\vspace{\baselineskip}
+	
+	\Repeat{$a=b$}{
+		\eIf{$a > b$}{
+			$a = a - b$
+		}{
+			$b = b - a$
+		}
+	}
+
+	\vspace{2mm} %%% für Druck
+	\vspace{\baselineskip}
+
+	\Return{$a$}
+	
+	\vspace{2mm} %%% für Druck
+	\vspace{\baselineskip}
+\end{algorithm}
+
+\vspace{\baselineskip} %%% für Druck
+\vspace{\baselineskip} %%% für Druck
+
+\vspace{3.7mm} %%% für Druck
+
+Ist dieser Algorithmus korrekt? Wenn Sie verschiedene Testläufe betrachten, werden Sie feststellen, dass er immer dann das richtige Ergebnis liefert, wenn nicht zu Beginn bereits $a=b$ gilt -- diesen Grenzfall muss man daher ebenfalls betrachten. In diesen Fällen, und nur in diesen Fällen, wird nämlich in der Schleife $b=b-a$ ausgeführt mit dem Ergebnis, dass $b$ den Wert 0 zugewiesen bekommt. Bei den weiteren Schleifen\-durchläufen gilt stets $a>b=0$, und die darauffolgende Zuweisung an $a$ ändert nichts mehr. Also erhalten wir für Anfangswerte $a=b$ wieder eine Endlosschleife.
+
+\vspace{3mm} %%% für Druck
+
+Wie kann man das reparieren? Eine Möglichkeit ist, die Schleifenabbruchbedingung zu ergänzen auf $a=b \vee b=0$. Dies ist aber etwas unnatürlich, weil die Anfangs\-konstellation $a=b$ völlig anders behandelt wird als andere Fälle, in denen die Bedingung $a=b$ nicht am Anfang, sondern am Ende der Schleife vorkommt. 
+
+\pagebreak %%% für Druck
+
+Naheliegender ist die folgende, nun finale Korrektur mit einer \textbf{while}-Schleife:
+
+\vspace{\baselineskip} %%% für Druck
+
+\begin{algorithm}[H]
+	\caption{Dritter Reparaturversuch}
+	\label{algo:dritter_reparaturversuch}
+	
+	\vspace{\baselineskip}
+	
+	\KwData{Eingabe: $a,b \geq 1$}
+	\KwResult{Ausgabe: $\ggt (a,b)$}
+	
+	\vspace{\baselineskip}
+	
+	\While{$a \neq b$}{
+		\eIf{$a > b$}{
+			$a = a - b$
+		}{
+			$b = b - a$
+		}
+	}
+	\;
+	
+	\vspace{\baselineskip} 
+	
+	\Return{$a$}
+	
+	\vspace{3mm}
+\end{algorithm}
+
+\vspace{\baselineskip} %%% für Druck
+
+Egal ob initial oder nach Schleifendurchläufen die Werte von $a$ und $b$ übereinstimmen: Die Schleife wird dann verlassen bzw. gar nicht erst durchlaufen. Führt dies tatsächlich immer zum richtigen Ergebnis? Sie können es testen und dabei auf Zweigüberdeckung achten. Wie mehrfach ausgeführt, liefert dies Indizien für Korrektheit, aber sicher können Sie dennoch noch nicht sein. Im späteren Abschnitt zu Korrektheitsbeweisen wird die Korrektheit dieses Programms bewiesen.

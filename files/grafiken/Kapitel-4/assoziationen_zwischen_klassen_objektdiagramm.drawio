@@ -1,0 +1,69 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0" version="24.9.3">
+  <diagram id="IKdcczgC__YtXfX8UIwX" name="Page-1">
+    <mxGraphModel dx="1242" dy="659" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="m_R6_4stdK32f-bWhgOH-3" value="&lt;u&gt;Tom : Person&lt;br&gt;&lt;/u&gt;" style="html=1;fontStyle=0" parent="1" vertex="1">
+          <mxGeometry x="280" y="120" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="m_R6_4stdK32f-bWhgOH-1" value="&lt;u&gt;: Glücksspielautomat&lt;/u&gt;" style="html=1;fontStyle=0" parent="1" vertex="1">
+          <mxGeometry x="50" y="180" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UR3-a6bYdCyi_I1yDDXr-10" value="&lt;u&gt;Peter : Person&lt;br&gt;&lt;/u&gt;" style="html=1;fontStyle=0" parent="1" vertex="1">
+          <mxGeometry x="280" y="180" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UR3-a6bYdCyi_I1yDDXr-12" value="&lt;u&gt;: Glücksspielautomat&lt;/u&gt;" style="html=1;fontStyle=0" parent="1" vertex="1">
+          <mxGeometry x="120" y="240" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UR3-a6bYdCyi_I1yDDXr-14" value="spielt" style="endArrow=none;html=1;rounded=0;verticalAlign=bottom;labelBackgroundColor=none;" parent="1" source="m_R6_4stdK32f-bWhgOH-1" target="UR3-a6bYdCyi_I1yDDXr-10" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="340" as="sourcePoint" />
+            <mxPoint x="290" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="D4sCF0tRVFVQOE0ZVUdG-1" value="&lt;u&gt;Mareike : Person&lt;br&gt;&lt;/u&gt;" style="html=1;fontStyle=0" parent="1" vertex="1">
+          <mxGeometry x="350" y="240" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="D4sCF0tRVFVQOE0ZVUdG-2" value="wartet" style="endArrow=none;html=1;rounded=0;verticalAlign=bottom;labelBackgroundColor=none;" parent="1" source="UR3-a6bYdCyi_I1yDDXr-12" target="D4sCF0tRVFVQOE0ZVUdG-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="253" y="190" as="sourcePoint" />
+            <mxPoint x="380" y="159" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="D4sCF0tRVFVQOE0ZVUdG-3" value="&lt;div&gt;&lt;u&gt;Hans : Person&lt;/u&gt;&lt;/div&gt;" style="html=1;fontStyle=0" parent="1" vertex="1">
+          <mxGeometry x="430" y="160" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="D4sCF0tRVFVQOE0ZVUdG-4" value="&lt;div&gt;&lt;u&gt;Manfred : Person&lt;/u&gt;&lt;/div&gt;" style="html=1;fontStyle=0" parent="1" vertex="1">
+          <mxGeometry x="370" y="60" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="D4sCF0tRVFVQOE0ZVUdG-5" value="&lt;u&gt;: Glücksspielautomat&lt;/u&gt;" style="html=1;fontStyle=0" parent="1" vertex="1">
+          <mxGeometry x="140" y="60" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="D4sCF0tRVFVQOE0ZVUdG-6" value="spielt" style="endArrow=none;html=1;rounded=0;labelBackgroundColor=none;entryX=0;entryY=0.25;entryDx=0;entryDy=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;verticalAlign=bottom;" parent="1" source="D4sCF0tRVFVQOE0ZVUdG-5" target="D4sCF0tRVFVQOE0ZVUdG-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="210" y="300" as="sourcePoint" />
+            <mxPoint x="260" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="D4sCF0tRVFVQOE0ZVUdG-8" value="wartet" style="endArrow=none;html=1;rounded=0;labelBackgroundColor=none;entryX=0;entryY=0.75;entryDx=0;entryDy=0;verticalAlign=top;exitX=1;exitY=0.75;exitDx=0;exitDy=0;spacing=-4;" parent="1" source="D4sCF0tRVFVQOE0ZVUdG-5" target="D4sCF0tRVFVQOE0ZVUdG-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="310" y="78" as="sourcePoint" />
+            <mxPoint x="430" y="78" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hxgUKDpmGXEBOWP0qruQ-3" value="" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;endArrow=none;endFill=0;verticalAlign=bottom;" parent="1" source="m_R6_4stdK32f-bWhgOH-3" target="m_R6_4stdK32f-bWhgOH-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="260" y="446" as="sourcePoint" />
+            <mxPoint x="220" y="547" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hxgUKDpmGXEBOWP0qruQ-4" value="wartet" style="edgeLabel;html=1;align=center;verticalAlign=bottom;resizable=0;points=[];rotation=333;labelBackgroundColor=none;" parent="hxgUKDpmGXEBOWP0qruQ-3" vertex="1" connectable="0">
+          <mxGeometry x="-0.24" y="-1" relative="1" as="geometry">
+            <mxPoint x="-12" y="6" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

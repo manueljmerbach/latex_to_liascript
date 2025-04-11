@@ -1,0 +1,104 @@
+\subsection{Zusicherungen und Invarianten}
+\label{sec:Kap-9.2.1}
+
+Wir müssen an dieser Stelle einen kleinen inhaltlichen Vorgriff auf die spätere Lektion zur Qualitätssicherung machen. Zusicherungen und Invarianten sind Konzepte, die ihren primären Einsatzzweck bei der Qualitätssicherung haben. \marginline{Zusicherungen} \textit{Zusicherungen} werden im Rahmen von Programmentwicklung und Tests verwendet und können in Programmcode eingefügt werden um auszudrücken, welche Beziehungen zwischen Variablenbelegungen vom Programmierer an gewissen Stellen erwartet werden. Dabei ist eine Zusicherung ein logischer Ausdruck mit Variablen, die den relevanten Programmvariablen entsprechen. Wenn die Kontrolle des Programms die Zusicherung erreicht hat, werden die Variablen des logischen Ausdrucks entsprechend belegt und der Ausdruck ausgewertet. Anders als bei Ausnahmen (exceptions) ist die Erwartung, dass die Interpretation von Zusicherungen stets \textit{wahr} ergibt. 
+Andernfalls gibt es einen Fehler in der Programmlogik, der verbessert wird. In diesem Zusammenhang kann man die Verwendung von Zusicherungen also den Testverfahren zuordnen. 
+
+\textit{Invarianten} \marginline{Invarianten} sind Zusicherungen, die während eines Programmablaufs mehrfach gelten sollen bzw.\ geprüft werden. Sie sollen jedes Mal erfüllt sein. In anderen Worten: Die Anweisungen zwischen zwei aufeinanderfolgenden identischen Zusicherungen ändern den Wahrheitswert dieser Zusicherung nicht, dieser bleibt invariant erhalten. Invarianten gibt es oft beim Aufruf von Operationen, die Ausführung einer Operation soll eine durch die Invariante definierte Beziehung zwischen Variablenwerten nicht zerstören.
+
+Etwas allgemeiner sind \textit{Vor-} und \textit{Nachbedingungen}\marginline{Vor- und Nach\-bedingungen}. Dies sind Zusicherungen, die jeweils vor und nach einer Programmausführung ausgewertet werden. Dabei ist das Wort "`Programm"' sehr allgemein zu verstehen. Es kann eine einzelne Anweisung, ein Programmstückchen (ein Programmsegment) oder auch eine Operation oder ein vollständiges Programm sein. 
+
+Eine andere, eigentlich ursprünglichere Verwendung von Zusicherungen wird im Rahmen der Verifikation von Programmen verwendet, wie Sie auch in Lektion 7 zur Qualitätssicherung sehen werden. Verifikation bedeutet Beweis, dass ein Programm tatsächlich die Ergebnisse liefert, die in der Programmspezifikation gefordert werden. So kann man als Vorbedingung eines Programms als Zusicherung Annahmen über die Eingabe formulieren. Besteht diese zum Beispiel nur aus einer Zahl $n$, die positiv sein muss, so lautet die Vorbedingung $\{n>0\}$ (Die Schreibweise in geschweiften Klammern ist eine Konvention, die Zusicherungen von Programm\-anweisungen unter\-scheidbar macht).
+Die Nachbedingung des Programms codiert die Spezifikation. Wenn das Programm zum Beispiel die Fakultätsfunktion berechnet und den Wert einer Variablen $m$ ausgibt, so lautet die Nachbedingung $\{m = n!\}$. Aber Vorsicht! Diese Zusicherung bezieht sich auf die Werte von $n$ und $m$ an dieser Stelle, also am Ende des Programms. Die Ausgabe $m$ ist nur dann die Fakultät der Eingabe $n$, wenn $n$ immer noch denselben Wert wie anfangs hat. Um die Spezifikation auszudrücken, ist es manchmal sinnvoll, den Eingabewert in eine neue, nur im Rahmen der Verifikation verfügbare unveränderliche Variable $e$ zu kopieren, so dass die Nachbedingung $\{m = e!\}$ lautet. 
+
+Entsprechend können auch komplexere Spezifikationen in Nachbedingungen formuliert werden. Sie drücken generell aus, was aus den Eingabewerten zu berechnen ist. Offensichtlich ist dabei nicht vorgesehen, dass diese Zusicherungen während der Laufzeit geprüft werden, denn dazu müsste der Rechner unabhängig vom betrachteten Programm das korrekte Ergebnis anderweitig berechnen und die Ergebnisse vergleichen. Wie Sie im Zusammenhang mit Programmverifikation sehen werden, kann es viele weitere Zusicherungen im Programmcode geben, die jeweils als Vor- und/oder Nachbedingungen für einzelne Anweisungen oder Programmsegmente dienen.
+Invarianten sind auch in diesem Anwendungskontext möglich, sie beschreiben wieder identische Vor- und Nachbedingungen eines Programmsegments.
+
+Die zweite genannte Interpretation von Vor- und Nachbedingungen wird im Folgenden gebraucht. Nochmal zusammengefasst besagt sie:
+\begin{center}
+\begin{minipage}{.3\linewidth}
+\sttpUMLText{\{Vorbedingungen\}}
+
+\vspace{2mm}
+
+\sttpUMLText{~Programm}
+
+\vspace{2mm}
+
+\sttpUMLText{\{Nachbedingungen\}}
+\end{minipage}
+\end{center}
+
+\vspace{1mm} %%% für Druck
+
+\begin{itemize}	
+	\item Nach Ablauf eines Programms sind seine Nachbedingungen erfüllt, wenn vor dem Ablauf die Vorbedingungen erfüllt waren. 
+	\item Durch Vorbedingungen und Nachbedingungen eines Programm(segment)s kann die Funktionalität des Programms vollständig beschrieben werden.
+\end{itemize} 
+
+Betrachten wir nun eine Klasse mit ihren Operationen.
+Die Spezifikation einer Operation, die von jeder Implementierung erfüllt werden muss, kann grundsätzlich in der Form erfolgen, dass nur Vor- und Nachbedingungen der Operation und zusätzlich Invarianten 
+\marginline{Klassen\-invariante} 
+angegeben werden, die generell für die betrachtete Klasse gelten (sogenannte \textit{Klasseninvarianten}). Diese Form von Spezifikation, Entwurf und Implementierung wird \textit{Design by Contract} bzw. \textit{Programming by Contract} genannt (die 
+\marginline{Design by Contract}
+englischen Begriffe sind auch im Deutschen üblicher, gängige Übersetzungen sind \textit{Entwurf gemäß Vertrag} und \textit{Vertragsbasierte Programmierung}). Sie geht zurück auf Bertrand Meyer, der sie im Zusammenhang mit der von ihm entwickelten Programmiersprache Eiffel eingeführt hat.
+
+Nun wird es aber Zeit für ein Beispiel. Wir betrachten eine Klasse \textit{Dreieck}, deren Objekte eine recht abstrakte Form von Dreiecken repräsentieren, von denen nur die drei Seitenlängen $a$, $b$ und $c$ bekannt sind. Die Klasse hat also drei Attribute $a$, $b$ und $c$, drei positive reelle Zahlen. Ein Objekt dieser Klasse lässt sich natürlich wie erwartet zeichnen,
+
+\vspace{-\baselineskip} %%% für Druck
+
+\begin{center}
+	\begin{tikzpicture}[scale=0.7,rotate=12]
+		\large
+		
+		\coordinate (A) at (3,3);
+		\coordinate (B) at (0,0);
+		\coordinate (C) at (4,0);
+		
+		\draw (B) -- (C) node[pos=0.5, below right] {$a$};
+		\draw (C) -- (A) node[pos=0.5, above right] {$b$};
+		\draw (A) -- (B) node[pos=0.5, above left] {$c$};
+		
+		\draw[FernUni-MI-green, ultra thick] (B) -- (C) -- (A) -- cycle;
+	\end{tikzpicture}
+\end{center}
+
+\vspace{-2mm} %%% für Druck
+
+aber jegliche Verschiebung oder Drehung in einem Koordinatensystem ändert an dem Objekt nichts.
+
+\pagebreak %%% für Druck
+
+Für $a$, $b$ und $c$ haben wir positive Werte gefordert. Eine Seite mit negativer Länge macht keinen Sinn, und für den Wert~0 fallen zwei Punkte zusammen und das Dreieck hat keine drei Ecken mehr. 
+
+Die Forderung $$I_1: a, b, c >0$$ ist hier also eine sinnvolle Klasseninvariante (streng genommen handelt es sich bereits um drei Klasseninvarianten). 
+
+Aber es gibt noch eine weitere wichtige Forderung: Zwei Seiten addiert müssen stets länger sein als die dritte Seite. Andernfalls kann man aus den drei Seiten kein Dreieck basteln, wie leicht einzusehen ist. Also fordern wir die Invarianten
+
+$$I_2: b+c>a,$$
+$$I_3: c+a>b,$$
+$$I_4: a+b > c.$$ 
+
+Wird eine der Invarianten für ein Objekt zerstört, dann repräsentiert dieses Objekt kein Dreieck mehr, und alle weiteren Operationen sind sinnlos.
+
+Nun betrachten wir eine Operation dieser Klasse: Berechnung des Flächeninhalts des Dreiecks. Dazu gibt es allgemeine Formeln, also Berechnungsvorschriften. Sie kennen wahrscheinlich die Formel 
+
+$$ F = \frac{1}{2} \; a \cdot h,$$
+
+wobei $a$ eine beliebige Seite angibt und $h$ die Höhe, also den kleinsten Abstand des Punktes, der von $a$ nicht berührt wird, zu einer Geraden durch $a$. Da bei unserer Darstellung von Dreiecken $h$ nicht bekannt ist, sondern nur die drei Seiten, verwenden wir eine andere Formel, die überraschenderweise weniger bekannt ist: Herons Formel (benannt nach Heron von Alexandria, der im ersten Jahrhundert lebte):
+
+$$F = \sqrt{s\cdot (s-a)\cdot (s-b) \cdot (s-c)} $$
+
+wobei 
+
+$$s = \frac{a+b+c}{2}$$
+
+die Hälfte des Umfangs des Dreiecks ist.
+
+Wir sollten diese Formel nur implementieren, wenn der Ausdruck unter der Wurzel nicht negativ ist. Hier gehen nun unsere Invarianten ein. Aus $a,b,c >0 \; (I_1)$ folgt $s>0$. Aus $b+c > a \; (I_2)$ folgt $s- a = \frac{b+c-a}{2} >0$ und entsprechend aus den weiteren Invarianten $s-b > 0$ und $s-c >0$. Da alle Faktoren also positiv sind, gilt dies auch für das Produkt.
+
+Kleiner Exkurs: Wenn $a=b+c$ entgegen unserer Invariante $I_2$ gilt, könnte man das Dreieck noch als entartetes Dreieck interpretieren, in dem zwei Ecken zusammen\-fallen. Dann ist aber $s-a=0$, damit auch das Produkt und die Wurzel~0, und die Formel liefert noch immer das richtige Ergebnis, nämlich den Flächeninhalt~0. 
+
+Für $a>b+c$ gilt sicher $c+a>b$ und $a+b>c$. In diesem Fall ist also genau ein Faktor negativ, das Produkt ist negativ, und die Wurzel zumindest im Raum der reellen Zahlen nicht definiert. Tatsächlich würde ein Programm, das die Wurzelfunktion verwendet, hier in einen Fehlerfall laufen.
+	
+Herons Formel liefert also genau dann ein positives Ergebnis für den Flächeninhalt, wenn neben $I_1$ die Invarianten $I_2, I_3$ und $I_4$ erfüllt sind.

@@ -1,0 +1,80 @@
+% das Papierformat zuerst
+% \documentclass[a4paper, 11pt]{article}
+\documentclass[11pt]{scrartcl}
+
+% für Umlaute
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+% für "Deutsch"
+\usepackage[ngerman]{babel}
+
+% für Grafiken
+\usepackage{graphicx}
+
+\usepackage{caption}
+\captionsetup{format=plain}
+
+% Das Paket wird für die Verwendung der foreach-Schleife benötigt.
+\usepackage{pgffor}
+
+% Das hyperref-Paket wird üblicherweise als letztes Paket in der Präambel 
+% geladen, da es sich so auf alle zuvor geladenen Pakete einstellen kann.
+\usepackage{hyperref}
+
+% für die Titelseite
+\title{Kurs 1793 - Abbildungen}
+\author{Maren Stephan}
+\date{\today{}, Hagen}
+
+% hier beginnt das Dokument
+\begin{document}
+
+\maketitle
+
+\newpage
+
+% Inhaltsverzeichnis anzeigen
+\tableofcontents
+
+\clearpage
+
+%-------------------------------------------------------------------------
+%%--- Zu jedem Kapitel sollen alle Grafiken ausgegeben werden.
+%%--- Der Tipp für die Umsetzung stammt von hier:
+%%--- https://tex.stackexchange.com/questions/7653/how-to-iterate-through-the-name-of-files-in-a-folder
+
+\newcommand*{\MaxNumOfChapters}{10}% Adjust these two settings for your needs.
+\newcommand*{\MaxNumOfFigures}{50}%
+
+\foreach \c in {1,2,...,\MaxNumOfChapters}{%
+
+		% Kapitelueberschrift
+		\section{Abbildungen zu Kapitel \c}
+
+    \foreach \f in {1,2,...,\MaxNumOfFigures}{%
+        \IfFileExists{Kapitel-\c/Abb-\c-\f.pdf} {%
+					\subsection{Abbildung \c-\f}
+					\begin{figure}[htbp]
+						\centering
+						\setlength{\fboxsep}{5pt}
+						\setlength{\fboxrule}{2pt}
+						\fbox{\includegraphics{../grafiken/Kapitel-\c/Abb-\c-\f.pdf}}
+						\caption{Abb-\c-\f.pdf}
+						\label{fig:Abb-\c-\f}
+					\end{figure}
+				}{%
+					% files does not exist, so nothing to do
+				}%
+    }%
+}%
+
+%%-----------------------------------
+%%--- Abbildungsverzeichnis, etc. ---
+%%-----------------------------------
+\clearpage
+\listoffigures
+\clearpage
+
+\end{document}

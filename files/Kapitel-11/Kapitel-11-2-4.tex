@@ -1,0 +1,139 @@
+\clearpage %%% für Druck
+
+\subsection{Beispiel: Multiplikation durch Halbieren}
+\label{sec:Kap-11-2-4}
+
+Die Multiplikation zweier natürlicher Zahlen wird üblicherweise durch fortgesetzte Addition eingeführt: $a \cdot b$ entsteht durch $b$-malige Addition von $a$ (beginnend mit 0) oder $a$-malige Addition von $b$. Sind beide Zahlen relativ groß, ist dies nicht sonderlich effizient.
+
+\vspace{2mm} %%% für Druck
+
+Es geht deutlich schneller, wenn man sich die Binärdarstellung natürlicher Zahlen zunutze macht. Sie erlaubt die ganz einfache Multiplikation einer Zahl mit 2, nämlich durch Anhängen einer 0, sowie die Division durch 2 ohne Rest durch Wegnahme der letzten binären Ziffer. Technisch wird dasselbe etwas anders realisiert: statt Anhängen einer 0 werden alle Bits einer Variablen um eine Stelle nach links verrutscht, und statt Wegnehmen der letzten Stelle werden alle Bits um eine Stelle nach rechts verrutscht. Entsprechende Shift-Operationen auf Registerebene stehen in Maschinensprachen zur Verfügung. Wir gehen an dieser Stelle einmal davon aus, dass alle betrachteten Zahlen und Produkte nicht zu einem Überlauf führen, also die Variablenbereiche ausreichend groß dimensioniert sind. 
+
+\vspace{2mm} %%% für Druck
+
+Zudem kann man sehr einfach feststellen, ob eine Zahl ungerade ist, nämlich durch Prüfung des geringstwertigen Bits. Im Folgenden bezeichne $n \, \text{DIV} \, 2$ die Division einer Zahl $n$ durch 2 ohne Rest und $\text{odd}(n)$ prüft, ob $n$ ungerade ist.
+
+\vspace{2mm} %%% für Druck
+
+Betrachten Sie zunächst das folgende Programm ohne Zusicherungen und überlegen Sie sich, wie die Schleifeninvariante aussehen könnte:
+
+\vspace{\baselineskip}
+
+\begin{algorithm}[H]
+	\caption{Multiplikation durch Halbieren}
+	\label{algo:multiplikation_durch_halbieren_1}
+	
+	\vspace{\baselineskip}
+	
+	\KwData{Eingabe: $n,m \geq 1$}
+	\KwResult{Ausgabe: $n \cdot m$}
+	
+	\vspace{\baselineskip}
+	
+	$p = 0$\;
+	
+	\vspace{\baselineskip}
+	
+	\While{$n \neq 1$}{
+		
+		\vspace{\baselineskip}
+		
+		\If{$\text{odd}(n)$}
+		{
+			$p = p + m$
+		}
+		
+		\vspace{\baselineskip}
+		
+		$n = n \, \text{DIV} \, 2$\;
+		$m = m \cdot 2$
+	}
+	\;
+	
+	\vspace{\baselineskip}
+	
+	\Return{$p + m$}
+	
+	\vspace{\baselineskip}
+	
+\end{algorithm}
+
+\vspace{\baselineskip}
+\vspace{\baselineskip} %%% für Druck
+
+Und nun das vollständig annotierte Programm:
+
+\pagebreak %%% für Druck
+
+\begin{algorithm}
+	\caption{Multiplikation durch Halbieren mit Zusicherungen}
+	\label{algo:multiplikation_durch_halbieren_2}
+	
+	\vspace{\baselineskip}
+	
+	\KwData{Eingabe: $n,m \geq 1$}
+	\KwResult{Ausgabe: $n \cdot m$}
+	
+	\vspace{\baselineskip}
+	
+	\HiLi $\{n \geq 1, \, m \geq 1\}$ \\
+	\HiLi $\{e = n \cdot m\}$ \quad \tcc*[h]{\small $e$ ist keine Programmvariable,}\\
+	~~~~~~~~~~~~~~~~\quad \tcc*[h]{\small ihr Wert ist das gewünschte Ergebnis}\
+	
+	$p = 0$\;
+	\HiLi $\{n \geq 1, \, m \geq 1, \, p = 0, \, e = n \cdot m\}$ \\
+	\HiLi $\{n \cdot m + p = e\}$ \\
+	
+	\vspace{\baselineskip}
+	
+	\While{$n \neq 1$}{
+		\HiLi $\{n \cdot m + p = e\}$ \\
+		
+		\vspace{\baselineskip}
+		
+		\eIf{$\text{odd}(n)$}{
+			\HiLi $\{n \cdot m + p = e, \, (n \, \text{DIV} \, 2) \cdot 2 + 1 = n\}$ \\
+			\HiLi $\{[(n \, \text{DIV} \, 2) \cdot 2 + 1] \cdot m + p = e\}$ \\
+			\HiLi $\{(n \, \text{DIV} \, 2) \cdot 2 \cdot m + p + m = e\}$ \\
+			\vspace{\baselineskip} %%% für Druck
+			$p = p + m$ \\
+			\vspace{\baselineskip} %%% für Druck
+			\HiLi $\{(n \, \text{DIV} \, 2) \cdot 2 \cdot m + p = e \}$
+		}{
+			\HiLi $\{n \cdot m + p = e, \, (n \, \text{DIV} \, 2) \cdot 2 = n\}$ \\
+			\HiLi $\{(n \, \text{DIV} \, 2) \cdot 2 \cdot m + p = e\}$
+		}
+		
+		\vspace{\baselineskip}
+		
+		\HiLi $\{(n \, \text{DIV} \, 2) \cdot 2 \cdot m + p = e\}$ \\
+		\vspace{\baselineskip} %%% für Druck
+		$n = n \, \text{DIV} \, 2$\;
+		\vspace{\baselineskip} %%% für Druck
+		\HiLi $\{n \cdot 2 \cdot m + p = e\}$ \\
+		\HiLi $\{n \cdot m \cdot 2 + p = e\}$ \\
+		\vspace{\baselineskip} %%% für Druck
+		$m = m \cdot 2$ \\
+		\vspace{\baselineskip} %%% für Druck
+		\HiLi $\{n \cdot m + p = e\}$
+	}
+	\;
+	
+	\vspace{\baselineskip}
+	
+	\HiLi $\{n \cdot m + p = e, \, n = 1\}$ \\
+	\HiLi $\{p + m = e\}$ \\ 
+	
+	\vspace{\baselineskip}
+	
+	\Return{$p + m$}
+	
+	\vspace{\baselineskip}
+	
+\end{algorithm}
+
+\clearpage %%% für Druck
+
+Hier mussten wir etwas umständlich codieren, dass $n$ eine ungerade Zahl ist. Dies haben wir durch $n \, \text{DIV} \, 2$ ausgedrückt, denn dieser Ausdruck kommt bei einer Zuweisung auf der rechten Seite vor. Für ungerade Zahlen $n$ gilt $(n \, \text{DIV} \, 2) \cdot 2 = n-1$ und für gerade $n$ gilt $(n \, \text{DIV} \, 2) \cdot 2 = n$.
+
+Auch hier stellt sich natürlich die Frage, ob und warum das Programm terminiert, also die Ausgabe überhaupt erreicht. Als Abstiegsfunktion bietet sich die Variable $n$ an, denn sie wird stets kleiner. Für $n=1$ bricht die Schleife ab, und kleiner als 1 kann $n$ durch Halbierung einer Zahl, die größer als 1 ist, nicht werden.

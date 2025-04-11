@@ -1,0 +1,79 @@
+\minisec{Anweisungsüberdeckung} % ist absichtlich nur noch \minisec
+
+\vspace{2mm} %%% für Druck
+
+\textit{Anweisungsüberdeckung} 
+\marginline{Anweisungs\-überdeckung}
+bedeutet, dass jede Anweisung des Programms wenigstens in einem Testfall ausgeführt wird. So kann man einerseits erkennen, ob ein Befehl grundsätzlich fehlerhaft ist. Hätten wir im ggT-Algorithmus zum Beispiel statt der Anweisung $a=a-b$ die Anweisung $a=a-b-1$ verwendet, so liefert das so modifizierte Programm immer einen falschen Wert, wenn jemals zu Schleifenbeginn $a>b$ gilt, die falsche Anweisung also auch ausgeführt wird. Deshalb muss für eine Anweisungsüberdeckung sichergestellt werden, dass dies auch für wenigstens einen Testlauf der Fall ist.
+
+\pagebreak %%% für Druck
+
+In diesem Beispiel ist das besonders einfach, wir können zum Beispiel die Anfangswerte $a=3$ und $b=2$ verwenden. Dann gilt beim ersten Schleifendurchlauf $a>b$, und die Ausführung der fehlerhaften Anweisung $a=a-b-1$ ergibt den Wert 0 für $a$. Die Schleife wird verlassen, weil $a=0 \vee b= 0$ zu \emph{wahr} ausgewertet wird (die erste Teilbedingung ist \emph{wahr}, $\vee$ ist das logische \emph{oder}, und damit ist der gesamte Ausdruck \emph{wahr}). Anschließend ist bei der \textbf{if}-Abfrage $a=0$ erfüllt, und es wird der Wert von $b$ ausgegeben. Dieser ist weiterhin 2, aber 2 ist nicht der größte gemeinsame Teiler von 2 und 3.
+
+\vspace{2.75mm} %%% für Druck
+
+Für die Anweisungsüberdeckung reicht dieser eine Testlauf allerdings nicht aus, denn weder die Anweisung $b=b-a$ wurde ausgeführt, noch die Anweisung \textbf{return} $a$. Beginnen wir deshalb auch mit den Werten $a=2$ und $b=2$. Dann gilt $a>b$ nicht und es wird $b=b-a$ ausgeführt. Als Ergebnis erhalten wir den Wert 0 für $b$. Die Schleife wird wiederum verlassen, und nun wird der in diesem Fall korrekte Wert 2 (der Wert von $a$) ausgegeben. In beiden Testläufen zusammen wurden alle Anweisungen jeweils mindestens einmal ausgeführt, die Anweisungsüberdeckung ist damit gegeben.
+
+\vspace{2.75mm} %%% für Druck
+
+In diesem Trivialbeispiel reichte es aus, die Verzweigungen mit entsprechenden Eingaben zu "`steuern"'. Dies ist natürlich nicht immer so einfach, weil die für die Verzweigungsbedingungen relevanten Variablenwerte sich durch andere Zuweisungen in unübersichtlicher Weise ergeben könnten. So wie man Fehler beim Programmieren machen kann, ist dies auch beim Testen möglich. Man muss deshalb genau prüfen, dass alle Anweisungen tatsächlich ausgeführt werden.
+
+\vspace{2.75mm} %%% für Druck
+
+Es ist übrigens nicht immer notwendig, für alle Zweige einer Verzweigung jeweils eigene Testläufe zu kreieren. Beginnen wir mit $b=3$ und $a=2$, so gilt beim ersten Schleifendurchlauf $a>b$ nicht, beim zweiten Schleifendurchlauf dagegen (nachdem $b$ mit 1 überschrieben wurde) gilt $a>b$. Mit einer Ausführung lassen sich hier also beide Zweige überdecken.
+
+\vspace{2.75mm} %%% für Druck
+
+Kehren wir zurück zum Algorithmus, wie er im Flussdiagramm und als Algorithmus~\ref{algo:berechnung_ggt} beschrieben ist (also mit der Anweisung $a=a-b$ statt $a= a-b-1$). Wir wollen auch für diesen (offenbar korrekten) Algorithmus Testläufe erstellen, die alle Anweisungen überdecken. Versuchen Sie es doch einmal! Ihnen wird auffallen, dass die Bedingung $a=0$ nach der Schleife nie erfüllt ist und Sie somit die Anweisungsüberdeckung nicht erreichen, obwohl das Programm für alle gültigen Eingaben das korrekte Ergebnis liefert. Das Programm ist daher im formalen Sinne korrekt, aber die Anweisungsüberdeckung ist nicht möglich.
+
+\vspace{2.75mm} %%% für Druck
+
+Wie kommt das? Zu Beginn gilt $a>0$. Um nach der Schleife $a=0$ zu erfüllen, müsste $a$ in der Schleife auf 0 gesetzt werden. Nur die Anweisung $a=a-b$ schreibt einen neuen Wert für $a$. Der Ausdruck $a-b$ kann aber an dieser Stelle niemals 0 sein, denn die Anweisung wird nur ausgeführt, wenn $a>b$ gilt.
+
+\vspace{2.75mm} %%% für Druck
+
+Auch wenn das Programm also korrekt ist, gelingt die Anweisungsüberdeckung nicht, und dies ist immerhin ein Zeichen dafür, dass der Programmierer nicht genau verstanden hat, was er da schreibt. 
+
+\pagebreak %%% für Druck
+
+Versuchen wir (eine zugegebenermaßen einfältige) Reparatur:
+
+\vspace{2mm} %%% für Druck
+
+\begin{algorithm}[H]
+	\caption{Erster Reparaturversuch}
+	\label{algo:erster_reparaturversuch}
+
+	\vspace{\baselineskip}
+
+	\KwData{Eingabe: $a,b \geq 1$}
+	\KwResult{Ausgabe: $\ggt (a,b)$}
+
+	\vspace{\baselineskip}
+
+	\Repeat{$a=1 \vee b=1$}{
+		\eIf{$a > b$}{
+			$a = a - b$
+		}{
+			$b = b - a$
+		}
+	}
+
+	\vspace{\baselineskip}
+
+	\eIf{$a=1$}{
+		\Return{$a$}
+	}{
+		\Return{$b$}
+	}
+	
+	\vspace{\baselineskip}
+\end{algorithm}
+
+\vspace{\baselineskip} %%% für Druck
+
+Statt $a=0 \vee b=0$ lautet die Schleifenabbruchbedingung nun $a=1 \vee b=1$. Falls $a=1$ wird $a$ ausgegeben, falls $b=1$ wird $b$ ausgegeben. Die falsche Überlegung ist, dass die Differenz gar nicht 0 werden muss; bei zwei Zahlen mit einer Differenz von 1 ist doch klar, dass der größte gemeinsame Teiler 1 lautet, und die fortgesetzte Subtraktion der 1 von der anderen Zahl erscheint unnötig. Wenn man genauer schaut, sieht man, dass das Ergebnis einer Ausführung nur 1 lauten kann! Entsprechend hätte man nach der Schleife auch gleich den Wert 1 ausgeben können.
+
+\vspace{2mm} %%% für Druck
+
+Nun führen wir zwei Testläufe zur Anweisungsüberdeckung durch, zum Beispiel für die Zahlenpaare $a=4$, $b= 5$ und dann für $a=5$, $b=4$. In beiden Fällen kommt das richtige Ergebnis heraus und alle Anweisungen wurden wenigstens einmal durchgeführt. Dies sollte allerdings nicht überraschen, denn Anweisungsüberdeckung ist, wie alle Testkriterien, keine hinreichende Bedingung für Korrektheit.

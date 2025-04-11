@@ -1,0 +1,563 @@
+\section{Vorlesung 8: Synthese von Petrinetzen und Process Mining}
+
+Bis hierhin haben wir Modelle von Systemen bzw.\ von Prozessen zuerst betrachtet und anschließend Abläufe dieser Modelle konstruiert und diskutiert. Diese sollten einen engen Bezug zu den Abläufen der Systeme bzw.\ der Prozesse haben, denn sonst stimmt entweder etwas mit den Modellen nicht oder mit der Semantik der Modellierungssprache.
+
+Nun wollen wir uns aber die Frage stellen, wie man eigentlich zu einem Modell kommt, also zu einem allgemeinen Petrinetz für die Modellierung eines Systems bzw.\ zu einem Workflow-Netz für die Modellierung eines Prozesses. Oder, genauer: Wie kommt man zu einem Systemmodell / Prozessmodell, dessen Abläufe tatsächlich die realen Abläufe widerspiegeln. Wenn man die tatsächlich halbgeordneten Abläufe gar nicht kennt, diese aber sequentiell beobachten kann, kann man als Qualitätskriterium auch verwenden, dass diese sequentiellen Beobachtungen mit Schaltfolgen übereinstimmen sollen.
+
+Grundsätzlich hat man viele Möglichkeiten, ein in diesem Sinne korrektes Modell zu erstellen. Drei davon wollen wir erwähnen und im Anschluss genauer behandeln:
+\begin{enumerate}
+	\item Das System 
+	\sttpkapitelverweis{Modellieren\\ nach Text}{S.~\pageref{text:modellieren_nach_text}}
+	ist textuell beschrieben, und dieser Text beschreibt die Systemkomponenten, Aktivitäten und ihr Zusammenspiel. Diese Form von Modellierung aus einer Beschreibung kommt oft in Übungsaufgaben vor! Der Begriff "`Text"' ist dabei recht weit zu fassen, in der Realität gehören allerlei Dokumente dazu, ggf. auch Skizzen, oder Modelle eines Vorgängersystems. Oft erhält man die wichtigen Informationen auch durch eine systematische Befragung der Stakeholder, um einen Begriff des Softwareengineering zu verwenden. 
+	\item Wir kennen 
+	\sttpkapitelverweis{Process Mining}{S.~\pageref{text:process_mining}}
+	den Aufbau des Systems bzw.\ des Prozesses nicht, können aber sein Verhalten beobachten. Hier geht es tatsächlich um Ereignisprotokolle, und für diese Aufgabe im Bereich des „Process Mining“ sind sie auch bekannt geworden. Die Grundannahme ist hier, dass es eine große Menge beobachteten Verhaltens, also sehr viele Ereignisprotokolle gibt, die größtenteils fehlerfrei sind, und man daraus ein Modell konstruiert, dessen Verhalten mit dem beobachteten Verhalten übereinstimmt -- man nimmt das eigentliche Qualitäts\-kriterium der Modellierung also als Ausgangspunkt und konstruiert das Modell gleich in diesem Sinne korrekt. Dieses Verfahren kommt insbesondere dann in Frage, wenn ein Prozess gar nicht physisch oder logisch explizit existiert, sondern nur implizit durch sein Verhalten gegeben ist.
+	\item Die dritte Variante 
+	\sttpkapitelverweis{Synthese}{S.~\pageref{text:synthese}}
+	geht noch weiter: Ein System soll \textbf{genau} einer Spezifikation entsprechen, die durch Angabe eines gewünschten Verhaltens gegeben ist. Während Process Mining im Softwareengineering eine wichtige Rolle bei der Anforderungsanalyse spielt, ist die jetzt betrachtete „Synthese“ ein Schritt im Softwareentwurf -- wenn auch Process Mining und Modellsynthese viele Gemeinsamkeiten haben. Der Softwareentwurf durch Synthese spielt dann eine Rolle, wenn das Modell als Grundlage für Software verwendet wird, und beide eine präzise formulierte Spezifikation realisieren sollen. 
+\end{enumerate}
+
+\subsection*{Modellieren nach Text}
+\label{text:modellieren_nach_text}
+
+Die naheliegende Vorstellung dieser Modellbildung ist, 
+\marginline{System $\rightarrow$ Modell}
+dass jemand ein existierendes System bzw.\ einen Prozess kennt und diesen mit Worten beschreibt. Oder aber mehrere Leute, die unterschiedliche Sichten oder Ausschnitte kennen, tragen ihr Wissen textuell zusammen. Dabei müssen sie sich allerdings darauf einigen, Gleiches auch gleich zu benennen, denn sonst versteht man nichts mehr (s. Lektion 4, Kap. 6.2.3). Typischerweise wird in derartigen Texten lokales Verhalten beschrieben, also Voraussetzungen für Aktivitäten und ihre Auswirkungen, nicht aber globale Zustände. Wie bereits oben erwähnt, können auch strukturierte Texte wie Tabellen oder Skizzen in eine derartige Beschreibung eingehen, oder auch physische Systeme, deren Funktionsweise durch ihren physischen Aufbau gegeben sind.
+
+Aus der Architektur ist eine andere Modellierung geläufig: 
+\marginline{Modell $\rightarrow$ System}
+Ein Modell entsteht, bevor das zugehörige System existiert. Daher soll nicht das Modell dem System gleichen, sondern umgekehrt das System dem Modell. Dergleichen kommt im Softwareengineering natürlich auch vor. Neue Systeme werden erdacht und zunächst modelliert. Ein derartiges Modell ist dann korrekt, wenn es der Vorstellung des Modellierers entspricht, also dieser keine Modellierungsfehler gemacht hat. Ein Modell kann dann auch dazu dienen zu prüfen, ob die Ideen mehrerer Planer zusammenpassen, ob also die Komposition einzelner Modelle ein sinnvolles Ganzes ergibt.
+
+Als Werkzeug kommt bei dieser Art der Modellfindung ein schlichter Editor 
+\marginline{Werkzeug:\\ Editor}
+für die Erstellung von Modellen infrage. Moderne Editoren haben Hilfsmittel, um syntaktische Fehler auszuschließen und sogar manche semantische Fehler zu vermeiden (Plausibilitätsprüfung). Zudem sollten sie in der Lage sein, aus modellierten Teilmodellen ein Gesamtmodell zu konstruieren. 
+
+Ein korrektes Modell eines Systems oder Prozesses hat Abläufe, die die realen Abläufe des Systems oder Prozesses widerspiegeln. Um dies zu überprüfen, wird man Modellabläufe konstruieren, und kann sie dann mit den realen Abläufen vergleichen (im Falle von geplanten Systemen mit den geplanten Abläufen). Wir können also das Qualitätsmerkmal als Konstruktionshilfe verwenden und schrittweise ein Modell durch Berücksichtigung seiner Abläufe erweitern oder verbessern. Das dafür verwendete Werkzeug 
+\marginline{Werkzeug:\\ Simulator}
+heißt Simulator. Simulation erzeugt entweder verteilte Abläufe oder Sequenzen, und derartige Simulatoren sind für Petrinetze sehr verbreitet (sie dienen natürlich auch dem Erlernen der Modellierungssprache).
+
+Neben konkreten Abläufen hat man oft auch eine Vorstellung von weiteren Eigenschaften eines Systems, die das Modell dann auch haben soll. Nehmen wir Deadlock-Freiheit. Wir können durch Analyse des Modells herausfinden, ob es Deadlock-frei ist und diese Eigenschaft dann auch dem modellierten System zuordnen. Simulatoren können auch Deadlocks erkennen, indem sie diese Zustände erreichen. Wir könnten umgekehrt aber auch wissen, dass ein System Deadlock-frei ist und diese Eigenschaft deshalb vom Modell erwarten.Wird dort ein Deadlock erreicht, deckt dieser nicht einen Fehler des Systems auf, sondern einen Fehler der Modellierung. 
+
+\clearpage %%% für Druck
+
+\subsection*{Process Mining}
+\label{text:process_mining}
+
+Der Begriff Process Mining ist noch relativ neu, hat aber bereits einen großen Hype in der Wissenschaft und in der Praxis ausgelöst. 
+In der Wissenschaft wurde dieser Begriff von Wil van der Aalst geprägt.
+
+\vspace{\baselineskip} %%% für Druck
+
+\sttpAutorenkasten{Wil van der Aalst}{1966}{}{
+	Niederländischer Informatiker. Entwarf Workflow-Netze und trug entscheidend zur Entwicklung von Algorithmen bei, die Geschäftsprozesse datenbasiert analysieren. Besonders seine Arbeiten zu Process Mining haben das Prozessmanagement nachhaltig verändert. Leitet den Lehrstuhl Process and Data Science an der RWTH Aachen.}{Bilder/autoren/aalst.jpg}{2016}{Fondazione Bruno Kessler, \href{http://creativecommons.org/licenses/by/3.0}{CC BY 3.0}, via \href{https://commons.wikimedia.org/wiki/File:Wil_van_der_Aalst_and_the_process_mining_science,_2016.jpg}{Wikimedia Commons}}
+
+\vspace{\baselineskip} %%% für Druck
+	
+Die praktische Relevanz rührt daher, dass in vielen Unternehmen die tatsächlich existierenden (ablaufenden) Prozesse gar nicht bekannt sind, zum Beispiel weil sie nicht vorgegeben sind, sondern sich aus dezentralen informellen Spielregeln ergeben, doch der Wunsch zur Effizienzsteigerung durch Prozessoptimierung eine genaue Kenntnis des Ist-Zustands erfordert. Process Mining steht inzwischen für mehr als nur Process Discovery, aber hier wollen wir uns nur diesem Aspekt des Process Mining widmen. 
+
+Der Hype in der Wissenschaft hat eine mittlerweile kaum mehr überschaubare Menge von Varianten, passenden Algorithmen und Werkzeugen hervorgebracht. Eine neue, angesehene Konferenzserie widmet sich dem Process Mining, und die Fachleute können mit diesem Hintergrundwissen in verschiedenen wissenschaftlichen Bereichen wertvolle Beiträge liefern, zum Beispiel in der Wirtschaftsinformatik und im Softwareengineering.
+
+Generell geht es beim Process Mining um größere, unübersichtliche Systeme, 
+\marginline{Spielregeln des Process Mining}
+deren Verhalten beobachtet werden kann, deren Struktur und Verhaltensregeln aber unbekannt sind und gefunden werden sollen.
+Wir betrachten im Folgenden nur eine -- die ursprüngliche -- Spielart, die gekennzeichnet ist durch folgende Regeln:
+
+\begin{itemize}
+	\item Die Ausführung relevanter Aktivitäten (relevante Aktionen) wird sequentiell beobachtet und in Ereignisprotokollen gespeichert.
+	\item Es stehen sehr viele Ereignisprotokolle zur Verfügung, das Systemverhalten wurde also über einen größeren (und repräsentativen!) Zeitraum protokolliert.
+	\item Die Nebenläufigkeit der Aktionen in Abläufen wird nicht beobachtet und steht bei der Auswertung deshalb auch nicht zur Verfügung, denn sie geht bei der Sequentialisierung verloren.
+	\item Es mag seltene, ungültige Ereignisprotokolle geben, die entweder durch Fehler bei der Aufzeichnung entstanden sind oder ein seltenes Systemverhalten beschreiben, das nicht Eingang in das Modell finden soll (auch Rauschen genannt).
+	\item Ereignisprotokolle bilden mehrere Abläufe ab, die für verschiedene bearbeitete Fälle stehen. Diese Abläufe laufen typischerweise parallel; sie können beginnen, bevor andere beendet wurden. Deshalb ist es unvermeidbar, dass bei Aufzeichnungsende gewisse Abläufe noch unvollendet sind. Die entsprechenden unvollständigen Protokolle sind aber nicht unterscheidbar von Protokollen, die abgebrochene Abläufe beschreiben.
+	\item Statt der expliziten Angabe von Kausalität zwischen Aktionen in Abläufen, die es bei sequentiellen Beobachtungen nicht gibt, wäre auch eine generelle Information zu Abhängigkeiten zwischen Aktivitäten hilfreich. So kann die Struktur eines Petrinetzes Unabhängigkeit von Transitionen nahelegen, die sich als Nebenläufigkeit ihrer Schaltvorgänge zeigt: Wenn zwei Transitionen unmittelbar nacheinander schalten können und keine Stelle in der Umgebung beider Transitionen liegt, dann schalten sie nebenläufig. Derartige Informationen liegen beim Process Mining nicht vor.
+\end{itemize}
+
+\subsubsection*{Der $\pmb{\alpha}$-Algorithmus}
+
+Zu den ersten Algorithmen für das Process Mining gehört der $\alpha$-Algorithmus, vorgestellt in „Process Mining: Data Science in Action“ \cite{aal16}. Er ist zwar im Allgemeinen nicht mehr konkurrenzfähig, doch als Grundlage etlicher verbesserter Algorithmen interessant, und einfach genug, um hier erklärt zu werden. Sie sollen so verstehen, was genau die Aufgabe eines derartigen Algorithmus ist und wo typische Schwierigkeiten liegen.
+
+\vspace{\baselineskip} %%% für Druck
+
+Der $\alpha$-Algorithmus basiert auf folgenden Annahmen:
+\begin{itemize} 
+	\item 
+	Die Ereignisprotokolle sind vollständig, d.h., alles was geschehen kann, geschah auch tatsächlich und wurde im Ereignisprotokoll festgehalten. Diese Forderung ist sehr anspruchsvoll und oft unrealistisch. So mag man bei zwei in vielen Abläufen nebenläufigen Aktionen erwarten können, dass man sie mal in der einen und mal in der anderen Reihenfolge sieht, aber bei acht nebenläufigen Aktionen kann man kaum alle $8! \sim 40.000$ Permutationen einfordern wollen. Glücklicherweise liefert der Algorithmus auch bei eingeschränkter Vollständigkeit sinnvolle Ergebnisse.
+	\item 
+	Abläufe von Prozessen beziehen sich auf separate „Fälle“, jeder Fall entspricht der Auslösung eines Ablaufs. In der Realität laufen mehrere Fälle nebenläufig in demselben System, sie können aber im Ereignisprotokoll durch entsprechende Markierungen der Aktionen unterschieden werden. Mehrere Fälle, also nebenläufige Abläufe, können grundsätzlich auch interagieren, also gegenseitig Einfluss nehmen. Dies zu modellieren ist hochkomplex und auch gar nicht gewünscht. Der $\alpha$-Algorithmus jedenfalls betrachtet die Ereignisfolgen verschiedener Fälle als unabhängig voneinander.
+\end{itemize}
+
+Der $\alpha$-Algorithmus basiert auf elementaren Beziehungen zwischen Aktivitäten, die durch folgende mögliche Konstellationen in Ereignisprotokollen definiert sind:
+\begin{itemize}
+	\item $ a < b$, falls (in wenigstens einem Ereignisprotokoll) $b$ direkt auf $a$ folgt (bitte nicht verwechseln mit der kausalen Ordnung zwischen Aktionen, $a$ und $b$ sind Aktivitäten).
+	\item $a \rightarrow b$ (Sequenz), falls $a < b$, aber nicht $b<a$.
+	\item $ a \; \;\sharp\;\; b$ (Alternative), falls weder $a < b$ noch $b<a$. 
+	\item $a \; \; || \; \; b$ (Nebenläufigkeit), falls $a < b$ und $b<a$. 
+\end{itemize}
+
+\vspace{\baselineskip} %%% für Druck
+
+Mit diesen Beziehungen lassen sich nun kleine Netzstückchen aufbauen:
+
+\begin{itemize}
+	\item Für $a \rightarrow b$
+	\vspace{2mm} %%% für Druck
+		\begin{center}
+		\scalebox{0.8}{
+			\petrinetz{
+				\draw[colDummyLine](-1,0) -- (5,0); 
+				
+				% Places
+				\node[place, tokens=0] (place1) at (2,0) {};
+				
+				% Transitions
+				\node[transition, label=center:$a$] (trans1) at (0,0) {};
+				\node[transition, label=center:$b$] (trans2) at (4,0) {};
+				
+				% Edges
+				\draw (trans1) edge[post] (place1);
+				\draw (place1) edge[post] (trans2);
+				
+				% Parallele Pfeile auf T_1
+				\draw[->] (-1,  0.1) -- ($(trans1) + (-0.4,  0.1)$);  % Pfeil, der höher ist
+				\draw[->] (-1, -0.1) -- ($(trans1) + (-0.4, -0.1)$);  % Pfeil, der niedriger ist
+				
+				% Pfeile von T2
+				\draw[->] ($(trans2) + (0.4,  0.1)$) -- (5,  0.1);  % Pfeil, der höher startet
+				\draw[->] ($(trans2) + (0.4, -0.1)$) -- (5, -0.1);  % Pfeil, der niedriger startet
+			}
+		}
+		\end{center}
+	\vspace{2mm} %%% für Druck
+	
+	\item Für $ a \; \;\sharp\;\; b$, wenn zusätzlich $c \rightarrow a$ und $c \rightarrow b$
+	\vspace{2mm} %%% für Druck
+		\begin{center}
+		\scalebox{0.8}{
+			\petrinetz{
+				\draw[colDummyLine](-1,0) -- (5,0); 
+				
+				% Places
+				\node[place, tokens=0] (place1) at (2,0) {};
+				
+				% Transitions
+				\node[transition, label=center:$c$] (trans1) at (0,0) {};
+				\node[transition, label=center:$a$] (trans2) at (4,0.5) {};
+				\node[transition, label=center:$b$] (trans3) at (4,-0.5) {};
+				
+				% Edges
+				\draw (trans1) edge[post] (place1);
+				\draw (place1) edge[post] (trans2);
+				\draw (place1) edge[post] (trans3);
+				
+				% Parallele Pfeile auf T_1
+				\draw[->] (-1,  0.1) -- ($(trans1) + (-0.4,  0.1)$);  % Pfeil, der höher ist
+				\draw[->] (-1, -0.1) -- ($(trans1) + (-0.4, -0.1)$);  % Pfeil, der niedriger ist
+				
+				% Pfeile von T2
+				\draw[->] ($(trans2) + (0.4,  0.1)$) -- (5, 0.6);  % Pfeil, der höher startet
+				\draw[->] ($(trans2) + (0.4, -0.1)$) -- (5, 0.4);  % Pfeil, der niedriger startet
+
+				% Pfeile von T3
+				\draw[->] ($(trans3) + (0.4,  0.1)$) -- (5, -0.4);  % Pfeil, der höher startet
+				\draw[->] ($(trans3) + (0.4, -0.1)$) -- (5, -0.6);  % Pfeil, der niedriger startet
+			}
+		}
+		\end{center}
+	\vspace{2mm} %%% für Druck
+
+	\item Für $ a \; \;\sharp\;\; b$, wenn zusätzlich $a \rightarrow c$ und $b \rightarrow c$
+	\vspace{2mm} %%% für Druck
+		\begin{center}
+		\scalebox{0.8}{
+			\petrinetz{
+				\draw[colDummyLine](-1,0) -- (5,0); 
+				
+				% Places
+				\node[place, tokens=0] (place1) at (2,0) {};
+				
+				% Transitions
+				\node[transition, label=center:$a$] (trans1) at (0,0.5) {};
+				\node[transition, label=center:$b$] (trans2) at (0,-0.5) {};
+				\node[transition, label=center:$c$] (trans3) at (4,0) {};
+				
+				% Edges
+				\draw (trans1) edge[post] (place1);
+				\draw (place1) edge[post] (trans3);
+				\draw (trans2) edge[post] (place1);
+				
+				% Parallele Pfeile auf T_1
+				\draw[->] (-1, 0.6) -- ($(trans1) + (-0.4,  0.1)$);  % Pfeil, der höher ist
+				\draw[->] (-1, 0.4) -- ($(trans1) + (-0.4, -0.1)$);  % Pfeil, der niedriger ist
+				
+				% Pfeile von T2
+				\draw[->] (-1, -0.4) -- ($(trans2) + (-0.4,  0.1)$);  % Pfeil, der höher ist
+				\draw[->] (-1, -0.6) -- ($(trans2) + (-0.4, -0.1)$);  % Pfeil, der niedriger ist
+
+				% Pfeile von T3
+				\draw[->] ($(trans3) + (0.4,  0.1)$) -- (5,  0.1);  % Pfeil, der höher startet
+				\draw[->] ($(trans3) + (0.4, -0.1)$) -- (5, -0.1);  % Pfeil, der niedriger startet
+			}
+		}
+		\end{center}
+	\vspace{2mm} %%% für Druck
+	
+	\item Für $ a \; \; || \;\; b$, wenn zusätzlich $c \rightarrow a$ und $c \rightarrow b$
+	\vspace{2mm} %%% für Druck
+		\begin{center}
+		\scalebox{0.8}{
+			\petrinetz{
+				\draw[colDummyLine](-1,0) -- (5,0); 
+				
+				% Places
+				\node[place, tokens=0] (place1) at (2,0.5) {};
+				\node[place, tokens=0] (place2) at (2,-0.5){};
+				
+				% Transitions
+				\node[transition, label=center:$c$] (trans1) at (0,0) {};
+				\node[transition, label=center:$a$] (trans2) at (4,0.5) {};
+				\node[transition, label=center:$b$] (trans3) at (4,-0.5) {};
+				
+				% Edges
+				\draw (trans1) edge[post] (place1);
+				\draw (trans1) edge[post] (place2);
+				\draw (place2) edge[post] (trans3);
+				\draw (place1) edge[post] (trans2);
+				
+				% Parallele Pfeile auf T_1
+				\draw[->] (-1,  0.1) -- ($(trans1) + (-0.4,  0.1)$);  % Pfeil, der höher ist
+				\draw[->] (-1, -0.1) -- ($(trans1) + (-0.4, -0.1)$);  % Pfeil, der niedriger ist
+				
+				% Pfeile von T2
+				\draw[->] ($(trans2) + (0.4,  0.1)$) -- (5, 0.6);  % Pfeil, der höher startet
+				\draw[->] ($(trans2) + (0.4, -0.1)$) -- (5, 0.4);  % Pfeil, der niedriger startet
+
+				% Pfeile von T3
+				\draw[->] ($(trans3) + (0.4,  0.1)$) -- (5, -0.4);  % Pfeil, der höher startet
+				\draw[->] ($(trans3) + (0.4, -0.1)$) -- (5, -0.6);
+			}
+		}
+		\end{center}
+	\vspace{2mm} %%% für Druck
+
+	\item Für $ a \; \; || \;\; b$, wenn zusätzlich $a \rightarrow c$ und $b \rightarrow c$
+	\vspace{2mm} %%% für Druck
+		\begin{center}
+		\scalebox{0.8}{
+			\petrinetz{
+				\draw[colDummyLine](-1,0) -- (5,0); 
+				
+				% Places
+				\node[place, tokens=0] (place1) at (2,0.5) {};
+				\node[place, tokens=0] (place2) at (2,-0.5) {};
+				
+				% Transitions
+				\node[transition, label=center:$a$] (trans1) at (0,0.5) {};
+				\node[transition, label=center:$b$] (trans2) at (0,-0.5) {};
+				\node[transition, label=center:$c$] (trans3) at (4,0) {};
+				
+				% Edges
+				\draw (trans1) edge[post] (place1);
+				\draw (place1) edge[post] (trans3);
+				\draw (trans2) edge[post] (place2);
+				\draw (place2) edge[post] (trans3);
+				
+				% Parallele Pfeile auf T_1
+				\draw[->] (-1, 0.6) -- ($(trans1) + (-0.4,  0.1)$);  % Pfeil, der höher ist
+				\draw[->] (-1, 0.4) -- ($(trans1) + (-0.4, -0.1)$);  % Pfeil, der niedriger ist
+				
+				% Pfeile von T2
+				\draw[->] (-1, -0.4) -- ($(trans2) + (-0.4,  0.1)$);  % Pfeil, der höher ist
+				\draw[->] (-1, -0.6) -- ($(trans2) + (-0.4, -0.1)$);  % Pfeil, der niedriger ist
+
+				% Pfeile von T3
+				\draw[->] ($(trans3) + (0.4,  0.1)$) -- (5,  0.1);  % Pfeil, der höher startet
+				\draw[->] ($(trans3) + (0.4, -0.1)$) -- (5, -0.1);  % Pfeil, der niedriger startet
+			}
+		}
+		\end{center}
+\end{itemize}
+
+\vspace{\baselineskip} %%% für Druck
+
+Aus dem Buch „Process Mining: Data Science in Action“ \cite{aal16} ist folgendes Beispiel entnommen.
+
+Gegeben sei ein Ereignisprotokoll mit folgenden drei Folgen:
+
+\begin{center}
+	\parbox{6cm}{
+		$ a \; b \; c \; d \; e \; f \; b \; d \; c \; e \; g $
+		
+		$ a \; b \; d \; c \; e \; g$
+		
+		$ a \; b \; c \; d \; e \; f \; b \; c \; d \; e \; f \; b \; d \; c \; e \; g $
+	}
+\end{center}
+
+\clearpage %%% für Druck
+
+Das folgende Bild fasst alle relevanten Beziehungen zwischen Aktionen zusammen:
+
+\begin{center}
+	%\begin{figure}[!htbp]
+	%	\centering
+	\scalebox{0.8}{
+		\petrinetz{
+			\draw[colDummyLine, very thick] (0,0) rectangle (4, 2.5);
+			
+			\node[] (a) at (0, 2.5) {$a$};
+			\node[] (b) at (0, 1)   {$b$};
+			\node[] (c) at (2, 1.5) {$c$};
+			\node[] (d) at (2, 0)   {$d$};
+			\node[] (e) at (4, 1)   {$e$};
+			\node[] (f) at (2, 2.5) {$f$};
+			\node[] (g) at (4, 2.5) {$g$};
+			
+			\node[] (h1) at (1, 2.5) {$\#$};
+			\node[] (h1) at (3, 2.5) {$\#$};
+			
+			% Edges
+			\draw (a) edge[post](b);
+			\draw (b) edge[post](c);
+			\draw (b) edge[post](d);
+			\draw (c) edge[post](e);
+			\draw (d) edge[post](e);
+			\draw (e) edge[post](g);
+			\draw (e) edge[post](f);
+			\draw (f) edge[post](b);
+			
+			\draw (c) edge[double, double distance=1mm, line width=0.9pt](d);
+		}
+	}
+	%	\caption{xyz}
+	%	\label{fig:xyz}
+	%\end{figure}
+\end{center}
+
+Und daraus ist ein Workflow-Netz leicht konstruiert:
+
+\vspace{-\baselineskip}
+
+\begin{center}
+%\begin{figure}[!htbp]
+%	\centering
+	\scalebox{0.8}{
+		\petrinetz{
+			\draw[colDummyLine](1.5, 0) -- (18.5, 0); 
+			
+			% Places
+			\node[place, tokens=1] (place1) at ( 2,  0)   {};
+			\node[place, tokens=0] (place2) at ( 6,  0)   {};
+			\node[place, tokens=0] (place3) at ( 8,  1.5) {};
+			\node[place, tokens=0] (place4) at ( 8, -1.5) {};
+			\node[place, tokens=0] (place5) at (12,  1.5) {};
+			\node[place, tokens=0] (place6) at (12, -1.5) {};
+			\node[place, tokens=0] (place7) at (14,  0)   {};
+			\node[place, tokens=0] (place8) at (18,  0)   {};
+			
+			% Transitions
+			\node[transition] (trans1) at ( 4,  0)   {$a$};
+			\node[transition] (trans2) at ( 8,  0)   {$b$};
+			\node[transition] (trans3) at (10,  1.5) {$c$};
+			\node[transition] (trans4) at (10, -1.5) {$d$};
+			\node[transition] (trans5) at (12,  0)   {$e$};
+			\node[transition] (trans6) at (16,  0)   {$g$};
+			\node[transition] (trans7) at (10,  3)   {$f$};
+			
+			% Edges
+			\draw (place1) edge[post](trans1);
+			\draw (trans1) edge[post](place2);
+			\draw (place2) edge[post](trans2);
+			\draw (trans2) edge[post](place3);
+			\draw (trans2) edge[post](place4);
+			\draw (place3) edge[post](trans3);
+			\draw (place4) edge[post](trans4);
+			\draw (trans3) edge[post](place5);
+			\draw (trans4) edge[post](place6);
+			\draw (place5) edge[post](trans5);
+			\draw (place6) edge[post](trans5);
+			\draw (trans5) edge[post](place7);
+			\draw (place7) edge[post](trans6);
+			\draw (trans6) edge[post](place8);
+			
+			%\draw (trans7) edge[post](place1);
+			%\draw (place8) edge[post](trans7);
+			
+			\draw[->] (trans7)-- ++(-4,0) -- (place2);
+			\draw[->] (place7) -- ++(0,3) -- (trans7);
+		}
+	}
+%	\caption{Ergebnisnetz}
+%	\label{fig:v8_ergebnis}
+%\end{figure}
+\end{center}
+
+Eine besondere Schwäche des $\alpha$-Algorithmus liegt darin, dass er einerseits das Auftreten von $c \; d$ und $d \; c$ stets als Nebenläufigkeit identifiziert, auch wenn die beiden Aktivitäten zwar so herum und so herum direkt nacheinander, doch trotzdem kausal geordnet vorkommen; dies tritt bei Schleifen auf.
+
+\vspace{\baselineskip}
+
+\begin{samepage}
+Statt % Abbildung~\ref{fig:v8_variante}
+
+\vspace{-\baselineskip}
+
+\begin{center}
+%\begin{figure}[!htbp]
+%	\centering
+	\scalebox{0.8}{
+		\petrinetz{
+			\draw[colDummyLine](-0.5, 0) -- (16.5, 0); 
+			
+			% Places
+			\node[place, tokens=1] (place2) at (4,0) {};
+			\node[place, tokens=0] (place3) at (8,0) {};
+			\node[place, tokens=0] (place7) at (12,0) {};
+			
+			% Transitions
+			\node[transition] (trans2) at (6,0) {$b$};
+			\node[transition] (trans3) at (8,2) {$c$};
+			\node[transition] (trans4) at (8,-2) {$d$};
+			\node[transition] (trans5) at (10,0) {$e$};
+			
+			% Edges
+			\draw (place2) edge[post](trans2);
+			\draw (trans2) edge[post](place3);
+			\draw (place3) edge[post, bend left=15](trans3);
+			\draw (place3) edge[pre, bend right=15](trans3);
+			\draw (place3) edge[post, bend left=15](trans4);
+			\draw (place3) edge[pre, bend right=15](trans4);
+			\draw (place3) edge[post](trans5);
+			\draw (trans5) edge[post](place7);
+		}
+	}
+%	\caption{Variante 1}
+%	\label{fig:v8_variante}
+%\end{figure}
+\end{center}
+
+\vspace{-\baselineskip}
+
+wird er also stets % Abbildung~\ref{fig:v8_fehlervariante}
+
+\vspace{-\baselineskip}
+
+\begin{center}
+%\begin{figure}[!htbp]
+%	\centering
+	\scalebox{0.8}{
+		\petrinetz{
+			\draw[colDummyLine](1.5, 0) -- (18.5, 0); 
+			
+			% Places
+			\node[place, tokens=1] (place2) at ( 6,  0)   {};
+			\node[place, tokens=0] (place3) at ( 8,  1.5) {};
+			\node[place, tokens=0] (place4) at ( 8, -1.5) {};
+			\node[place, tokens=0] (place5) at (12,  1.5) {};
+			\node[place, tokens=0] (place6) at (12, -1.5) {};
+			\node[place, tokens=0] (place7) at (14,  0)   {};
+			
+			% Transitions
+			\node[transition] (trans2) at ( 8,  0)   {$b$};
+			\node[transition] (trans3) at (10,  1.5) {$c$};
+			\node[transition] (trans4) at (10, -1.5) {$d$};
+			\node[transition] (trans5) at (12,  0)   {$e$};
+			
+			% Edges
+			\draw (place2) edge[post](trans2);
+			\draw (trans2) edge[post](place3);
+			\draw (trans2) edge[post](place4);
+			\draw (place3) edge[post](trans3);
+			\draw (place4) edge[post](trans4);
+			\draw (trans3) edge[post](place5);
+			\draw (trans4) edge[post](place6);
+			\draw (place5) edge[post](trans5);
+			\draw (place6) edge[post](trans5);
+			\draw (trans5) edge[post](place7);
+		}
+	}
+%	\caption{Variante 2}
+%	\label{fig:v8_fehlervariante}
+%\end{figure}
+\end{center}
+
+\vspace{-\baselineskip}
+
+herstellen.
+\end{samepage}
+
+Für bessere Algorithmen aus dem akademischen Kontext siehe ProM Tools\linebreak
+\href{https://promtools.org}{https://promtools.org}.
+
+Kommerzielle Werkzeuge liefern zum Beispiel das überaus erfolgreiche Startup
+\linebreak %%% für Druck
+CELONIS, das von ehemaligen Studenten der TU München gegründet wurde, aber auch Signavio, ein Startup der Uni Potsdam, das von SAP übernommen wurde.
+
+\vspace{\baselineskip}
+
+Process Mining Verfahren können sehr unterschiedliche Ergebnisse liefern, deren Güte auch davon abhängt, was man sucht. Generell gibt es vier Qualitätskriterien, die aber konkurrieren und nicht alle zugleich maximal erfüllt werden können.
+
+\begin{itemize}
+	\item \textbf{sparsam (simplicity)}
+	\marginline{Qualitäts\-kriterien von Process Mining Verfahren}
+	Das generierte Modell soll so einfach wie möglich sein. Unter zwei Modellen, die die anderen Kriterien gleichermaßen erfüllen, ist das einfachere, klarere zu bevorzugen.
+
+	\item \textbf{fähig (fitness)}
+	Die vorgegebenen und beobachteten Ereignisprotokolle sollen auch vom Modell produziert werden können. Da diese und nur diese Grundlage des generierten Modells sind, ist diese Forderung offensichtlich. Sehr selten beobachtete Folgen oder offenbar fehlerhafte oder nicht vollständige Folgen in Ereignisprotokollen müssen allerdings nicht berücksichtigt werden, insbesondere wenn nur ihretwegen ein viel komplizierteres Modell entstehen würde.
+
+	\item \textbf{allgemein (generalization)}
+	In der Realität sind Ereignisprotokolle niemals vollständig, nicht jedes mögliche sequentielle Verhalten wird tatsächlich beobachtet. Insbesondere bei vielen nebenläufigen Aktionen werden nicht alle Permutationen tatsächlich beobachtet. Ein guter Process Mining Algorithmus kann von typischen Ablaufbeispielen generalisieren und ein einfaches Modell kreieren, das andere, naheliegende Sequenzen ebenfalls ermöglicht.
+
+	\item \textbf{präzise (precision)}
+	Das Gegenstück zum vorigen Kriterium ist Präzision; es soll nicht zu viel nicht protokolliertes Verhalten auf Modellebene möglich sein. Ohne dieses Kriterium wäre ein sehr einfaches Modell stets prima, nämlich das Modell, in dem jede Aktivität jederzeit geschehen kann; es ist einfach, fähig und allgemein, aber leider zu allgemein. 
+\end{itemize}
+
+\subsection*{Synthese}
+\label{text:synthese}
+
+Petrinetz-Synthese und Process Mining haben einiges gemeinsam und auch verwandte Verfahren. Der Einsatz unterscheidet sich jedoch deutlich: Während Process \mbox{Mining} von einem existierenden System ausgeht, für das ein passendes Modell gesucht wird, beginnt die Synthese bei einem Modell des Verhaltens und will daraus ein passendes System herstellen. Die Petrinetz-Synthese ist dabei ein Zwischenschritt: von der Verhaltensbeschreibung generiert man ein Petrinetz, und aus dem Petrinetz ein System.
+
+Es gibt etliche Varianten von Petrinetz-Syntheseverfahren, sie unterscheiden sich im Wesentlich darin, wie die Verhaltensbeschreibung, also der Ausgangspunkt, formuliert ist, und welche Typen von Petrinetzen synthetisiert werden sollen. Und sie unterscheiden sich natürlich auch technisch und in ihrer Berechnungskomplexität. Und schließlich gilt auch für die Petrinetz-Synthese neben den Forderungen nach strikter fitness und precision, dass das Ergebnis-Netz möglichst einfach und klar sein soll. 
+
+In dieser Lektion wird nur eine besonders einfache Variante näher erläutert, und dies ist die Urvariante aller Syntheseverfahren: 
+
+\vspace{2mm} %%% für Druck
+
+\begin{itemize}
+	\item Ausgangspunkt ist ein Zustandsgraph, der Zustandsgraph des gesuchten Petri\-netzes sein soll. Wir haben bislang die Knoten von Zustandsgraphen als Markierungen von Stellen angegeben; sind diese gegeben, wird aber die Fragestellung zu einfach. Stattdessen sollen nur die Knoten und die mit Transitionen beschrifteten Kanten bekannt sein.
+	\item Ziel ist ein 1-beschränktes Petrinetz ohne Schlingen, dessen Zustandsgraph dem vorgegebenen Graphen entspricht, also dieselbe Graphenstruktur aufweist und dieselben Kantenbeschriftungen hat.
+	\item Ein weiteres Ziel ist, dass dieses Netz möglichst einfach ist. Sie werden sehen, dass dies nur die Stellen betrifft.
+\end{itemize}
+
+\vspace{2mm} %%% für Druck
+
+Im Vorlesungsvideo wird das Prinzip an einem Beispiel erläutert, das in diesem Lerntext nicht entsprechend detailliert dargestellt wird. Ausgangspunkt ist ein Graph mit gerichteten, mit Transitionsnamen beschrifteten Kanten und einem Anfangszustand, also ein Zustandsgraph eines noch unbekannten Netzes, bei dem wir nicht wissen, für welche Markierungen die Knoten stehen. 
+
+Die Menge der Transitionen des gesuchten Netzes ist leicht zu ermitteln: es sind gerade alle vorkommenden Kantenanschriften. Um nun Stellen des Netzes zu ermitteln, benötigen wir das Konzept einer \emph{Region}:
+\marginline{Region}
+Eine Region ist eine Menge von Knoten, also von Zuständen, für die eine gedachte Stelle markiert ist (d.h., für alle Zustände außerhalb der Region ist sie nicht markiert). Da wir ein 1-beschränktes Petrinetz konstruieren wollen, kann jede Stelle nur eine dieser beiden Zustände besitzen. Wenn eine Region für eine Stelle stehen soll, dann gilt für jede Transition $t$:
+
+\vspace{2mm} %%% für Druck
+
+\begin{itemize}
+	\item entweder ist $t$ nicht mit der Stelle verbunden, dann wird die Markierung der Stelle durch Schalten von $t$ nicht verändert und keine mit $t$ beschriftete Kante führt von einem Zustand außerhalb der Region zu einem Zustand innerhalb der Region oder umgekehrt,
+	\item oder es gibt eine Kante von $t$ zu dieser Stelle, dann führt jede mit $t$ beschriftete Kante von einem Knoten außerhalb der Region zu einem Knoten innerhalb der Region,
+	\item oder es gibt eine Kante von dieser Stelle zu $t$, dann führt jede mit $t$ beschriftete Kante von einem Knoten innerhalb der Region zu einem Knoten außerhalb der Region.
+	\item Den Fall, dass es Kanten von der Stelle von und zu $t$ gibt, schließen wir aus, denn das konstruierte Netz soll keine Schlingen besitzen.
+\end{itemize}
+
+\vspace{2mm} %%% für Druck
+
+Diese Regionen lassen sich ermitteln, indem man alle Teilmengen von Zuständen auf die oben genannten Eigenschaften überprüft, wobei die leere Menge und die Menge aller Zustände (also die nie markierte und die immer markierte Stelle) ausscheiden. Jede mögliche Stelle, die im Netz das gegebene Verhalten respektieren würde, ist damit ermittelt. Die Anfangsmarkierung weist den Stellen eine Marke zu, die aus Regionen entstanden sind, die den Anfangszustand enthalten.
+
+Für dieses Netz gilt nun:
+
+\vspace{2mm} %%% für Druck
+
+\begin{itemize}
+	\item Wenn der gegebene Graph tatsächlich Zustandsgraph eines 1-beschränkten Petri\-netzes ohne Schlingen ist, dann entspricht er dem Zustandsgraph des durch Regionen synthetisierten Netzes. 
+	\item Wenn der gegebene Graph nicht Zustandsgraph eines 1-beschränkten Petrinetzes ohne Schlingen ist, das Syntheseproblem also unlösbar ist, dann
+	wird dennoch ein Netz konstruiert, dessen Zustandsgraph aber dem gegebenen Graph nicht entspricht. 
+	\item Da die Menge erreichbarer Zustände eines Netzes oft exponentiell mit der Zahl der Stellen wächst und die Anzahl der Teilmengen der Zustandsmenge wiederum exponentielle Größe verglichen mit der Anzahl der Zustände besitzt, kann die Menge möglicher Stellen sehr groß werden. Meist reicht eine kleinere Teilmenge aus. 
+\end{itemize}
+
+\vspace{2mm} %%% für Druck
+
+Forschungsarbeiten in diesem Gebiet untersuchen, wie man die Stellenmenge reduzieren kann, aber behandeln auch Syntheseverfahren für andere Petrinetz-Klassen und mit anderen Verhaltensbeschreibungen, zum Beispiel mit Schaltfolgen oder halbgeordneten Abläufen. 

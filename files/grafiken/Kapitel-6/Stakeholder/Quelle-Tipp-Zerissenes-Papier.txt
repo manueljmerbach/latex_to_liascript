@@ -1,0 +1,13 @@
+https://lehrerfortbildung-bw.de/st_digital/medienwerkstatt/multimedia/bild/gimp/zerpapier/
+
+Effekt "Zerrissenes Papier"
+
+Eine Google-Suche zeigt, dass der Effekt "zerrissenes Papier" (auf englischen 
+Internetseiten: "torn paper") sehr beliebt ist und dass es hierzu im Internet 
+auch schon eine ganze Reihe von Anleitungen gibt. Allerdings ist keine Anleitung 
+so einfach, wie die auf den folgenden Seiten:
+
+In sechs einfachen Schritten können Sie den hier gezeigten Effekt mit dem 
+OpenSource-Programm GIMP erstellen. 
+
+...

@@ -1,0 +1,65 @@
+\section{Dummy-Section}
+
+\lipsum[1][1-5]
+
+\textbf{An dieser Stelle steht ein ganz normaler Indexeintrag.}
+\index{Eintrag}
+
+\lipsum[1][6-10]
+
+\textbf{Und hier ist ein Unter-Eintrag enthalten.}
+\index{Eintrag!Untereintrag} 
+
+\lipsum[1][11-15]
+
+\textbf{Hier beginnt ein "`LangIndexEintrag"'.}
+\index{LangIndexEintrag|(}
+
+
+\subsection{Dummy-Subsection}
+
+\lipsum[2][1-3]  
+
+\subsection{Dummy-Subsection}
+
+\lipsum[3][1-5]
+
+\textbf{Indexeinträge mit Umlauten müssen gesondert ausgezeichnet werden.}
+\index{Aepfel@Äpfel}
+
+\lipsum[3][6-10]
+
+\subsection{Dummy-Subsection}
+
+\lipsum[4][1-3]
+
+\textbf{Ein Haupteintrag wird im Indexverzeichnis "`fett"' dargestellt.}
+\index{Eintrag|textbf}
+
+\lipsum[4][4-5]
+
+\textbf{Man kann auch Unter-Unter-Einträge erstellen.}
+\index{Eintrag!Untereintrag!Unter-Untereintrag} 
+
+\lipsum[5][1-3]
+
+\textbf{Hier endet der "`LangIndexEintrag"'.}
+\index{LangIndexEintrag|)}
+
+\minisec{weitere Tests für Indexeinträge}
+
+An dieser Stelle stehen weitere Einträge für den Index. Ich will testen, wie es mit der Sortierung der Umlaute klappt.
+
+\index{Apfel}
+
+\index{Ampel}
+
+\index{Ast}
+
+\index{Aenderung@Änderung}
+\index{Aepfelchen@Äpfelchen}
+\index{Aeste@Äste}
+
+\index{Abteilung}
+
+Beim Befehl \texttt{makeindex} gibt es die Option \texttt{-g} (für \textit{german odering}).

@@ -1,0 +1,230 @@
+\section{Beziehungen modellieren}
+\label{sec:Kap-4.3}
+
+Um in UML-Objektdiagrammen eine Beziehung zwischen Objekten zu modellieren, verbindet man die Kästen der Objekte mit einer durchgezogenen Linie. Die UML-Termi\-no\-logie für eine Beziehung von Objekten ist \textit{Verbindung} (engl. link). \marginline{Objekt\-verbindungen} Abbildung~\ref{fig:objektdiagramm} zeigt ein Objektdiagramm, das zwei Lehrer-Objekte, drei Fach-Objekte und drei Schüler-Objekte enthält. Zwischen einigen der Objekte bestehen Verbindungen. So hat zum Beispiel das Lehrer-Objekt mit Namen \sttpUMLText{weber} oben links eine Verbindung zum Fach-Objekt \sttpUMLText{sport} und eine weitere zum Fach-Objekt \sttpUMLText{biologie}. Anhand des Namens der Verbindung (\sttpUMLText{unterrichtet}) erkennt man, welche Art von Realweltbeziehung hier abgebildet wird: Der Realwelt-Lehrer Weber unterrichtet die Fächer Sport und Biologie. 
+
+\vspace{\baselineskip} %%% für Druck
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{Bilder/Kapitel-4/objektdiagramm_lehrer_fach_schueler.pdf}
+	\caption{Ein Objektdiagramm}
+	\label{fig:objektdiagramm}
+\end{figure}
+
+\vspace{\baselineskip} %%% für Druck
+
+Das kleine schwarze Dreieck in der Nähe des Verbindungsnamens wird in der UML verwendet, um eine Leserichtung der Verbindung anzugeben. An diesem erkennt man, dass der Lehrer Weber das Fach Sport unterrichtet und nicht das Fach Sport den Lehrer Weber. Wir hätten ebenso gut \sttpUMLText{wird unterrichtet von} als Verbindungsnamen verwenden und das kleine Dreieck entsprechend um 180$^{\circ}$ drehen können. In beiden Fällen ist die Bedeutung der modellierten Beziehung zwischen \sttpUMLText{weber} und \sttpUMLText{sport} identisch. Die Angabe einer Leserichtung ist optional. Man sollte sie explizit angeben, wenn sie sich aus dem Kontext nicht erschließen lässt. Die Angabe eines Verbindungsnamens, der üblicherweise ein Verb enthält, ist im Übrigen auch optional, aber gerade in Domänenmodellen meist hilfreich, um Missverständnisse zwischen Fachanwendern und Softwareentwicklern über den zu modellierenden Real\-welt\-ausschnitt zu vermeiden.
+
+In Abbildung~\ref{fig:objektdiagramm} haben wir auf die Angabe von Attributen der Objekte verzichtet. So werden wir auch in den folgenden Abbildungen verfahren und Attribute immer dann weglassen, wenn sie für die aktuellen Modellierungszwecke (\zb hier: Erläuterung von Objekt- und Klassenbeziehungen) nicht relevant sind. Ein solches Vorgehen ist üblich in der objektorientierten Modellierung. Die UML bietet für ein spezifisches Diagramm (\zb Objektdiagramm) bestimmte Notationselemente an. Bei der Erstellung eines Diagramms müssen aber nicht alle zur Verfügung stehenden Elemente auch eingesetzt werden. Die Auswahl trifft der Modellersteller in Abhängigkeit von Einsatzzweck und Zielgruppe des Modells.
+
+\vspace{2mm} %%% für Druck
+
+\minisec{Klassenbeziehungen spezifizieren Objektbeziehungen}
+\phantomsection
+\label{sec:Kap-3.2.5.3:klassenbeziehungen}
+
+Ein Objektdiagramm wie in Abbildung~\ref{fig:objektdiagramm} könnte im Rahmen eines Projekts zur Entwicklung einer Schulverwaltungssoftware bei einer Diskussion zwischen dem Softwareentwicklungsteam und den Domänenexperten über die Domäne Schule entstanden sein. Wir wiederholen an dieser Stelle, dass im Softwareengineering die Modellierung der Realwelt kein Selbstzweck ist. Die Realweltmodellierung ist ein (notwendiger) Baustein für das übergeordnete Ziel der Entwicklung (bzw. Weiterentwicklung, Änderung etc.) eines Softwareprodukts. Wie weiter oben erwähnt, benötigt man dafür aber die Klassen und nicht die Objekte. Man muss daher von einem Objektdiagramm wie in Abbildung~\ref{fig:objektdiagramm} zu einem abstrakteren Klassendiagramm kommen. Abbildung~\ref{fig:klassendiagramm_zu_objektdiagramm} zeigt ein solches Klassendiagramm. 
+
+\vspace{\baselineskip} %%% für Druck
+\vspace{\baselineskip} %%% für Druck
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{Bilder/Kapitel-4/klassendiagramm_lehrer_fach_schueler.pdf}
+	\caption[Ein zum Objektdiagramm aus Abb.~\ref{fig:objektdiagramm} gehöriges Klassen\-diagramm]{Ein zum Objektdiagramm aus Abbildung~\ref{fig:objektdiagramm} gehöriges Klassen\-diagramm}
+	\label{fig:klassendiagramm_zu_objektdiagramm}
+\end{figure}
+
+\vspace{\baselineskip} %%% für Druck
+
+Das Klassendiagramm spezifiziert, welche Objekte mit welchen anderen Objekten in welchen Arten von Beziehungen stehen dürfen. Es gibt somit die Regeln vor, anhand derer bestimmt werden kann, ob \marginline{Objekt\-konstellationen}
+\textit{Objektkonstellationen} (Menge von Objekten mit oder ohne Verbindungen untereinander) gültig oder ungültig sind. Eine Objektkonstellation ist dann gültig, wenn sie alle durch das Klassendiagramm festgelegten Bedingungen erfüllt, andernfalls ist sie ungültig. Wenn mit einer Objekt\-konstel\-la\-tion wie in Abbildung~\ref{fig:objektdiagramm} begonnen wird, von der die Domänenexperten gesagt haben, dass diese eine adäquate Modellierung der Realweltzusammenhänge darstellt, und sie damit gültig sein soll, muss man das Klassendiagramm und seine Regeln ent\-sprechend so konstruieren, dass alle gültigen Objektkonstellationen der Spezi\-fi\-kation entsprechen. In der Praxis findet häufig aber auch der umgekehrte Weg statt: Man beginnt mit einem Klassendiagramm und erstellt auf dieser Grundlage – im Prinzip nur zu Diskussions- oder Prüfzwecken mit den Domänenexperten – gültige und ungültige Objektkonstellationen.
+
+\vspace{1.4mm} %%% für Druck
+
+Das Klassendiagramm in Abbildung~\ref{fig:klassendiagramm_zu_objektdiagramm} beinhaltet die drei Klassen \sttpUMLText{Lehrer}, \sttpUMLText{Fach} und \sttpUMLText{Schüler}, da für das Objektdiagramm aus Abbildung~\ref{fig:objektdiagramm} Lehrer-Objekte, Fach-Objekte und Schüler-Objekte benötigt werden. Wie zwischen Objekten werden Beziehungen zwischen Klassen in UML durch eine durchgezogene Linie zwischen den Klassen dargestellt. Eine solche Beziehung zwischen Klassen nennt man eine \textit{\mbox{Assoziation}}
+\marginline{Assoziationen}
+(engl. association). 
+
+\vspace{1.4mm} %%% für Druck
+
+Die Angaben mit Zahlen und Sternchen (*) an den Assoziationsenden in Abbildung~\ref{fig:klassendiagramm_zu_objektdiagramm} heißen \textit{Multiplizitäten}.
+\marginline{Multiplizitäten}
+Die Multiplizitäten geben an, mit wie vielen anderen Objekten (in Bezug auf die betrachtete Assoziation) die Objekte einer Klasse in Beziehungen stehen können bzw. müssen. Multiplizitäten werden in der Form \sttpUMLText{untereGrenze..obereGrenze} angegeben (\zb \sttpUMLText{1..10}), wobei die untere Grenze die minimale Anzahl und die obere Grenze die maximale Anzahl angibt. Sind untere und obere Grenze identisch, genügt die Angabe eines Werts (\zb \sttpUMLText{2} als Abkürzung für \sttpUMLText{2..2}). Neben der Angabe natürlicher Zahlen kennt die UML in Multiplizitäten noch die Angaben \sttpUMLText{0} und \sttpUMLText{*}. Die \sttpUMLText{0} kann nur als untere Grenze verwendet werden (\zb \sttpUMLText{0..6}) und bedeutet, dass kein verbundenes Objekt gefordert wird. Das Sternchen-Symbol (\sttpUMLText{*}) kann als obere Grenze verwendet werden (wie bei \sttpUMLText{1..*} an der Assoziation \sttpUMLText{unterrichtet}) oder alleine stehen (wie auf der Seite von Schüler an der Assoziation \sttpUMLText{nimmt teil}). Letztere Form ist eine Abkürzung für \sttpUMLText{0..*}, insofern bildet das \sttpUMLText{*} auch hier die obere Grenze. Es bedeutet unbegrenzt viele, wobei unbegrenzt nur nach oben gilt, die angegebene untere Grenze wird durch das Sternchen nicht beeinflusst. Zum Beispiel wären vier Objekte durch die Angabe \sttpUMLText{5..*} nicht abgedeckt, 37~allerdings schon und genauso auch zwei Millionen. 
+
+\vspace{1.4mm} %%% für Druck
+
+Das Lesen
+\marginline{Bedeutung von Multiplizitäten}
+und das sprachlich adäquate Erläutern der Bedeutung von Multiplizitäten in Klassendiagrammen ist nicht ganz einfach. Ein entscheidender Aspekt, mit dem UML-Anfänger oft Schwierigkeiten haben: Das Klassendiagramm zeigt Klassen und ihre mit Multiplizitäten versehenen Beziehungen zueinander. Die durch die Multiplizitäten modellierten Bedingungen beziehen sich aber nicht auf die Klassen, sondern auf die Objekte dieser Klassen. Man modelliert also Klassen-Beziehungen obwohl man Objekt-Beziehungen spezifizieren möchte.
+
+\vspace{1.4mm} %%% für Druck
+
+Die zweite Schwierigkeit ist, welche Multiplizität die relevante für eine Aussage ist, denn jede Assoziation zwischen zwei Klassen besitzt zwei Multiplizitäten. Wir verlassen kurz Abbildung~\ref{fig:klassendiagramm_zu_objektdiagramm} und wechseln auf ein kleineres Beispiel. Abbildung~\ref{fig:klassendiagramm_und_objektkonstellationen} zeigt oben wieder eine \sttpUMLText{unterrichtet}-Assoziation zwischen einer \sttpUMLText{Lehrer}-Klasse und einer \sttpUMLText{Fach}-Klasse. Die Assoziation weist eine Multiplizität \sttpUMLText{2} auf der Seite der \sttpUMLText{Lehrer}-Klasse und eine Multiplizität \sttpUMLText{3} auf der Seite der \sttpUMLText{Fach}-Klasse auf. 
+
+\pagebreak %%% für Druck
+
+\begin{figure}[h!]
+	\vspace{8mm} %%% für Druck
+	\centering
+	\includegraphics{Bilder/Kapitel-4/objektkonstellation_gueltig_ungueltig.pdf}
+	\caption[Klassendiagramm, gültige und ungültige Objektkonstellation]{Ein Klassendiagramm (oben), eine gültige Objektkonstellation (Mitte) und eine ungültige Objektkonstellation (unten)}
+	\label{fig:klassendiagramm_und_objektkonstellationen}
+\end{figure}
+
+Für Aussagen über die gültigen Verbindungen von Lehrer-Objekten muss (für manchen wenig intuitiv) die Multiplizität auf Seite der \sttpUMLText{Fach}-Klasse betrachtet werden und umgekehrt. Jedes Lehrer-Objekt ist also mit drei Fach-Objekten verbunden und nicht mit zwei und jedes Fach-Objekt mit zwei Lehrer-Objekten und nicht mit drei. Abbildung~\ref{fig:klassendiagramm_und_objektkonstellationen} zeigt in der Mitte eine gültige Objektkonstellation bezüglich des Klassendiagramms und unten eine ungültige Objektkonstellation. Bei Letzterer wurden die Multiplizitäten verkehrt herum gelesen.
+
+Im Prinzip müssten die Assoziationsnamen aus dem Klassendiagramm (in unserem Beispiel \sttpUMLText{unterrichtet}) als Verbindungsnamen in die Objektdiagramme übernommen werden. Aus Übersichtlichkeitsgründen werden in Objektdiagrammen Verbindungsnamen aber häufig nicht angegeben, zumal in der Praxis Objektdiagramme selten ohne Vorliegen bzw. Kenntnis des zugehörigen Klassendiagramms eingesetzt werden, in dem die Assoziationsnamen Auskunft über die Art der Beziehungen zwischen den Objekten geben.
+
+Die dritte Schwierigkeit bei der Interpretation von Multiplizitäten ist zu erkennen, dass mit einer mit Multiplizitäten versehenen Assoziation nicht eine, sondern \textbf{zwei} Aussagen verbunden sind. Die eine Aussage benennt, welche Bedingungen für die Objekte der einen an der Assoziation beteiligten Klasse gelten, die andere gibt an, welche Bedingungen für die Objekte der anderen Klasse gelten. 
+
+\pagebreak %%% für Druck
+
+Wir betrachten weiterhin Abbildung~\ref{fig:klassendiagramm_und_objektkonstellationen}. Es ist nicht möglich, die Bedeutung der beiden Multiplizitäten der Assoziation \sttpUMLText{unterrichtet} in nur einer Formulierung unter\-zubringen. Sätze wie „zwei Lehrer-Objekte stehen in Beziehung mit drei Fach-Objekten“ sind schlichtweg nicht eindeutig. Zwar würden sie durchaus die gültige Objektkonstellation in Abbildung~\ref{fig:klassendiagramm_und_objektkonstellationen} Mitte beschreiben, jedoch auch eine ungültige Objektkonstellation wie in Abbildung~\ref{fig:ungueltige_objektkonstellation} und alle weiteren Beziehungen, in denen zwei Lehrer-Objekte und drei Fach-Objekte vorkommen.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{Bilder/Kapitel-4/ungueltige_objektkonstellation.pdf}
+	\caption[Eine ungültige Objektkonstellation zu Abb.~\ref{fig:klassendiagramm_und_objektkonstellationen}]{Eine bezüglich des Klassendiagramms in Abbildung~\ref{fig:klassendiagramm_und_objektkonstellationen} ungültige Objektkonstellation}
+	\label{fig:ungueltige_objektkonstellation}
+\end{figure}
+
+Es  müssen daher 
+\marginline{Multiplizitäten sprachlich ausdrücken}
+zwei Aussagen zur Beschreibung der Assoziation verwendet werden: 1. Jedes Lehrer-Objekt ist mit genau drei Fach-Objekten verbunden, 2. Jedes Fach-Objekt (wiederum) ist mit genau zwei Lehrer-Objekten verbunden. Wichtig ist hierbei auch die Formulierung \textbf{jedes} Objekt: Die Vorgaben des Klassendiagramms bezüglich der Verbindungen der Objekte einer Klasse zu anderen Objekten gelten für \textbf{jedes} Objekt dieser Klasse, nicht nur für ein Objekt oder eine bestimmte Teilmenge der Objekte! Wichtig ist auch, dass Multiplizitäten nichts über die \textbf{absolute} Anzahl von Objekten in der Objektkonstellation aussagen.
+
+\sttpHinweiskasten{1.0}{ein vs. jedes}{In der deutschen Sprache verwenden wir in manchen Situationen, in denen wir eigentlich jeder/jede meinen, die Formulierung ein/eine. Zum Beispiel ist mit der Aussage „eine Fichte ist ein Nadelbaum“ vermutlich in den meisten Fällen gemeint, dass es sich bei jeder Fichte um einen Nadelbaum handelt und nicht nur bei einer konkreten Fichte. Eindeutig ist dies aber nicht. Für die sprachliche Erläuterung von Multiplizitäten sollten Sie explizit die Formulierung \textbf{jedes} Objekt verwenden.}
+
+\pagebreak
+
+Kehren wir zum Objektdiagramm aus Abbildung~\ref{fig:objektdiagramm} und zum Klassendiagramm aus Abbildung~\ref{fig:klassendiagramm_zu_objektdiagramm} zurück. 
+
+\begin{center}
+	\begin{minipage}[c]{.6\linewidth} 
+		\includegraphics[scale=0.7]{Bilder/Kapitel-4/objektdiagramm_lehrer_fach_schueler.pdf}
+	\end{minipage}
+	\hspace{.1\linewidth}% Abstand zwischen den beiden Bildern
+	\begin{minipage}[c]{.2\linewidth}
+		\includegraphics[scale=0.7]{Bilder/Kapitel-4/klassendiagramm_lehrer_fach_schueler.pdf}
+	\end{minipage}
+\end{center}
+
+Folgende Bedingungen stellt das Klassendiagramm an gültige Objektkonstellationen:
+\begin{itemize}
+	\item Jedes Lehrer-Objekt ist bezüglich der Verbindungsart \sttpUMLText{unterrichtet} mit genau zwei Fach-Objekten verbunden (Multiplizität: \sttpUMLText{2}). In Realweltterminologie heißt das: Jeder Lehrer unterrichtet genau zwei Fächer.
+	\item Jedes Fach-Objekt ist bezüglich der Verbindungsart \sttpUMLText{unterrichtet} mit mindestens einem Lehrer-Objekt verbunden (Multiplizität: \sttpUMLText{1..*}). Realwelt\-termi\-no\-logie: Jedes Fach wird von mindestens einem Lehrer unterrichtet. Auf Grundlage des Objektdiagramms in Abbildung~\ref{fig:objektdiagramm} hätten wir diese Multiplizität durchaus auch weiter einschränken können, denn in Abb.~\ref{fig:objektdiagramm} ist ein konkretes Fach-Objekt entweder mit genau einem Lehrer-Objekt (\sttpUMLText{sport}, \sttpUMLText{mathe}) oder mit genau zwei Lehrer-Objekten (\sttpUMLText{biologie}) verbunden. Die Multiplizität im Klassendiagramm in Abb.~\ref{fig:klassendiagramm_zu_objektdiagramm} hätte also auch \sttpUMLText{1..2} lauten können. Üblicherweise versucht man Multiplizitäten – insbesondere die obere Grenze einer Multiplizität – nicht von Beginn an aufgrund weniger beispielhafter Objekt\-konstellationen zu sehr einzuschränken, da häufig in der weiteren Diskussion mit Domänenexperten doch noch abweichende Fälle auftauchen. Insofern finden sich in den frühen Versionen eines Domänenmodells sehr häufig die Angaben \sttpUMLText{*} oder \sttpUMLText{1..*}. 
+	\item Jedes Fach-Objekt ist bezüglich der Verbindungsart \sttpUMLText{nimmt teil} mit beliebig vielen Schüler-Objekten verbunden (Multiplizität \sttpUMLText{*}). Realweltterminologie: An einem (Unterrichts)Fach können beliebig viele (auch keiner!) Schüler teilnehmen. 
+	\item Jedes Schüler-Objekt ist bezüglich der Verbindungsart \sttpUMLText{nimmt teil} mit ein bis zehn Fach-Objekten verbunden (Multiplizität: \sttpUMLText{1..10}). Realweltterminologie: Jeder Schüler nimmt mindestens an einem, aber maximal an zehn Fächern teil. 
+\end{itemize}
+
+Da wir das Klassendiagramm auf Grundlage der als gültig definierten Objektkonstellation aus Abb.~\ref{fig:objektdiagramm} entsprechend konstruiert haben, erfüllt das Objektdiagramm in Abb.~\ref{fig:objektdiagramm} alle Regeln des Klassendiagramms aus Abb.~\ref{fig:klassendiagramm_zu_objektdiagramm}. Sofern im weiteren Verlauf des Softwareentwicklungsprojekts weitere Objektkonstellationen der Realwelt auftauchen, die ebenfalls gültig sein sollen, muss die aktuelle Version des Klassendiagramms geprüft und unter Umständen angepasst werden.
+
+\minisec{Mehrere Assoziationen zwischen Klassen}
+
+In unserem bisherigen Beispiel waren zwei Objekte immer nur über genau eine Verbindung miteinander verbunden. In der Realwelt existieren aber auch Konstellationen, bei denen zwei Objekte über unterschiedliche Beziehungsarten miteinander verbunden sind. Dies lässt sich auch in der UML modellieren. Abbildung~\ref{fig:assoziationen_zwischen_klassen} zeigt eine Klasse \sttpUMLText{Person} und eine Klasse \sttpUMLText{Glücksspielautomat}. Beide sind durch zwei verschiedene Assoziationen verbunden. Die obere Assoziation bildet ab, dass Personen (in der Realwelt) an Spielautomaten spielen. Die untere Assoziation bildet ab, dass es Personen gibt, die für die Wartung von Spielautomaten zuständig sind. Je nach Art der Beziehung übernehmen Spielautomat-Objekte und Person-Objekte unterschiedliche \marginline{Rollen}
+\textit{Rollen}. Achtung: Das ist hier ein anderer Rollenbegriff als der aus Lektion 1.
+
+\vspace{-\baselineskip} %%% für Druck
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{Bilder/Kapitel-4/assoziationen_zwischen_klassen.pdf}
+	\caption{Mehrere Assoziationen zwischen zwei Klassen}
+	\label{fig:assoziationen_zwischen_klassen}
+\end{figure}
+
+Die  Rollenbezeichnungen können zusätzlich zum Assoziationsnamen an der Assoziation notiert werden, sind aber optional. Rollenbezeichnungen sind im Übrigen nicht auf Situationen beschränkt, in denen mehrere Assoziationen zwischen Klassen modelliert werden sollen. Jede Assoziation kann durch Rollenangaben ergänzt werden. Häufig lassen sich aber schon aus dem Assoziationsnamen die Rollen erschließen, sodass bei nur einer Assoziation zwischen zwei Klassen auf die Angabe von Rollen oft verzichtet wird. Existieren mehrere Assoziationen zwischen Klassen, wie in unserem Spielautomaten-Beispiel, muss aber mindestens eine der beiden Angaben (Assoziationsname oder Rollenbezeichnungen) vorhanden sein, um die Assoziationen unterscheidbar zu halten. 
+
+% Die Grafik ist breiter als die Textbreite.
+\begin{figure}[h!]
+	\centering
+	\includegraphics{Bilder/Kapitel-4/assoziationen_zwischen_klassen_objektdiagramm.pdf}
+	\caption[Ein gültiges Objektdiagramm zu Abb.~\ref{fig:assoziationen_zwischen_klassen}]{Ein gültiges Objektdiagramm zu Abbildung~\ref{fig:assoziationen_zwischen_klassen}}
+	\label{fig:objektdiagramm_zu_assoziationen_zwischen_klassen}
+\end{figure}
+
+Abbildung~\ref{fig:objektdiagramm_zu_assoziationen_zwischen_klassen} zeigt ein Objektdiagramm mit einer gültigen Objektkonstellation bezüglich des Klassendiagramms in Abbildung~\ref{fig:assoziationen_zwischen_klassen}: Sie sehen, dass es Personen geben kann, die an Spielautomaten spielen (Peter), andere die einen Spielautomaten warten (Tom und Mareike), wieder andere, die beides tun (Manfred) und solche, die weder Spieler noch Techniker sind (Hans). All dies lässt das Klassendiagramm aus Abb.~\ref{fig:assoziationen_zwischen_klassen} zu.
+
+\pagebreak %%% für Druck
+
+Abbildung~\ref{fig:tierarzt_tier} zeigt ein weiteres Beispiel für mehrere Assoziationen zwischen Klassen. Zwischen den Klassen \sttpUMLText{Tierarzt} und \sttpUMLText{Tier} gibt es zwei unterschiedliche Beziehungen. Mit der Assoziation \sttpUMLText{impft} soll modelliert werden, dass Tierärzte Tiere impfen. Die Assoziation \sttpUMLText{Jahresuntersuchung} modelliert, dass Tierärzte bei Tieren regelmäßige Vorsorgeuntersuchungen vornehmen. In diesem Beispiel würden sich Rollenbezeichnungen an den beiden Assoziationen nicht sehr voneinander unterscheiden, da das Tier in beiden Fällen eine Art Patient und der Tierarzt eben der Arzt wäre. Man könnte natürlich Rollenbezeichnungen wie \sttpUMLText{impfkandidat}, \sttpUMLText{impfarzt} für die eine Assoziation und \sttpUMLText{patient}, \sttpUMLText{untersuchender} für die andere Assoziation kreieren oder ähnliche voneinander abweichende Formulierungen. Für das Verständnis hilfreicher ist in diesem Beispiel aber der Verzicht auf die Rollenangaben und stattdessen die Verwendung aussagekräftiger Assoziationsnamen. Im Übrigen verwendet man für Assoziationsnamen üblicherweise Verben. Der Assoziationsname \sttpUMLText{Jahresuntersuchung} der unteren Assoziation ist hier aber mal ein Beispiel für einen Fall, in dem ein Nomen als Assoziationsname geeigneter ist als ein Verb.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{Bilder/Kapitel-4/tierarzt_tier.pdf}
+	\caption[Beispiel für mehrere Assoziationen zwischen Klassen]{Weiteres Beispiel für mehrere Assoziationen zwischen Klassen}
+	\label{fig:tierarzt_tier}
+\end{figure}
+
+\minisec{Reflexive Assoziationen}
+
+Eine besondere Art von Assoziationen sind sogenannte \textit{reflexive Assoziationen}, die Beziehungen zwischen \textbf{verschiedenen} Objekten \textbf{derselben} Klasse beschreiben. Die Assoziation \sttpUMLText{vertritt} in Abbildung~\ref{fig:assoziation_und_objektkonstellation} oben ist ein Beispiel für eine reflexive Assoziation. Sie beschreibt eine Beziehung zwischen einem Sachbearbeiter-Objekt und anderen Sachbearbeiter-Objekten. Im Beispiel wird modelliert, dass ein Realwelt-Sachbearbeiter durch zwei andere Sachbearbeiter vertreten werden kann (\zb im Urlaubsfall). Abbildung~\ref{fig:assoziation_und_objektkonstellation} unten zeigt eine gültige Objektkonstellation: Der Sachbearbeiter Max steht in seiner Rolle als Verantwortlicher in Verbindungen mit seinen Vertretern den Sachbearbeitern Paul und Hugo. In seiner Rolle als Vertreter steht Max gleichzeitig in Verbindung zur Sachbearbeiterin Sabine, deren Vertretung er übernimmt. In diesem Beispiel ist die Angabe der Rollen für das Verständnis der Beziehungen notwendig. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{Bilder/Kapitel-4/sachbearbeiter.pdf}
+	\caption[Eine reflexive Assoziation]{Eine reflexive Assoziation (oben) und eine dazu gültige Objekt\-konstellation (unten)}
+	\label{fig:assoziation_und_objektkonstellation}
+\end{figure}
+
+\minisec{n-äre Beziehungen}
+In der Realwelt gibt es Situationen, in denen Objekte von mehr als zwei Klassen miteinander in Beziehung stehen. In der UML drückt man eine solche sogenannte \textit{\mbox{n-äre} Beziehung} zwischen Klassen (\zb drei Klassen: ternär, vier Klassen: quaternär) mit Assoziationen aus, die durch eine Raute verknüpft sind. Abbildung~\ref{fig:tierarzt_tier_krankheit} zeigt ein Beispiel. Zwischen den Klassen \sttpUMLText{Tierarzt}, \sttpUMLText{Tier} und \sttpUMLText{Krankheit} besteht eine Assoziation mit Namen \sttpUMLText{heilt}. Damit soll modelliert werden, dass Tierärzte Tiere von Krankheiten heilen.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{Bilder/Kapitel-4/tierarzt_tier_krankheit.pdf}
+	\caption{Eine Beziehung zwischen drei Klassen}
+	\label{fig:tierarzt_tier_krankheit}
+\end{figure}
+
+\pagebreak %%% für Druck
+
+Java und viele andere objektorientierte Programmiersprachen unterstützen das Konzept der n-ären Beziehungen nicht, sodass bei der Implementierung solche Assoziationen in mehrere binäre Assoziationen umgewandelt werden müssen. In Domänenmodellen können n-äre Beziehungen aber vorkommen, wenn sie in der Realwelt existieren (und dementsprechend den Domänenexperten geläufig sind), denn Domänenmodelle sollen noch unabhängig sein von jeglichen späteren Implementierungsbedürfnissen.
+
+\minisec{Aggregation und Komposition}
+\phantomsection
+\label{sec:Kap-3.2.5.3:besondere_assoziationen}
+
+Um weitere besondere Formen von Beziehungen auszudrücken, kennt die UML außer den einfachen Assoziationen, die man mit Assoziationsnamen, Multiplizitäten und Rollen versehen kann, mit der \textit{Aggregation} und der \textit{Komposition} noch zwei spezielle Assoziationen. Mit Aggregation und Komposition lassen sich Teil-Ganzes-Beziehungen modellieren, zum Beispiel ein Einkauf, dessen Teile die einzelnen eingekauften Produkte sind oder ein Haus, das aus mehreren Zimmern besteht. Abbildung~\ref{fig:aggregation_und_komposition} zeigt diese beiden Beispiele. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{Bilder/Kapitel-4/aggregation_vs_komposition.pdf}
+	\caption[Aggregation und Komposition]{Aggregation (links) und Komposition (rechts)}
+	\label{fig:aggregation_und_komposition}
+\end{figure}
+
+Aggregationsbeziehungen, wie hier zwischen \sttpUMLText{Einkauf} und \sttpUMLText{Produkt}, und Komposi\-tions\-beziehungen, wie zwischen \sttpUMLText{Haus} und \sttpUMLText{Zimmer}, werden durch eine Raute am Assoziationsende des Ganzes-Elements dargestellt. Die unausgefüllte Raute (Abbildung links) kennzeichnet die Aggregation, die ausgefüllte Raute (Abbildung rechts) die Komposition. Assoziationsnamen werden üblicherweise nicht angegeben, da die Art der Beziehung (\sttpUMLText{„besteht aus“}, \sttpUMLText{„hat“}, \sttpUMLText{„setzt sich zusammen aus“},
+\sttpUMLText{„ist} \sttpUMLText{Teil} \sttpUMLText{von“} etc.) schon aus der gewählten Verbindungsform hervorgeht.
+
+Aggregation und Komposition drücken im Vergleich zu einfachen Assoziationen eine stärkere Beziehung zwischen den verbundenen Objekten aus, wobei über die Komposition eine noch engere Beziehung modelliert wird als über die Aggrega\-tion. Die Darstellung als Komposition wird verwendet, wenn die Teile (im Beispiel die Zimmer-Objekte) nicht unabhängig vom Ganzen (Haus-Objekt) existieren können, die Verbindung zwischen dem Ganzen und seinen Teilen also untrennbar ist bzw. sein soll. Dementsprechend darf ein konkretes Teil-Objekt auch nur mit einem einzigen Ganzes-Objekt verbunden sein (Multiplizität \sttpUMLText{1} auf der Seite der Klasse \sttpUMLText{Haus}). In Aggregationsbeziehungen ist dagegen die Existenz der Teile (Produkt-Objekte) auch ohne das Ganze (Einkauf-Objekt) vorgesehen.
+
+\minisec{Assoziationsklassen}
+Abbildung~\ref{fig:kind_patenschaft_tier} zeigt ein Beispiel für eine sogenannte \textit{Assoziationsklasse}. Mit einer Assoziationsklasse können die Eigenschaften einer Assoziation und die Eigenschaften einer Klasse kombiniert werden. Das macht es möglich, eine Assoziation -- der man nur Namen, Rollen, Multiplizitäten anfügen kann -- zusätzlich mit Merkmalen einer Klasse, wie zum Beispiel Attributen, auszustatten. Man verwendet Assoziations\-klassen, um Charakteristika abzubilden, die Teil der Beziehung zwischen den beteiligten Objekten sind und sich nicht einer der an der Beziehung beteiligten Klassen zuordnen lassen. In unserem Beispiel spielt für eine Patenschaft, die ein Kind für ein Tier übernimmt, der Zeitraum dieser Patenschaft eine Rolle. Diese Information wird als Attribut modelliert.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{Bilder/Kapitel-4/kind_patenschaft_tier.pdf}
+	\caption{Eine Assoziationsklasse}
+	\label{fig:kind_patenschaft_tier}
+\end{figure}
+
+In der UML-Darstellung wird die Assoziationsklasse mit einer gestrichelten Linie an die Assoziationslinie angebunden. Der Name der Assoziationsklasse und der Name der Assoziation müssen identisch sein, wobei letzterer optional ist. Ähnlich wie bei den n-ären Beziehungen müssen Assoziationsklassen-Beziehungen für die Implementierung in andere Beziehungsformen umgewandelt werden, da die objektorientierten Programmiersprachen das Konzept der Assoziationsklasse nicht unterstützen. In \mbox{Domänenmodellen} sind sie aber häufig zu finden.
+
+\minisec{Generalisierung}
+
+Lassen Sie uns zum Schluss des Kapitels noch eine weitere besondere Beziehungsform ansehen, die eine wichtige Rolle in der Objektorientierung spielt. Um (hierarchische) Realweltklassifikationen, sogenannte Taxonomien, abbilden zu können, gibt es das Konzept der \textit{Generalisierung}. Abbildung~\ref{fig:generalisierungsbeziehungen} zeigt die UML-Syntax für die Modellierung von Generalisierungsbeziehungen.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{Bilder/Kapitel-4/generalisierungsbeziehungen.pdf}
+	\caption{Generalisierungsbeziehungen}
+	\label{fig:generalisierungsbeziehungen}
+\end{figure}
+
+Laubbäume und Nadelbäume sind spezielle Formen von Bäumen. In der Terminologie der Objektorientierung sagt man, sie sind \textit{Spezialisierungen} von Bäumen. Die Begriffe Generalisierung und Spezialisierung meinen dasselbe Konzept, sie beschreiben es nur aus zwei unterschiedlichen Richtungen. Ausgehend von der Klasse \sttpUMLText{Baum} sind die Klassen \sttpUMLText{Laubbaum} und \sttpUMLText{Nadelbaum} Spezialisierungen. Aus Richtung der Klasse \sttpUMLText{Laubbaum} bzw. \sttpUMLText{Nadelbaum} betrachtet, ist die Klasse \sttpUMLText{Baum} eine Generalisierung. Die Generalisierungsklasse nennt man auch \textit{Oberklasse},
+\marginline{Ober- und Unterklasse}
+die Spezialisierungsklasse heißt \textit{Unterklasse}. Generalisierungsbeziehungen sind also Beziehungen zwischen Ober\-klassen und Unterklassen. In der UML wird Generalisierung/Spezialisierung durch einen Pfeil mit einer unausgefüllten Dreiecksspitze auf der Seite der Oberklasse modelliert.
+
+In der Klasse \sttpUMLText{Baum} aus Abb.~\ref{fig:generalisierungsbeziehungen} könnte definiert sein, dass jedes Baum-Objekt eine Wurzel, einen Stamm und Zweige besitzt. Diese Charakteristika der Ober\-klasse gelten in Generalisierungsbeziehungen auch für die Objekte der Unterklassen. In der Terminologie der objektorientierten Programmierung sagt man, die Ober\-klasse \textit{vererbt} Eigenschaften an ihre Unterklasse(n). Die Unterklasse wiederum kann Eigenschaften zu dem Ererbten hinzufügen oder auch Ererbtes verändern, um die Spezialisierung zu charakterisieren. Zum Beispiel charakterisiert einen Laubbaum, dass er Blätter hat, während ein Nadelbaum keine Blätter, sondern Nadeln besitzt. Charakteristisch für eine Birke als Spezialisierung eines Laubbaums ist zum Beispiel die besondere Färbung des Stamms, während eine Eiche, die ebenfalls eine Spezialisierung eines Laubbaums ist, sich durch die Form ihrer Blätter auszeichnet. Auf einer konzeptuellen Ebene ist ein Laubbaum-Objekt aus unserem Beispiel nicht nur ein Laubbaum (hat Blätter) sondern gleichzeitig auch ein Baum (hat Wurzel, Stamm und Zweige). Ein Birke-Objekt ist gleichzeitig eine Birke (Stamm ist weiß), ein Laubbaum (hat Blätter) und ein Baum (hat Wurzel, Stamm und Zweige). 
