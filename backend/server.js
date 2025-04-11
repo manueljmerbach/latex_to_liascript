@@ -1,57 +1,93 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
+import fs from 'fs';
 import { exec } from 'child_process';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import multer from 'multer';
+import unzipper from 'unzipper';
 
 const app = express();
 const port = process.env.PORT || 8080;
-app.listen(port, () => {
-  console.log(`Server läuft auf Port ${port}`);
-});
 
-// __dirname-Ersatz für ES Module
+// Pfade vorbereiten
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const uploadsDir = path.join(__dirname, 'uploads');
 
-const isWindows = process.platform === 'win32';
+// Upload-Verzeichnis anlegen, falls nicht vorhanden
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir);
+}
+
+// Multer Setup für Datei-Uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, uploadsDir),
+  filename: (req, file, cb) => cb(null, `${Date.now()}_${file.originalname}`)
+});
+const upload = multer({ storage });
 
 // Middleware
+app.use(cors());
 app.use(express.json());
+app.use(express.static(path.resolve(__dirname, '../frontend/dist')));
 
-// Ersetze hier ggf. die URL mit deiner finalen Render-URL
-//app.use('/convert', cors({ origin: 'https://dein-frontend.onrender.com' }));
+// Datei entpacken, Haupt-.tex-Datei suchen, pandoc starten
+app.post('/convert', upload.single('projectZip'), async (req, res) => {
+  const zipPath = req.file.path;
+  const extractDir = path.join(uploadsDir, `${Date.now()}_extracted`);
 
-// Endpunkt für Pandoc-Konvertierung
-app.post('/convert', (req, res) => {
-  const inputFile = req.body.inputFile;
-  const outputFile = req.body.outputFile;
+  try {
+    // Entpacken
+    await fs.createReadStream(zipPath)
+      .pipe(unzipper.Extract({ path: extractDir }))
+      .promise();
 
-  const inputPath = path.resolve(inputFile);
-  const outputPath = path.resolve(outputFile);
-  const workingDir = path.dirname(inputPath);
+    // Haupt-TEX-Datei finden (main.tex oder erste .tex-Datei)
+    const files = await findTexFiles(extractDir);
+    if (files.length === 0) throw new Error('Keine .tex-Datei gefunden.');
 
-  // Direktes Pandoc-Kommando für Linux/Mac (funktioniert auf Render)
-  const command = `pandoc -s -f latex -t markdown -o "${outputPath}" "${inputPath}"`;
+    const inputFile = files.find(f => f.endsWith('main.tex')) || files[0];
+    const outputFile = inputFile.replace(/\.tex$/, '.md');
 
-  exec(command, { cwd: workingDir, shell: isWindows }, (error, stdout, stderr) => {
-    if (error) {
-      return res.status(500).json({ error: error.message });
-    }
-    if (stderr) {
-      return res.status(500).json({ error: stderr });
-    }
-    res.json({ message: 'Conversion successful', output: stdout });
-  });
+    const command = `pandoc -s -f latex -t markdown -o "${outputFile}" "${inputFile}"`;
+
+    const isWindows = process.platform === 'win32';
+    exec(command, { cwd: extractDir, shell: isWindows }, (error, stdout, stderr) => {
+      if (error || stderr) {
+        return res.status(500).json({ error: error?.message || stderr });
+      }
+
+      res.json({
+        message: 'Konvertierung erfolgreich',
+        outputFile: path.basename(outputFile)
+      });
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
-const buildPath = path.resolve(__dirname, '../frontend/dist');
+// Utility: .tex-Dateien rekursiv finden
+async function findTexFiles(dir, result = []) {
+  const entries = await fs.promises.readdir(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      await findTexFiles(fullPath, result);
+    } else if (entry.isFile() && entry.name.endsWith('.tex')) {
+      result.push(fullPath);
+    }
+  }
+  return result;
+}
 
-// statische Dateien ausliefern
-app.use(express.static(buildPath));
-
-// alle anderen Routen auf index.html umleiten
+// Fallback für SPA
 app.get('*', (req, res) => {
-  res.sendFile(path.join(buildPath, 'index.html'));
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+});
+
+app.listen(port, () => {
+  console.log(`🚀 Server läuft auf Port ${port}`);
 });
