@@ -93,10 +93,11 @@ async function findTexFiles(dir, result = []) {
   return result;
 }
 
-// Fallback für SPA
+// Fallback für SPA über GET
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
+
 
 app.listen(port, () => {
   console.log(`🚀 Server läuft auf Port ${port}`);
