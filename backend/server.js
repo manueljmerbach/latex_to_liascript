@@ -10,73 +10,35 @@ import unzipper from 'unzipper';
 
 const app = express();
 const port = process.env.PORT || 8080;
-app.use(cors());
-app.use(express.json());
 
+// Pfade vorbereiten
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const uploadsDir = path.join(__dirname, 'uploads');
 
+// Upload-Verzeichnis anlegen, falls nicht vorhanden
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir);
 }
 
-// Multer Setup
+// Multer Setup für Datei-Uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, uploadsDir),
   filename: (req, file, cb) => cb(null, `${Date.now()}_${file.originalname}`)
 });
 const upload = multer({ storage });
 
-// ZIP Upload + Liste aller .tex-Dateien
-app.post('/upload', upload.single('projectZip'), async (req, res) => {
+// Middleware
+app.use(cors());
+app.use(express.json());
+app.use(express.static(path.resolve(__dirname, '../frontend/dist')));
+
+// Datei entpacken, Haupt-.tex-Datei suchen, pandoc starten
+app.post('/convert', upload.single('projectZip'), async (req, res) => {
   const zipPath = req.file.path;
-  const extractDir = zipPath.replace(/\.zip$/, '');
+  const extractDir = path.join(uploadsDir, `${Date.now()}_extracted`);
 
-  try {
-    await fs.createReadStream(zipPath)
-      .pipe(unzipper.Extract({ path: extractDir }))
-      .promise();
-
-    const texFiles = await findTexFiles(extractDir);
-
-    if (texFiles.length === 0) throw new Error('Keine .tex-Dateien gefunden.');
-
-    // Speicher für spätere Konvertierung
-    res.json({
-      message: 'Projekt entpackt',
-      files: texFiles.map(p => path.relative(extractDir, p)),
-      extractDir
-    });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Konvertieren
-app.post('/convert', async (req, res) => {
-  const { extractDir, relativeTexPath } = req.body;
-
-  const inputPath = path.join(extractDir, relativeTexPath);
-  const outputPath = inputPath.replace(/\.tex$/, '.md');
-
-  const command = `pandoc -s -f latex -t markdown -o "${outputPath}" "${inputPath}"`;
-  const isWindows = process.platform === 'win32';
-
-  exec(command, { cwd: extractDir, shell: isWindows }, (error, stdout, stderr) => {
-    if (error || stderr) {
-      return res.status(500).json({ error: error?.message || stderr });
-    }
-
-    res.json({
-      message: 'Konvertierung erfolgreich',
-      outputFile: path.basename(outputPath),
-      downloadPath: `/download/${path.basename(outputPath)}`
-    });
-  });
-});
-
-// Datei-Download
+  // Download-Route für die konvertierte Markdown-Datei
 app.get('/download/:filename', (req, res) => {
   const filePath = path.join(uploadsDir, req.params.filename);
   if (fs.existsSync(filePath)) {
@@ -86,6 +48,38 @@ app.get('/download/:filename', (req, res) => {
   }
 });
 
+  try {
+    // Entpacken
+    await fs.createReadStream(zipPath)
+      .pipe(unzipper.Extract({ path: extractDir }))
+      .promise();
+
+    // Haupt-TEX-Datei finden (main.tex oder erste .tex-Datei)
+    const files = await findTexFiles(extractDir);
+    if (files.length === 0) throw new Error('Keine .tex-Datei gefunden.');
+
+    const inputFile = files.find(f => f.endsWith('main.tex')) || files[0];
+    const outputFile = inputFile.replace(/\.tex$/, '.md');
+
+    const command = `pandoc -s -f latex -t markdown -o "${outputFile}" "${inputFile}"`;
+
+    const isWindows = process.platform === 'win32';
+    exec(command, { cwd: extractDir, shell: isWindows }, (error, stdout, stderr) => {
+      if (error || stderr) {
+        return res.status(500).json({ error: error?.message || stderr });
+      }
+
+      res.json({
+        message: 'Konvertierung erfolgreich',
+        outputFile: path.basename(outputFile)
+      });
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Utility: .tex-Dateien rekursiv finden
 async function findTexFiles(dir, result = []) {
   const entries = await fs.promises.readdir(dir, { withFileTypes: true });
   for (const entry of entries) {
@@ -98,6 +92,11 @@ async function findTexFiles(dir, result = []) {
   }
   return result;
 }
+
+// Fallback für SPA
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+});
 
 app.listen(port, () => {
   console.log(`🚀 Server läuft auf Port ${port}`);
